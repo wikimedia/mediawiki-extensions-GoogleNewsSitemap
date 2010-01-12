@@ -2,11 +2,11 @@
 if (!defined('MEDIAWIKI')) die();
 
 /**
- * Class GNSM creates Atom/RSS feeds for Wikinews
+ * Class GoogleNewsSitemap creates Atom/RSS feeds for Wikinews
  **
  * Simple feed using Atom/RSS coupled to DynamicPageList category searching.
  *
- * To use: http://wiki.url/Special:GNSM/<feedType>?[paramter=value][...]
+ * To use: http://wiki.url/Special:GoogleNewsSitemap/<feedType>?[paramter=value][...]
  *
  * Implemented parameters are marked with an @
  **
@@ -26,7 +26,7 @@ if (!defined('MEDIAWIKI')) die();
  *	suppresserrors = bool ; default = false
  **/
 
-class GNSM extends IncludableSpecialPage {
+class GoogleNewsSitemap extends IncludableSpecialPage {
 
 
 	/**
@@ -65,7 +65,7 @@ class GNSM extends IncludableSpecialPage {
 	 * Constructor
 	 **/
 	public function __construct() {
-		parent::__construct( 'GNSM' );
+		parent::__construct( 'GoogleNewsSitemap' );
 	}
 
 	/**
@@ -77,7 +77,7 @@ class GNSM extends IncludableSpecialPage {
 		global $wgContLang;
 		global $wgRequest, $wgOut;
 		global $wgSitename, $wgServer, $wgScriptPath;
-		wfLoadExtensionMessages( 'GNSM' );
+		wfLoadExtensionMessages( 'GoogleNewsSitemap' );
 		global $wgFeedClasses, $wgLocaltimezone;
 
 		// Not sure how clean $wgLocaltimezone is
@@ -143,7 +143,7 @@ class GNSM extends IncludableSpecialPage {
 						$this->pubDate = isset( $row->cl_timestamp ) ? $row->cl_timestamp : date( DATE_ATOM );
 						$feedArticle = new Article( $title );
 
-						$feedItem = new feedSMItem(
+						$feedItem = new FeedSitemapItem(
 						trim( $title->getFullURL() ),
 						wfTimeStamp( TS_ISO_8601, $this->pubDate ),
 						$this->getKeywords( $title ),
@@ -515,11 +515,11 @@ class GNSM extends IncludableSpecialPage {
 }
 
 /**
- * feedSMItem Class
+ * FeedSitemapItem Class
  **
  * Base class for basic SiteMap support, for building url containers.
  **/
-class feedSMItem{
+class FeedSitemapItem{
 	/**
 	 * Var string
 	 **/
@@ -610,7 +610,7 @@ class feedSMItem{
 
 }
 
-class SitemapFeed extends feedSMItem{
+class SitemapFeed extends FeedSitemapItem{
 	/**
 	 * Output feed headers
 	 **/
@@ -623,7 +623,7 @@ class SitemapFeed extends feedSMItem{
 	}
 	/**
 	 * Output a SiteMap 0.9 item
-	 * @param feedSMItem item to be output
+	 * @param FeedSitemapItem item to be output
 	 **/
 	function outItem( $item ) {
 		?>

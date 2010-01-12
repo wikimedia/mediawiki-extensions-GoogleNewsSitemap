@@ -1,6 +1,6 @@
 <?php
 /**
- * Internationalisation file for extension special page GNSM
+ * Internationalisation file for extension special page GoogleNewsSitemap
  * New version of DynamicPageList extension for use by Wikinews projects
  *
  * @addtogroup Extensions
@@ -13,7 +13,7 @@ $messages= array();
  **/
 
 $messages['en'] = array(
-    'gnsm'                  => 'Google News SiteMap',
+    'gnsm'                  => 'Google News Sitemap',
     'gnsm-desc'             => 'Outputs an Atom/RSS feed as a Google News Sitemap.',
     'gnsm_categorymap'      => '', #default empty. list of categories to map to keywords. do not translate.
     'gnsm_toomanycats'      => 'Error: Too many categories!',
@@ -27,7 +27,7 @@ $messages['en'] = array(
  **/
 
 $messages['fr'] = array(
-    'gnsm'                  => 'Google nouvelles SiteMap',
+    'gnsm'                  => 'Google nouvelles Sitemap',
     'gnsm-desc'             => 'Cre un Atom ou RSS feed comme un plan Sitemap pour Google.',
     'gnsm_toomanycats'      => 'Erreur: Trop de nombreuses catégories!',
     'gnsm_toofewcats'       => 'Erreur: Trop peu de catégories!',
