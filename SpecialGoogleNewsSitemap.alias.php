@@ -5,10 +5,12 @@
  * @addtogroup Extensions
  */
 
+$aliases = array();
+
 /** English
  * @author Amgine
  **/
 $aliases['en'] = array(
-    'GoogleNewsSitemap' => array( 'Google News Sitemap' ),
+    'GoogleNewsSitemap' => array( 'GoogleNewsSitemap' ),
 );
 
