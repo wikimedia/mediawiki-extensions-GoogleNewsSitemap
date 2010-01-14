@@ -58,6 +58,18 @@ $messages['br'] = array(
 	'gnsm_noincludecats' => "Fazi : Rankout a reoc'h lakaat ur rummad d'an nebeutañ, pe menegiñ un esaouenn anv !",
 );
 
+/** Bosnian (Bosanski)
+ * @author CERminator
+ */
+$messages['bs'] = array(
+	'gnsm' => 'Google News mapa stranice',
+	'gnsm-desc' => 'Daje izlaz atom/RSS fida kao Google News mapa stranice',
+	'gnsm_toomanycats' => 'Greška: Previše kategorija!',
+	'gnsm_toofewcats' => 'Greška: Premalo kategorija!',
+	'gnsm_noresults' => 'Greška: Nema rezultata!',
+	'gnsm_noincludecats' => 'Greška: Morate uključiti najmanje jednu kategoriju ili navesti imenski prostor!',
+);
+
 /** French (Français)
  * @author Amgine
  */
@@ -92,6 +104,16 @@ $messages['gsw'] = array(
 	'gnsm_toofewcats' => 'Fähler: z wenig Kategorie!',
 	'gnsm_noresults' => 'Fähler: kei Ergebnis!',
 	'gnsm_noincludecats' => 'Fähler: muesch zmindescht ei Kategorii aagee oder e Namensruum feschtlege!',
+);
+
+/** Hungarian (Magyar)
+ * @author Glanthor Reviol
+ */
+$messages['hu'] = array(
+	'gnsm_toomanycats' => 'Hiba: túl sok kategória!',
+	'gnsm_toofewcats' => 'Hiba: túl kevés kategória!',
+	'gnsm_noresults' => 'Hiba: nincs találat!',
+	'gnsm_noincludecats' => 'Hiba: legalább egy kategóriát vagy névteret meg kell adnod!',
 );
 
 /** Luxembourgish (Lëtzebuergesch)
@@ -138,6 +160,18 @@ $messages['pms'] = array(
 	'gnsm_toofewcats' => 'Eror: Tròp pòche categorìe!',
 	'gnsm_noresults' => 'Eror: pa gnun arzultà!',
 	'gnsm_noincludecats' => 'Eror: A deuv anserì almanch na categorìa, o spessifiché në spassi nominal!',
+);
+
+/** Russian (Русский)
+ * @author Александр Сигачёв
+ */
+$messages['ru'] = array(
+	'gnsm' => 'Карта сайта для Google News',
+	'gnsm-desc' => 'Подготавливает канал Atom/RSS в виде карты сайта для Google News',
+	'gnsm_toomanycats' => 'Ошибка. Слишком много категорий!',
+	'gnsm_toofewcats' => 'Ошибка. Слишком мало категорий!',
+	'gnsm_noresults' => 'Ошибка. Нет данных!',
+	'gnsm_noincludecats' => 'Ошибка. Вы должны включить по меньшей мере одну категорию, или указать пространство имён!',
 );
 
 /** Swedish (Svenska)
