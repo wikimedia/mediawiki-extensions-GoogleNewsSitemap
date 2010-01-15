@@ -120,9 +120,11 @@ $messages['hu'] = array(
  * @author Robby
  */
 $messages['lb'] = array(
+	'gnsm' => 'Google News Plang vum Site',
 	'gnsm_toomanycats' => 'Feeler: Zevill Kategorien!',
 	'gnsm_toofewcats' => 'Feeler: Ze wéineg Kategorien!',
 	'gnsm_noresults' => 'Feeler: Keng Resultater!',
+	'gnsm_noincludecats' => 'Feeler: Dir musst mindestens eng Kategorie oder een Nummraum drasetzen!',
 );
 
 /** Macedonian (Македонски)
