@@ -70,6 +70,18 @@ $messages['bs'] = array(
 	'gnsm_noincludecats' => 'Greška: Morate uključiti najmanje jednu kategoriju ili navesti imenski prostor!',
 );
 
+/** Lower Sorbian (Dolnoserbski)
+ * @author Michawiki
+ */
+$messages['dsb'] = array(
+	'gnsm' => 'Sedłowy pśeglěd Google Nowosći',
+	'gnsm-desc' => 'Wudawa kanal Atom/RSS ako sedłowy pśeglěd Google Nowosći',
+	'gnsm_toomanycats' => 'Zmólka: Pśewjele kategorijow!',
+	'gnsm_toofewcats' => 'Zmólka: Pśemało kategorijow!',
+	'gnsm_noresults' => 'Zmólka: Žedne wuslědki!',
+	'gnsm_noincludecats' => 'Zmólka: Musyš nanejmjenjej jadnu kategoriju zapśěgnuś abo mjenjowy rum pódaś!',
+);
+
 /** French (Français)
  * @author Amgine
  */
@@ -104,6 +116,18 @@ $messages['gsw'] = array(
 	'gnsm_toofewcats' => 'Fähler: z wenig Kategorie!',
 	'gnsm_noresults' => 'Fähler: kei Ergebnis!',
 	'gnsm_noincludecats' => 'Fähler: muesch zmindescht ei Kategorii aagee oder e Namensruum feschtlege!',
+);
+
+/** Upper Sorbian (Hornjoserbsce)
+ * @author Michawiki
+ */
+$messages['hsb'] = array(
+	'gnsm' => 'Sydłowa přehlad Google Nowinki',
+	'gnsm-desc' => 'Wudawa kanal Atom/RSS jako sydłowy přehlad Google Nowinki',
+	'gnsm_toomanycats' => 'Zmylk: Přewjele kategorijow!',
+	'gnsm_toofewcats' => 'Zmylk: Přemało kategorijow!',
+	'gnsm_noresults' => 'Zmylk: Žane wuslědki!',
+	'gnsm_noincludecats' => 'Zmylk: Dyrbiš znajmjeńša jednu kategoriju zapřijeć abo mjenowy rum podać!',
 );
 
 /** Hungarian (Magyar)
@@ -194,5 +218,17 @@ $messages['te'] = array(
 	'gnsm_toomanycats' => 'పొరపాటు: చాలా ఎక్కువ వర్గాలు!',
 	'gnsm_toofewcats' => 'పొరపాటు: చాలా తక్కువ వర్గాలు!',
 	'gnsm_noresults' => 'పొరపాటు: ఫలితాలు లేవు!',
+);
+
+/** Turkish (Türkçe)
+ * @author Joseph
+ */
+$messages['tr'] = array(
+	'gnsm' => 'Google Haberler Site haritası',
+	'gnsm-desc' => 'Bir Atom/RSS beslemesini Google Haberler Site haritası olarak çıktılar',
+	'gnsm_toomanycats' => 'Hata: Çok fazla kategori!',
+	'gnsm_toofewcats' => 'Hata: Çok az kategori!',
+	'gnsm_noresults' => 'Hata: Sonuç yok!',
+	'gnsm_noincludecats' => 'Hata: En az bir kategori girmeli, ya da bir ad alanı belirtmelisiniz!',
 );
 
