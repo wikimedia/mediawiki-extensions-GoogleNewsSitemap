@@ -84,6 +84,7 @@ $messages['dsb'] = array(
 
 /** French (Français)
  * @author Amgine
+ * @author McDutchie
  */
 $messages['fr'] = array(
 	'gnsm' => 'Google nouvelles Sitemap',
@@ -91,7 +92,7 @@ $messages['fr'] = array(
 	'gnsm_toomanycats' => 'Erreur: Trop de nombreuses catégories!',
 	'gnsm_toofewcats' => 'Erreur: Trop peu de catégories!',
 	'gnsm_noresults' => 'Erreur: Pas de résultats!',
-	'gnsm_noincludecats' => "Erreur: Vous devez inclure au moins une catégorie, ou spécifier un nom d'espace !",
+	'gnsm_noincludecats' => 'Erreur: Vous devez inclure au moins une catégorie, ou spécifier un espace de noms !',
 );
 
 /** Galician (Galego)
@@ -140,6 +141,25 @@ $messages['hu'] = array(
 	'gnsm_noincludecats' => 'Hiba: legalább egy kategóriát vagy névteret meg kell adnod!',
 );
 
+/** Interlingua (Interlingua)
+ * @author McDutchie
+ */
+$messages['ia'] = array(
+	'gnsm' => 'Sitemap de Google News',
+	'gnsm-desc' => 'Converte un syndication Atom/RSS in un Sitemap de Google News',
+	'gnsm_toomanycats' => 'Error: Troppo de categorias!',
+	'gnsm_toofewcats' => 'Error: Non satis de categorias!',
+	'gnsm_noresults' => 'Error: Nulle resultato!',
+	'gnsm_noincludecats' => 'Error: Tu debe includer al minus un categoria, o specificar un spatio de nomines!',
+);
+
+/** Japanese (日本語)
+ * @author Hosiryuhosi
+ */
+$messages['ja'] = array(
+	'gnsm' => 'Google ニュース サイトマップ',
+);
+
 /** Luxembourgish (Lëtzebuergesch)
  * @author Robby
  */
@@ -173,6 +193,16 @@ $messages['nl'] = array(
 	'gnsm_toofewcats' => 'Fout: te weinig categorieën!',
 	'gnsm_noresults' => 'Fout: geen resultaten!',
 	'gnsm_noincludecats' => 'Fout: u moet tenminste een categorie of naamruimte opgeven!',
+);
+
+/** Norwegian Nynorsk (‪Norsk (nynorsk)‬)
+ * @author Harald Khan
+ */
+$messages['nn'] = array(
+	'gnsm_toomanycats' => 'Feil: For mange kategoriar.',
+	'gnsm_toofewcats' => 'Feil: For få kategoriar.',
+	'gnsm_noresults' => 'Feil: Ingen resultat',
+	'gnsm_noincludecats' => 'Feil: Du lyt inkludera minst éin kategori eller oppgje eit namnerom.',
 );
 
 /** Piedmontese (Piemontèis)
