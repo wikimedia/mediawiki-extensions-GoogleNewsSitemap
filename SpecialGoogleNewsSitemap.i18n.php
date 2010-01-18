@@ -82,6 +82,18 @@ $messages['dsb'] = array(
 	'gnsm_noincludecats' => 'Zmólka: Musyš nanejmjenjej jadnu kategoriju zapśěgnuś abo mjenjowy rum pódaś!',
 );
 
+/** Basque (Euskara)
+ * @author An13sa
+ */
+$messages['eu'] = array(
+	'gnsm' => 'Google News Gunearen mapa',
+	'gnsm-desc' => 'Atom/RSS iturria zehazten du Google News Gunearen maparentzat',
+	'gnsm_toomanycats' => 'Errorea: Kategoria gehiegi!',
+	'gnsm_toofewcats' => 'Errorea: Kategoria gutxiegi!',
+	'gnsm_noresults' => 'Errorea: Emaitzarik ez!',
+	'gnsm_noincludecats' => 'Errorea: Gutxienez kategoria bat gehitu edo izen bat zehaztu behar duzu!',
+);
+
 /** French (Français)
  * @author Amgine
  * @author McDutchie
@@ -216,6 +228,18 @@ $messages['pms'] = array(
 	'gnsm_toofewcats' => 'Eror: Tròp pòche categorìe!',
 	'gnsm_noresults' => 'Eror: pa gnun arzultà!',
 	'gnsm_noincludecats' => 'Eror: A deuv anserì almanch na categorìa, o spessifiché në spassi nominal!',
+);
+
+/** Brazilian Portuguese (Português do Brasil)
+ * @author Daemorris
+ */
+$messages['pt-br'] = array(
+	'gnsm' => 'Mapa de Site de Notícias Google',
+	'gnsm-desc' => 'Produz um alimentador Atom/RSS como um Mapa de Site de Notícias Google',
+	'gnsm_toomanycats' => 'Erro: Categorias demais!',
+	'gnsm_toofewcats' => 'Erro: Categorias de menos!',
+	'gnsm_noresults' => 'Erro: Sem resultados!',
+	'gnsm_noincludecats' => 'Erro: Você precisa incluir pelo menos uma categoria, ou especificar um espaço nominal!',
 );
 
 /** Russian (Русский)
