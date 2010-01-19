@@ -217,6 +217,16 @@ $messages['nn'] = array(
 	'gnsm_noincludecats' => 'Feil: Du lyt inkludera minst éin kategori eller oppgje eit namnerom.',
 );
 
+/** Norwegian (bokmål)‬ (‪Norsk (bokmål)‬)
+ * @author Nghtwlkr
+ */
+$messages['no'] = array(
+	'gnsm_toomanycats' => 'Feil: For mange kategorier!',
+	'gnsm_toofewcats' => 'Feil: For få kategorier!',
+	'gnsm_noresults' => 'Feil: Ingen resultat!',
+	'gnsm_noincludecats' => 'Feil: Du må inkludere minst én kategori eller oppgi et navnerom!',
+);
+
 /** Piedmontese (Piemontèis)
  * @author Borichèt
  * @author Dragonòt
@@ -228,6 +238,18 @@ $messages['pms'] = array(
 	'gnsm_toofewcats' => 'Eror: Tròp pòche categorìe!',
 	'gnsm_noresults' => 'Eror: pa gnun arzultà!',
 	'gnsm_noincludecats' => 'Eror: A deuv anserì almanch na categorìa, o spessifiché në spassi nominal!',
+);
+
+/** Portuguese (Português)
+ * @author Hamilton Abreu
+ */
+$messages['pt'] = array(
+	'gnsm' => 'Google News Sitemap',
+	'gnsm-desc' => 'Converte um feed Atom/RSS para um Google News Sitemap',
+	'gnsm_toomanycats' => 'Erro: Categorias a mais!',
+	'gnsm_toofewcats' => 'Erro: Categorias a menos!',
+	'gnsm_noresults' => 'Erro: Não há resultados!',
+	'gnsm_noincludecats' => 'Erro: Tem de incluir pelo menos uma categoria, ou especificar um espaço nominal!',
 );
 
 /** Brazilian Portuguese (Português do Brasil)
