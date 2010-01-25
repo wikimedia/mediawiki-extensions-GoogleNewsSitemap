@@ -177,6 +177,7 @@ $messages['ja'] = array(
  */
 $messages['lb'] = array(
 	'gnsm' => 'Google News Plang vum Site',
+	'gnsm-desc' => 'Produzéiert en Atom/RSS feed als Google News Sitemap',
 	'gnsm_toomanycats' => 'Feeler: Zevill Kategorien!',
 	'gnsm_toofewcats' => 'Feeler: Ze wéineg Kategorien!',
 	'gnsm_noresults' => 'Feeler: Keng Resultater!',
