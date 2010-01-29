@@ -297,6 +297,16 @@ $messages['te'] = array(
 	'gnsm_noresults' => 'పొరపాటు: ఫలితాలు లేవు!',
 );
 
+/** Thai (ไทย)
+ * @author Woraponboonkerd
+ */
+$messages['th'] = array(
+	'gnsm_toomanycats' => 'เกิดความผิดพลาด: เลือกประเภทมากเกินไป!',
+	'gnsm_toofewcats' => 'เกิดความผิดพลาด: เลือกประเภทน้อยเกินไป!',
+	'gnsm_noresults' => 'เกิดความผิดพลาด: ไม่พบข้อมูล!',
+	'gnsm_noincludecats' => 'เกิดความผิดพลาด: คุณต้องเลือกอย่างน้อยหนึ่งประเภท หรือกำหนด Namespace!',
+);
+
 /** Turkish (Türkçe)
  * @author Joseph
  */
