@@ -82,6 +82,16 @@ $messages['dsb'] = array(
 	'gnsm_noincludecats' => 'Zmólka: Musyš nanejmjenjej jadnu kategoriju zapśěgnuś abo mjenjowy rum pódaś!',
 );
 
+/** Spanish (Español)
+ * @author Translationista
+ */
+$messages['es'] = array(
+	'gnsm_toomanycats' => 'Error: ¡Demasiadas categorías!',
+	'gnsm_toofewcats' => 'Error: ¡Muy pocas categorías!',
+	'gnsm_noresults' => 'Error: ¡No hay resultados!',
+	'gnsm_noincludecats' => 'Error: ¡Es necesario incluir al menos una categoría o especificar un espacio de nombres!',
+);
+
 /** Basque (Euskara)
  * @author An13sa
  */
@@ -163,6 +173,15 @@ $messages['ia'] = array(
 	'gnsm_toofewcats' => 'Error: Non satis de categorias!',
 	'gnsm_noresults' => 'Error: Nulle resultato!',
 	'gnsm_noincludecats' => 'Error: Tu debe includer al minus un categoria, o specificar un spatio de nomines!',
+);
+
+/** Indonesian (Bahasa Indonesia)
+ * @author Kenrick95
+ */
+$messages['id'] = array(
+	'gnsm_toomanycats' => 'Kesalahan: Terlalu banyak kategori!',
+	'gnsm_toofewcats' => 'Kesalahan: Terlalu sedikit kategori!',
+	'gnsm_noresults' => 'Kesalahan: Tidak ada hasil!',
 );
 
 /** Japanese (日本語)
