@@ -86,6 +86,8 @@ $messages['dsb'] = array(
  * @author Translationista
  */
 $messages['es'] = array(
+	'gnsm' => 'Mapa del sitio Google Noticias',
+	'gnsm-desc' => 'Genera una fuenteAtom/RSS como un mapa de sitio de Google Noticias',
 	'gnsm_toomanycats' => 'Error: ¡Demasiadas categorías!',
 	'gnsm_toofewcats' => 'Error: ¡Muy pocas categorías!',
 	'gnsm_noresults' => 'Error: ¡No hay resultados!',
