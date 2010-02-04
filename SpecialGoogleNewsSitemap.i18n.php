@@ -106,6 +106,19 @@ $messages['eu'] = array(
 	'gnsm_noincludecats' => 'Errorea: Gutxienez kategoria bat gehitu edo izen bat zehaztu behar duzu!',
 );
 
+/** Finnish (Suomi)
+ * @author Centerlink
+ * @author Crt
+ */
+$messages['fi'] = array(
+	'gnsm' => 'Google News -sivukartta',
+	'gnsm-desc' => 'Tulostaa Atom/RSS-syötteen Google-uutissivukarttana',
+	'gnsm_toomanycats' => 'Virhe: Liian monta luokkaa.',
+	'gnsm_toofewcats' => 'Virhe: Liian vähän luokkia.',
+	'gnsm_noresults' => 'Virhe: Ei tuloksia.',
+	'gnsm_noincludecats' => 'Error: Lisää vähintään yksi luokka tai määritä nimiavaruus.',
+);
+
 /** French (Français)
  * @author Amgine
  * @author McDutchie
