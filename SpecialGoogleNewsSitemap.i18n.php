@@ -194,9 +194,11 @@ $messages['ia'] = array(
  * @author Kenrick95
  */
 $messages['id'] = array(
+	'gnsm' => 'Google News Sitemap',
 	'gnsm_toomanycats' => 'Kesalahan: Terlalu banyak kategori!',
 	'gnsm_toofewcats' => 'Kesalahan: Terlalu sedikit kategori!',
 	'gnsm_noresults' => 'Kesalahan: Tidak ada hasil!',
+	'gnsm_noincludecats' => 'Kesalahan: Anda perlu mencantumkan paling sedikit satu kategori, atau menyebutkan satu ruang nama!',
 );
 
 /** Japanese (日本語)
