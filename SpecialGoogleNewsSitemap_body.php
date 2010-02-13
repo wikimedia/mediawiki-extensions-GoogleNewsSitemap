@@ -114,7 +114,7 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 		if ( isset( $this->param['error'] ) ){
 			echo $this->param['error'];
 		}else{
-			$dbr =& wfGetDB( DB_SLAVE );
+			$dbr = wfGetDB( DB_SLAVE );
 			$sql = $this->dpl_buildSQL();
 			//Debug line
 			//echo "\n<p>$sql</p>\n";
@@ -466,7 +466,7 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 		if ( $this->params['count'] < 1 )
 		$this->params['addFirstCategoryDate'] = false;
 
-		$this->params['dbr'] =& wfGetDB( DB_SLAVE );
+		$this->params['dbr'] = wfGetDB( DB_SLAVE );
 		return;
 	}
 
