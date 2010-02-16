@@ -355,3 +355,15 @@ $messages['tr'] = array(
 	'gnsm_noincludecats' => 'Hata: En az bir kategori girmeli, ya da bir ad alanı belirtmelisiniz!',
 );
 
+/** Simplified Chinese (‪中文(简体)‬)
+ * @author Gaoxuewei
+ */
+$messages['zh-hans'] = array(
+	'gnsm' => 'Google 资讯站点地图',
+	'gnsm-desc' => '输出一个Google 资讯站点地图的Atom/RSS文件',
+	'gnsm_toomanycats' => '错误：分类过多！',
+	'gnsm_toofewcats' => '错误：分类过少！',
+	'gnsm_noresults' => '错误：没有结果！',
+	'gnsm_noincludecats' => '错误：您需要包含至少一个分类，或者指定一个名称空间！',
+);
+
