@@ -52,6 +52,7 @@ $messages['be-tarask'] = array(
  */
 $messages['br'] = array(
 	'gnsm' => 'Google Keleier Sitemap',
+	'gnsm-desc' => 'Krouiñ a ra un Atom/RSS feed evel un tres Sitemap evit Google',
 	'gnsm_toomanycats' => 'Fazi : Re a rummadoù !',
 	'gnsm_toofewcats' => 'Fazi : Re nebeut a rummadoù !',
 	'gnsm_noresults' => "Fazi : Disoc'h ebet !",
