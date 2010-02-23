@@ -48,15 +48,16 @@ $messages['be-tarask'] = array(
 );
 
 /** Breton (Brezhoneg)
+ * @author Fulup
  * @author Y-M D
  */
 $messages['br'] = array(
-	'gnsm' => 'Google Keleier Sitemap',
-	'gnsm-desc' => 'Krouiñ a ra un Atom/RSS feed evel un tres Sitemap evit Google',
+	'gnsm' => "Steuñvenn lec'hienn Keleier Google",
+	'gnsm-desc' => "Krouiñ a ra ul lanvad Atom/RSS evel steuñvenn ul lec'hienn Keleier Google",
 	'gnsm_toomanycats' => 'Fazi : Re a rummadoù !',
 	'gnsm_toofewcats' => 'Fazi : Re nebeut a rummadoù !',
 	'gnsm_noresults' => "Fazi : Disoc'h ebet !",
-	'gnsm_noincludecats' => "Fazi : Rankout a reoc'h lakaat ur rummad d'an nebeutañ, pe menegiñ un esaouenn anv !",
+	'gnsm_noincludecats' => "Fazi : Ret eo deoc'h merkañ ur rummad da nebeutañ, pe spisaat un esaouenn anv!",
 );
 
 /** Bosnian (Bosanski)
