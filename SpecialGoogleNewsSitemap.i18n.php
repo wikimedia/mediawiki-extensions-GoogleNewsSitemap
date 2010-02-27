@@ -174,6 +174,8 @@ $messages['hsb'] = array(
  * @author Glanthor Reviol
  */
 $messages['hu'] = array(
+	'gnsm' => 'Google hírek oldaltérkép',
+	'gnsm-desc' => 'Atom/RSS hírcsatornát készít Google hírek oldaltérképként',
 	'gnsm_toomanycats' => 'Hiba: túl sok kategória!',
 	'gnsm_toofewcats' => 'Hiba: túl kevés kategória!',
 	'gnsm_noresults' => 'Hiba: nincs találat!',
