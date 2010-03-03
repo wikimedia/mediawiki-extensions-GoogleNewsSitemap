@@ -262,6 +262,8 @@ $messages['nn'] = array(
  * @author Nghtwlkr
  */
 $messages['no'] = array(
+	'gnsm' => 'Nettstedskart for Google News',
+	'gnsm-desc' => 'Gir ut en Atom/RSS-mating som et nettstedskart for Google News',
 	'gnsm_toomanycats' => 'Feil: For mange kategorier!',
 	'gnsm_toofewcats' => 'Feil: For få kategorier!',
 	'gnsm_noresults' => 'Feil: Ingen resultat!',
