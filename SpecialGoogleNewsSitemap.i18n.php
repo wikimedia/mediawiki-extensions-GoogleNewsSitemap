@@ -207,9 +207,15 @@ $messages['id'] = array(
 
 /** Japanese (日本語)
  * @author Hosiryuhosi
+ * @author Naohiro19
  */
 $messages['ja'] = array(
 	'gnsm' => 'Google ニュース サイトマップ',
+	'gnsm-desc' => 'Google ニュースのサイトマップからAtom/RSSフィードを出力',
+	'gnsm_toomanycats' => 'エラー:　カテゴリが多すぎです!',
+	'gnsm_toofewcats' => 'エラー:カテゴリが少なすぎです!',
+	'gnsm_noresults' => 'エラー:結果はありません!',
+	'gnsm_noincludecats' => 'エラー：少なくとも1つのカテゴリまたは名前空間を指定する必要があります!',
 );
 
 /** Luxembourgish (Lëtzebuergesch)
