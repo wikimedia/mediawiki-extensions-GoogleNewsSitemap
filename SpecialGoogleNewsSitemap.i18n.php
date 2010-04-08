@@ -72,6 +72,17 @@ $messages['bs'] = array(
 	'gnsm_noincludecats' => 'Greška: Morate uključiti najmanje jednu kategoriju ili navesti imenski prostor!',
 );
 
+/** Catalan (Català)
+ * @author Paucabot
+ */
+$messages['ca'] = array(
+	'gnsm' => 'Mapa del lloc Google News',
+	'gnsm_toomanycats' => 'Error: Massa categories!',
+	'gnsm_toofewcats' => 'Error: Massa poques categories!',
+	'gnsm_noresults' => 'Error: Cap resultat!',
+	'gnsm_noincludecats' => "Error: Heu d'incloure almenys una categoria o especificar un espai de noms!",
+);
+
 /** Lower Sorbian (Dolnoserbski)
  * @author Michawiki
  */
