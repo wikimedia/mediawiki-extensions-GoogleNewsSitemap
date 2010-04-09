@@ -216,6 +216,11 @@ $messages['id'] = array(
 	'gnsm_noincludecats' => 'Kesalahan: Anda perlu mencantumkan paling sedikit satu kategori, atau menyebutkan satu ruang nama!',
 );
 
+/** Italian (Italiano) */
+$messages['it'] = array(
+	'gnsm_noresults' => 'Errore: Nessun risultato.',
+);
+
 /** Japanese (日本語)
  * @author Hosiryuhosi
  * @author Naohiro19
