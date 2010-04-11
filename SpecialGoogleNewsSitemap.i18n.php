@@ -292,6 +292,13 @@ $messages['no'] = array(
 	'gnsm_noincludecats' => 'Feil: Du må inkludere minst én kategori eller oppgi et navnerom!',
 );
 
+/** Polish (Polski) */
+$messages['pl'] = array(
+	'gnsm_toomanycats' => 'Błąd – zbyt wiele kategorii!',
+	'gnsm_toofewcats' => 'Błąd – zbyt mało kategorii!',
+	'gnsm_noresults' => 'Błąd: brak wyników!',
+);
+
 /** Piedmontese (Piemontèis)
  * @author Borichèt
  * @author Dragonòt
