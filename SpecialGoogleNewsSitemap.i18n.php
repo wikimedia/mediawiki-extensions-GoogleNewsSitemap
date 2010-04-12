@@ -95,6 +95,18 @@ $messages['dsb'] = array(
 	'gnsm_noincludecats' => 'Zmólka: Musyš nanejmjenjej jadnu kategoriju zapśěgnuś abo mjenjowy rum pódaś!',
 );
 
+/** Greek (Ελληνικά)
+ * @author Περίεργος
+ */
+$messages['el'] = array(
+	'gnsm' => 'Χάρτης Ειδήσεων της Google',
+	'gnsm-desc' => 'Βγάζει το Χάρτη Ειδήσεων της Google ως Atom/RSS',
+	'gnsm_toomanycats' => 'Σφάλμα: Υπερβολικά πολλές κατηγορίες!',
+	'gnsm_toofewcats' => 'Σφάλμα: Υπερβολικά λίγες κατηγορίες!',
+	'gnsm_noresults' => 'Σφάλμα: Δεν υπάρχουν αποτελέσματα!',
+	'gnsm_noincludecats' => 'Σφάλμα: Χρειάζεται να συμπεριλάβετε τουλάχιστον μια κατηγορία, ή να προσδιορίσετε μια περιοχή ονομάτων!',
+);
+
 /** Spanish (Español)
  * @author Translationista
  */
@@ -292,11 +304,13 @@ $messages['no'] = array(
 	'gnsm_noincludecats' => 'Feil: Du må inkludere minst én kategori eller oppgi et navnerom!',
 );
 
-/** Polish (Polski) */
+/** Polish (Polski)
+ * @author Sp5uhe
+ */
 $messages['pl'] = array(
 	'gnsm_toomanycats' => 'Błąd – zbyt wiele kategorii!',
 	'gnsm_toofewcats' => 'Błąd – zbyt mało kategorii!',
-	'gnsm_noresults' => 'Błąd: brak wyników!',
+	'gnsm_noresults' => 'Błąd – brak wyników!',
 );
 
 /** Piedmontese (Piemontèis)
