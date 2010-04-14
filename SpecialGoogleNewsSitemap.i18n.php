@@ -83,6 +83,18 @@ $messages['ca'] = array(
 	'gnsm_noincludecats' => "Error: Heu d'incloure almenys una categoria o especificar un espai de noms!",
 );
 
+/** German (Deutsch)
+ * @author Kghbln
+ */
+$messages['de'] = array(
+	'gnsm' => 'Sitemap für Google News',
+	'gnsm-desc' => 'Gibt Atom/RSS-Feeds in Form einer Sitemap für Google News aus.',
+	'gnsm_toomanycats' => 'Fehler: Zu viele Kategorien!',
+	'gnsm_toofewcats' => 'Fehler: Zu wenig Kategorien!',
+	'gnsm_noresults' => 'Fehler: Keine Ergebnisse vorhanden!',
+	'gnsm_noincludecats' => 'Fehler: Du musst mindestens eine Kategorie oder einen Namensraum angeben!',
+);
+
 /** Lower Sorbian (Dolnoserbski)
  * @author Michawiki
  */
