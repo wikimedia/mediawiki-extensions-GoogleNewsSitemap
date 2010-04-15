@@ -230,19 +230,26 @@ $messages['ia'] = array(
 );
 
 /** Indonesian (Bahasa Indonesia)
+ * @author Iwan Novirion
  * @author Kenrick95
  */
 $messages['id'] = array(
-	'gnsm' => 'Google News Sitemap',
+	'gnsm' => 'Petasitus Baru Google',
+	'gnsm-desc' => 'Hasil dari Atom/RSS feed sebagai Petasitus Baru Google',
 	'gnsm_toomanycats' => 'Kesalahan: Terlalu banyak kategori!',
 	'gnsm_toofewcats' => 'Kesalahan: Terlalu sedikit kategori!',
 	'gnsm_noresults' => 'Kesalahan: Tidak ada hasil!',
 	'gnsm_noincludecats' => 'Kesalahan: Anda perlu mencantumkan paling sedikit satu kategori, atau menyebutkan satu ruang nama!',
 );
 
-/** Italian (Italiano) */
+/** Italian (Italiano)
+ * @author Beta16
+ */
 $messages['it'] = array(
+	'gnsm_toomanycats' => 'Errore: Numero di categorie eccessivo!',
+	'gnsm_toofewcats' => 'Errore: Troppe poche categorie!',
 	'gnsm_noresults' => 'Errore: Nessun risultato.',
+	'gnsm_noincludecats' => 'Errore: È necessario includere almeno una categoria oppure specificare un namespace!',
 );
 
 /** Japanese (日本語)
