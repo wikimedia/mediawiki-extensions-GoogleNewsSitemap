@@ -95,6 +95,13 @@ $messages['de'] = array(
 	'gnsm_noincludecats' => 'Fehler: Du musst mindestens eine Kategorie oder einen Namensraum angeben!',
 );
 
+/** German (formal address) (Deutsch (Sie-Form))
+ * @author Kghbln
+ */
+$messages['de-formal'] = array(
+	'gnsm_noincludecats' => 'Fehler: Sie müssen mindestens eine Kategorie oder einen Namensraum angeben!',
+);
+
 /** Lower Sorbian (Dolnoserbski)
  * @author Michawiki
  */
@@ -321,6 +328,18 @@ $messages['no'] = array(
 	'gnsm_toofewcats' => 'Feil: For få kategorier!',
 	'gnsm_noresults' => 'Feil: Ingen resultat!',
 	'gnsm_noincludecats' => 'Feil: Du må inkludere minst én kategori eller oppgi et navnerom!',
+);
+
+/** Occitan (Occitan)
+ * @author Cedric31
+ */
+$messages['oc'] = array(
+	'gnsm' => 'Google nòvas Sitemap',
+	'gnsm-desc' => 'Crèa un Atom o RSS feed coma un plan Sitemap per Google',
+	'gnsm_toomanycats' => 'Error : Tròp de categorias !',
+	'gnsm_toofewcats' => 'Error : Pas pro de categorias !',
+	'gnsm_noresults' => 'Error : Pas cap de resultat !',
+	'gnsm_noincludecats' => 'Error : Vos cal inclure almens una categoria, o especificar un espaci de noms !',
 );
 
 /** Polish (Polski)
