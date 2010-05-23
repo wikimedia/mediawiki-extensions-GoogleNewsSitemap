@@ -47,6 +47,13 @@ $messages['be-tarask'] = array(
 	'gnsm_noincludecats' => 'Памылка: Вам неабходна дадаць хаця б адну катэгорыю, альбо пазначыць прастору назваў!',
 );
 
+/** Bulgarian (Български)
+ * @author DCLXVI
+ */
+$messages['bg'] = array(
+	'gnsm_noresults' => 'Грешка: Няма резултати!',
+);
+
 /** Breton (Brezhoneg)
  * @author Fulup
  * @author Y-M D
@@ -428,6 +435,17 @@ $messages['th'] = array(
 	'gnsm_toofewcats' => 'เกิดความผิดพลาด: เลือกประเภทน้อยเกินไป!',
 	'gnsm_noresults' => 'เกิดความผิดพลาด: ไม่พบข้อมูล!',
 	'gnsm_noincludecats' => 'เกิดความผิดพลาด: คุณต้องเลือกอย่างน้อยหนึ่งประเภท หรือกำหนด Namespace!',
+);
+
+/** Tagalog (Tagalog)
+ * @author AnakngAraw
+ */
+$messages['tl'] = array(
+	'gnsm-desc' => 'Naglalabas ng pakaing Atom/RSS bilang Mapa sa Sityo ng Balitang Google',
+	'gnsm_toomanycats' => 'Mali: Napakaraming mga kategorya!',
+	'gnsm_toofewcats' => 'Mali: Napakakaunting mga kategorya!',
+	'gnsm_noresults' => 'Mali: Walang mga resulta!',
+	'gnsm_noincludecats' => 'Mali: Kailangan mong magsama ng kahit na isang kategorya, o tumukoy ng isang puwang na pampangalan!',
 );
 
 /** Turkish (Türkçe)
