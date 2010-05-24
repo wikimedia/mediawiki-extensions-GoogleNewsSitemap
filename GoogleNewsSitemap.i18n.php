@@ -441,6 +441,7 @@ $messages['th'] = array(
  * @author AnakngAraw
  */
 $messages['tl'] = array(
+	'gnsm' => 'Mapang Pangsityo ng Balitang Google',
 	'gnsm-desc' => 'Naglalabas ng pakaing Atom/RSS bilang Mapa sa Sityo ng Balitang Google',
 	'gnsm_toomanycats' => 'Mali: Napakaraming mga kategorya!',
 	'gnsm_toofewcats' => 'Mali: Napakakaunting mga kategorya!',
