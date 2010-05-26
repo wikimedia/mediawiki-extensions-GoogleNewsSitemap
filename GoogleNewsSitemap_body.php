@@ -77,7 +77,6 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 		global $wgContLang;
 		global $wgRequest, $wgOut;
 		global $wgSitename, $wgServer, $wgScriptPath;
-		wfLoadExtensionMessages( 'GoogleNewsSitemap' );
 		global $wgFeedClasses, $wgLocaltimezone;
 
 		// Not sure how clean $wgLocaltimezone is
