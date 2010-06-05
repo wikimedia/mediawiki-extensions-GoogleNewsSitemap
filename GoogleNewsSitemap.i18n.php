@@ -22,6 +22,13 @@ $messages['en'] = array(
     'gnsm_noincludecats'    => 'Error: You need to include at least one category, or specify a namespace!',
 );
 
+/** Message documentation (Message documentation)
+ * @author Umherirrender
+ */
+$messages['qqq'] = array(
+	'gnsm-desc' => '{{desc}}',
+);
+
 /** Afrikaans (Afrikaans)
  * @author Naudefj
  */
@@ -405,6 +412,15 @@ $messages['ru'] = array(
 	'gnsm_toofewcats' => 'Ошибка. Слишком мало категорий!',
 	'gnsm_noresults' => 'Ошибка. Нет данных!',
 	'gnsm_noincludecats' => 'Ошибка. Вы должны включить по меньшей мере одну категорию, или указать пространство имён!',
+);
+
+/** Serbian Cyrillic ekavian (Српски (ћирилица))
+ * @author Михајло Анђелковић
+ */
+$messages['sr-ec'] = array(
+	'gnsm_toomanycats' => 'Грешка: Превише категорија!',
+	'gnsm_toofewcats' => 'Грешка: Премало категорија!',
+	'gnsm_noresults' => 'Грешка: Нема резултата!',
 );
 
 /** Swedish (Svenska)
