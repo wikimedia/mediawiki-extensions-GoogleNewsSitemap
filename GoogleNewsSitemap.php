@@ -47,8 +47,8 @@ EOT;
  * FIXME requests
  *  use=Mediawiki:GoogleNewsSitemap_Feedname     Parameter to allow on-site control of feed
  **
- * @addtogroup Extensions
- *
+ * @file
+ * @intogroup Extensions
  * @author Amgine <amgine.saewyc@gmail.com>
  * @copyright Copyright © 2009, Amgine
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later

@@ -3,14 +3,15 @@
  * Internationalisation file for extension special page GoogleNewsSitemap
  * New version of DynamicPageList extension for use by Wikinews projects
  *
- * @addtogroup Extensions
- **/
+ * @file
+ * @ingroup Extensions
+ */
 
 $messages= array();
 
 /** English
  * @author Amgine
- **/
+ */
 
 $messages['en'] = array(
     'gnsm'                  => 'Google News Sitemap',

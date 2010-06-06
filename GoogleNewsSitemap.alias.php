@@ -2,7 +2,8 @@
 /**
  * Aliases for Special:GoogleNewsSitemap
  *
- * @addtogroup Extensions
+ * @file
+ * @ingroup Extensions
  */
 
 $aliases = array();
