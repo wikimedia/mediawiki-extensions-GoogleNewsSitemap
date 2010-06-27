@@ -432,9 +432,12 @@ $messages['sr-el'] = array(
 );
 
 /** Swedish (Svenska)
+ * @author Fredrik
  * @author Per
  */
 $messages['sv'] = array(
+	'gnsm' => 'Webbkarta för Google nyheter',
+	'gnsm-desc' => 'Visar ett Atom-/RSS-flöde som en webbkarta för Google nyheter',
 	'gnsm_toomanycats' => 'Fel: För många kategorier!',
 	'gnsm_toofewcats' => 'Fel: För få kategorier!',
 	'gnsm_noresults' => 'Fel: Inget resultat!',
