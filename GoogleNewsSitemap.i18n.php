@@ -488,6 +488,18 @@ $messages['tr'] = array(
 	'gnsm_noincludecats' => 'Hata: En az bir kategori girmeli, ya da bir ad alanı belirtmelisiniz!',
 );
 
+/** Ukrainian (Українська)
+ * @author Arturyatsko
+ */
+$messages['uk'] = array(
+	'gnsm' => 'Карта сайту для Google News',
+	'gnsm-desc' => 'Виводить канал Atom/RSS у вигляді карти сайту для Google News',
+	'gnsm_toomanycats' => 'Помилка: Надто багато категорій!',
+	'gnsm_toofewcats' => 'Помилка: Надто мало категорії!',
+	'gnsm_noresults' => 'Помилка: не знайдено!',
+	'gnsm_noincludecats' => 'Помилка: Ви повинні включити хоча б одну категорію, або вказати простір імен!',
+);
+
 /** Simplified Chinese (‪中文(简体)‬)
  * @author Gaoxuewei
  */
