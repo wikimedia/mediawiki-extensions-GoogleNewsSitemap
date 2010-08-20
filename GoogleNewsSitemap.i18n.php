@@ -88,10 +88,12 @@ $messages['bs'] = array(
 );
 
 /** Catalan (Català)
+ * @author Davidpar
  * @author Paucabot
  */
 $messages['ca'] = array(
 	'gnsm' => 'Mapa del lloc Google News',
+	'gnsm-desc' => 'Fes sortir un Atom/RSS feed com a Google News Sitemap',
 	'gnsm_toomanycats' => 'Error: Massa categories!',
 	'gnsm_toofewcats' => 'Error: Massa poques categories!',
 	'gnsm_noresults' => 'Error: Cap resultat!',
