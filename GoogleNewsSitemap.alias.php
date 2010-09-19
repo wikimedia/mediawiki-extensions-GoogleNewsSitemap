@@ -6,55 +6,69 @@
  * @ingroup Extensions
  */
 
-$aliases = array();
-
 /** English
  * @author Amgine
- **/
-$aliases['en'] = array(
-    'GoogleNewsSitemap' => array( 'GoogleNewsSitemap' ),
+ */
+$specialPageAliases['en'] = array(
+	'GoogleNewsSitemap' => array( 'GoogleNewsSitemap' ),
 );
 
-$aliases['ar'] = array(
-	'GoogleNewsSitemap'   => array( 'خريطة_موقع_أخبار_جوجل' ),
+/** Arabic (العربية) */
+$specialPageAliases['ar'] = array(
+	'GoogleNewsSitemap' => array( 'خريطة_موقع_أخبار_جوجل' ),
 );
 
-$aliases['arz'] = array(
-	'GoogleNewsSitemap'   => array( 'خريطة_سايت_اخبار_جوجل' ),
+/** Egyptian Spoken Arabic (مصرى) */
+$specialPageAliases['arz'] = array(
+	'GoogleNewsSitemap' => array( 'خريطة_سايت_اخبار_جوجل' ),
 );
 
-$aliases['fa'] = array(
-	'GoogleNewsSitemap'   => array( 'نقشه_وب‌گاه_گوگل_نیوز' ),
+/** Persian (فارسی) */
+$specialPageAliases['fa'] = array(
+	'GoogleNewsSitemap' => array( 'نقشه_وب‌گاه_گوگل_نیوز' ),
 );
 
-$aliases['hu'] = array(
-	'GoogleNewsSitemap'   => array( 'Google_Hírek_oldaltérkép' ),
+/** Hungarian (Magyar) */
+$specialPageAliases['hu'] = array(
+	'GoogleNewsSitemap' => array( 'Google_Hírek_oldaltérkép' ),
 );
 
-$aliases['ia'] = array(
-	'GoogleNewsSitemap'   => array( 'Mappa_de_sito_Google_News' ),
+/** Interlingua (Interlingua) */
+$specialPageAliases['ia'] = array(
+	'GoogleNewsSitemap' => array( 'Mappa_de_sito_Google_News' ),
 );
 
-$aliases['id'] = array(
-	'GoogleNewsSitemap'   => array( 'Peta_situs_Google_News', 'PetaSitusGoogleNews' ),
+/** Indonesian (Bahasa Indonesia) */
+$specialPageAliases['id'] = array(
+	'GoogleNewsSitemap' => array( 'Peta_situs_Google_News', 'PetaSitusGoogleNews' ),
 );
 
-$aliases['ja'] = array(
-	'GoogleNewsSitemap'   => array( 'Googleニュースサイトマップ' ),
+/** Japanese (日本語) */
+$specialPageAliases['ja'] = array(
+	'GoogleNewsSitemap' => array( 'Googleニュースサイトマップ' ),
 );
 
-$aliases['lad'] = array(
-	'GoogleNewsSitemap'   => array( 'Mapa_de_sitio_de_GoogleJhabberes' ),
+/** Ladino (Ladino) */
+$specialPageAliases['lad'] = array(
+	'GoogleNewsSitemap' => array( 'Mapa_de_sitio_de_GoogleJhabberes' ),
 );
 
-$aliases['ml'] = array(
-	'GoogleNewsSitemap'   => array( 'ഗൂഗിൾ‌‌വാർത്തകൾസൈറ്റ്മാപ്പ്' ),
+/** Malayalam (മലയാളം) */
+$specialPageAliases['ml'] = array(
+	'GoogleNewsSitemap' => array( 'ഗൂഗിൾ‌‌വാർത്തകൾസൈറ്റ്മാപ്പ്' ),
 );
 
-$aliases['no'] = array(
-	'GoogleNewsSitemap'   => array( 'Google_nyheter-sidekart' ),
+/** Norwegian (bokmål)‬ (‪Norsk (bokmål)‬) */
+$specialPageAliases['no'] = array(
+	'GoogleNewsSitemap' => array( 'Google_nyheter-sidekart' ),
 );
 
-$aliases['pl'] = array(
-	'GoogleNewsSitemap'   => array( 'Mapa_strony_dla_Google_News' ),
+/** Polish (Polski) */
+$specialPageAliases['pl'] = array(
+	'GoogleNewsSitemap' => array( 'Mapa_strony_dla_Google_News' ),
 );
+
+/**
+ * For backwards compatibility with MediaWiki 1.15 and earlier.
+ */
+$aliases =& $specialPageAliases;
