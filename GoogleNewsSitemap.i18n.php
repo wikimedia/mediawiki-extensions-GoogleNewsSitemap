@@ -363,9 +363,12 @@ $messages['oc'] = array(
  * @author Sp5uhe
  */
 $messages['pl'] = array(
+	'gnsm' => 'Mapa serwisu dla Google News',
+	'gnsm-desc' => 'Treść kanałów Atom i RSS w formie mapy witryny dla Google News',
 	'gnsm_toomanycats' => 'Błąd – zbyt wiele kategorii!',
 	'gnsm_toofewcats' => 'Błąd – zbyt mało kategorii!',
 	'gnsm_noresults' => 'Błąd – brak wyników!',
+	'gnsm_noincludecats' => 'Błąd – musisz wybrać co najmniej jedną kategorię lub określić przestrzeń nazw!',
 );
 
 /** Piedmontese (Piemontèis)
