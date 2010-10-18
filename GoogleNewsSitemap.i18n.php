@@ -217,6 +217,15 @@ $messages['gsw'] = array(
 	'gnsm_noincludecats' => 'Fähler: muesch zmindescht ei Kategorii aagee oder e Namensruum feschtlege!',
 );
 
+/** Hebrew (עברית)
+ * @author YaronSh
+ */
+$messages['he'] = array(
+	'gnsm_toomanycats' => 'שגיאה: יותר מדי קטגוריות!',
+	'gnsm_toofewcats' => 'שגיאה: מעט מדי קטגוריות!',
+	'gnsm_noresults' => 'שגיאה: אין תוצאות!',
+);
+
 /** Upper Sorbian (Hornjoserbsce)
  * @author Michawiki
  */
