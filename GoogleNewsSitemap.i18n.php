@@ -417,6 +417,15 @@ $messages['pt-br'] = array(
 	'gnsm_noincludecats' => 'Erro: Você precisa incluir pelo menos uma categoria, ou especificar um espaço nominal!',
 );
 
+/** Romanian (Română)
+ * @author Stelistcristi
+ */
+$messages['ro'] = array(
+	'gnsm_toomanycats' => 'Eroare: Prea multe categorii!',
+	'gnsm_toofewcats' => 'Eroare: pre',
+	'gnsm_noresults' => 'Eroare: Niciun rezultat!',
+);
+
 /** Russian (Русский)
  * @author Александр Сигачёв
  */
