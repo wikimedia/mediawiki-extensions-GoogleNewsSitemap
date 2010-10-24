@@ -143,6 +143,18 @@ $messages['el'] = array(
 	'gnsm_noincludecats' => 'Σφάλμα: Χρειάζεται να συμπεριλάβετε τουλάχιστον μια κατηγορία, ή να προσδιορίσετε μια περιοχή ονομάτων!',
 );
 
+/** Esperanto (Esperanto)
+ * @author Yekrats
+ */
+$messages['eo'] = array(
+	'gnsm' => 'Retmapo de Google-Aktualaĵoj',
+	'gnsm-desc' => 'Generas Atom aŭ RSS retfluon kiel Retmapo de Google-Aktualaĵoj',
+	'gnsm_toomanycats' => 'Eraro: Tro da kategorioj!',
+	'gnsm_toofewcats' => 'Eraro: Tro malmultaj da kategorioj!',
+	'gnsm_noresults' => 'Eraro: Neniuj rezultoj!',
+	'gnsm_noincludecats' => 'Eraro: Vi devas inkluzivi almenaŭ unu kategorio, aŭ specifigu nomspacon!',
+);
+
 /** Spanish (Español)
  * @author Translationista
  */
