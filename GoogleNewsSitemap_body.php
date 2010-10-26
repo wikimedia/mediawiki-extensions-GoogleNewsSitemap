@@ -1,5 +1,5 @@
 <?php
-if (!defined('MEDIAWIKI')) die();
+if ( !defined( 'MEDIAWIKI' ) ) die();
 
 /**
  * Class GoogleNewsSitemap creates Atom/RSS feeds for Wikinews
@@ -85,24 +85,24 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 		if ( null == $wgLocaltimezone )
 		$wgLocaltimezone = date_default_timezone_get();
 		date_default_timezone_set( $wgLocaltimezone );
-		//$url = __FILE__;
+		// $url = __FILE__;
 
 		$this->dpl_parm( $par );
 
 
 		$wgFeedClasses[] = array( 'sitemap' => 'SitemapFeed' );
 
-		if ( 'sitemap' == $this->params['feed'] ){
+		if ( 'sitemap' == $this->params['feed'] ) {
 			$feed = new SitemapFeed(
-			$wgServer.$wgScriptPath,
+			$wgServer . $wgScriptPath,
 			date( DATE_ATOM )
 			);
-		}else{
+		} else {
 			// FIXME: These should be configurable at some point
 			$feed = new $wgFeedClasses[ $this->params['feed'] ](
 			$wgSitename,
 			$wgSitename . ' ' . $this->params['feed'] . ' feed',
-			$wgServer.$wgScriptPath,
+			$wgServer . $wgScriptPath,
 			date( DATE_ATOM ),
 			$wgSitename
 			);
@@ -111,17 +111,17 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 		$feed->outHeader();
 
 		// main routine to output items
-		if ( isset( $this->param['error'] ) ){
+		if ( isset( $this->param['error'] ) ) {
 			echo $this->param['error'];
-		}else{
+		} else {
 			$dbr = wfGetDB( DB_SLAVE );
 			$sql = $this->dpl_buildSQL();
-			//Debug line
-			//echo "\n<p>$sql</p>\n";
+			// Debug line
+			// echo "\n<p>$sql</p>\n";
 			$res = $dbr->query ( $sql );
 
 			// FIXME: figure out how to fail with no results gracefully
-			if ( $dbr->numRows( $res ) == 0 ){
+			if ( $dbr->numRows( $res ) == 0 ) {
 				$feed->outFooter();
 				if ( false == $this->params['suppressErrors'] )
 				return htmlspecialchars( wfMsg( 'gnsm_noresults' ) );
@@ -129,16 +129,16 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 				return '';
 			}
 
-			while ($row = $dbr->fetchObject( $res ) ) {
-				$title = Title::makeTitle( $row->page_namespace, $row->page_title);
+			while ( $row = $dbr->fetchObject( $res ) ) {
+				$title = Title::makeTitle( $row->page_namespace, $row->page_title );
 
-				if ( $title ){
-		   //This is printing things in places it shouldn't
+				if ( $title ) {
+		   // This is printing things in places it shouldn't
 					// print $this->params['nameSpace'];
 
 					$titleText = ( true == $this->params['nameSpace'] ) ? $title->getPrefixedText() : $title->getText();
 
-					if ( 'sitemap' == $this->params['feed'] ){
+					if ( 'sitemap' == $this->params['feed'] ) {
 
 						$this->pubDate = isset( $row->cl_timestamp ) ? $row->cl_timestamp : date( DATE_ATOM );
 						$feedArticle = new Article( $title );
@@ -150,24 +150,24 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 						wfTimeStamp( TS_ISO_8601, $feedArticle->getTouched() ),
 						$feed->getPriority( $this->priority )
 						);
-							
-					}elseif ( ('atom' == $this->params['feed'] ) || ( 'rss' == $this->params['feed'] ) ){
-							
+
+					} elseif ( ( 'atom' == $this->params['feed'] ) || ( 'rss' == $this->params['feed'] ) ) {
+
 						$this->Date = isset( $row->cl_timestamp ) ? $row->cl_timestamp : date( DATE_ATOM );
-						if ( isset( $row->comment ) ){
+						if ( isset( $row->comment ) ) {
 			    $comments = htmlspecialchars( $row->comment );
-						}else{
+						} else {
 			    $talkpage = $title->getTalkPage();
 			    $comments = $talkpage->getFullURL();
 						}
-						$titleText = (true === $this->params['nameSpace'] ) ? $title->getPrefixedText() : $title->getText();
+						$titleText = ( true === $this->params['nameSpace'] ) ? $title->getPrefixedText() : $title->getText();
 						$feedItem = new FeedItem(
 						$titleText,
 						$this->feedItemDesc( $row ),
 						$title->getFullURL(),
 						$this->Date,
 						$this->feedItemAuthor( $row ),
-						$comments);
+						$comments );
 					}
 					$feed->outItem( $feedItem );
 				}
@@ -179,26 +179,26 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 	/**
 	 * Build sql
 	 **/
-	public function dpl_buildSQL(){
-		 
+	public function dpl_buildSQL() {
+
 		$sqlSelectFrom = 'SELECT page_namespace, page_title, page_id, c1.cl_timestamp FROM ' . $this->params['dbr']->tableName( 'page' );
 
-		if ( $this->params['nameSpace'] ){
+		if ( $this->params['nameSpace'] ) {
 			$sqlWhere = ' WHERE page_namespace=' . $this->params['iNameSpace'] . ' ';
-		}else{
+		} else {
 			$sqlWhere = ' WHERE 1=1 ';
 		}
 
 		// If flagged revisions is in use, check which options selected.
 		// FIXME: double check the default options in function::dpl_parm; what should it default to?
-		if( function_exists('efLoadFlaggedRevs') ) {
+		if ( function_exists( 'efLoadFlaggedRevs' ) ) {
 			$flaggedPages = $this->params['dbr']->tableName( 'flaggedpages' );
 			$filterSet = array( 'only', 'exclude' );
 			# Either involves the same JOIN here...
-			if( in_array( $this->params['stable'], $filterSet ) || in_array( $this->params['quality'], $filterSet ) ) {
+			if ( in_array( $this->params['stable'], $filterSet ) || in_array( $this->params['quality'], $filterSet ) ) {
 				$sqlSelectFrom .= " LEFT JOIN $flaggedPages ON page_id = fp_page_id";
 			}
-			switch( $this->params['stable'] ){
+			switch( $this->params['stable'] ) {
 				case 'only':
 					$sqlWhere .= ' AND fp_stable IS NOT NULL ';
 					break;
@@ -206,7 +206,7 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 					$sqlWhere .= ' AND fp_stable IS NULL ';
 					break;
 			}
-			switch( $this->params['quality'] ){
+			switch( $this->params['quality'] ) {
 				case 'only':
 					$sqlWhere .= ' AND fp_quality >= 1';
 					break;
@@ -228,7 +228,7 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 
 		$currentTableNumber = 0;
 
-		for ( $i = 0; $i < $this->params['catCount']; $i++ ){
+		for ( $i = 0; $i < $this->params['catCount']; $i++ ) {
 
 			$sqlSelectFrom .= ' INNER JOIN ' . $this->params['dbr']->tableName( 'categorylinks' );
 			$sqlSelectFrom .= ' AS c' . ( $currentTableNumber + 1 ) . ' ON page_id = c';
@@ -239,8 +239,8 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 			$currentTableNumber++;
 		}
 
-		for ( $i = 0; $i < $this->params['notCatCount']; $i++ ){
-			//echo "notCategory parameter $i<br />\n";
+		for ( $i = 0; $i < $this->params['notCatCount']; $i++ ) {
+			// echo "notCategory parameter $i<br />\n";
 			$sqlSelectFrom .= ' LEFT OUTER JOIN ' . $this->params['dbr']->tableName( 'categorylinks' );
 			$sqlSelectFrom .= ' AS c' . ( $currentTableNumber + 1 ) . ' ON page_id = c' . ( $currentTableNumber + 1 );
 			$sqlSelectFrom .= '.cl_from AND c' . ( $currentTableNumber + 1 );
@@ -251,7 +251,7 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 			$currentTableNumber++;
 		}
 
-		if ('lastedit' == $this->params['orderMethod'] )
+		if ( 'lastedit' == $this->params['orderMethod'] )
 			$sqlWhere .= ' ORDER BY page_touched ';
 		else
 			$sqlWhere .= ' ORDER BY c1.cl_timestamp ';
@@ -263,12 +263,12 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 
 		// FIXME: Note: this is not a boolean type check - will also trap count = 0 which may
 		// accidentally give unlimited returns
-		if ( 0 < $this->params['count'] ){
+		if ( 0 < $this->params['count'] ) {
 			$sqlWhere .= ' LIMIT ' . $this->params['count'];
 		}
 
-		//debug line
-		//echo "<p>$sqlSelectFrom$sqlWhere;</p>\n";
+		// debug line
+		// echo "<p>$sqlSelectFrom$sqlWhere;</p>\n";
 
 		return $sqlSelectFrom . $sqlWhere;
 	}
@@ -278,7 +278,7 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 	 **
 	 * FIXME this includes a lot of DynamicPageList cruft in need of thinning.
 	 **/
-	public function dpl_parm( $par ){
+	public function dpl_parm( $par ) {
 		global $wgContLang;
 		global $wgRequest;
 
@@ -286,7 +286,7 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 		// FIXME: note: if ( false === $count ) then no count has ever been set
 		// however, there's still no guarantee $count <> zero || NULL
 		$this->params['count'] = $this->wgDPLmaxResultCount;
-		 
+
 		$this->params['orderMethod'] = 'categoryadd';
 		$this->params['order'] = 'descending';
 		$this->params['redirects'] = 'exclude';
@@ -301,8 +301,8 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 		$this->params['suppressErrors'] = false;
 
 		$this->params['feed'] = 'atom';
-		$feedType = explode( '/', $par, 2);
-		switch( strtolower($feedType[0])){
+		$feedType = explode( '/', $par, 2 );
+		switch( strtolower( $feedType[0] ) ) {
 			case 'rss':
 				$this->params['feed'] = 'rss';
 				break;
@@ -312,56 +312,56 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 			default:
 				$this->params['feed'] = 'atom';
 				break;
-		}				
+		}
 
 		$parser = new Parser;
 		$poptions = new ParserOptions;
 
-		foreach ( $params as $key=>$value ){
-			switch ( $key ){
+		foreach ( $params as $key => $value ) {
+			switch ( $key ) {
 				case 'category':
 					$title = Title::newFromText( $parser->transformMsg( $value, $poptions ) );
 
-					if ( is_object( $title ) ){
+					if ( is_object( $title ) ) {
 						$this->categories[] = $title;
-					}else{
+					} else {
 						echo "Explode on category.\n";
 						continue;
 					}
 					break;
 				case 'notcategory':
-					//echo "Got notcategory $value\n";
+					// echo "Got notcategory $value\n";
 					$title = Title::newFromText( $parser->transformMsg( $value, $poptions ) );
 					if ( is_object( $title ) )
 					$this->notCategories[] = $title;
-					else{
+					else {
 						echo 'Explode on notCategory.';
 						continue;
 					}
 					break;
 				case 'namespace':
-					if ( $value == intval( $value ) ){
+					if ( $value == intval( $value ) ) {
 						$this->params['iNameSpace'] = intval( $value );
-						if ( 0 <= $this->params['iNameSpace'] ){
+						if ( 0 <= $this->params['iNameSpace'] ) {
 							$this->params['nameSpace'] = true;
-						}else{
+						} else {
 							$this->params['nameSpace'] = false;
 						}
-					}else{
+					} else {
 						$ns = $wgContLang->getNsIndex( $value );
-						if ( null !== $ns ){
+						if ( null !== $ns ) {
 			    $this->params['iNameSpace'] = $ns;
 			    $this->params['nameSpace'] = true;
 						}
 					}
 					break;
 				case 'count':
-					if ( ( $this->wgDPLminResultCount < $value ) && ( $value < $this->wgDPLmaxResultCount ) ){
+					if ( ( $this->wgDPLminResultCount < $value ) && ( $value < $this->wgDPLmaxResultCount ) ) {
 						$this->params['count'] = intval( $value );
 					}
 					break;
 				case 'order';
-				switch ( $value ){
+				switch ( $value ) {
 					case 'ascending':
 						$this->params['order'] = 'ascending';
 						break;
@@ -372,7 +372,7 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 				}
 				break;
 				case 'ordermethod';
-				switch ( $value ){
+				switch ( $value ) {
 					case 'lastedit':
 						$this->params['orderMethod'] = 'lastedit';
 						break;
@@ -383,7 +383,7 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 				}
 				break;
 				case 'redirects';
-				switch ( $value ){
+				switch ( $value ) {
 					case 'include':
 						$this->params['redirects'] = 'include';
 						break;
@@ -397,7 +397,7 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 				}
 				break;
 				case 'stablepages':
-					switch ( $value ){
+					switch ( $value ) {
 						case 'include':
 							$this->params['stable'] = 'include';
 							break;
@@ -411,7 +411,7 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 					}
 					break;
 				case 'qualitypages':
-					switch ( $value ){
+					switch ( $value ) {
 						case 'include':
 							$this->params['quality'] = 'include';
 							break;
@@ -443,26 +443,26 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 		$this->params['catCount'] = count( $this->categories );
 		$this->params['notCatCount'] = count( $this->notCategories );
 		$totalCatCount = $this->params['catCount'] + $this->params['notCatCount'];
-		 
-		if (( $this->params['catCount'] < 1 && false == $this->params['nameSpace'] ) || ( $totalCatCount < $this->wgDPlminCategories )){
-			//echo "Boom on catCount\n";
+
+		if ( ( $this->params['catCount'] < 1 && false == $this->params['nameSpace'] ) || ( $totalCatCount < $this->wgDPlminCategories ) ) {
+			// echo "Boom on catCount\n";
 			$parser = new Parser;
 			$poptions = new ParserOptions;
 			$feed =  Title::newFromText( $parser->transformMsg( 'Published', $poptions ) );
-			if ( is_object( $feed ) ){
+			if ( is_object( $feed ) ) {
 				$this->categories[] = $feed;
 				$this->params['catCount'] = count( $this->categories );
-			}else{
+			} else {
 				echo "\$feed is not an object.\n";
 				continue;
 			}
 		}
 
-		if ( ( $totalCatCount > $this->wgDPlmaxCategories ) && ( !$this->wgDPLallowUnlimitedCategories ) ){
+		if ( ( $totalCatCount > $this->wgDPlmaxCategories ) && ( !$this->wgDPLallowUnlimitedCategories ) ) {
 			$this->params['error'] = htmlspecialchars( wfMsg( 'intersection_toomanycats' ) ); // "!!too many categories!!";
 		}
 
-		//disallow showing date if the query doesn't have an inclusion category parameter
+		// disallow showing date if the query doesn't have an inclusion category parameter
 		if ( $this->params['count'] < 1 )
 		$this->params['addFirstCategoryDate'] = false;
 
@@ -478,37 +478,37 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 		return isset( $row->comment ) ? htmlspecialchars( $row->comment ) : '';
 	}
 
-	function getKeywords ( $title ){
+	function getKeywords ( $title ) {
 		$cats = $title->getParentCategories();
 		$str = '';
-		#the following code is based (stolen) from r56954 of flagged revs.
+		# the following code is based (stolen) from r56954 of flagged revs.
 		$catMap = Array();
 		$catMask = Array();
 		$msg = wfMsg( 'gnsm_categorymap' );
 		if ( !wfEmptyMsg( 'gnsm_categorymap', $msg ) ) {
-			$list = explode( "\n*", "\n$msg");
-			foreach($list as $item) {
-				$mapping = explode('|', $item, 2);
+			$list = explode( "\n*", "\n$msg" );
+			foreach ( $list as $item ) {
+				$mapping = explode( '|', $item, 2 );
 				if ( count( $mapping ) == 2 ) {
-					if ( trim( $mapping[1] ) == '__MASK__') {
-						$catMask[trim($mapping[0])] = true;
+					if ( trim( $mapping[1] ) == '__MASK__' ) {
+						$catMask[trim( $mapping[0] )] = true;
 					} else {
-						$catMap[trim($mapping[0])] = trim($mapping[1]);
+						$catMap[trim( $mapping[0] )] = trim( $mapping[1] );
 					}
 				}
 			}
 		}
-		foreach ( $cats as $key => $val ){
+		foreach ( $cats as $key => $val ) {
 			$cat = str_replace( '_', ' ', trim( substr( $key, strpos( $key, ':' ) + 1 ) ) );
-			if (!isset($catMask[$cat])) {
-				if (isset($catMap[$cat])) {
+			if ( !isset( $catMask[$cat] ) ) {
+				if ( isset( $catMap[$cat] ) ) {
 					$str .= ', ' . str_replace( '_', ' ', trim ( $catMap[$cat] ) );
 				} else {
 					$str .= ', ' . $cat;
 				}
 			}
 		}
-		$str = substr( $str, 2 ); #to remove leading ', '
+		$str = substr( $str, 2 ); # to remove leading ', '
 		return $str;
 	}
 
@@ -519,7 +519,7 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
  **
  * Base class for basic SiteMap support, for building url containers.
  **/
-class FeedSitemapItem{
+class FeedSitemapItem {
 	/**
 	 * Var string
 	 **/
@@ -529,7 +529,7 @@ class FeedSitemapItem{
 	var $lastMod = '';
 	var $priority = '';
 
-	function __construct( $url, $pubDate, $keywords = '', $lastMod = '', $priority = ''){
+	function __construct( $url, $pubDate, $keywords = '', $lastMod = '', $priority = '' ) {
 		$this->url = $url;
 		$this->pubDate = $pubDate;
 		$this->keywords = $keywords;
@@ -537,29 +537,29 @@ class FeedSitemapItem{
 		$this->priority = $priority;
 	}
 
-	public function xmlEncode( $string ){
+	public function xmlEncode( $string ) {
 		$string = str_replace( "\r\n", "\n", $string );
 		$string = preg_replace( '/[\x00-\x08\x0b\x0c\x0e-\x1f]/', '', $string );
 		return htmlspecialchars( $string );
 	}
 
-	public function getUrl(){
+	public function getUrl() {
 		return $this->url;
 	}
 
-	public function getPriority(){
+	public function getPriority() {
 		return $this->priority;
 	}
 
-	public function getLastMod(){
+	public function getLastMod() {
 		return $this->lastMod;
 	}
 
-	public function getKeywords (){
+	public function getKeywords () {
 		return $this->xmlEncode( $this->keywords );
 	}
 
-	public function getPubDate(){
+	public function getPubDate() {
 		return $this->pubDate;
 	}
 
@@ -588,7 +588,7 @@ class FeedSitemapItem{
 
 	}
 
-	function outXmlHeader(){
+	function outXmlHeader() {
 		global $wgStylePath, $wgStyleVersion;
 
 		$this->httpHeaders();
@@ -603,18 +603,18 @@ class FeedSitemapItem{
 	 **/
 	function contentType() {
 		global $wgRequest;
-		$ctype = $wgRequest->getVal('ctype','application/xml');
-		$allowedctypes = array('application/xml','text/xml','application/rss+xml','application/atom+xml');
-		return (in_array($ctype, $allowedctypes) ? $ctype : 'application/xml');
+		$ctype = $wgRequest->getVal( 'ctype', 'application/xml' );
+		$allowedctypes = array( 'application/xml', 'text/xml', 'application/rss+xml', 'application/atom+xml' );
+		return ( in_array( $ctype, $allowedctypes ) ? $ctype : 'application/xml' );
 	}
 
 }
 
-class SitemapFeed extends FeedSitemapItem{
+class SitemapFeed extends FeedSitemapItem {
 	/**
 	 * Output feed headers
 	 **/
-	function outHeader(){
+	function outHeader() {
 		$this->outXmlHeader();
 		?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
@@ -635,21 +635,21 @@ class SitemapFeed extends FeedSitemapItem{
 	<news:publication_date>
 	<?php print $item->getPubDate() ?>
 	</news:publication_date>
-	<?php if( $item->getKeywords() ){
+	<?php if ( $item->getKeywords() ) {
 		echo '<news:keywords>' . $item->getKeywords() . "</news:keywords>\n";
 	}
 	?>
 </news:news>
-	<?php	 if( $item->getLastMod() ){ ?>
+	<?php	 if ( $item->getLastMod() ) { ?>
 <lastmod>
 	<?php print $item->getLastMod(); ?>
 </lastmod>
-	<?php }?>
-	<?php	 if( $item->getPriority() ){ ?>
+	<?php } ?>
+	<?php	 if ( $item->getPriority() ) { ?>
 <priority>
 	<? print $item->getPriority(); ?>
 </priority>
-	<?php }?>
+	<?php } ?>
 </url>
 	<?php
 	}
@@ -657,7 +657,7 @@ class SitemapFeed extends FeedSitemapItem{
 	/**
 	 * Output SiteMap 0.9 footer
 	 **/
-	function outFooter(){
+	function outFooter() {
 		echo '</urlset>';
 	}
 

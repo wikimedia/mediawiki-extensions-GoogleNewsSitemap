@@ -1,5 +1,5 @@
 <?php
-if (!defined('MEDIAWIKI')) {
+if ( !defined( 'MEDIAWIKI' ) ) {
     echo <<<EOT
 To install GoogleNewsSitemap extension, an extension special page, put the following line in LocalSettings.php:
 require_once( dirname(__FILE__) . '/extensions/GoogleNewsSitemap/GoogleNewsSitemap.php' );
@@ -61,7 +61,7 @@ $wgExtensionCredits['specialpage'][] = array(
 	'url' => 'http://www.mediawiki.org/wiki/Extension:GoogleNewsSitemap',
 );
 
-$dir = dirname(__FILE__) . '/';
+$dir = dirname( __FILE__ ) . '/';
 $wgExtensionMessagesFiles['GoogleNewsSitemap'] = $dir . 'GoogleNewsSitemap.i18n.php';
 $wgExtensionAliasesFiles['GoogleNewsSitemap'] = $dir . 'GoogleNewsSitemap.alias.php';
 $wgAutoloadClasses['GoogleNewsSitemap'] = $dir . 'GoogleNewsSitemap_body.php';
