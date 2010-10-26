@@ -27,8 +27,6 @@ if ( !defined( 'MEDIAWIKI' ) ) die();
  **/
 
 class GoogleNewsSitemap extends IncludableSpecialPage {
-
-
 	/**
 	 * FIXME: Some of this might need a config eventually
 	 * @var string
@@ -53,7 +51,6 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 	var $wgDPLallowUnlimitedResults = true;     // Allow unlimited results
 	var $wgDPLallowUnlimitedCategories = false; // Allow unlimited categories
 
-
 	/**
 	 * @var array Parameters array
 	 **/
@@ -72,12 +69,7 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 	 * main()
 	 **/
 	public function execute( $par ) {
-		global $wgUser;
-		global $wgLang;
-		global $wgContLang;
-		global $wgRequest, $wgOut;
 		global $wgSitename, $wgServer, $wgScriptPath;
-		wfLoadExtensionMessages( 'GoogleNewsSitemap' );
 		global $wgFeedClasses, $wgLocaltimezone;
 
 		// Not sure how clean $wgLocaltimezone is
@@ -88,7 +80,6 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 		// $url = __FILE__;
 
 		$this->dpl_parm( $par );
-
 
 		$wgFeedClasses[] = array( 'sitemap' => 'SitemapFeed' );
 
@@ -123,17 +114,18 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 			// FIXME: figure out how to fail with no results gracefully
 			if ( $dbr->numRows( $res ) == 0 ) {
 				$feed->outFooter();
-				if ( false == $this->params['suppressErrors'] )
-				return htmlspecialchars( wfMsg( 'gnsm_noresults' ) );
-				else
-				return '';
+				if ( false == $this->params['suppressErrors'] ) {
+					return htmlspecialchars( wfMsg( 'gnsm_noresults' ) );
+				} else {
+					return '';
+				}
 			}
 
-			while ( $row = $dbr->fetchObject( $res ) ) {
+			foreach ($res as $row ) {
 				$title = Title::makeTitle( $row->page_namespace, $row->page_title );
 
 				if ( $title ) {
-		   // This is printing things in places it shouldn't
+		            // This is printing things in places it shouldn't
 					// print $this->params['nameSpace'];
 
 					$titleText = ( true == $this->params['nameSpace'] ) ? $title->getPrefixedText() : $title->getText();
@@ -155,10 +147,10 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 
 						$this->Date = isset( $row->cl_timestamp ) ? $row->cl_timestamp : date( DATE_ATOM );
 						if ( isset( $row->comment ) ) {
-			    $comments = htmlspecialchars( $row->comment );
+							$comments = htmlspecialchars( $row->comment );
 						} else {
-			    $talkpage = $title->getTalkPage();
-			    $comments = $talkpage->getFullURL();
+							$talkpage = $title->getTalkPage();
+							$comments = $talkpage->getFullURL();
 						}
 						$titleText = ( true === $this->params['nameSpace'] ) ? $title->getPrefixedText() : $title->getText();
 						$feedItem = new FeedItem(
@@ -251,16 +243,17 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 			$currentTableNumber++;
 		}
 
-		if ( 'lastedit' == $this->params['orderMethod'] )
+		if ( 'lastedit' == $this->params['orderMethod'] ) {
 			$sqlWhere .= ' ORDER BY page_touched ';
-		else
+		} else {
 			$sqlWhere .= ' ORDER BY c1.cl_timestamp ';
+		}
 
-		if ( 'descending' == $this->params['order'] )
+		if ( 'descending' == $this->params['order'] ) {
 			$sqlWhere .= 'DESC';
-		else
+		} else {
 			$sqlWhere .= 'ASC';
-
+		}
 		// FIXME: Note: this is not a boolean type check - will also trap count = 0 which may
 		// accidentally give unlimited returns
 		if ( 0 < $this->params['count'] ) {
@@ -454,7 +447,6 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 				$this->params['catCount'] = count( $this->categories );
 			} else {
 				echo "\$feed is not an object.\n";
-				continue;
 			}
 		}
 
@@ -511,7 +503,6 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 		$str = substr( $str, 2 ); # to remove leading ', '
 		return $str;
 	}
-
 }
 
 /**
