@@ -14,13 +14,13 @@ $messages = array();
  */
 
 $messages['en'] = array(
-    'gnsm'                  => 'Google News Sitemap',
-    'gnsm-desc'             => 'Outputs an Atom/RSS feed as a Google News Sitemap',
-    'gnsm_categorymap'      => '', # Default empty. List of categories to map to keywords. Do not translate.
-    'gnsm_toomanycats'      => 'Error: Too many categories!',
-    'gnsm_toofewcats'       => 'Error: Too few categories!',
-    'gnsm_noresults'        => 'Error: No results!',
-    'gnsm_noincludecats'    => 'Error: You need to include at least one category, or specify a namespace!',
+	'gnsm' => 'Google News Sitemap',
+	'gnsm-desc' => 'Outputs an Atom/RSS feed as a Google News Sitemap',
+	'gnsm_categorymap' => '', # Default empty. List of categories to map to keywords. Do not translate.
+	'gnsm_toomanycats' => 'Error: Too many categories!',
+	'gnsm_toofewcats' => 'Error: Too few categories!',
+	'gnsm_noresults' => 'Error: No results!',
+	'gnsm_noincludecats' => 'Error: You need to include at least one category, or specify a namespace!',
 );
 
 /** Message documentation (Message documentation)

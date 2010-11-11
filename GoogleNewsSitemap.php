@@ -1,10 +1,10 @@
 <?php
 if ( !defined( 'MEDIAWIKI' ) ) {
-    echo <<<EOT
+	echo <<<EOT
 To install GoogleNewsSitemap extension, an extension special page, put the following line in LocalSettings.php:
 require_once( dirname(__FILE__) . '/extensions/GoogleNewsSitemap/GoogleNewsSitemap.php' );
 EOT;
-    exit( 1 );
+	exit( 1 );
 }
 
 /**
