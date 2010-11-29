@@ -86,17 +86,17 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 
 		if ( 'sitemap' == $this->params['feed'] ) {
 			$feed = new SitemapFeed(
-			$wgServer . $wgScriptPath,
-			date( DATE_ATOM )
+				$wgServer . $wgScriptPath,
+				date( DATE_ATOM )
 			);
 		} else {
 			// FIXME: These should be configurable at some point
 			$feed = new $wgFeedClasses[ $this->params['feed'] ](
-			$wgSitename,
-			$wgSitename . ' ' . $this->params['feed'] . ' feed',
-			$wgServer . $wgScriptPath,
-			date( DATE_ATOM ),
-			$wgSitename
+				$wgSitename,
+				$wgSitename . ' ' . $this->params['feed'] . ' feed',
+				$wgServer . $wgScriptPath,
+				date( DATE_ATOM ),
+				$wgSitename
 			);
 		}
 
@@ -147,14 +147,17 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 							$talkpage = $title->getTalkPage();
 							$comments = $talkpage->getFullURL();
 						}
-						$titleText = ( true === $this->params['nameSpace'] ) ? $title->getPrefixedText() : $title->getText();
+						$titleText = ( true === $this->params['nameSpace'] )
+								? $title->getPrefixedText()
+								: $title->getText();
 						$feedItem = new FeedItem(
-						$titleText,
-						$this->feedItemDesc( $row ),
-						$title->getFullURL(),
-						$this->Date,
-						$this->feedItemAuthor( $row ),
-						$comments );
+							$titleText,
+							$this->feedItemDesc( $row ),
+							$title->getFullURL(),
+							$this->Date,
+							$this->feedItemAuthor( $row ),
+							$comments
+						);
 					}
 					$feed->outItem( $feedItem );
 				}
@@ -168,7 +171,8 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 	 **/
 	public function dpl_buildSQL() {
 		$dbr = wfGetDB( DB_SLAVE );
-		$sqlSelectFrom = 'SELECT page_namespace, page_title, page_id, c1.cl_timestamp FROM ' . $dbr->tableName( 'page' );
+		$sqlSelectFrom = 'SELECT page_namespace, page_title, page_id, c1.cl_timestamp FROM '
+				. $dbr->tableName( 'page' );
 
 		if ( $this->params['nameSpace'] ) {
 			$sqlWhere = ' WHERE page_namespace=' . $this->params['iNameSpace'] . ' ';
@@ -434,7 +438,8 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 		$this->params['notCatCount'] = count( $this->notCategories );
 		$totalCatCount = $this->params['catCount'] + $this->params['notCatCount'];
 
-		if ( ( $this->params['catCount'] < 1 && false == $this->params['nameSpace'] ) || ( $totalCatCount < $this->wgDPlminCategories ) ) {
+		if ( ( $this->params['catCount'] < 1 && false == $this->params['nameSpace'] )
+				|| ( $totalCatCount < $this->wgDPlminCategories ) ) {
 			// echo "Boom on catCount\n";
 			$parser = new Parser;
 			$poptions = new ParserOptions;
