@@ -233,9 +233,12 @@ $messages['gsw'] = array(
  * @author YaronSh
  */
 $messages['he'] = array(
+	'gnsm' => 'מפת אתר לפי Google News',
+	'gnsm-desc' => 'יצוא הזנת Atom/RSS בתור מפת אתר ל־Google News',
 	'gnsm_toomanycats' => 'שגיאה: יותר מדי קטגוריות!',
 	'gnsm_toofewcats' => 'שגיאה: מעט מדי קטגוריות!',
 	'gnsm_noresults' => 'שגיאה: אין תוצאות!',
+	'gnsm_noincludecats' => 'שגיאה: עליך לכלול לפחות קטגוריה אחת או לציין מרחב שם!',
 );
 
 /** Upper Sorbian (Hornjoserbsce)
