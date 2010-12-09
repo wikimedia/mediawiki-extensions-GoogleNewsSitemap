@@ -13,8 +13,7 @@ class SitemapFeed extends FeedSMItem {
 	 * Output feed headers
 	 **/
 	function outHeader() {
-		global $wgOut;
-		global $wgRequest;
+		global $wgOut,  $wgRequest;
 
 		// FIXME: Why can't we just pick one mime type and always send that?
 		$ctype = $wgRequest->getVal( 'ctype', 'application/xml' );
@@ -36,7 +35,6 @@ class SitemapFeed extends FeedSMItem {
 	 * @param FeedSMItem item to be output
 	 **/
 	function outItem( $item ) {
-
 		$this->writer->startElement( "url" );
 		$this->writer->startElement( "loc" );
 		$this->writer->text( $item->getUrl() );

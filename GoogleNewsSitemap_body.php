@@ -51,7 +51,6 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 	var $wgDPLallowUnlimitedResults = true;	   // Allow unlimited results
 	var $wgDPLallowUnlimitedCategories = false; // Allow unlimited categories
 
-
 	/**
 	 * @var array Parameters array
 	 **/
@@ -70,24 +69,19 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 	 * main()
 	 **/
 	public function execute( $par ) {
-		global $wgUser;
-		global $wgLang;
-		global $wgContLang;
-		global $wgRequest, $wgOut;
-		global $wgSitename, $wgServer, $wgScriptPath;
-		//	global $wfTimeStamp;
-		wfLoadExtensionMessages( 'GoogleNewsSitemap' );
-		global $wgFeedClasses, $wgLocaltimezone;
+		global $wgUser, $wgLang, $wgContLang, $wgRequest, $wgOut,
+			$wgSitename, $wgServer, $wgScriptPath, $wgFeedClasses,
+			$wgLocaltimezone;
 
 		// Not sure how clean $wgLocaltimezone is
 		// In fact, it's default setting is null...
-		if ( null == $wgLocaltimezone )
+		if ( null == $wgLocaltimezone ) {
 			$wgLocaltimezone = date_default_timezone_get();
+		}
 		date_default_timezone_set( $wgLocaltimezone );
 		// $url = __FILE__;
 
 		$this->unload_params(); // populates this->params as a side effect
-
 
 		$wgFeedClasses[] = array( 'sitemap' => 'SitemapFeed' );
 
@@ -117,7 +111,7 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 			return;
 		}
 
-		$dbr =& wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE );
 		$sql = $this->dpl_buildSQL();
 		// Debug line
 		// echo "\n<p>$sql</p>\n";
@@ -126,16 +120,17 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 		// FIXME: figure out how to fail with no results gracefully
 		if ( $dbr->numRows( $res ) == 0 ) {
 			$feed->outFooter();
-			if ( false == $this->params['suppressErrors'] )
+			if ( false == $this->params['suppressErrors'] ) {
 				return htmlspecialchars( wfMsg( 'gnsm_noresults' ) );
-			else
+			} else {
 				return '';
+			}
 		}
 
 		while ( $row = $dbr->fetchObject( $res ) ) {
 			$title = Title::makeTitle( $row->page_namespace, $row->page_title );
 
-			if ( ! $title ) {
+			if ( !$title ) {
 				$feed->outFooter();
 				return;
 			}
@@ -298,8 +293,10 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 		// $this->notCategories[] = $wgRequest->getArray('notcategory');
 		$this->params['nameSpace'] =   $wgContLang->getNsIndex( $wgRequest->getVal( 'namespace', 0 ) );
 		$this->params['count'] =	   $wgRequest->getInt( 'count', $this->wgDPLmaxResultCount );
-		if ( ( $this->params['count'] > $this->wgDPLmaxResultCount ) || ( $this->params['count'] < $this->wgDPLminResultCount ) )
+		if ( ( $this->params['count'] > $this->wgDPLmaxResultCount )
+				|| ( $this->params['count'] < $this->wgDPLminResultCount ) ) {
 			$this->params['count'] = $this->wgDPLmaxResultCount;
+		}
 
 		$this->params['order'] =	   $wgRequest->getVal( 'order', 'descending' );
 		$this->params['orderMethod'] = $wgRequest->getVal( 'ordermethod', 'categoryadd' );
@@ -310,7 +307,6 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 		$this->params['useNameSpace'] = $wgRequest->getBool( 'usenamespace', false );
 		$this->params['useCurId'] =		$wgRequest->getBool( 'usecurid', false );
 		$this->params['feed'] = $wgRequest->getVal( 'feed', 'sitemap' );
-
 
 		$this->params['catCount'] = count( $this->categories );
 		$this->params['notCatCount'] = count( $this->notCategories );
@@ -334,13 +330,13 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 		}
 
 			// disallow showing date if the query doesn't have an inclusion category parameter
-		if ( $this->params['count'] < 1 )
+		if ( $this->params['count'] < 1 ) {
 			$this->params['addFirstCategoryDate'] = false;
+		}
 
 		$this->params['dbr'] =& wfGetDB( DB_SLAVE );
 		// print_r($this->notCategories);
 		// print_r($this->categories);
-		return;
 	}
 
 	function feedItemAuthor( $row ) {

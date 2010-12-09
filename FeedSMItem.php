@@ -10,11 +10,7 @@ class FeedSMItem {
 	/**
 	 * Var string
 	 **/
-	var $url = '';
-	var $pubDate = '';
-	var $keywords = '';
-	var $lastMod = '';
-	var $priority = '';
+	var $url = '', $pubDate = '', $keywords = '', $lastMod = '', $priority = '';
 
 	function __construct( $url, $pubDate, $keywords = '', $lastMod = '', $priority = '' ) {
 		$this->url = $url;
