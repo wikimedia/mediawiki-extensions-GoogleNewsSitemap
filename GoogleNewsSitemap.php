@@ -1,10 +1,10 @@
 <?php
-if ( !defined( 'MEDIAWIKI' ) ) {
-	echo <<<EOT
-To install GoogleNewsSitemap extension, an extension special page, put the following line in LocalSettings.php:
-require_once( dirname(__FILE__) . '/extensions/GoogleNewsSitemap/GoogleNewsSitemap.php' );
+if (!defined('MEDIAWIKI')) {
+    echo <<<EOT
+To install GNSM extension, an extension special page, put the following line in LocalSettings.php:
+require_once( dirname(__FILE__) . '/extensions/GNSM/SpecialGNSM.php' );
 EOT;
-	exit( 1 );
+    exit( 1 );
 }
 
 /**
@@ -17,11 +17,11 @@ EOT;
  *                  - 0.92 http://www.rssboard.org/rss-0-9-2
  *  Atom feed output - 2005 http://tools.ietf.org/html/rfc4287
  **
- * This page can be accessed from Special:GoogleNewsSitemap[/][|category=Catname]
+ * This page can be accessed from Special:GNSM[/][|category=Catname]
  *      [|notcategory=OtherCatName][|namespace=0][|notnamespace=User]
  *      [|feed=sitemap][|count=10][|mode=ul][|ordermethod=lastedit]
  *      [|order=ascending] as well as being included like
- *      {{Special:GoogleNewsSitemap/[options][...]}}
+ *      {{Special:GNSM/[options][...]}}
  **
  *  This program is free software; you can redistribute it and/or modify it
  *  under the terms of the GNU General Public License as published by the Free
@@ -45,26 +45,25 @@ EOT;
  *      n:en:User:IlyaHaykinson http://en.wikinews.org/wiki/User:IlyaHaykinson
  **
  * FIXME requests
- *  use=Mediawiki:GoogleNewsSitemap_Feedname     Parameter to allow on-site control of feed
+ *  use=Mediawiki:GNSM_Feedname     Parameter to allow on-site control of feed
  **
- * @file
- * @intogroup Extensions
+ * @addtogroup Extensions
+ *
  * @author Amgine <amgine.saewyc@gmail.com>
  * @copyright Copyright © 2009, Amgine
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
  */
 $wgExtensionCredits['specialpage'][] = array(
 	'path' => __FILE__,
-	'name' => 'GoogleNewsSitemap',
+	'name' => 'GNSM',
 	'author' => 'Amgine',
+	'description' => 'Outputs xml based on defined criteria',
 	'descriptionmsg' => 'gnsm-desc',
-	'url' => 'http://www.mediawiki.org/wiki/Extension:GoogleNewsSitemap',
+	'url' => 'http://www.mediawiki.org/wiki/Extension:GNSM',
 );
 
-$dir = dirname( __FILE__ ) . '/';
-$wgExtensionMessagesFiles['GoogleNewsSitemap'] = $dir . 'GoogleNewsSitemap.i18n.php';
-$wgExtensionAliasesFiles['GoogleNewsSitemap'] = $dir . 'GoogleNewsSitemap.alias.php';
-$wgAutoloadClasses['GoogleNewsSitemap'] = $dir . 'GoogleNewsSitemap_body.php';
-$wgAutoloadClasses['FeedSitemapItem'] = $dir . 'FeedSitemapItem.php';
-$wgAutoloadClasses['SitemapFeed'] = $dir . 'FeedSitemapItem.php';
-$wgSpecialPages['GoogleNewsSitemap'] = 'GoogleNewsSitemap';
+$dir = dirname(__FILE__) . '/';
+$wgExtensionMessagesFiles['GNSM'] = $dir . 'GoogleNewsSitemap.i18n.php';
+$wgExtensionAliasesFiles['GNSM'] = $dir . 'GoogleNewsSitemap.alias.php';
+$wgAutoloadClasses['GNSM'] = $dir . 'GoogleNewsSitemap_body.php';
+$wgSpecialPages['GNSM'] = 'GNSM';
