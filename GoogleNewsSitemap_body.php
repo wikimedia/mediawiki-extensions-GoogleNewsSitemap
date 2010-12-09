@@ -6,7 +6,7 @@ if (!defined('MEDIAWIKI')) die();
  **
  * Simple feed using Atom/RSS coupled to DynamicPageList category searching.
  *
- * To use: http://wiki.url/Special:GNSM/[paramter=value][...]
+ * To use: http://wiki.url/Special:GoogleNewsSitemap/[paramter=value][...]
  *
  * Implemented parameters are marked with an @
  **
@@ -26,9 +26,7 @@ if (!defined('MEDIAWIKI')) die();
  *	suppresserrors = bool ; default = false
  **/
 
-class GNSM extends IncludableSpecialPage {
-
-	
+class GoogleNewsSitemap extends IncludableSpecialPage {
 	/**
 	 * FIXME: Some of this might need a config eventually
 	 * @var string
@@ -65,7 +63,7 @@ class GNSM extends IncludableSpecialPage {
 	 * Constructor
 	 **/
 	public function __construct() {
-		parent::__construct( 'GNSM' );
+		parent::__construct( 'GoogleNewsSitemap' );
 	}
 	
 	/**
@@ -78,7 +76,7 @@ class GNSM extends IncludableSpecialPage {
 		global $wgRequest, $wgOut;
 		global $wgSitename, $wgServer, $wgScriptPath;
 		//	global $wfTimeStamp;
-		wfLoadExtensionMessages( 'GNSM' );
+		wfLoadExtensionMessages( 'GoogleNewsSitemap' );
 		global $wgFeedClasses, $wgLocaltimezone;
 		
 		// Not sure how clean $wgLocaltimezone is
@@ -327,7 +325,7 @@ class GNSM extends IncludableSpecialPage {
 				$this->params['catCount'] = count( $this->categories );    
 			}else{
 				echo "\$feed is not an object.\n";
-				continue;
+				//continue;
 			}
 		}
 		

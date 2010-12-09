@@ -1,8 +1,8 @@
 <?php
 if (!defined('MEDIAWIKI')) {
     echo <<<EOT
-To install GNSM extension, an extension special page, put the following line in LocalSettings.php:
-require_once( dirname(__FILE__) . '/extensions/GNSM/SpecialGNSM.php' );
+To install GoogleNewsSitemap extension, an extension special page, put the following line in LocalSettings.php:
+require_once( dirname(__FILE__) . '/extensions/GoogleNewsSitemap/GoogleNewsSitemap.php' );
 EOT;
     exit( 1 );
 }
@@ -17,11 +17,11 @@ EOT;
  *                  - 0.92 http://www.rssboard.org/rss-0-9-2
  *  Atom feed output - 2005 http://tools.ietf.org/html/rfc4287
  **
- * This page can be accessed from Special:GNSM[/][|category=Catname]
+ * This page can be accessed from Special:GoogleNewsSitemap[/][|category=Catname]
  *      [|notcategory=OtherCatName][|namespace=0][|notnamespace=User]
  *      [|feed=sitemap][|count=10][|mode=ul][|ordermethod=lastedit]
  *      [|order=ascending] as well as being included like
- *      {{Special:GNSM/[options][...]}}
+ *      {{Special:GoogleNewsSitemap/[options][...]}}
  **
  *  This program is free software; you can redistribute it and/or modify it
  *  under the terms of the GNU General Public License as published by the Free
@@ -45,7 +45,7 @@ EOT;
  *      n:en:User:IlyaHaykinson http://en.wikinews.org/wiki/User:IlyaHaykinson
  **
  * FIXME requests
- *  use=Mediawiki:GNSM_Feedname     Parameter to allow on-site control of feed
+ *  use=Mediawiki:GoogleNewsSitemap_Feedname     Parameter to allow on-site control of feed
  **
  * @addtogroup Extensions
  *
@@ -55,15 +55,15 @@ EOT;
  */
 $wgExtensionCredits['specialpage'][] = array(
 	'path' => __FILE__,
-	'name' => 'GNSM',
+	'name' => 'GoogleNewsSitemap',
 	'author' => 'Amgine',
 	'description' => 'Outputs xml based on defined criteria',
 	'descriptionmsg' => 'gnsm-desc',
-	'url' => 'http://www.mediawiki.org/wiki/Extension:GNSM',
+	'url' => 'http://www.mediawiki.org/wiki/Extension:GoogleNewsSitemap',
 );
 
 $dir = dirname(__FILE__) . '/';
-$wgExtensionMessagesFiles['GNSM'] = $dir . 'GoogleNewsSitemap.i18n.php';
-$wgExtensionAliasesFiles['GNSM'] = $dir . 'GoogleNewsSitemap.alias.php';
-$wgAutoloadClasses['GNSM'] = $dir . 'GoogleNewsSitemap_body.php';
-$wgSpecialPages['GNSM'] = 'GNSM';
+$wgExtensionMessagesFiles['GoogleNewsSitemap'] = $dir . 'GoogleNewsSitemap.i18n.php';
+$wgExtensionAliasesFiles['GoogleNewsSitemap'] = $dir . 'GoogleNewsSitemap.alias.php';
+$wgAutoloadClasses['GoogleNewsSitemap'] = $dir . 'GoogleNewsSitemap_body.php';
+$wgSpecialPages['GoogleNewsSitemap'] = 'GoogleNewsSitemap';
