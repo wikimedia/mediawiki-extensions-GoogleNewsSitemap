@@ -2,7 +2,7 @@
 if ( !defined( 'MEDIAWIKI' ) ) die();
 
 /**
- * Class GNSM creates Atom/RSS feeds for Wikinews
+ * Class googlenewssitemap creates Atom/RSS feeds for Wikinews
  **
  * Simple feed using Atom/RSS coupled to DynamicPageList category searching.
  *
@@ -121,7 +121,7 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 		if ( $dbr->numRows( $res ) == 0 ) {
 			$feed->outFooter();
 			if ( false == $this->params['suppressErrors'] ) {
-				return htmlspecialchars( wfMsg( 'gnsm_noresults' ) );
+				return htmlspecialchars( wfMsg( 'googlenewssitemap_noresults' ) );
 			} else {
 				return '';
 			}
@@ -353,8 +353,8 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 			# the following code is based (stolen) from r56954 of flagged revs.
 		$catMap = Array();
 		$catMask = Array();
-		$msg = wfMsg( 'gnsm_categorymap' );
-		if ( !wfEmptyMsg( 'gnsm_categorymap', $msg ) ) {
+		$msg = wfMsg( 'googlenewssitemap_categorymap' );
+		if ( !wfEmptyMsg( 'googlenewssitemap_categorymap', $msg ) ) {
 			$list = explode( "\n*", "\n$msg" );
 			foreach ( $list as $item ) {
 				$mapping = explode( '|', $item, 2 );
