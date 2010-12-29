@@ -83,33 +83,27 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 
 		$this->unload_params(); // populates this->params as a side effect
 
-		$wgFeedClasses[] = array( 'sitemap' => 'SitemapFeed' );
+		// if there's an error parsing the params, bail out and return 
+		if ( isset( $this->param['error'] ) ) {
+			if ( false == $this->params['suppressErrors'] ) {
+				$wgOut->disable();
+				echo $this->param['error'];
+			}
+			return;
+		}
 
-		if ( 'sitemap' == $this->params['feed'] ) {
-			$feed = new SitemapFeed(
-			$wgServer . $wgScriptPath,
-			date( DATE_ATOM )
-			);
-		} else {
-			// FIXME: These should be configurable at some point
-			$feed = new $wgFeedClasses[ $this->params['feed'] ](
+
+		$wgFeedClasses['sitemap'] = 'SitemapFeed' ;
+
+		$feed = new $wgFeedClasses[ $this->params['feed'] ](
 				$wgSitename,
 				$wgSitename . ' ' . $this->params['feed'] . ' feed',
 				$wgServer . $wgScriptPath,
 				date( DATE_ATOM ),
 				$wgSitename
 			);
-		}
 
 		$feed->outHeader();
-
-		// main routine to output items
-		if ( isset( $this->param['error'] ) ) {
-			$wgOut->disable();
-			echo $this->param['error'];
-			$feed->outFooter();
-			return;
-		}
 
 		$dbr = wfGetDB( DB_SLAVE );
 		$sql = $this->dpl_buildSQL();
@@ -121,7 +115,8 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 		if ( $dbr->numRows( $res ) == 0 ) {
 			$feed->outFooter();
 			if ( false == $this->params['suppressErrors'] ) {
-				return htmlspecialchars( wfMsg( 'googlenewssitemap_noresults' ) );
+				echo htmlspecialchars( wfMsg( 'googlenewssitemap_noresults' ) );
+				return;
 			} else {
 				return '';
 			}
@@ -271,15 +266,11 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 	} // end buildSQL
 
 	/**
-	 * Parse parameters
-	 **
-	 * FIXME this includes a lot of DynamicPageList cruft in need of thinning.
+	 * Parse parameters, populates $this->params
 	 **/
 	public function unload_params() {
 		global $wgContLang;
 		global $wgRequest;
-		global $wgOut;
-		$wgOut->disable();
 
 		$this->params = array();
 		$parser = new Parser;
@@ -320,13 +311,13 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 				$this->categories[] = $feed;
 				$this->params['catCount'] = count( $this->categories );
 			} else {
-				echo "\$feed is not an object.\n";
+				$this->params['error'] = htmlspecialchars( wfMsg( 'googlenewssitemap_badfeedobject' ) );
 				// continue;
 			}
 		}
 
 		if ( ( $totalCatCount > $this->wgDPlmaxCategories ) && ( !$this->wgDPLallowUnlimitedCategories ) ) {
-			$this->params['error'] = htmlspecialchars( wfMsg( 'intersection_toomanycats' ) ); // "!!too many categories!!";
+			$this->params['error'] = htmlspecialchars( wfMsg( 'googlenewssitemap_toomanycats' ) ); // "!!too many categories!!";
 		}
 
 			// disallow showing date if the query doesn't have an inclusion category parameter
