@@ -122,7 +122,7 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 			}
 		}
 
-		while ( $row = $dbr->fetchObject( $res ) ) {
+		foreach ( $res as $row ) {
 			$title = Title::makeTitle( $row->page_namespace, $row->page_title );
 
 			if ( !$title ) {
@@ -130,7 +130,7 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 				return;
 			}
 
-			$titleText = ( true == $this->params['nameSpace'] ) ? $title->getPrefixedText() : $title->getText();
+			//$titleText = ( $this->params['nameSpace'] ) ? $title->getPrefixedText() : $title->getText();
 
 			if ( 'sitemap' == $this->params['feed'] ) {
 
@@ -200,7 +200,7 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 				}
 				switch( $this->params['quality'] ) {
 				case 'only':
-							$sqlWhere .= ' AND fp_quality >= 1';
+					$sqlWhere .= ' AND fp_quality >= 1';
 					break;
 				case 'exclude':
 					$sqlWhere .= ' AND fp_quality = 0';
@@ -211,17 +211,17 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 			switch ( $this->params['redirects'] ) {
 				case 'only':
 					$sqlWhere .= ' AND page_is_redirect = 1 ';
-				break;
+					break;
 				case 'exclude':
 					$sqlWhere .= ' AND page_is_redirect = 0 ';
-				break;
+					break;
 			}
 
 			$currentTableNumber = 0;
 
 			for ( $i = 0; $i < $this->params['catCount']; $i++ ) {
 				$sqlSelectFrom .= ' INNER JOIN ' . $this->params['dbr']->tableName( 'categorylinks' );
-					$sqlSelectFrom .= ' AS c' . ( $currentTableNumber + 1 ) . ' ON page_id = c';
+				$sqlSelectFrom .= ' AS c' . ( $currentTableNumber + 1 ) . ' ON page_id = c';
 				$sqlSelectFrom .= ( $currentTableNumber + 1 ) . '.cl_from AND c' . ( $currentTableNumber + 1 );
 
 				$sqlSelectFrom .= '.cl_to=' . $this->params['dbr']->addQuotes( $this->categories[$i]->getDBkey() );
@@ -269,13 +269,12 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 	 * Parse parameters, populates $this->params
 	 **/
 	public function unload_params() {
-		global $wgContLang;
-		global $wgRequest;
+		global $wgContLang, $wgRequest;
 
 		$this->params = array();
-		$parser = new Parser;
-		$poptions = new ParserOptions;
-		$category =    $wgRequest->getArray( 'category', 'Published' );
+		//$parser = new Parser;
+		//$poptions = new ParserOptions;
+		//$category = $wgRequest->getArray( 'category', 'Published' );
 		// $title = Title::newFromText( $parser->transformMsg( $category, $poptions ) );
 		// if ( is_object( $title ) ){
 		//	   $this->categories[] = $title;
@@ -342,8 +341,8 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 		$cats = $title->getParentCategories();
 		$str = '';
 			# the following code is based (stolen) from r56954 of flagged revs.
-		$catMap = Array();
-		$catMask = Array();
+		$catMap = array();
+		$catMask = array();
 		$msg = wfMsg( 'googlenewssitemap_categorymap' );
 		if ( !wfEmptyMsg( 'googlenewssitemap_categorymap', $msg ) ) {
 			$list = explode( "\n*", "\n$msg" );
