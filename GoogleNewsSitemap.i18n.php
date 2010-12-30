@@ -103,14 +103,16 @@ $messages['ca'] = array(
 
 /** German (Deutsch)
  * @author Kghbln
+ * @author McDutchie
  */
 $messages['de'] = array(
-	'googlenewssitemap' => 'Sitemap für Google News',
+	'googlenewssitemap' => 'Ermöglicht eine Sitemap für „Google News“',
 	'googlenewssitemap-desc' => 'Gibt Atom/RSS-Feeds in Form einer Sitemap für Google News aus.',
 	'googlenewssitemap_toomanycats' => 'Fehler: Zu viele Kategorien!',
 	'googlenewssitemap_toofewcats' => 'Fehler: Zu wenig Kategorien!',
 	'googlenewssitemap_noresults' => 'Fehler: Keine Ergebnisse vorhanden!',
-	'googlenewssitemap_noincludecats' => 'Fehler: Du musst mindestens eine Kategorie oder einen Namensraum angeben!',
+	'googlenewssitemap_noincludecats' => 'Fehler: Es muss mindestens eine Kategorie oder ein Namensraum angegeben werden!',
+	'googlenewssitemap_badfeedobject' => 'Fehler: $feed ist kein Objekt!',
 );
 
 /** German (formal address) (Deutsch (Sie-Form))
@@ -252,6 +254,7 @@ $messages['hsb'] = array(
 	'googlenewssitemap_toofewcats' => 'Zmylk: Přemało kategorijow!',
 	'googlenewssitemap_noresults' => 'Zmylk: Žane wuslědki!',
 	'googlenewssitemap_noincludecats' => 'Zmylk: Dyrbiš znajmjeńša jednu kategoriju zapřijeć abo mjenowy rum podać!',
+	'googlenewssitemap_badfeedobject' => '$feed objekt njeje.',
 );
 
 /** Hungarian (Magyar)
@@ -276,6 +279,7 @@ $messages['ia'] = array(
 	'googlenewssitemap_toofewcats' => 'Error: Non satis de categorias!',
 	'googlenewssitemap_noresults' => 'Error: Nulle resultato!',
 	'googlenewssitemap_noincludecats' => 'Error: Tu debe includer al minus un categoria, o specificar un spatio de nomines!',
+	'googlenewssitemap_badfeedobject' => '$feed non es un objecto.',
 );
 
 /** Indonesian (Bahasa Indonesia)
