@@ -48,8 +48,6 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 	var $wgDPlmaxCategories = 6;				   // Maximum number of categories to look for
 	var $wgDPLminResultCount = 1;			   // Minimum number of results to allow
 	var $wgDPLmaxResultCount = 50;			   // Maximum number of results to allow
-	var $wgDPLallowUnlimitedResults = true;	   // Allow unlimited results
-	var $wgDPLallowUnlimitedCategories = false; // Allow unlimited categories
 
 	/**
 	 * @var array Parameters array
@@ -318,7 +316,7 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 			}
 		}
 
-		if ( ( $totalCatCount > $this->wgDPlmaxCategories ) && ( !$this->wgDPLallowUnlimitedCategories ) ) {
+		if ( $totalCatCount > $this->wgDPlmaxCategories ) {
 			$this->params['error'] = htmlspecialchars( wfMsg( 'googlenewssitemap_toomanycats' ) ); // "!!too many categories!!";
 		}
 
