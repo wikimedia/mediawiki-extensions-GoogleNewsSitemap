@@ -103,18 +103,15 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 				$wgSitename
 			);
 
-		$feed->outHeader();
-
-		$dbr = wfGetDB( DB_SLAVE );
-		$sql = $this->dpl_buildSQL();
+		$res = $this->doQuery();
 		// Debug line
 		// echo "\n<p>$sql</p>\n";
-		$res = $dbr->query ( $sql );
 
 		// FIXME: figure out how to fail with no results gracefully
-		if ( $dbr->numRows( $res ) == 0 ) {
+		if ( $res->numRows( $res ) == 0 ) {
 			$feed->outFooter();
 			if ( false == $this->params['suppressErrors'] ) {
+				$wgOut->disable();
 				echo htmlspecialchars( wfMsg( 'googlenewssitemap_noresults' ) );
 				return;
 			} else {
@@ -122,7 +119,8 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 			}
 		}
 
-		foreach ( $res as $row ) {
+		$feed->outHeader();
+		while ( $row = $res->fetchObject( $res ) ) {
 			$title = Title::makeTitle( $row->page_namespace, $row->page_title );
 
 			if ( !$title ) {
@@ -130,7 +128,7 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 				return;
 			}
 
-			//$titleText = ( $this->params['nameSpace'] ) ? $title->getPrefixedText() : $title->getText();
+			$titleText = ( true == $this->params['nameSpace'] ) ? $title->getPrefixedText() : $title->getText();
 
 			if ( 'sitemap' == $this->params['feed'] ) {
 
@@ -171,64 +169,71 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 	/**
 	 * Build sql
 	 **/
-	public function dpl_buildSQL() {
+	public function doQuery() {
 
-		$sqlSelectFrom = 'SELECT page_namespace, page_title, page_id, c1.cl_timestamp FROM ' . $this->params['dbr']->tableName( 'page' );
+		$dbr = wfGetDB( DB_SLAVE );
+
+		$tables[]=$dbr->tableName( 'page' );
+
+		//this is a little hacky, c1 is dynamically defined as the first category
+		//so this can't ever work with uncategorized articles
+		$fields = array('page_namespace', 'page_title', 'page_id', 'c1.cl_timestamp');
 
 		if ( $this->params['nameSpace'] ) {
-			$sqlWhere = ' WHERE page_namespace=' . $this->params['nameSpace'] . ' ';
-		} else {
-			$sqlWhere = ' WHERE 1=1 ';
+			$conditions['page_namespace'] =  $this->params['nameSpace'];
 		}
 
 		// If flagged revisions is in use, check which options selected.
-		// FIXME: double check the default options in function::dpl_parm; what should it default to?
+		// FIXME: double check the default options; what should it default to?
 		if ( function_exists( 'efLoadFlaggedRevs' ) ) {
-			$flaggedPages = $this->params['dbr']->tableName( 'flaggedpages' );
+			$flaggedPages = $dbr->tableName( 'flaggedpages' );
 			$filterSet = array( 'only', 'exclude' );
 			# Either involves the same JOIN here...
 			if ( in_array( $this->params['stable'], $filterSet ) || in_array( $this->params['quality'], $filterSet ) ) {
-				$sqlSelectFrom .= " LEFT JOIN $flaggedPages ON page_id = fp_page_id";
+				$joins['flaggedpages'] = Array( 'LEFT JOIN', 'page_id = fp_page_id' ); 
 				}
 				switch( $this->params['stable'] ) {
 				case 'only':
-					$sqlWhere .= ' AND fp_stable IS NOT NULL ';
+					$conditions[]='fp_stable IS NOT NULL ';
 					break;
 				case 'exclude':
-					$sqlWhere .= ' AND fp_stable IS NULL ';
+					$conditions['fp_stable'] = null;
 					break;
 				}
 				switch( $this->params['quality'] ) {
 				case 'only':
-					$sqlWhere .= ' AND fp_quality >= 1';
+							$conditions[]='fp_quality >= 1';
 					break;
 				case 'exclude':
-					$sqlWhere .= ' AND fp_quality = 0';
+					$conditions['fp_quality'] = 0;
 					break;
 				}
 			}
 
 			switch ( $this->params['redirects'] ) {
 				case 'only':
-					$sqlWhere .= ' AND page_is_redirect = 1 ';
-					break;
+					$conditions['page_is_redirect'] = 1;
+				break;
 				case 'exclude':
-					$sqlWhere .= ' AND page_is_redirect = 0 ';
-					break;
+					$conditions['page_is_redirect'] = 0;
+				break;
 			}
 
-			$currentTableNumber = 0;
-
-			for ( $i = 0; $i < $this->params['catCount']; $i++ ) {
-				$sqlSelectFrom .= ' INNER JOIN ' . $this->params['dbr']->tableName( 'categorylinks' );
-				$sqlSelectFrom .= ' AS c' . ( $currentTableNumber + 1 ) . ' ON page_id = c';
-				$sqlSelectFrom .= ( $currentTableNumber + 1 ) . '.cl_from AND c' . ( $currentTableNumber + 1 );
-
-				$sqlSelectFrom .= '.cl_to=' . $this->params['dbr']->addQuotes( $this->categories[$i]->getDBkey() );
-
+			$currentTableNumber = 1; 
+			$categorylinks = $dbr->tableName( 'categorylinks' ); 
+			for ($i = 0; $i < $this->params['catCount']; $i++) { 
+				$joins["$categorylinks AS c$currentTableNumber"] = Array( 'INNER JOIN', 
+					Array( "page_id = c{$currentTableNumber}.cl_from",
+						"c{$currentTableNumber}.cl_to={$dbr->addQuotes($this->categories[$i]->getDBKey())}" 
+					)
+				); 
+				$tables[] = "$categorylinks AS c$currentTableNumber"; 
 				$currentTableNumber++;
 			}
+		
 
+			//exclusion categories disabled pending discussion on whether they are necessary
+			/*
 			for ( $i = 0; $i < $this->params['notCatCount']; $i++ ) {
 				// echo "notCategory parameter $i<br />\n";
 				$sqlSelectFrom .= ' LEFT OUTER JOIN ' . $this->params['dbr']->tableName( 'categorylinks' );
@@ -236,45 +241,43 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 				$sqlSelectFrom .= '.cl_from AND c' . ( $currentTableNumber + 1 );
 				$sqlSelectFrom .= '.cl_to=' . $this->params['dbr']->addQuotes( $this->notCategories[$i]->getDBkey() );
 
-				$sqlWhere .= ' AND c' . ( $currentTableNumber + 1 ) . '.cl_to IS NULL';
+				$conditions .= ' AND c' . ( $currentTableNumber + 1 ) . '.cl_to IS NULL';
 
 				$currentTableNumber++;
 			}
-
-			if ( 'lastedit' == $this->params['orderMethod'] ) {
-				$sqlWhere .= ' ORDER BY page_touched ';
-			} else {
-				$sqlWhere .= ' ORDER BY c1.cl_timestamp ';
-			}
+			*/
 
 			if ( 'descending' == $this->params['order'] ) {
-				$sqlWhere .= 'DESC';
+				$sortOrder = 'DESC';
 			} else {
-				$sqlWhere .= 'ASC';
+				$sortOrder = 'ASC';
 			}
 
-			// FIXME: Note: this is not a boolean type check - will also trap count = 0 which may
-			// accidentally give unlimited returns
-			if ( 0 < $this->params['count'] ) {
-				$sqlWhere .= ' LIMIT ' . $this->params['count'];
+			if ( 'lastedit' == $this->params['orderMethod'] ) {
+				$options['ORDER BY'] = 'page_touched ' . $sortOrder;
+			} else {
+				$options['ORDER BY'] = 'c1.cl_timestamp ' . $sortOrder;
 			}
 
-			// debug line
-			// echo "<p>$sqlSelectFrom$sqlWhere;</p>\n";
 
-			return $sqlSelectFrom . $sqlWhere;
+			//earlier validation logic ensures this is a reasonable number
+			$options['LIMIT'] = $this->params['count'];
+
+			//return $dbr->query( $sqlSelectFrom . $conditions );
+			return $dbr->select ( $tables, $fields, $conditions, '', $options, $joins);
 	} // end buildSQL
 
 	/**
 	 * Parse parameters, populates $this->params
 	 **/
 	public function unload_params() {
-		global $wgContLang, $wgRequest;
+		global $wgContLang;
+		global $wgRequest;
 
 		$this->params = array();
-		//$parser = new Parser;
-		//$poptions = new ParserOptions;
-		//$category = $wgRequest->getArray( 'category', 'Published' );
+		$parser = new Parser;
+		$poptions = new ParserOptions;
+		$category =    $wgRequest->getArray( 'category', 'Published' );
 		// $title = Title::newFromText( $parser->transformMsg( $category, $poptions ) );
 		// if ( is_object( $title ) ){
 		//	   $this->categories[] = $title;
@@ -341,8 +344,8 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 		$cats = $title->getParentCategories();
 		$str = '';
 			# the following code is based (stolen) from r56954 of flagged revs.
-		$catMap = array();
-		$catMask = array();
+		$catMap = Array();
+		$catMask = Array();
 		$msg = wfMsg( 'googlenewssitemap_categorymap' );
 		if ( !wfEmptyMsg( 'googlenewssitemap_categorymap', $msg ) ) {
 			$list = explode( "\n*", "\n$msg" );
