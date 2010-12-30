@@ -57,7 +57,6 @@ $wgExtensionCredits['specialpage'][] = array(
 	'path' => __FILE__,
 	'name' => 'GoogleNewsSitemap',
 	'author' => 'Amgine',
-	'description' => 'Outputs a sitemap compatible with Google News',
 	'descriptionmsg' => 'googlenewssitemap-desc',
 	'url' => 'http://www.mediawiki.org/wiki/Extension:GoogleNewsSitemap',
 );
