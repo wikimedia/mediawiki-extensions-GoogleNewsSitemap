@@ -25,10 +25,12 @@ $messages['en'] = array(
 );
 
 /** Message documentation (Message documentation)
+ * @author Raymond
  * @author Umherirrender
  */
 $messages['qqq'] = array(
 	'googlenewssitemap-desc' => '{{desc}}',
+	'googlenewssitemap_badfeedobject' => '<code>$feed</code> is a variable, leave it unchanged.',
 );
 
 /** Afrikaans (Afrikaans)
@@ -86,6 +88,7 @@ $messages['bs'] = array(
 	'googlenewssitemap_toofewcats' => 'Greška: Premalo kategorija!',
 	'googlenewssitemap_noresults' => 'Greška: Nema rezultata!',
 	'googlenewssitemap_noincludecats' => 'Greška: Morate uključiti najmanje jednu kategoriju ili navesti imenski prostor!',
+	'googlenewssitemap_badfeedobject' => '$feed nije objekat.',
 );
 
 /** Catalan (Català)
@@ -132,6 +135,7 @@ $messages['dsb'] = array(
 	'googlenewssitemap_toofewcats' => 'Zmólka: Pśemało kategorijow!',
 	'googlenewssitemap_noresults' => 'Zmólka: Žedne wuslědki!',
 	'googlenewssitemap_noincludecats' => 'Zmólka: Musyš nanejmjenjej jadnu kategoriju zapśěgnuś abo mjenjowy rum pódaś!',
+	'googlenewssitemap_badfeedobject' => '$feed njejo objekt.',
 );
 
 /** Greek (Ελληνικά)
@@ -198,14 +202,16 @@ $messages['fi'] = array(
 /** French (Français)
  * @author Amgine
  * @author McDutchie
+ * @author Sherbrooke
  */
 $messages['fr'] = array(
-	'googlenewssitemap' => 'Google nouvelles Sitemap',
-	'googlenewssitemap-desc' => 'Cre un Atom ou RSS feed comme un plan Sitemap pour Google',
-	'googlenewssitemap_toomanycats' => 'Erreur: Trop de nombreuses catégories!',
+	'googlenewssitemap' => 'Plan du site Google News',
+	'googlenewssitemap-desc' => 'Crée un flux de données Atom ou RSS ressemblant à un plan de site pour Google News',
+	'googlenewssitemap_toomanycats' => 'Erreur: Trop de catégories!',
 	'googlenewssitemap_toofewcats' => 'Erreur: Trop peu de catégories!',
 	'googlenewssitemap_noresults' => 'Erreur: Pas de résultats!',
 	'googlenewssitemap_noincludecats' => 'Erreur: Vous devez inclure au moins une catégorie, ou spécifier un espace de noms !',
+	'googlenewssitemap_badfeedobject' => '$feed n\'est pas un objet.',
 );
 
 /** Galician (Galego)
@@ -340,6 +346,7 @@ $messages['mk'] = array(
 	'googlenewssitemap_toofewcats' => 'Грешка: Премалку категории!',
 	'googlenewssitemap_noresults' => 'Грешка: Нема резултати!',
 	'googlenewssitemap_noincludecats' => 'Грешка: Треба да вклучите барем една категорија, или да назначите именски простор!',
+	'googlenewssitemap_badfeedobject' => '$feed не претставува објект.',
 );
 
 /** Dutch (Nederlands)
@@ -411,6 +418,7 @@ $messages['pms'] = array(
 	'googlenewssitemap_toofewcats' => 'Eror: Tròp pòche categorìe!',
 	'googlenewssitemap_noresults' => 'Eror: pa gnun arzultà!',
 	'googlenewssitemap_noincludecats' => 'Eror: A deuv anserì almanch na categorìa, o spessifiché në spassi nominal!',
+	'googlenewssitemap_badfeedobject' => "\$feed a l'é pa n'oget.",
 );
 
 /** Portuguese (Português)
@@ -456,6 +464,7 @@ $messages['ru'] = array(
 	'googlenewssitemap_toofewcats' => 'Ошибка. Слишком мало категорий!',
 	'googlenewssitemap_noresults' => 'Ошибка. Нет данных!',
 	'googlenewssitemap_noincludecats' => 'Ошибка. Вы должны включить по меньшей мере одну категорию, или указать пространство имён!',
+	'googlenewssitemap_badfeedobject' => '$feed не является объектом.',
 );
 
 /** Serbian Cyrillic ekavian (Српски (ћирилица))
