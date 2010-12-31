@@ -118,7 +118,7 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 		}
 
 		$feed->outHeader();
-		while ( $row = $res->fetchObject( $res ) ) {
+		foreach ( $res as $row ) {
 			$title = Title::makeTitle( $row->page_namespace, $row->page_title );
 
 			if ( !$title ) {
@@ -188,7 +188,7 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 			$filterSet = array( 'only', 'exclude' );
 			# Either involves the same JOIN here...
 			if ( in_array( $this->params['stable'], $filterSet ) || in_array( $this->params['quality'], $filterSet ) ) {
-				$joins['flaggedpages'] = Array( 'LEFT JOIN', 'page_id = fp_page_id' ); 
+				$joins['flaggedpages'] = array( 'LEFT JOIN', 'page_id = fp_page_id' ); 
 				}
 				switch( $this->params['stable'] ) {
 				case 'only':
@@ -220,8 +220,8 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 			$currentTableNumber = 1; 
 			$categorylinks = $dbr->tableName( 'categorylinks' ); 
 			for ($i = 0; $i < $this->params['catCount']; $i++) { 
-				$joins["$categorylinks AS c$currentTableNumber"] = Array( 'INNER JOIN', 
-					Array( "page_id = c{$currentTableNumber}.cl_from",
+				$joins["$categorylinks AS c$currentTableNumber"] = array( 'INNER JOIN', 
+					array( "page_id = c{$currentTableNumber}.cl_from",
 						"c{$currentTableNumber}.cl_to={$dbr->addQuotes($this->categories[$i]->getDBKey())}" 
 					)
 				); 
@@ -342,8 +342,8 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 		$cats = $title->getParentCategories();
 		$str = '';
 			# the following code is based (stolen) from r56954 of flagged revs.
-		$catMap = Array();
-		$catMask = Array();
+		$catMap = array();
+		$catMask = array();
 		$msg = wfMsg( 'googlenewssitemap_categorymap' );
 		if ( !wfEmptyMsg( 'googlenewssitemap_categorymap', $msg ) ) {
 			$list = explode( "\n*", "\n$msg" );
