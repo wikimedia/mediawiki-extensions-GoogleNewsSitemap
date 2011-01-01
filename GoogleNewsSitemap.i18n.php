@@ -48,6 +48,7 @@ $messages['af'] = array(
 /** Belarusian (Taraškievica orthography) (Беларуская (тарашкевіца))
  * @author EugeneZelenko
  * @author Jim-by
+ * @author Wizardist
  */
 $messages['be-tarask'] = array(
 	'googlenewssitemap' => 'Мапа сайту Google News',
@@ -56,6 +57,7 @@ $messages['be-tarask'] = array(
 	'googlenewssitemap_toofewcats' => 'Памылка: занадта мала катэгорыяў!',
 	'googlenewssitemap_noresults' => 'Памылка: няма вынікаў!',
 	'googlenewssitemap_noincludecats' => 'Памылка: Вам неабходна дадаць хаця б адну катэгорыю, альбо пазначыць прастору назваў!',
+	'googlenewssitemap_badfeedobject' => '$feed не зьяўляецца аб’ектам.',
 );
 
 /** Bulgarian (Български)
