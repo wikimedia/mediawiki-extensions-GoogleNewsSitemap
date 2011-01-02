@@ -291,6 +291,7 @@ $messages['ia'] = array(
 );
 
 /** Indonesian (Bahasa Indonesia)
+ * @author IvanLanin
  * @author Iwan Novirion
  * @author Kenrick95
  */
@@ -301,6 +302,7 @@ $messages['id'] = array(
 	'googlenewssitemap_toofewcats' => 'Kesalahan: Terlalu sedikit kategori!',
 	'googlenewssitemap_noresults' => 'Kesalahan: Tidak ada hasil!',
 	'googlenewssitemap_noincludecats' => 'Kesalahan: Anda perlu mencantumkan paling sedikit satu kategori, atau menyebutkan satu ruang nama!',
+	'googlenewssitemap_badfeedobject' => '$feed bukan suatu objek.',
 );
 
 /** Italian (Italiano)
@@ -336,6 +338,7 @@ $messages['lb'] = array(
 	'googlenewssitemap_toofewcats' => 'Feeler: Ze wéineg Kategorien!',
 	'googlenewssitemap_noresults' => 'Feeler: Keng Resultater!',
 	'googlenewssitemap_noincludecats' => 'Feeler: Dir musst mindestens eng Kategorie oder een Nummraum drasetzen!',
+	'googlenewssitemap_badfeedobject' => '$feed ass keen Objet.',
 );
 
 /** Macedonian (Македонски)
