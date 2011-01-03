@@ -120,13 +120,6 @@ $messages['de'] = array(
 	'googlenewssitemap_badfeedobject' => 'Fehler: $feed ist kein Objekt!',
 );
 
-/** German (formal address) (Deutsch (Sie-Form))
- * @author Kghbln
- */
-$messages['de-formal'] = array(
-	'googlenewssitemap_noincludecats' => 'Fehler: Sie müssen mindestens eine Kategorie oder einen Namensraum angeben!',
-);
-
 /** Lower Sorbian (Dolnoserbski)
  * @author Michawiki
  */
