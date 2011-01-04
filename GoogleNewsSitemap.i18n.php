@@ -219,6 +219,7 @@ $messages['gl'] = array(
 	'googlenewssitemap_toofewcats' => 'Erro: moi poucas categorías!',
 	'googlenewssitemap_noresults' => 'Erro: non hai resultados!',
 	'googlenewssitemap_noincludecats' => 'Erro: debe incluír, polo menos, unha categoría ou especificar un espazo de nomes!',
+	'googlenewssitemap_badfeedobject' => '$feed non é un obxecto.',
 );
 
 /** Swiss German (Alemannisch)
