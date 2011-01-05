@@ -349,6 +349,7 @@ $messages['mk'] = array(
 );
 
 /** Dutch (Nederlands)
+ * @author Mihxil
  * @author Siebrand
  */
 $messages['nl'] = array(
@@ -358,6 +359,7 @@ $messages['nl'] = array(
 	'googlenewssitemap_toofewcats' => 'Fout: te weinig categorieën!',
 	'googlenewssitemap_noresults' => 'Fout: geen resultaten!',
 	'googlenewssitemap_noincludecats' => 'Fout: u moet tenminste een categorie of naamruimte opgeven!',
+	'googlenewssitemap_badfeedobject' => '$feed is geen object.',
 );
 
 /** Norwegian Nynorsk (‪Norsk (nynorsk)‬)
