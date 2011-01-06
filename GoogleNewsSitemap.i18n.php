@@ -406,6 +406,7 @@ $messages['pl'] = array(
 	'googlenewssitemap_toofewcats' => 'Błąd – zbyt mało kategorii!',
 	'googlenewssitemap_noresults' => 'Błąd – brak wyników!',
 	'googlenewssitemap_noincludecats' => 'Błąd – musisz wybrać co najmniej jedną kategorię lub określić przestrzeń nazw!',
+	'googlenewssitemap_badfeedobject' => '$feed nie jest obiektem.',
 );
 
 /** Piedmontese (Piemontèis)
