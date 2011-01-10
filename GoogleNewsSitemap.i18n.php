@@ -232,6 +232,7 @@ $messages['gsw'] = array(
 	'googlenewssitemap_toofewcats' => 'Fähler: z wenig Kategorie!',
 	'googlenewssitemap_noresults' => 'Fähler: kei Ergebnis!',
 	'googlenewssitemap_noincludecats' => 'Fähler: muesch zmindescht ei Kategorii aagee oder e Namensruum feschtlege!',
+	'googlenewssitemap_badfeedobject' => 'Fähler: $feed isch kei Objäkt!',
 );
 
 /** Hebrew (עברית)
@@ -433,6 +434,7 @@ $messages['pt'] = array(
 	'googlenewssitemap_toofewcats' => 'Erro: Categorias a menos!',
 	'googlenewssitemap_noresults' => 'Erro: Não há resultados!',
 	'googlenewssitemap_noincludecats' => 'Erro: Tem de incluir pelo menos uma categoria, ou especificar um espaço nominal!',
+	'googlenewssitemap_badfeedobject' => '$feed não é um objecto.',
 );
 
 /** Brazilian Portuguese (Português do Brasil)
