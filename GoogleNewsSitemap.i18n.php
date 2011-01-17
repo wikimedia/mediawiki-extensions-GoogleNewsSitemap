@@ -568,10 +568,12 @@ $messages['zh-hans'] = array(
 	'googlenewssitemap_noincludecats' => '错误：您需要包含至少一个分类，或者指定一个名称空间！',
 );
 
-/** Traditional Chinese (‪中文(繁體)‬) */
+/** Traditional Chinese (‪中文(繁體)‬)
+ * @author Mark85296341
+ */
 $messages['zh-hant'] = array(
 	'googlenewssitemap' => 'Google 資訊站點地圖',
-	'googlenewssitemap-desc' => '輸出一個Google 資訊站點地圖的Atom/RSS文件',
+	'googlenewssitemap-desc' => '輸出一個 Google 資訊站點地圖的 Atom/RSS 文件',
 	'googlenewssitemap_toomanycats' => '錯誤：分類過多！',
 	'googlenewssitemap_toofewcats' => '錯誤：分類過少！',
 	'googlenewssitemap_noresults' => '錯誤：沒有結果！',
