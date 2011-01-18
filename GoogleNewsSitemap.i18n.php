@@ -68,6 +68,7 @@ $messages['bg'] = array(
 );
 
 /** Breton (Brezhoneg)
+ * @author Fohanno
  * @author Fulup
  * @author Y-M D
  */
@@ -78,6 +79,7 @@ $messages['br'] = array(
 	'googlenewssitemap_toofewcats' => 'Fazi : Re nebeut a rummadoù !',
 	'googlenewssitemap_noresults' => "Fazi : Disoc'h ebet !",
 	'googlenewssitemap_noincludecats' => "Fazi : Ret eo deoc'h merkañ ur rummad da nebeutañ, pe spisaat un esaouenn anv!",
+	'googlenewssitemap_badfeedobject' => '$feed n\'eo ket un draezenn.',
 );
 
 /** Bosnian (Bosanski)
