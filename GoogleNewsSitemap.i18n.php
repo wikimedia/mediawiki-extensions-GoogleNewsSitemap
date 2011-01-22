@@ -45,7 +45,7 @@ $messages['af'] = array(
 	'googlenewssitemap_noincludecats' => "Fout: U moet ten minste een kategorie insluit, of spesifiseer 'n naamspasie!",
 );
 
-/** Belarusian (Taraškievica orthography) (Беларуская (тарашкевіца))
+/** Belarusian (Taraškievica orthography) (‪Беларуская (тарашкевіца)‬)
  * @author EugeneZelenko
  * @author Jim-by
  * @author Wizardist
@@ -473,7 +473,7 @@ $messages['ru'] = array(
 	'googlenewssitemap_badfeedobject' => '$feed не является объектом.',
 );
 
-/** Serbian Cyrillic ekavian (Српски (ћирилица))
+/** Serbian Cyrillic ekavian (‪Српски (ћирилица)‬)
  * @author Михајло Анђелковић
  */
 $messages['sr-ec'] = array(
@@ -482,7 +482,7 @@ $messages['sr-ec'] = array(
 	'googlenewssitemap_noresults' => 'Грешка: Нема резултата!',
 );
 
-/** Serbian Latin ekavian (Srpski (latinica)) */
+/** Serbian Latin ekavian (‪Srpski (latinica)‬) */
 $messages['sr-el'] = array(
 	'googlenewssitemap_toomanycats' => 'Greška: Previše kategorija!',
 	'googlenewssitemap_toofewcats' => 'Greška: Premalo kategorija!',
