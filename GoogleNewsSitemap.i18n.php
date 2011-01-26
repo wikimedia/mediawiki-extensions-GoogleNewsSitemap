@@ -315,6 +315,7 @@ $messages['it'] = array(
 /** Japanese (日本語)
  * @author Hosiryuhosi
  * @author Naohiro19
+ * @author Ohgi
  */
 $messages['ja'] = array(
 	'googlenewssitemap' => 'Google ニュース サイトマップ',
@@ -323,6 +324,7 @@ $messages['ja'] = array(
 	'googlenewssitemap_toofewcats' => 'エラー:カテゴリが少なすぎです!',
 	'googlenewssitemap_noresults' => 'エラー:結果はありません!',
 	'googlenewssitemap_noincludecats' => 'エラー：少なくとも1つのカテゴリまたは名前空間を指定する必要があります!',
+	'googlenewssitemap_badfeedobject' => '$feedは変更対象ではありません。',
 );
 
 /** Luxembourgish (Lëtzebuergesch)
