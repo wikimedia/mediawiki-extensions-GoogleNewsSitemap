@@ -443,6 +443,7 @@ $messages['pt'] = array(
 
 /** Brazilian Portuguese (Português do Brasil)
  * @author Daemorris
+ * @author Raylton P. Sousa
  */
 $messages['pt-br'] = array(
 	'googlenewssitemap' => 'Mapa de Site de Notícias Google',
@@ -451,6 +452,7 @@ $messages['pt-br'] = array(
 	'googlenewssitemap_toofewcats' => 'Erro: Categorias de menos!',
 	'googlenewssitemap_noresults' => 'Erro: Sem resultados!',
 	'googlenewssitemap_noincludecats' => 'Erro: Você precisa incluir pelo menos uma categoria, ou especificar um espaço nominal!',
+	'googlenewssitemap_badfeedobject' => '$feed não é um objecto.',
 );
 
 /** Romanian (Română)
