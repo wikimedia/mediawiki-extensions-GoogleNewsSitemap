@@ -238,6 +238,7 @@ $messages['gsw'] = array(
 );
 
 /** Hebrew (עברית)
+ * @author Amire80
  * @author YaronSh
  */
 $messages['he'] = array(
@@ -247,6 +248,7 @@ $messages['he'] = array(
 	'googlenewssitemap_toofewcats' => 'שגיאה: מעט מדי קטגוריות!',
 	'googlenewssitemap_noresults' => 'שגיאה: אין תוצאות!',
 	'googlenewssitemap_noincludecats' => 'שגיאה: עליך לכלול לפחות קטגוריה אחת או לציין מרחב שם!',
+	'googlenewssitemap_badfeedobject' => '$feed אינו עצם.',
 );
 
 /** Upper Sorbian (Hornjoserbsce)
