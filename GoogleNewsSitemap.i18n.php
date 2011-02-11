@@ -542,6 +542,7 @@ $messages['tl'] = array(
 
 /** Turkish (Türkçe)
  * @author Joseph
+ * @author Tarikozket
  */
 $messages['tr'] = array(
 	'googlenewssitemap' => 'Google Haberler Site haritası',
@@ -550,6 +551,7 @@ $messages['tr'] = array(
 	'googlenewssitemap_toofewcats' => 'Hata: Çok az kategori!',
 	'googlenewssitemap_noresults' => 'Hata: Sonuç yok!',
 	'googlenewssitemap_noincludecats' => 'Hata: En az bir kategori girmeli, ya da bir ad alanı belirtmelisiniz!',
+	'googlenewssitemap_badfeedobject' => '$feed bir nesne değil.',
 );
 
 /** Ukrainian (Українська)
