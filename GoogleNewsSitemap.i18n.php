@@ -329,6 +329,19 @@ $messages['ja'] = array(
 	'googlenewssitemap_badfeedobject' => '$feedは変更対象ではありません。',
 );
 
+/** Colognian (Ripoarisch)
+ * @author Purodha
+ */
+$messages['ksh'] = array(
+	'googlenewssitemap' => '<i lang="en">Google News Sitemap</i>',
+	'googlenewssitemap-desc' => 'Deiht ene <i lang="en">Atom</i> udder <i lang="en">RSS</i>-Kanaal als en <i lang="en">Google News Sitemap</i> ußjävve.',
+	'googlenewssitemap_toomanycats' => 'Fähler: Zoh vill Saachjroppe!',
+	'googlenewssitemap_toofewcats' => 'Fähler: Zoh winnish Saachjroppe!',
+	'googlenewssitemap_noresults' => 'Fähler: Nix es eruß jekumme!',
+	'googlenewssitemap_noincludecats' => 'Fähler: Ein Saachjropp udder ei Appachtemang moß schunn met dobei sin!',
+	'googlenewssitemap_badfeedobject' => '$feed es kei Objäk!',
+);
+
 /** Luxembourgish (Lëtzebuergesch)
  * @author Robby
  */
