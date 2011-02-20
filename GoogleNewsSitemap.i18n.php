@@ -96,6 +96,7 @@ $messages['bs'] = array(
 );
 
 /** Catalan (Català)
+ * @author Aleator
  * @author Davidpar
  * @author Paucabot
  */
@@ -106,6 +107,7 @@ $messages['ca'] = array(
 	'googlenewssitemap_toofewcats' => 'Error: Massa poques categories!',
 	'googlenewssitemap_noresults' => 'Error: Cap resultat!',
 	'googlenewssitemap_noincludecats' => "Error: Heu d'incloure almenys una categoria o especificar un espai de noms!",
+	'googlenewssitemap_badfeedobject' => '$feed no és un objecte.',
 );
 
 /** German (Deutsch)
