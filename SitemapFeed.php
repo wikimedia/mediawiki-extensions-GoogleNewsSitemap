@@ -32,7 +32,7 @@ class SitemapFeed extends FeedSMItem {
 	}
 	/**
 	 * Output a SiteMap 0.9 item
-	 * @param FeedSMItem item to be output
+	 * @param FeedSMItem $item to be output
 	 **/
 	function outItem( $item ) {
 		$this->writer->startElement( "url" );

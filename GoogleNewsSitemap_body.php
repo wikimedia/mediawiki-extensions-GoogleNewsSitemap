@@ -82,10 +82,10 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 		$this->unload_params(); // populates this->params as a side effect
 
 		// if there's an error parsing the params, bail out and return 
-		if ( isset( $this->param['error'] ) ) {
+		if ( isset( $this->params['error'] ) ) {
 			if ( false == $this->params['suppressErrors'] ) {
 				$wgOut->disable();
-				echo $this->param['error'];
+				echo $this->params['error'];
 			}
 			return;
 		}
@@ -102,8 +102,6 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 			);
 
 		$res = $this->doQuery();
-		// Debug line
-		// echo "\n<p>$sql</p>\n";
 
 		// FIXME: figure out how to fail with no results gracefully
 		if ( $res->numRows( $res ) == 0 ) {
@@ -125,8 +123,6 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 				$feed->outFooter();
 				return;
 			}
-
-			$titleText = ( true == $this->params['nameSpace'] ) ? $title->getPrefixedText() : $title->getText();
 
 			if ( 'sitemap' == $this->params['feed'] ) {
 
@@ -176,6 +172,7 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 		//this is a little hacky, c1 is dynamically defined as the first category
 		//so this can't ever work with uncategorized articles
 		$fields = array('page_namespace', 'page_title', 'page_id', 'c1.cl_timestamp');
+		$conditions = array();
 
 		if ( $this->params['nameSpace'] ) {
 			$conditions['page_namespace'] =  $this->params['nameSpace'];
@@ -184,86 +181,87 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 		// If flagged revisions is in use, check which options selected.
 		// FIXME: double check the default options; what should it default to?
 		if ( function_exists( 'efLoadFlaggedRevs' ) ) {
-			$flaggedPages = $dbr->tableName( 'flaggedpages' );
 			$filterSet = array( 'only', 'exclude' );
 			# Either involves the same JOIN here...
 			if ( in_array( $this->params['stable'], $filterSet ) || in_array( $this->params['quality'], $filterSet ) ) {
 				$joins['flaggedpages'] = array( 'LEFT JOIN', 'page_id = fp_page_id' ); 
-				}
-				switch( $this->params['stable'] ) {
+			}
+
+			switch( $this->params['stable'] ) {
 				case 'only':
 					$conditions[]='fp_stable IS NOT NULL ';
 					break;
 				case 'exclude':
 					$conditions['fp_stable'] = null;
 					break;
-				}
-				switch( $this->params['quality'] ) {
+			}
+			switch( $this->params['quality'] ) {
 				case 'only':
 							$conditions[]='fp_quality >= 1';
 					break;
 				case 'exclude':
 					$conditions['fp_quality'] = 0;
 					break;
-				}
 			}
+		}
 
-			switch ( $this->params['redirects'] ) {
-				case 'only':
-					$conditions['page_is_redirect'] = 1;
-				break;
-				case 'exclude':
-					$conditions['page_is_redirect'] = 0;
-				break;
-			}
+		switch ( $this->params['redirects'] ) {
+			case 'only':
+				$conditions['page_is_redirect'] = 1;
+			break;
+			case 'exclude':
+				$conditions['page_is_redirect'] = 0;
+			break;
+		}
 
-			$currentTableNumber = 1; 
-			$categorylinks = $dbr->tableName( 'categorylinks' ); 
-			for ($i = 0; $i < $this->params['catCount']; $i++) { 
-				$joins["$categorylinks AS c$currentTableNumber"] = array( 'INNER JOIN', 
-					array( "page_id = c{$currentTableNumber}.cl_from",
-						"c{$currentTableNumber}.cl_to={$dbr->addQuotes($this->categories[$i]->getDBKey())}" 
-					)
-				); 
-				$tables[] = "$categorylinks AS c$currentTableNumber"; 
-				$currentTableNumber++;
-			}
-		
+		$currentTableNumber = 1;
+		$categorylinks = $dbr->tableName( 'categorylinks' );
 
-			//exclusion categories disabled pending discussion on whether they are necessary
-			/*
-			for ( $i = 0; $i < $this->params['notCatCount']; $i++ ) {
-				// echo "notCategory parameter $i<br />\n";
-				$sqlSelectFrom .= ' LEFT OUTER JOIN ' . $this->params['dbr']->tableName( 'categorylinks' );
-				$sqlSelectFrom .= ' AS c' . ( $currentTableNumber + 1 ) . ' ON page_id = c' . ( $currentTableNumber + 1 );
-				$sqlSelectFrom .= '.cl_from AND c' . ( $currentTableNumber + 1 );
-				$sqlSelectFrom .= '.cl_to=' . $this->params['dbr']->addQuotes( $this->notCategories[$i]->getDBkey() );
+		$joins = array();
+		for ($i = 0; $i < $this->params['catCount']; $i++) {
+			$joins["$categorylinks AS c$currentTableNumber"] = array( 'INNER JOIN',
+				array( "page_id = c{$currentTableNumber}.cl_from",
+					"c{$currentTableNumber}.cl_to={$dbr->addQuotes($this->categories[$i]->getDBKey())}"
+				)
+			);
+			$tables[] = "$categorylinks AS c$currentTableNumber";
+			$currentTableNumber++;
+		}
 
-				$conditions .= ' AND c' . ( $currentTableNumber + 1 ) . '.cl_to IS NULL';
+		//exclusion categories disabled pending discussion on whether they are necessary
+		/*
+		for ( $i = 0; $i < $this->params['notCatCount']; $i++ ) {
+			// echo "notCategory parameter $i<br />\n";
+			$sqlSelectFrom .= ' LEFT OUTER JOIN ' . $this->params['dbr']->tableName( 'categorylinks' );
+			$sqlSelectFrom .= ' AS c' . ( $currentTableNumber + 1 ) . ' ON page_id = c' . ( $currentTableNumber + 1 );
+			$sqlSelectFrom .= '.cl_from AND c' . ( $currentTableNumber + 1 );
+			$sqlSelectFrom .= '.cl_to=' . $this->params['dbr']->addQuotes( $this->notCategories[$i]->getDBkey() );
 
-				$currentTableNumber++;
-			}
-			*/
+			$conditions .= ' AND c' . ( $currentTableNumber + 1 ) . '.cl_to IS NULL';
 
-			if ( 'descending' == $this->params['order'] ) {
-				$sortOrder = 'DESC';
-			} else {
-				$sortOrder = 'ASC';
-			}
+			$currentTableNumber++;
+		}
+		*/
 
-			if ( 'lastedit' == $this->params['orderMethod'] ) {
-				$options['ORDER BY'] = 'page_touched ' . $sortOrder;
-			} else {
-				$options['ORDER BY'] = 'c1.cl_timestamp ' . $sortOrder;
-			}
+		if ( 'descending' == $this->params['order'] ) {
+			$sortOrder = 'DESC';
+		} else {
+			$sortOrder = 'ASC';
+		}
+
+		if ( 'lastedit' == $this->params['orderMethod'] ) {
+			$options['ORDER BY'] = 'page_touched ' . $sortOrder;
+		} else {
+			$options['ORDER BY'] = 'c1.cl_timestamp ' . $sortOrder;
+		}
 
 
-			//earlier validation logic ensures this is a reasonable number
-			$options['LIMIT'] = $this->params['count'];
+		//earlier validation logic ensures this is a reasonable number
+		$options['LIMIT'] = $this->params['count'];
 
-			//return $dbr->query( $sqlSelectFrom . $conditions );
-			return $dbr->select ( $tables, $fields, $conditions, '', $options, $joins);
-	} // end buildSQL
+		//return $dbr->query( $sqlSelectFrom . $conditions );
+		return $dbr->select ( $tables, $fields, $conditions, '', $options, $joins );
+	}
 
 	/**
 	 * Parse parameters, populates $this->params
@@ -302,8 +300,7 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 		$this->params['catCount'] = count( $this->categories );
 		$this->params['notCatCount'] = count( $this->notCategories );
 		$totalCatCount = $this->params['catCount'] + $this->params['notCatCount'];
-		if ( ( $this->params['catCount'] < 1 && false == $this->params['nameSpace'] ) || ( $totalCatCount < $this->wgDPlminCategories ) ) {
-		// echo "Boom on catCount\n";
+		if ( ( $this->params['catCount'] < 1 && !$this->params['nameSpace'] ) || ( $totalCatCount < $this->wgDPlminCategories ) ) {
 			$parser = new Parser;
 			$poptions = new ParserOptions;
 			$feed =  Title::newFromText( $parser->transformMsg( 'Published', $poptions ) );
@@ -312,7 +309,6 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 				$this->params['catCount'] = count( $this->categories );
 			} else {
 				$this->params['error'] = htmlspecialchars( wfMsg( 'googlenewssitemap_badfeedobject' ) );
-				// continue;
 			}
 		}
 
@@ -326,8 +322,6 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 		}
 
 		$this->params['dbr'] =& wfGetDB( DB_SLAVE );
-		// print_r($this->notCategories);
-		// print_r($this->categories);
 	}
 
 	function feedItemAuthor( $row ) {
@@ -338,6 +332,10 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 		return isset( $row->comment ) ? htmlspecialchars( $row->comment ) : '';
 	}
 
+	/**
+	 * @param Title $title
+	 * @return string
+	 */
 	function getKeywords ( $title ) {
 		$cats = $title->getParentCategories();
 		$str = '';
