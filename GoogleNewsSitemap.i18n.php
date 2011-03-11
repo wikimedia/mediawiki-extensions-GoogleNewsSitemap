@@ -513,6 +513,7 @@ $messages['sr-el'] = array(
 /** Swedish (Svenska)
  * @author Fredrik
  * @author Per
+ * @author WikiPhoenix
  */
 $messages['sv'] = array(
 	'googlenewssitemap' => 'Webbkarta för Google nyheter',
@@ -521,6 +522,7 @@ $messages['sv'] = array(
 	'googlenewssitemap_toofewcats' => 'Fel: För få kategorier!',
 	'googlenewssitemap_noresults' => 'Fel: Inget resultat!',
 	'googlenewssitemap_noincludecats' => 'Fel: Du måste inkludera minst en kategori eller specificera en namnrymd!',
+	'googlenewssitemap_badfeedobject' => '$feed är inte ett objekt.',
 );
 
 /** Telugu (తెలుగు)
