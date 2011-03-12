@@ -555,6 +555,7 @@ $messages['tl'] = array(
 	'googlenewssitemap_toofewcats' => 'Mali: Napakakaunting mga kategorya!',
 	'googlenewssitemap_noresults' => 'Mali: Walang mga resulta!',
 	'googlenewssitemap_noincludecats' => 'Mali: Kailangan mong magsama ng kahit na isang kategorya, o tumukoy ng isang puwang na pampangalan!',
+	'googlenewssitemap_badfeedobject' => 'Ang $feed ay hindi isang bagay.',
 );
 
 /** Turkish (Türkçe)
