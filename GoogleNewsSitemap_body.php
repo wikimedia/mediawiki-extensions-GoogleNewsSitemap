@@ -221,7 +221,7 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 		for ($i = 0; $i < $this->params['catCount']; $i++) {
 			$joins["$categorylinks AS c$currentTableNumber"] = array( 'INNER JOIN',
 				array( "page_id = c{$currentTableNumber}.cl_from",
-					"c{$currentTableNumber}.cl_to={$dbr->addQuotes($this->categories[$i]->getDBKey())}"
+					"c{$currentTableNumber}.cl_to={$dbr->addQuotes( $this->categories[$i]->getDBKey() ) }"
 				)
 			);
 			$tables[] = "$categorylinks AS c$currentTableNumber";
@@ -339,7 +339,8 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 	function getKeywords ( $title ) {
 		$cats = $title->getParentCategories();
 		$str = '';
-			# the following code is based (stolen) from r56954 of flagged revs.
+
+		# the following code is based (stolen) from r56954 of flagged revs.
 		$catMap = array();
 		$catMask = array();
 		$msg = wfMsg( 'googlenewssitemap_categorymap' );
