@@ -139,7 +139,7 @@ class GoogleNewsSitemap extends SpecialPage {
 			}
 			switch( $this->params['quality'] ) {
 				case 'only':
-							$conditions[] = 'fp_quality >= 1';
+					$conditions[] = 'fp_quality >= 1';
 					break;
 				case 'exclude':
 					$conditions['fp_quality'] = 0;

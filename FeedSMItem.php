@@ -9,8 +9,17 @@ if ( !defined( 'MEDIAWIKI' ) ) die();
 class FeedSMItem extends FeedItem {
 
 	private $keywords = '';
-	private $title; // Title object, not string.
 
+	/**
+	 * @var Title
+	 */
+	private $title;
+
+	/**
+	 * @param Title $title
+	 * @param  $pubDate
+	 * @param string $keywords
+	 */
 	function __construct( $title, $pubDate, $keywords = '' ) {
 		parent::__construct( $title->getText(), '' /* description */, $title->getFullUrl(), $pubDate );
 		$this->title = $title;
