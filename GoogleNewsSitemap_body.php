@@ -46,7 +46,6 @@ class GoogleNewsSitemap extends SpecialPage {
 	 **/
 	var $wgDPlminCategories = 1;				   // Minimum number of categories to look for
 	var $wgDPlmaxCategories = 6;				   // Maximum number of categories to look for
-	var $wgDPLminResultCount = 1;			   // Minimum number of results to allow
 	var $wgDPLmaxResultCount = 50;			   // Maximum number of results to allow
 
 	/**
@@ -153,7 +152,7 @@ class GoogleNewsSitemap extends SpecialPage {
 
 		$dbr = wfGetDB( DB_SLAVE );
 
-		$tables[]=$dbr->tableName( 'page' );
+		$tables[] = $dbr->tableName( 'page' );
 
 		//this is a little hacky, c1 is dynamically defined as the first category
 		//so this can't ever work with uncategorized articles
@@ -218,10 +217,10 @@ class GoogleNewsSitemap extends SpecialPage {
 		/*
 		for ( $i = 0; $i < $this->params['notCatCount']; $i++ ) {
 			// echo "notCategory parameter $i<br />\n";
-			$sqlSelectFrom .= ' LEFT OUTER JOIN ' . $this->params['dbr']->tableName( 'categorylinks' );
+			$sqlSelectFrom .= ' LEFT OUTER JOIN ' . $dbr->tableName( 'categorylinks' );
 			$sqlSelectFrom .= ' AS c' . ( $currentTableNumber + 1 ) . ' ON page_id = c' . ( $currentTableNumber + 1 );
 			$sqlSelectFrom .= '.cl_from AND c' . ( $currentTableNumber + 1 );
-			$sqlSelectFrom .= '.cl_to=' . $this->params['dbr']->addQuotes( $this->notCategories[$i]->getDBkey() );
+			$sqlSelectFrom .= '.cl_to=' . $dbr->addQuotes( $this->notCategories[$i]->getDBkey() );
 
 			$conditions .= ' AND c' . ( $currentTableNumber + 1 ) . '.cl_to IS NULL';
 
@@ -269,21 +268,22 @@ class GoogleNewsSitemap extends SpecialPage {
 
 		// FIXME:notcats
 		// $this->notCategories[] = $wgRequest->getArray('notcategory');
-		$this->params['nameSpace'] =   $wgContLang->getNsIndex( $wgRequest->getVal( 'namespace', 0 ) );
-		$this->params['count'] =	   $wgRequest->getInt( 'count', $this->wgDPLmaxResultCount );
+		$this->params['nameSpace'] = $wgContLang->getNsIndex( $wgRequest->getVal( 'namespace', 0 ) );
+		$this->params['count'] = $wgRequest->getInt( 'count', $this->wgDPLmaxResultCount );
+
 		if ( ( $this->params['count'] > $this->wgDPLmaxResultCount )
-				|| ( $this->params['count'] < $this->wgDPLminResultCount ) ) {
+				|| ( $this->params['count'] < 1 ) ) {
 			$this->params['count'] = $this->wgDPLmaxResultCount;
 		}
 
-		$this->params['order'] =	   $wgRequest->getVal( 'order', 'descending' );
+		$this->params['order'] = $wgRequest->getVal( 'order', 'descending' );
 		$this->params['orderMethod'] = $wgRequest->getVal( 'ordermethod', 'categoryadd' );
-		$this->params['redirects'] =   $wgRequest->getVal( 'redirects', 'exclude' );
-		$this->params['stable'] =	   $wgRequest->getVal( 'stable', 'only' );
-		$this->params['quality'] =	   $wgRequest->getVal( 'qualitypages', 'only' );
+		$this->params['redirects'] = $wgRequest->getVal( 'redirects', 'exclude' );
+		$this->params['stable'] = $wgRequest->getVal( 'stable', 'only' );
+		$this->params['quality'] = $wgRequest->getVal( 'qualitypages', 'only' );
 		$this->params['suppressErrors'] = $wgRequest->getBool( 'supresserrors', false );
 		$this->params['useNameSpace'] = $wgRequest->getBool( 'usenamespace', false );
-		$this->params['useCurId'] =		$wgRequest->getBool( 'usecurid', false );
+		$this->params['useCurId'] = $wgRequest->getBool( 'usecurid', false );
 		$this->params['feed'] = $wgRequest->getVal( 'feed', 'sitemap' );
 
 		$this->params['catCount'] = count( $this->categories );
@@ -311,7 +311,6 @@ class GoogleNewsSitemap extends SpecialPage {
 			$this->params['addFirstCategoryDate'] = false;
 		}
 
-		$this->params['dbr'] =& wfGetDB( DB_SLAVE );
 	}
 
 	function feedItemAuthor( $row ) {
