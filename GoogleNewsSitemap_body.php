@@ -44,9 +44,9 @@ class GoogleNewsSitemap extends SpecialPage {
 	/**
 	 * Script default values - correctly spelt, naming standard.
 	 **/
-	var $wgDPlminCategories = 1;				   // Minimum number of categories to look for
-	var $wgDPlmaxCategories = 6;				   // Maximum number of categories to look for
-	var $wgDPLmaxResultCount = 50;			   // Maximum number of results to allow
+	var $wgDPlminCategories = 1;   // Minimum number of categories to look for
+	var $wgDPlmaxCategories = 6;   // Maximum number of categories to look for
+	var $wgDPLmaxResultCount = 50; // Maximum number of results to allow
 
 	/**
 	 * @var array Parameters array
@@ -80,7 +80,7 @@ class GoogleNewsSitemap extends SpecialPage {
 
 		$this->unload_params(); // populates this->params as a side effect
 
-		// if there's an error parsing the params, bail out and return 
+		// if there's an error parsing the params, bail out and return
 		if ( isset( $this->params['error'] ) ) {
 			if ( false == $this->params['suppressErrors'] ) {
 				$wgOut->disable();
@@ -141,8 +141,11 @@ class GoogleNewsSitemap extends SpecialPage {
 								$comments );
 			}
 			$feed->outItem( $feedItem );
-		}// end while fetchobject
+
+		} // end while fetchobject
+
 		$feed->outFooter();
+
 	} // end public function execute
 
 	/**
@@ -154,13 +157,13 @@ class GoogleNewsSitemap extends SpecialPage {
 
 		$tables[] = $dbr->tableName( 'page' );
 
-		//this is a little hacky, c1 is dynamically defined as the first category
-		//so this can't ever work with uncategorized articles
-		$fields = array('page_namespace', 'page_title', 'page_id', 'c1.cl_timestamp');
+		// this is a little hacky, c1 is dynamically defined as the first category
+		// so this can't ever work with uncategorized articles
+		$fields = array( 'page_namespace', 'page_title', 'page_id', 'c1.cl_timestamp' );
 		$conditions = array();
 
 		if ( $this->params['nameSpace'] ) {
-			$conditions['page_namespace'] =  $this->params['nameSpace'];
+			$conditions['page_namespace'] = $this->params['nameSpace'];
 		}
 
 		// If flagged revisions is in use, check which options selected.
@@ -169,12 +172,12 @@ class GoogleNewsSitemap extends SpecialPage {
 			$filterSet = array( 'only', 'exclude' );
 			# Either involves the same JOIN here...
 			if ( in_array( $this->params['stable'], $filterSet ) || in_array( $this->params['quality'], $filterSet ) ) {
-				$joins['flaggedpages'] = array( 'LEFT JOIN', 'page_id = fp_page_id' ); 
+				$joins['flaggedpages'] = array( 'LEFT JOIN', 'page_id = fp_page_id' );
 			}
 
 			switch( $this->params['stable'] ) {
 				case 'only':
-					$conditions[]='fp_stable IS NOT NULL ';
+					$conditions[] = 'fp_stable IS NOT NULL ';
 					break;
 				case 'exclude':
 					$conditions['fp_stable'] = null;
@@ -182,7 +185,7 @@ class GoogleNewsSitemap extends SpecialPage {
 			}
 			switch( $this->params['quality'] ) {
 				case 'only':
-							$conditions[]='fp_quality >= 1';
+							$conditions[] = 'fp_quality >= 1';
 					break;
 				case 'exclude':
 					$conditions['fp_quality'] = 0;
@@ -203,7 +206,7 @@ class GoogleNewsSitemap extends SpecialPage {
 		$categorylinks = $dbr->tableName( 'categorylinks' );
 
 		$joins = array();
-		for ($i = 0; $i < $this->params['catCount']; $i++) {
+		for ( $i = 0; $i < $this->params['catCount']; $i++ ) {
 			$joins["$categorylinks AS c$currentTableNumber"] = array( 'INNER JOIN',
 				array( "page_id = c{$currentTableNumber}.cl_from",
 					"c{$currentTableNumber}.cl_to={$dbr->addQuotes( $this->categories[$i]->getDBKey() ) }"
@@ -213,7 +216,7 @@ class GoogleNewsSitemap extends SpecialPage {
 			$currentTableNumber++;
 		}
 
-		//exclusion categories disabled pending discussion on whether they are necessary
+		// exclusion categories disabled pending discussion on whether they are necessary
 		/*
 		for ( $i = 0; $i < $this->params['notCatCount']; $i++ ) {
 			// echo "notCategory parameter $i<br />\n";
@@ -241,11 +244,11 @@ class GoogleNewsSitemap extends SpecialPage {
 		}
 
 
-		//earlier validation logic ensures this is a reasonable number
+		// earlier validation logic ensures this is a reasonable number
 		$options['LIMIT'] = $this->params['count'];
 
-		//return $dbr->query( $sqlSelectFrom . $conditions );
-		return $dbr->select ( $tables, $fields, $conditions, '', $options, $joins );
+		// return $dbr->query( $sqlSelectFrom . $conditions );
+		return $dbr->select( $tables, $fields, $conditions, '', $options, $joins );
 	}
 
 	/**
@@ -272,7 +275,8 @@ class GoogleNewsSitemap extends SpecialPage {
 		$this->params['count'] = $wgRequest->getInt( 'count', $this->wgDPLmaxResultCount );
 
 		if ( ( $this->params['count'] > $this->wgDPLmaxResultCount )
-				|| ( $this->params['count'] < 1 ) ) {
+				|| ( $this->params['count'] < 1 ) )
+		{
 			$this->params['count'] = $this->wgDPLmaxResultCount;
 		}
 
@@ -293,7 +297,7 @@ class GoogleNewsSitemap extends SpecialPage {
 		if ( ( $this->params['catCount'] < 1 && !$this->params['nameSpace'] )
 			|| ( $totalCatCount < $this->wgDPlminCategories ) )
 		{
-			$feed =  Title::newFromText( 'Published', NS_CATEGORY );
+			$feed = Title::newFromText( 'Published', NS_CATEGORY );
 			if ( is_object( $feed ) ) {
 				$this->categories[] = $feed;
 				$this->params['catCount'] = count( $this->categories );
@@ -303,10 +307,10 @@ class GoogleNewsSitemap extends SpecialPage {
 		}
 
 		if ( $totalCatCount > $this->wgDPlmaxCategories ) {
-			$this->params['error'] = htmlspecialchars( wfMsg( 'googlenewssitemap_toomanycats' ) ); // "!!too many categories!!";
+			$this->params['error'] = htmlspecialchars( wfMsg( 'googlenewssitemap_toomanycats' ) );
 		}
 
-			// disallow showing date if the query doesn't have an inclusion category parameter
+		// Disallow showing date if the query doesn't have an inclusion category parameter.
 		if ( $this->params['count'] < 1 ) {
 			$this->params['addFirstCategoryDate'] = false;
 		}

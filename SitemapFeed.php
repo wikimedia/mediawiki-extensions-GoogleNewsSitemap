@@ -9,9 +9,10 @@ class SitemapFeed extends FeedSMItem {
 		$this->writer = new XMLWriter();
 		$wgOut->disable();
 	}
+
 	/**
 	 * Output feed headers
-	 **/
+	 */
 	function outHeader() {
 		global $wgOut,  $wgRequest;
 
@@ -19,8 +20,9 @@ class SitemapFeed extends FeedSMItem {
 		$ctype = $wgRequest->getVal( 'ctype', 'application/xml' );
 		$allowedctypes = array( 'application/xml', 'text/xml', 'application/rss+xml', 'application/atom+xml' );
 		$mimetype = in_array( $ctype, $allowedctypes ) ? $ctype : 'application/xml';
-        header( "Content-type: $mimetype; charset=UTF-8" );
-        $wgOut->sendCacheControl();
+
+		header( "Content-type: $mimetype; charset=UTF-8" );
+		$wgOut->sendCacheControl();
 
 		$this->writer->openURI( 'php://output' );
 		$this->writer->setIndent( true );
@@ -30,10 +32,11 @@ class SitemapFeed extends FeedSMItem {
 		$this->writer->writeAttribute( "xmlns:news", "http://www.google.com/schemas/sitemap-news/0.9" );
 		$this->writer->flush();
 	}
+
 	/**
 	 * Output a SiteMap 0.9 item
 	 * @param FeedSMItem $item to be output
-	 **/
+	 */
 	function outItem( $item ) {
 		$this->writer->startElement( "url" );
 		$this->writer->startElement( "loc" );
@@ -64,7 +67,7 @@ class SitemapFeed extends FeedSMItem {
 
 	/**
 	 * Output SiteMap 0.9 footer
-	 **/
+	 */
 	function outFooter() {
 		$this->writer->endDocument();
 		$this->writer->flush();
