@@ -68,3 +68,5 @@ $wgAutoloadClasses['GoogleNewsSitemap'] = $dir . 'GoogleNewsSitemap_body.php';
 $wgAutoloadClasses['FeedSMItem'] = $dir . 'FeedSMItem.php';
 $wgAutoloadClasses['SitemapFeed'] = $dir . 'SitemapFeed.php';
 $wgSpecialPages['GoogleNewsSitemap'] = 'GoogleNewsSitemap';
+$wgFeedClasses['sitemap'] = 'SitemapFeed';
+

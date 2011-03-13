@@ -19,9 +19,7 @@ $messages['en'] = array(
 	'googlenewssitemap_categorymap' => '', # Default empty. List of categories to map to keywords. Do not translate.
 	'googlenewssitemap_toomanycats' => 'Error: Too many categories!',
 	'googlenewssitemap_toofewcats' => 'Error: Too few categories!',
-	'googlenewssitemap_noresults' => 'Error: No results!',
 	'googlenewssitemap_noincludecats' => 'Error: You need to include at least one category, or specify a namespace!',
-	'googlenewssitemap_badfeedobject' => '$feed is not an object.',
 );
 
 /** Message documentation (Message documentation)

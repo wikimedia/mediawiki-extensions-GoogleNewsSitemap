@@ -26,7 +26,7 @@ if ( !defined( 'MEDIAWIKI' ) ) die();
  *	suppresserrors = bool ; default = false
  **/
 
-class GoogleNewsSitemap extends IncludableSpecialPage {
+class GoogleNewsSitemap extends SpecialPage {
 	/**
 	 * FIXME: Some of this might need a config eventually
 	 * @var string
@@ -91,8 +91,6 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 		}
 
 
-		$wgFeedClasses['sitemap'] = 'SitemapFeed' ;
-
 		$feed = new $wgFeedClasses[ $this->params['feed'] ](
 				$wgSitename,
 				$wgSitename . ' ' . $this->params['feed'] . ' feed',
@@ -102,18 +100,6 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 			);
 
 		$res = $this->doQuery();
-
-		// FIXME: figure out how to fail with no results gracefully
-		if ( $res->numRows( $res ) == 0 ) {
-			$feed->outFooter();
-			if ( false == $this->params['suppressErrors'] ) {
-				$wgOut->disable();
-				echo htmlspecialchars( wfMsg( 'googlenewssitemap_noresults' ) );
-				return;
-			} else {
-				return '';
-			}
-		}
 
 		$feed->outHeader();
 		foreach ( $res as $row ) {
@@ -271,13 +257,16 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 		global $wgRequest;
 
 		$this->params = array();
-		$parser = new Parser;
-		$poptions = new ParserOptions;
-		$category =    $wgRequest->getArray( 'category', 'Published' );
-		// $title = Title::newFromText( $parser->transformMsg( $category, $poptions ) );
-		// if ( is_object( $title ) ){
-		//	   $this->categories[] = $title;
-		// }
+
+		$category = $wgRequest->getText( 'category', 'Published' );
+		$category = explode( "|", $category );
+		foreach ( $category as $catName ) {
+			$catTitle = Title::newFromText( $catName, NS_CATEGORY );
+			if ( $catTitle ) {
+				$this->categories[] = $catTitle;
+			}
+		}
+
 		// FIXME:notcats
 		// $this->notCategories[] = $wgRequest->getArray('notcategory');
 		$this->params['nameSpace'] =   $wgContLang->getNsIndex( $wgRequest->getVal( 'namespace', 0 ) );
@@ -300,15 +289,16 @@ class GoogleNewsSitemap extends IncludableSpecialPage {
 		$this->params['catCount'] = count( $this->categories );
 		$this->params['notCatCount'] = count( $this->notCategories );
 		$totalCatCount = $this->params['catCount'] + $this->params['notCatCount'];
-		if ( ( $this->params['catCount'] < 1 && !$this->params['nameSpace'] ) || ( $totalCatCount < $this->wgDPlminCategories ) ) {
-			$parser = new Parser;
-			$poptions = new ParserOptions;
-			$feed =  Title::newFromText( $parser->transformMsg( 'Published', $poptions ) );
+
+		if ( ( $this->params['catCount'] < 1 && !$this->params['nameSpace'] )
+			|| ( $totalCatCount < $this->wgDPlminCategories ) )
+		{
+			$feed =  Title::newFromText( 'Published', NS_CATEGORY );
 			if ( is_object( $feed ) ) {
 				$this->categories[] = $feed;
 				$this->params['catCount'] = count( $this->categories );
 			} else {
-				$this->params['error'] = htmlspecialchars( wfMsg( 'googlenewssitemap_badfeedobject' ) );
+				throw new MWException( "Default fallback category is not a valid title!" );
 			}
 		}
 
