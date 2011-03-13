@@ -20,26 +20,10 @@ if ( !defined( 'MEDIAWIKI' ) ) die();
  *	  * redirects = string ; default = exclude
  *	  * stablepages = string ; default = null
  *	  * qualitypages = string ; default = null
- *	  * feed = string ; default = atom
- *	usenamespace = bool ; default = false
- *	usecurid = bool ; default = false
- *	suppresserrors = bool ; default = false
+ *	  * feed = string ; default = sitemap
  **/
 
 class GoogleNewsSitemap extends SpecialPage {
-	/**
-	 * FIXME: Some of this might need a config eventually
-	 * @var string
-	 **/
-	var $Title = '';
-	var $Description = '';
-	var $Url = '';
-	var $Date = '';
-	var $Author = '';
-	var $pubDate = '';
-	var $keywords = '';
-	var $lastMod = '';
-	var $priority = '';
 
 	/**
 	 * Script default values - correctly spelt, naming standard.
@@ -66,37 +50,29 @@ class GoogleNewsSitemap extends SpecialPage {
 	 * main()
 	 **/
 	public function execute( $par ) {
-		global $wgUser, $wgLang, $wgContLang, $wgRequest, $wgOut,
-			$wgSitename, $wgServer, $wgScriptPath, $wgFeedClasses,
-			$wgLocaltimezone;
-
-		// Not sure how clean $wgLocaltimezone is
-		// In fact, it's default setting is null...
-		if ( null == $wgLocaltimezone ) {
-			$wgLocaltimezone = date_default_timezone_get();
-		}
-		date_default_timezone_set( $wgLocaltimezone );
-		// $url = __FILE__;
+		global $wgContLang, $wgSitename, $wgFeedClasses, $wgLanguageCode;
 
 		$this->unload_params(); // populates this->params as a side effect
 
 		// if there's an error parsing the params, bail out and return
 		if ( isset( $this->params['error'] ) ) {
-			if ( false == $this->params['suppressErrors'] ) {
-				$wgOut->disable();
-				echo $this->params['error'];
-			}
+			wfHttpError( 500, "Internal Server Error", $this->params['error'] );
 			return;
 		}
 
-
-		$feed = new $wgFeedClasses[ $this->params['feed'] ](
-				$wgSitename,
-				$wgSitename . ' ' . $this->params['feed'] . ' feed',
-				$wgServer . $wgScriptPath,
-				date( DATE_ATOM ),
-				$wgSitename
+		// Check to make sure that feed type is supported.
+		if ( FeedUtils::checkFeedOutput( $this->params['feed'] ) ) {
+			// TODO: should feed title be a message.
+			$feed = new $wgFeedClasses[ $this->params['feed'] ](
+				$wgSitename . " [$wgLanguageCode] "
+					. $wgContLang->uc( $this->params['feed'] ) . ' feed',
+				wfMsgExt( 'tagline', 'parsemag' ),
+				Title::newMainPage()->getFullUrl()
 			);
+		} else {
+			// Can't really do anything if wrong feed type.
+			return;
+		}
 
 		$res = $this->doQuery();
 
@@ -109,37 +85,15 @@ class GoogleNewsSitemap extends SpecialPage {
 				return;
 			}
 
-			if ( 'sitemap' == $this->params['feed'] ) {
+			// Fixme: Under what circumstance would cl_timestamp not be set?
+			// possibly worth an exception if that happens.
+			$this->pubDate = isset( $row->cl_timestamp ) ? $row->cl_timestamp : wfTimestampNow();
 
-				$this->pubDate = isset( $row->cl_timestamp ) ? $row->cl_timestamp : date( DATE_ATOM );
-				$feedArticle = new Article( $title );
-
-				$feedItem = new FeedSMItem(
-				   trim( $title->getFullURL() ),
-				   wfTimeStamp( TS_ISO_8601, $this->pubDate ),
-				   $this->getKeywords( $title ),
-				   wfTimeStamp( TS_ISO_8601, $feedArticle->getTouched() ),
-				   $feed->getPriority( $this->priority )
-				);
-
-			} elseif ( ( 'atom' == $this->params['feed'] ) || ( 'rss' == $this->params['feed'] ) ) {
-
-				$this->Date = isset( $row->cl_timestamp ) ? $row->cl_timestamp : date( DATE_ATOM );
-				if ( isset( $row->comment ) ) {
-					$comments = htmlspecialchars( $row->comment );
-				} else {
-					$talkpage = $title->getTalkPage();
-					$comments = $talkpage->getFullURL();
-				}
-				$titleText = ( true === $this->params['nameSpace'] ) ? $title->getPrefixedText() : $title->getText();
-				$feedItem = new FeedItem(
-								$titleText,
-								$this->feedItemDesc( $row ),
-								$title->getFullURL(),
-								$this->Date,
-								$this->feedItemAuthor( $row ),
-								$comments );
-			}
+			$feedItem = new FeedSMItem(
+				$title,
+				$this->pubDate,
+				$this->getKeywords( $title )
+			);
 			$feed->outItem( $feedItem );
 
 		} // end while fetchobject
@@ -285,9 +239,6 @@ class GoogleNewsSitemap extends SpecialPage {
 		$this->params['redirects'] = $wgRequest->getVal( 'redirects', 'exclude' );
 		$this->params['stable'] = $wgRequest->getVal( 'stable', 'only' );
 		$this->params['quality'] = $wgRequest->getVal( 'qualitypages', 'only' );
-		$this->params['suppressErrors'] = $wgRequest->getBool( 'supresserrors', false );
-		$this->params['useNameSpace'] = $wgRequest->getBool( 'usenamespace', false );
-		$this->params['useCurId'] = $wgRequest->getBool( 'usecurid', false );
 		$this->params['feed'] = $wgRequest->getVal( 'feed', 'sitemap' );
 
 		$this->params['catCount'] = count( $this->categories );
@@ -315,14 +266,6 @@ class GoogleNewsSitemap extends SpecialPage {
 			$this->params['addFirstCategoryDate'] = false;
 		}
 
-	}
-
-	function feedItemAuthor( $row ) {
-		return isset( $row->user_text ) ? $row->user_text : 'Wikinews';
-	}
-
-	function feedItemDesc( $row ) {
-		return isset( $row->comment ) ? htmlspecialchars( $row->comment ) : '';
 	}
 
 	/**
