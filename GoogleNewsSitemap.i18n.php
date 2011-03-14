@@ -28,11 +28,10 @@ $messages['en'] = array(
 $messages['qqq'] = array(
 	'googlenewssitemap-desc' => '{{desc}}',
 	'googlenewssitemap_toomanycats' => 'Error given when maximum amount of categories specified is exceeded. Default max is 6.',
-	'googlenewssitemap_badfeedobject' => '<code>$feed</code> is a variable, leave it unchanged.',
 	'googlenewssitemap_feedtitle' => 'Title for the RSS/ATOM feeds produced (does not appear in sitemap XML documents).
 *$1 is language name (like English)
 *$2 is feed type (RSS or ATOM)
-*$3 is language code (like en)'
+*$3 is language code (like en)',
 );
 
 /** Afrikaans (Afrikaans)
@@ -120,10 +119,7 @@ $messages['de'] = array(
 	'googlenewssitemap' => 'Ermöglicht eine Sitemap für „Google News“',
 	'googlenewssitemap-desc' => 'Gibt Atom/RSS-Feeds in Form einer Sitemap für Google News aus.',
 	'googlenewssitemap_toomanycats' => 'Fehler: Zu viele Kategorien!',
-	'googlenewssitemap_toofewcats' => 'Fehler: Zu wenig Kategorien!',
-	'googlenewssitemap_noresults' => 'Fehler: Keine Ergebnisse vorhanden!',
-	'googlenewssitemap_noincludecats' => 'Fehler: Es muss mindestens eine Kategorie oder ein Namensraum angegeben werden!',
-	'googlenewssitemap_badfeedobject' => 'Fehler: $feed ist kein Objekt!',
+	'googlenewssitemap_feedtitle' => '$1 {{SITENAME}} $2-Feed.',
 );
 
 /** Lower Sorbian (Dolnoserbski)
@@ -209,10 +205,7 @@ $messages['fr'] = array(
 	'googlenewssitemap' => 'Plan du site Google News',
 	'googlenewssitemap-desc' => 'Crée un flux de données Atom ou RSS ressemblant à un plan de site pour Google News',
 	'googlenewssitemap_toomanycats' => 'Erreur: Trop de catégories!',
-	'googlenewssitemap_toofewcats' => 'Erreur: Trop peu de catégories!',
-	'googlenewssitemap_noresults' => 'Erreur: Pas de résultats!',
-	'googlenewssitemap_noincludecats' => 'Erreur: Vous devez inclure au moins une catégorie, ou spécifier un espace de noms !',
-	'googlenewssitemap_badfeedobject' => '$feed n\'est pas un objet.',
+	'googlenewssitemap_feedtitle' => 'Flux de données $2 du {{SITENAME}} en $1.',
 );
 
 /** Galician (Galego)
@@ -249,10 +242,7 @@ $messages['he'] = array(
 	'googlenewssitemap' => 'מפת אתר לפי Google News',
 	'googlenewssitemap-desc' => 'יצוא הזנת Atom/RSS בתור מפת אתר ל־Google News',
 	'googlenewssitemap_toomanycats' => 'שגיאה: יותר מדי קטגוריות!',
-	'googlenewssitemap_toofewcats' => 'שגיאה: מעט מדי קטגוריות!',
-	'googlenewssitemap_noresults' => 'שגיאה: אין תוצאות!',
-	'googlenewssitemap_noincludecats' => 'שגיאה: עליך לכלול לפחות קטגוריה אחת או לציין מרחב שם!',
-	'googlenewssitemap_badfeedobject' => '$feed אינו עצם.',
+	'googlenewssitemap_feedtitle' => 'הזנת $2 מאתר {{SITENAME}} ב{{GRAMMAR:תחילית|$1}}',
 );
 
 /** Upper Sorbian (Hornjoserbsce)
@@ -262,10 +252,7 @@ $messages['hsb'] = array(
 	'googlenewssitemap' => 'Sydłowa přehlad Google Nowinki',
 	'googlenewssitemap-desc' => 'Wudawa kanal Atom/RSS jako sydłowy přehlad Google Nowinki',
 	'googlenewssitemap_toomanycats' => 'Zmylk: Přewjele kategorijow!',
-	'googlenewssitemap_toofewcats' => 'Zmylk: Přemało kategorijow!',
-	'googlenewssitemap_noresults' => 'Zmylk: Žane wuslědki!',
-	'googlenewssitemap_noincludecats' => 'Zmylk: Dyrbiš znajmjeńša jednu kategoriju zapřijeć abo mjenowy rum podać!',
-	'googlenewssitemap_badfeedobject' => '$feed objekt njeje.',
+	'googlenewssitemap_feedtitle' => '$1 {{SITENAME}} kanal $2.',
 );
 
 /** Hungarian (Magyar)
@@ -380,10 +367,7 @@ $messages['nl'] = array(
 	'googlenewssitemap' => 'Google Nieuws Sitemap',
 	'googlenewssitemap-desc' => 'Levert een Atom/RSS-feed als Google Nieuws Sitemap',
 	'googlenewssitemap_toomanycats' => 'Fout: te veel categorieën!',
-	'googlenewssitemap_toofewcats' => 'Fout: te weinig categorieën!',
-	'googlenewssitemap_noresults' => 'Fout: geen resultaten!',
-	'googlenewssitemap_noincludecats' => 'Fout: u moet tenminste een categorie of naamruimte opgeven!',
-	'googlenewssitemap_badfeedobject' => '$feed is geen object.',
+	'googlenewssitemap_feedtitle' => '$2-feed van {{SITENAME}} in de taal $1',
 );
 
 /** Norwegian Nynorsk (‪Norsk (nynorsk)‬)
@@ -427,10 +411,7 @@ $messages['pl'] = array(
 	'googlenewssitemap' => 'Mapa serwisu dla Google News',
 	'googlenewssitemap-desc' => 'Treść kanałów Atom i RSS w formie mapy witryny dla Google News',
 	'googlenewssitemap_toomanycats' => 'Błąd – zbyt wiele kategorii!',
-	'googlenewssitemap_toofewcats' => 'Błąd – zbyt mało kategorii!',
-	'googlenewssitemap_noresults' => 'Błąd – brak wyników!',
-	'googlenewssitemap_noincludecats' => 'Błąd – musisz wybrać co najmniej jedną kategorię lub określić przestrzeń nazw!',
-	'googlenewssitemap_badfeedobject' => '$feed nie jest obiektem.',
+	'googlenewssitemap_feedtitle' => '{{SITENAME}} ($1) – kanał $2.',
 );
 
 /** Piedmontese (Piemontèis)
