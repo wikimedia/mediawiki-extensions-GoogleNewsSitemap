@@ -3,9 +3,35 @@ if ( !defined( 'MEDIAWIKI' ) ) die();
 
 class SitemapFeed extends ChannelFeed {
 	private $writer;
+	private $publicationName;
+	private $publicationLang;
 
 	function __construct() {
+		global $wgSitename, $wgLanguageCode;
+
 		$this->writer = new XMLWriter();
+		$this->publicationName = $wgSitename;
+		$this->publicationLang = $wgLanguageCode;
+	}
+
+	/**
+	 * Set the publication language code. Only used if different from
+	 * $wgLanguageCode, which could happen if google disagrees with us
+	 * on say what code zh gets.
+	 * @param String $lang Language code (like en)
+	 */
+	function setPublicationLang( $lang ) {
+		$this->publicationLang = $lang;
+	}
+
+	/**
+	 * Set the publication name. Normally $wgSitename, but could
+	 * need to be changed, if Google gives the publication a different
+	 * name then $wgSitename.
+	 * @param String $name The name of the publication
+	 */
+	function setPublicationName( $name ) {
+		$this->publicationName = $name;
 	}
 
 	function contentType() {
@@ -53,6 +79,15 @@ class SitemapFeed extends ChannelFeed {
 
 		$this->writer->startElement( "news:title" );
 		$this->writer->text( $item->getTitle() );
+		$this->writer->endElement();
+
+		$this->writer->startElement( "news:publication" );
+		$this->writer->startElement( "news:name" );
+		$this->writer->text( $this->publicationName );
+		$this->writer->endElement();
+		$this->writer->startElement( "news:language" );
+		$this->writer->text( $this->publicationLang );
+		$this->writer->endElement();
 		$this->writer->endElement();
 
 		if ( $item->getKeywords() ) {

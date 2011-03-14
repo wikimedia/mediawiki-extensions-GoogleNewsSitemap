@@ -18,8 +18,7 @@ $messages['en'] = array(
 	'googlenewssitemap-desc' => 'Outputs an Atom/RSS feed as a Google News Sitemap',
 	'googlenewssitemap_categorymap' => '', # Default empty. List of categories to map to keywords. Do not translate.
 	'googlenewssitemap_toomanycats' => 'Error: Too many categories!',
-	'googlenewssitemap_toofewcats' => 'Error: Too few categories!',
-	'googlenewssitemap_noincludecats' => 'Error: You need to include at least one category, or specify a namespace!',
+	'googlenewssitemap_feedtitle' => '$1 {{SITENAME}} $2 feed.'
 );
 
 /** Message documentation (Message documentation)
@@ -28,7 +27,12 @@ $messages['en'] = array(
  */
 $messages['qqq'] = array(
 	'googlenewssitemap-desc' => '{{desc}}',
+	'googlenewssitemap_toomanycats' => 'Error given when maximum amount of categories specified is exceeded. Default max is 6.',
 	'googlenewssitemap_badfeedobject' => '<code>$feed</code> is a variable, leave it unchanged.',
+	'googlenewssitemap_feedtitle' => 'Title for the RSS/ATOM feeds produced (does not appear in sitemap XML documents).
+*$1 is language name (like English)
+*$2 is feed type (RSS or ATOM)
+*$3 is language code (like en)'
 );
 
 /** Afrikaans (Afrikaans)

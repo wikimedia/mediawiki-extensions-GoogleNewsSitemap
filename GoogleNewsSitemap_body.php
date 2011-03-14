@@ -6,13 +6,13 @@ if ( !defined( 'MEDIAWIKI' ) ) die();
  **
  * Simple feed using Atom/RSS coupled to DynamicPageList category searching.
  *
- * To use: http://wiki.url/Special:GoogleNewsSitemap/[paramter=value][...]
+ * To use: http://wiki.url/Special:GoogleNewsSitemap?[paramter=value][&parameter2=value]&...
  *
  * Implemented parameters are marked with an @
  **
  * Parameters
- *	  * category = string ; default = Published
- *	  * notcategory = string ; default = null
+ *	  * categories = string ; default = Published
+ *	  * notcategories = string ; default = null
  *	  * namespace = string ; default = null
  *	  * count = integer ; default = $wgDPLmaxResultCount = 50
  *	  * order = string ; default = descending
@@ -27,10 +27,13 @@ class GoogleNewsSitemap extends SpecialPage {
 
 	/**
 	 * Script default values - correctly spelt, naming standard.
+	 * @todo These should be configurable. Perhaps be $wg globals (?)
 	 **/
 	var $wgDPlminCategories = 1;   // Minimum number of categories to look for
 	var $wgDPlmaxCategories = 6;   // Maximum number of categories to look for
 	var $wgDPLmaxResultCount = 50; // Maximum number of results to allow
+
+	var $fallbackCategory = 'Published';
 
 	/**
 	 * @var array Parameters array
@@ -62,15 +65,19 @@ class GoogleNewsSitemap extends SpecialPage {
 
 		// Check to make sure that feed type is supported.
 		if ( FeedUtils::checkFeedOutput( $this->params['feed'] ) ) {
-			// TODO: should feed title be a message.
 			$feed = new $wgFeedClasses[ $this->params['feed'] ](
-				$wgSitename . " [$wgLanguageCode] "
-					. $wgContLang->uc( $this->params['feed'] ) . ' feed',
+				wfMsgExt( 'googlenewssitemap_feedtitle',
+					array( 'parsemag', 'content' ),
+					$wgContLang->getLanguageName( $wgLanguageCode ),
+					$wgContLang->uc( $this->params['feed'] ),
+					$wgLanguageCode
+				),
 				wfMsgExt( 'tagline', 'parsemag' ),
 				Title::newMainPage()->getFullUrl()
 			);
 		} else {
-			// Can't really do anything if wrong feed type.
+			// FeedUtils outputs an error if wrong feed type.
+			// So nothing else to do at this point
 			return;
 		}
 
@@ -170,28 +177,24 @@ class GoogleNewsSitemap extends SpecialPage {
 			$currentTableNumber++;
 		}
 
-		// exclusion categories disabled pending discussion on whether they are necessary
-		/*
 		for ( $i = 0; $i < $this->params['notCatCount']; $i++ ) {
-			// echo "notCategory parameter $i<br />\n";
-			$sqlSelectFrom .= ' LEFT OUTER JOIN ' . $dbr->tableName( 'categorylinks' );
-			$sqlSelectFrom .= ' AS c' . ( $currentTableNumber + 1 ) . ' ON page_id = c' . ( $currentTableNumber + 1 );
-			$sqlSelectFrom .= '.cl_from AND c' . ( $currentTableNumber + 1 );
-			$sqlSelectFrom .= '.cl_to=' . $dbr->addQuotes( $this->notCategories[$i]->getDBkey() );
-
-			$conditions .= ' AND c' . ( $currentTableNumber + 1 ) . '.cl_to IS NULL';
-
+			$joins["$categorylinks AS c$currentTableNumber"] = array( 'LEFT OUTER JOIN',
+				array( "page_id = c{$currentTableNumber}.cl_from",
+					"c{$currentTableNumber}.cl_to={$dbr->addQuotes( $this->notCategories[$i]->getDBKey() ) }"
+				)
+			);
+			$tables[] = "$categorylinks AS c$currentTableNumber";
+			$conditions[] = "c{$currentTableNumber}.cl_to IS NULL";
 			$currentTableNumber++;
 		}
-		*/
 
-		if ( 'descending' == $this->params['order'] ) {
+		if ( $this->params['order'] === 'descending' ) {
 			$sortOrder = 'DESC';
 		} else {
 			$sortOrder = 'ASC';
 		}
 
-		if ( 'lastedit' == $this->params['orderMethod'] ) {
+		if ( $this->params['orderMethod'] === 'lastedit' ) {
 			$options['ORDER BY'] = 'page_touched ' . $sortOrder;
 		} else {
 			$options['ORDER BY'] = 'c1.cl_timestamp ' . $sortOrder;
@@ -201,8 +204,7 @@ class GoogleNewsSitemap extends SpecialPage {
 		// earlier validation logic ensures this is a reasonable number
 		$options['LIMIT'] = $this->params['count'];
 
-		// return $dbr->query( $sqlSelectFrom . $conditions );
-		return $dbr->select( $tables, $fields, $conditions, '', $options, $joins );
+		return $dbr->select( $tables, $fields, $conditions, __METHOD__, $options, $joins );
 	}
 
 	/**
@@ -214,14 +216,8 @@ class GoogleNewsSitemap extends SpecialPage {
 
 		$this->params = array();
 
-		$category = $wgRequest->getText( 'category', 'Published' );
-		$category = explode( "|", $category );
-		foreach ( $category as $catName ) {
-			$catTitle = Title::newFromText( $catName, NS_CATEGORY );
-			if ( $catTitle ) {
-				$this->categories[] = $catTitle;
-			}
-		}
+		$this->categories = $this->getCatRequestArray( 'categories', $this->fallbackCategory, $this->wgDPlmaxCategories );
+		$this->notCategories = $this->getCatRequestArray( 'notcategories', '', $this->wgDPlmaxCategories );
 
 		// FIXME:notcats
 		// $this->notCategories[] = $wgRequest->getArray('notcategory');
@@ -246,11 +242,11 @@ class GoogleNewsSitemap extends SpecialPage {
 		$totalCatCount = $this->params['catCount'] + $this->params['notCatCount'];
 
 		if ( ( $this->params['catCount'] < 1 && !$this->params['nameSpace'] )
-			|| ( $totalCatCount < $this->wgDPlminCategories ) )
+			|| ( $totalCatCount < 1 ) )
 		{
-			$feed = Title::newFromText( 'Published', NS_CATEGORY );
-			if ( is_object( $feed ) ) {
-				$this->categories[] = $feed;
+			$fallBack = Title::newFromText( $this->fallbackCategory, NS_CATEGORY );
+			if ( $fallBack ) {
+				$this->categories[] = $fallBack;
 				$this->params['catCount'] = count( $this->categories );
 			} else {
 				throw new MWException( "Default fallback category is not a valid title!" );
@@ -269,8 +265,34 @@ class GoogleNewsSitemap extends SpecialPage {
 	}
 
 	/**
+	 * Turn a pipe-seperated list from a url parameter into an array.
+	 * Verifying each element would be a valid title in Category namespace.
+	 * @param String $name Parameter to retrieve from web reqeust.
+	 * @param String $default
+	 * @param Integer $max Maximuin size of resulting array.
+	 * @return Array of Title objects. The Titles passed in the parameter $name.
+	 */
+	private function getCatRequestArray( $name, $default, $max ) {
+		global $wgRequest;
+
+		$value = $wgRequest->getText( $name, $default );
+		$arr = explode( "|", $value, $max + 2 );
+		$res = array();
+		foreach ( $arr as $name ) {
+			$catTitle = Title::newFromText( $name, NS_CATEGORY );
+			if ( $catTitle ) {
+				$res[] = $catTitle;
+			}
+		}
+		return $res;
+	}
+
+	/**
+	 * Given a title, figure out what keywords. Use the message googlenewssitemap_categorymap
+	 * to map local categories to Google News Keywords.
+	 * @see http://www.google.com/support/news_pub/bin/answer.py?answer=116037
 	 * @param Title $title
-	 * @return string
+	 * @return string Comma seperated list of keywords
 	 */
 	function getKeywords ( $title ) {
 		$cats = $title->getParentCategories();
