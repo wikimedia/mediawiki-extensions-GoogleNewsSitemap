@@ -15,6 +15,7 @@ if ( !defined( 'MEDIAWIKI' ) ) die();
  *	  * notcategories = string ; default = null
  *	  * namespace = string ; default = null
  *	  * count = integer ; default = $wgDPLmaxResultCount = 50
+ *	  * hourcont = integer ; default -1 (disabled), how many hours before cutoff
  *	  * order = string ; default = descending
  *	  * ordermethod = string ; default = categoryadd
  *	  * redirects = string ; default = exclude
@@ -163,6 +164,24 @@ class GoogleNewsSitemap extends SpecialPage {
 			break;
 		}
 
+		if ( $this->params['hourCount'] > 0
+			&& $this->params['orderMethod'] !== 'lastedit' )
+		{
+			// Limit to last X number of hours added to category,
+			// if hourcont is positive and we're sorting by
+			// category add date.
+			// This feature is here because the Google News
+			// Sitemap usecase is only supposed to have
+			// articles published in last 2 days on it.
+			// Don't do anything with lastedit, since this option
+			// doesn't make sense with it (Do we even need that order method?)
+			$timeOffset = wfTimestamp( TS_UNIX ) - ( $this->params['hourCount'] * 3600 );
+			$MWTimestamp = wfTimestamp( TS_MW, $timeOffset );
+			if ( $MWTimestamp ) {
+				$conditions[] = 'c1.cl_timestamp > ' . $MWTimestamp;
+			}
+		}
+
 		$currentTableNumber = 1;
 		$categorylinks = $dbr->tableName( 'categorylinks' );
 
@@ -223,6 +242,7 @@ class GoogleNewsSitemap extends SpecialPage {
 		// $this->notCategories[] = $wgRequest->getArray('notcategory');
 		$this->params['nameSpace'] = $wgContLang->getNsIndex( $wgRequest->getVal( 'namespace', 0 ) );
 		$this->params['count'] = $wgRequest->getInt( 'count', $this->wgDPLmaxResultCount );
+		$this->params['hourCount'] = $wgRequest->getInt( 'hourcount', -1 );
 
 		if ( ( $this->params['count'] > $this->wgDPLmaxResultCount )
 				|| ( $this->params['count'] < 1 ) )
