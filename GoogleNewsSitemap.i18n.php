@@ -55,10 +55,7 @@ $messages['be-tarask'] = array(
 	'googlenewssitemap' => 'Мапа сайту Google News',
 	'googlenewssitemap-desc' => 'Выводзіць стужкі Atom/RSS у выглядзе мапы сайту Google News',
 	'googlenewssitemap_toomanycats' => 'Памылка: зашмат катэгорыяў!',
-	'googlenewssitemap_toofewcats' => 'Памылка: занадта мала катэгорыяў!',
-	'googlenewssitemap_noresults' => 'Памылка: няма вынікаў!',
-	'googlenewssitemap_noincludecats' => 'Памылка: Вам неабходна дадаць хаця б адну катэгорыю, альбо пазначыць прастору назваў!',
-	'googlenewssitemap_badfeedobject' => '$feed не зьяўляецца аб’ектам.',
+	'googlenewssitemap_feedtitle' => '$1 {{SITENAME}} стужка $2.',
 );
 
 /** Bulgarian (Български)
@@ -215,10 +212,7 @@ $messages['gl'] = array(
 	'googlenewssitemap' => 'Mapa do sitio das novas do Google',
 	'googlenewssitemap-desc' => 'Dá como resultado unha fonte de novas Atom/RSS como un mapa do sitio das novas do Google',
 	'googlenewssitemap_toomanycats' => 'Erro: hai moitas categorías!',
-	'googlenewssitemap_toofewcats' => 'Erro: moi poucas categorías!',
-	'googlenewssitemap_noresults' => 'Erro: non hai resultados!',
-	'googlenewssitemap_noincludecats' => 'Erro: debe incluír, polo menos, unha categoría ou especificar un espazo de nomes!',
-	'googlenewssitemap_badfeedobject' => '$feed non é un obxecto.',
+	'googlenewssitemap_feedtitle' => 'Fonte de novas $2 de {{SITENAME}} en $1.',
 );
 
 /** Swiss German (Alemannisch)
@@ -274,10 +268,7 @@ $messages['ia'] = array(
 	'googlenewssitemap' => 'Sitemap de Google News',
 	'googlenewssitemap-desc' => 'Converte un syndication Atom/RSS in un Sitemap de Google News',
 	'googlenewssitemap_toomanycats' => 'Error: Troppo de categorias!',
-	'googlenewssitemap_toofewcats' => 'Error: Non satis de categorias!',
-	'googlenewssitemap_noresults' => 'Error: Nulle resultato!',
-	'googlenewssitemap_noincludecats' => 'Error: Tu debe includer al minus un categoria, o specificar un spatio de nomines!',
-	'googlenewssitemap_badfeedobject' => '$feed non es un objecto.',
+	'googlenewssitemap_feedtitle' => 'Syndication $2 de {{SITENAME}} in $1.',
 );
 
 /** Indonesian (Bahasa Indonesia)
@@ -353,13 +344,11 @@ $messages['mk'] = array(
 	'googlenewssitemap' => 'План на страницата Google Вести',
 	'googlenewssitemap-desc' => 'Дава Atom/RSS канал како план на страницата Google Вести',
 	'googlenewssitemap_toomanycats' => 'Грешка: Премногу категории!',
-	'googlenewssitemap_toofewcats' => 'Грешка: Премалку категории!',
-	'googlenewssitemap_noresults' => 'Грешка: Нема резултати!',
-	'googlenewssitemap_noincludecats' => 'Грешка: Треба да вклучите барем една категорија, или да назначите именски простор!',
-	'googlenewssitemap_badfeedobject' => '$feed не претставува објект.',
+	'googlenewssitemap_feedtitle' => '$2-канал на {{SITENAME}} на $1.',
 );
 
 /** Dutch (Nederlands)
+ * @author McDutchie
  * @author Mihxil
  * @author Siebrand
  */
@@ -367,7 +356,7 @@ $messages['nl'] = array(
 	'googlenewssitemap' => 'Google Nieuws Sitemap',
 	'googlenewssitemap-desc' => 'Levert een Atom/RSS-feed als Google Nieuws Sitemap',
 	'googlenewssitemap_toomanycats' => 'Fout: te veel categorieën!',
-	'googlenewssitemap_feedtitle' => '$2-feed van {{SITENAME}} in de taal $1',
+	'googlenewssitemap_feedtitle' => '$2-feed van {{SITENAME}} in het $1',
 );
 
 /** Norwegian Nynorsk (‪Norsk (nynorsk)‬)
@@ -422,10 +411,7 @@ $messages['pms'] = array(
 	'googlenewssitemap' => 'Pian dël sit dle Neuve ëd Google',
 	'googlenewssitemap-desc' => 'A scriv un fluss Atom/RSS com pian dël Sit ëd le Neuve ëd Google',
 	'googlenewssitemap_toomanycats' => 'Eror: Tròpe categorìe!',
-	'googlenewssitemap_toofewcats' => 'Eror: Tròp pòche categorìe!',
-	'googlenewssitemap_noresults' => 'Eror: pa gnun arzultà!',
-	'googlenewssitemap_noincludecats' => 'Eror: A deuv anserì almanch na categorìa, o spessifiché në spassi nominal!',
-	'googlenewssitemap_badfeedobject' => "\$feed a l'é pa n'oget.",
+	'googlenewssitemap_feedtitle' => '$1 {{SITENAME}} $2 feed.',
 );
 
 /** Portuguese (Português)
@@ -471,10 +457,7 @@ $messages['ru'] = array(
 	'googlenewssitemap' => 'Карта сайта для Google News',
 	'googlenewssitemap-desc' => 'Подготавливает канал Atom/RSS в виде карты сайта для Google News',
 	'googlenewssitemap_toomanycats' => 'Ошибка. Слишком много категорий!',
-	'googlenewssitemap_toofewcats' => 'Ошибка. Слишком мало категорий!',
-	'googlenewssitemap_noresults' => 'Ошибка. Нет данных!',
-	'googlenewssitemap_noincludecats' => 'Ошибка. Вы должны включить по меньшей мере одну категорию, или указать пространство имён!',
-	'googlenewssitemap_badfeedobject' => '$feed не является объектом.',
+	'googlenewssitemap_feedtitle' => '{{SITENAME}}. $1 $2 канал.',
 );
 
 /** Serbian Cyrillic ekavian (‪Српски (ћирилица)‬)
