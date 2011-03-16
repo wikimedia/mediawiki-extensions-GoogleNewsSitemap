@@ -35,6 +35,7 @@ class GoogleNewsSitemap extends SpecialPage {
 	var $wgDPLmaxResultCount = 50; // Maximum number of results to allow
 
 	var $fallbackCategory = 'Published';
+	var $maxCacheTime = 43200; // 12 hours. Chosen rather arbitrarily for now. Might want to tweak.
 
 	/**
 	 * @var array Parameters array
@@ -54,7 +55,7 @@ class GoogleNewsSitemap extends SpecialPage {
 	 * main()
 	 **/
 	public function execute( $par ) {
-		global $wgContLang, $wgSitename, $wgFeedClasses, $wgLanguageCode;
+		global $wgContLang, $wgSitename, $wgFeedClasses, $wgLanguageCode, $wgMemc;
 
 		$this->unload_params(); // populates this->params as a side effect
 
@@ -73,7 +74,7 @@ class GoogleNewsSitemap extends SpecialPage {
 					$wgContLang->uc( $this->params['feed'] ),
 					$wgLanguageCode
 				),
-				wfMsgExt( 'tagline', 'parsemag' ),
+				wfMsgExt( 'tagline', array( 'parsemag', 'content') ),
 				Title::newMainPage()->getFullUrl()
 			);
 		} else {
@@ -82,8 +83,78 @@ class GoogleNewsSitemap extends SpecialPage {
 			return;
 		}
 
-		$res = $this->doQuery();
+		$cacheInvalidationInfo = $this->getCacheInvalidationInfo();
 
+		$cacheKey = $this->getCacheKey();
+
+		// The way this does caching is based on ChangesFeed::execute.
+		$cached = $this->getCachedVersion( $cacheKey, $cacheInvalidationInfo );
+		if ( $cached !== false ) {
+			$feed->httpHeaders();
+			echo $cached;
+			echo "<!-- From cache: $cacheKey -->";
+		} else {
+			$res = $this->doQuery();
+			ob_start();
+			$this->makeFeed( $feed, $res );
+			$output = ob_get_contents();
+			ob_end_flush();
+			echo "<!-- Not cached. Saved as: $cacheKey -->";
+			$wgMemc->set( $cacheKey,
+				array( $cacheInvalidationInfo, $output ),
+				$this->maxCacheTime
+			);
+		}
+
+	}
+
+	/**
+	 * Get the cache key to cache this request.
+	 * @return String the key.
+	 */
+	private function getCacheKey() {
+		global $wgRenderHashAppend;
+		// Note, the implode relies on Title::__toString, which needs php > 5.2
+		// Which I think is above the minimum we support.
+		$sum = md5( serialize( $this->params )
+			. implode( "|", $this->categories ) . "||"
+			. implode( "|", $this->notCategories )
+		);
+		return wfMemcKey( "GNSM", $sum, $wgRenderHashAppend );
+	}
+
+	/**
+	 * Get the cached version of the feed if possible.
+	 * Checks to see if the cached version is still valid.
+	 * @param $key String Cache key
+	 * @param $invalidInfo String String to check if cache is clean from getCacheInvalidationInfo.
+	 * @return Mixed String or Boolean: The cached feed, or false.
+	 */
+	private function getCachedVersion ( $key, $invalidInfo ) {
+		global $wgMemc, $wgRequest;
+		$action = $wgRequest->getVal( 'action', 'view' );
+		if ( $action === 'purge' ) {
+			return false;
+		}
+
+		$cached = $wgMemc->get( $key );
+
+		if ( !$cached 
+			|| ( count( $cached ) !== 2 ) 
+			|| ( $cached[0] !== $invalidInfo ) )
+		{
+			// Cache is dirty or doesn't exist.
+			return false;
+		}
+		return $cached[1];
+	}
+	/**
+	 * Actually output a feed.
+	 * @param ChannelFeed $feed Feed object.
+	 * @param $res Result of sql query
+	 */
+
+	private function makeFeed( $feed, $res ) {
 		$feed->outHeader();
 		foreach ( $res as $row ) {
 			$title = Title::makeTitle( $row->page_namespace, $row->page_title );
@@ -103,13 +174,85 @@ class GoogleNewsSitemap extends SpecialPage {
 				$this->getKeywords( $title )
 			);
 			$feed->outItem( $feedItem );
-
-		} // end while fetchobject
-
+		}
 		$feed->outFooter();
+	}
 
-	} // end public function execute
+	/**
+	 * Tries to determine if the cached version of the feed is still
+	 * good. Does this by checking the cl_timestamp of the latest article
+	 * in each category we're using (Which will be different if category added)
+	 * and the total pages in Category (Protect against an article being removed)
+	 * The first check (cl_timestamp) is needed to protect against someone removing
+	 * one article and adding another article (the page count would stay the same).
+	 *
+	 * When we save to cache, we save a two element array with this value and the feed.
+	 * If the value from this function doesn't match the value from the cache, we throw
+	 * out the cache.
+	 *
+	 * @return String All the above info concatenated.
+	 */
+	private function getCacheInvalidationInfo () {
+		$dbr = wfGetDB( DB_SLAVE );
+		$cacheInfo = '';
+		$categories = array();
+		$tsQueries = array();
 
+		// This would perhaps be nicer just using a Category object,
+		// but this way can do all at once.
+
+		// Add each category and notcategory to the query.
+		for ( $i = 0; $i < $this->params['catCount']; $i++ ) {
+			$key = $this->categories[$i]->getDBkey();
+			$categories[] = $key;
+			$tsQueries[] = $dbr->selectSQLText(
+				'categorylinks',
+				'MAX(cl_timestamp) as ts',
+				array( 'cl_to' => $key ),
+				__METHOD__
+			);
+		}
+		for ( $i = 0; $i < $this->params['notCatCount']; $i++ ) {
+			$key = $this->notCategories[$i]->getDBkey();
+			$categories[] = $key;
+			$tsQueries[] = $dbr->selectSQLText(
+				'categorylinks',
+				'MAX(cl_timestamp) AS ts',
+				array( 'cl_to' => $key ),
+				__METHOD__
+			);
+		}
+
+		// phase 1: How many pages in each cat.
+		// cat_pages includes all pages (even images/subcats).
+		$res = $dbr->select( 'category', 'cat_pages',
+			array( 'cat_title' => $categories ),
+			__METHOD__,
+			array( 'ORDER BY' => 'cat_title' )
+		);
+
+		foreach ( $res as $row ) {
+			$cacheInfo .= $row->cat_pages . '!';
+		}
+
+		$cacheInfo .= '|';
+
+		// Part 2: cl_timestamp:
+		// TODO: Double check that the order of the result of union queries
+		// is one after another from the order you specified the queries in.
+		$res2 = $dbr->query($dbr->unionQueries( $tsQueries, true ), __METHOD__);
+
+		foreach ( $res2 as $row ) {
+			if ( is_null($row->ts) ) {
+				$ts = "empty";
+			} else {
+				$ts = wfTimestamp( TS_MW, $row->ts );
+			}
+			$cacheInfo .= $ts . '!';
+		}
+
+		return $cacheInfo;
+	}
 	/**
 	 * Build sql
 	 **/
