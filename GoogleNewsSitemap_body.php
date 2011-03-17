@@ -267,7 +267,7 @@ class GoogleNewsSitemap extends SpecialPage {
 		$fields = array( 'page_namespace', 'page_title', 'page_id', 'c1.cl_timestamp' );
 		$conditions = array();
 
-		if ( $this->params['nameSpace'] ) {
+		if ( $this->params['nameSpace'] !== false ) {
 			$conditions['page_namespace'] = $this->params['nameSpace'];
 		}
 
@@ -373,17 +373,15 @@ class GoogleNewsSitemap extends SpecialPage {
 	 * Parse parameters, populates $this->params
 	 **/
 	public function unload_params() {
-		global $wgContLang;
-		global $wgRequest;
+		global $wgContLang, $wgRequest;
 
 		$this->params = array();
 
 		$this->categories = $this->getCatRequestArray( 'categories', $this->fallbackCategory, $this->wgDPlmaxCategories );
 		$this->notCategories = $this->getCatRequestArray( 'notcategories', '', $this->wgDPlmaxCategories );
 
-		// FIXME:notcats
-		// $this->notCategories[] = $wgRequest->getArray('notcategory');
-		$this->params['nameSpace'] = $wgContLang->getNsIndex( $wgRequest->getVal( 'namespace', 0 ) );
+		$this->params['nameSpace'] = $this->getNS( $wgRequest->getVal( 'namespace', 0 ) );
+
 		$this->params['count'] = $wgRequest->getInt( 'count', $this->wgDPLmaxResultCount );
 		$this->params['hourCount'] = $wgRequest->getInt( 'hourcount', -1 );
 
@@ -404,9 +402,10 @@ class GoogleNewsSitemap extends SpecialPage {
 		$this->params['notCatCount'] = count( $this->notCategories );
 		$totalCatCount = $this->params['catCount'] + $this->params['notCatCount'];
 
-		if ( ( $this->params['catCount'] < 1 && !$this->params['nameSpace'] )
-			|| ( $totalCatCount < 1 ) )
-		{
+		if ( $this->params['catCount'] < 1 ) {
+			// Always require at least one include category.
+			// Without an include category, cl_timestamp will be null.
+			// Which will probably manifest as a weird bug.
 			$fallBack = Title::newFromText( $this->fallbackCategory, NS_CATEGORY );
 			if ( $fallBack ) {
 				$this->categories[] = $fallBack;
@@ -417,12 +416,43 @@ class GoogleNewsSitemap extends SpecialPage {
 		}
 
 		if ( $totalCatCount > $this->wgDPlmaxCategories ) {
+			// Causes a 500 error later on.
 			$this->params['error'] = htmlspecialchars( wfMsg( 'googlenewssitemap_toomanycats' ) );
 		}
+	}
+	/**
+	 * Decode the namespace url parameter.
+	 * @param $ns String Either numeric ns number, ns name, or special value :all:
+	 * @return Mixed Integer or false Namespace number or false for no ns filtering.
+	 */
+	private function getNS ( $ns ) {
+		global $wgContLang;
 
-		// Disallow showing date if the query doesn't have an inclusion category parameter.
-		if ( $this->params['count'] < 1 ) {
-			$this->params['addFirstCategoryDate'] = false;
+		$nsNumb = $wgContLang->getNsIndex( $ns );
+
+		if ( $nsNumb !== false ) {
+			// If they specified something like Talk or Image.
+			return $nsNumb;
+		} else if ( is_numeric( $ns ) ) {
+			// If they specified a number.
+			$nsVal = intval( $ns );
+			if ( $nsVal >= 0 && MWNamespace::exists( $nsVal ) ) {
+				return $nsVal;
+			} else {
+				wfDebug( __METHOD__ . ' Invalid numeric ns number. Using main.' );
+				return 0;
+			}
+		} else if ( $ns === ':all:' ) {
+			// Need someway to denote no namespace filtering,
+			// This seems as good as any since a namespace can't
+			// have colons in it.
+			return false;
+		} else {
+			// Default of main only if user gives bad input.
+			// Note, this branch is only reached on bad input. Omitting
+			// the namespace parameter is like saying namespace=0.
+			wfDebug( __METHOD__ . ' Invalid (non-numeric) ns. Using main.' );
+			return 0;
 		}
 
 	}
@@ -465,7 +495,7 @@ class GoogleNewsSitemap extends SpecialPage {
 		$catMap = array();
 		$catMask = array();
 		$msg = wfMsg( 'googlenewssitemap_categorymap' );
-		if ( !wfEmptyMsg( 'googlenewssitemap_categorymap', $msg ) ) {
+		if ( !wfEmptyMsg( 'googlenewssitemap_categorymap' ) ) {
 			$list = explode( "\n*", "\n$msg" );
 			foreach ( $list as $item ) {
 				$mapping = explode( '|', $item, 2 );
