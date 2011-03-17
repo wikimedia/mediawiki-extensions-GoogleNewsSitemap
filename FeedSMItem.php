@@ -8,7 +8,7 @@ if ( !defined( 'MEDIAWIKI' ) ) die();
  **/
 class FeedSMItem extends FeedItem {
 
-	private $keywords = '';
+	private $keywords = array();
 
 	/**
 	 * @var Title
@@ -18,7 +18,7 @@ class FeedSMItem extends FeedItem {
 	/**
 	 * @param Title $title Title object that this entry is for.
 	 * @param String $pubDate Publish date formattable by wfTimestamp.
-	 * @param String $keywords Comma separated list of keywords
+	 * @param Array $keywords list of (String) keywords
 	 * @param Mixed Boolean or Integer. Namespace containing comments page for entry.
 	 *   True for the corresponding talk page of $title
 	 *   False for none
@@ -72,7 +72,10 @@ class FeedSMItem extends FeedItem {
 	}
 
 	public function getKeywords() {
-		return $this->xmlEncode( $this->keywords );
+		// Note, not using $wgContLang->commaList, as this is for
+		// computers not humans, so we don't want to vary with
+		// language conventions.
+		return $this->xmlEncode( implode( ', ', $this->keywords ) );
 	}
 
 	/**

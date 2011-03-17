@@ -115,6 +115,10 @@ class GoogleNewsSitemap extends SpecialPage {
 	/**
 	 * Get the cached version of the feed if possible.
 	 * Checks to see if the cached version is still valid.
+	 * 
+	 * Note, this doesn't take into account changes to the keyword
+	 * mapping message (See getKeywords). I don't think that's a major issue.
+	 *
 	 * @param $key String Cache key
 	 * @param $invalidInfo String String to check if cache is clean from getCacheInvalidationInfo.
 	 * @return Mixed String or Boolean: The cached feed, or false.
@@ -509,42 +513,55 @@ class GoogleNewsSitemap extends SpecialPage {
 	/**
 	 * Given a title, figure out what keywords. Use the message googlenewssitemap_categorymap
 	 * to map local categories to Google News Keywords.
+	 *
+	 * The format of this message is *Category name|What to map to
+	 * or *Category name|__MASK__ to hide the category completely.
+	 *
 	 * @see http://www.google.com/support/news_pub/bin/answer.py?answer=116037
 	 * @param Title $title
-	 * @return String Comma separated list of keywords
+	 * @return Array of String: list of keywords
 	 */
 	function getKeywords ( $title ) {
 		$cats = $title->getParentCategories();
-		$str = '';
+		$res = array();
 
 		# the following code is based (stolen) from r56954 of flagged revs.
 		$catMap = array();
 		$catMask = array();
-		$msg = wfMsg( 'googlenewssitemap_categorymap' );
 		if ( !wfEmptyMsg( 'googlenewssitemap_categorymap' ) ) {
+			$msg = wfMsgForContent( 'googlenewssitemap_categorymap' );
 			$list = explode( "\n*", "\n$msg" );
 			foreach ( $list as $item ) {
 				$mapping = explode( '|', $item, 2 );
 				if ( count( $mapping ) == 2 ) {
-					if ( trim( $mapping[1] ) == '__MASK__' ) {
-						$catMask[trim( $mapping[0] )] = true;
+
+					$targetTitle = Title::newFromText( $mapping[0], NS_CATEGORY );
+					if ( !$targetTitle ) {
+						continue;
+					}
+					$target = $targetTitle->getPrefixedDBkey();
+					$mapTo = trim( $mapping[1] );
+
+					if ( $mapTo === '__MASK__' ) {
+						$catMask[$target] = true;
 					} else {
-						$catMap[trim( $mapping[0] )] = trim( $mapping[1] );
+						$catMap[$target] = $mapTo;
 					}
 				}
 			}
 		}
-		foreach ( $cats as $key => $val ) {
-			$cat = str_replace( '_', ' ', trim( substr( $key, strpos( $key, ':' ) + 1 ) ) );
-				if ( !isset( $catMask[$cat] ) ) {
-					if ( isset( $catMap[$cat] ) ) {
-					   $str .= ', ' . str_replace( '_', ' ', trim ( $catMap[$cat] ) );
-					} else {
-						$str .= ', ' . $cat;
-					}
+		foreach ( $cats as $cat => $val ) {
+			if ( !isset( $catMask[$cat] ) ) {
+				if ( isset( $catMap[$cat] ) ) {
+					// Its mapped.
+					$res[] = $catMap[$cat];
+				} else {
+					// No mapping, so use just page name sans namespace.
+					$cTitle = Title::newFromText( $cat );
+					$res[] = $cTitle->getText();
 				}
+			}
 		}
-		$str = substr( $str, 2 ); # to remove leading ', '
-		return $str;
+		return $res;
 	}
 }
