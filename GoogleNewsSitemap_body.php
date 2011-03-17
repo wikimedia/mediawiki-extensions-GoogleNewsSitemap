@@ -28,6 +28,10 @@ class GoogleNewsSitemap extends SpecialPage {
 
 	var $maxCacheTime = 43200; // 12 hours. Chosen rather arbitrarily for now. Might want to tweak.
 
+	const OPT_INCLUDE = 0;
+	const OPT_ONLY = 1;
+	const OPT_EXCLUDE = 2;
+
 	/**
 	 * Constructor
 	 **/
@@ -267,35 +271,35 @@ class GoogleNewsSitemap extends SpecialPage {
 		// If flagged revisions is in use, check which options selected.
 		// FIXME: double check the default options; what should it default to?
 		if ( function_exists( 'efLoadFlaggedRevs' ) ) {
-			$filterSet = array( 'only', 'exclude' );
+			$filterSet = array( self::OPT_ONLY, self::OPT_EXCLUDE );
 			# Either involves the same JOIN here...
 			if ( in_array( $params['stable'], $filterSet ) || in_array( $params['quality'], $filterSet ) ) {
 				$joins['flaggedpages'] = array( 'LEFT JOIN', 'page_id = fp_page_id' );
 			}
 
 			switch( $params['stable'] ) {
-				case 'only':
+				case self::OPT_ONLY:
 					$conditions[] = 'fp_stable IS NOT NULL ';
 					break;
-				case 'exclude':
+				case self::OPT_EXCLUDE:
 					$conditions['fp_stable'] = null;
 					break;
 			}
 			switch( $params['quality'] ) {
-				case 'only':
+				case self::OPT_ONLY:
 					$conditions[] = 'fp_quality >= 1';
 					break;
-				case 'exclude':
+				case self::OPT_EXCLUDE:
 					$conditions['fp_quality'] = 0;
 					break;
 			}
 		}
 
 		switch ( $params['redirects'] ) {
-			case 'only':
+			case self::OPT_ONLY:
 				$conditions['page_is_redirect'] = 1;
 			break;
-			case 'exclude':
+			case self::OPT_EXCLUDE:
 				$conditions['page_is_redirect'] = 0;
 			break;
 		}
@@ -389,9 +393,12 @@ class GoogleNewsSitemap extends SpecialPage {
 
 		$params['order'] = $wgRequest->getVal( 'order', 'descending' );
 		$params['orderMethod'] = $wgRequest->getVal( 'ordermethod', 'categoryadd' );
-		$params['redirects'] = $wgRequest->getVal( 'redirects', 'exclude' );
-		$params['stable'] = $wgRequest->getVal( 'stable', 'only' );
-		$params['quality'] = $wgRequest->getVal( 'qualitypages', 'only' );
+
+		$params['redirects'] = $this->getIEOVal( 'redirects', self::OPT_EXCLUDE );
+		$params['stable'] = $this->getIEOVal( 'stable', self::OPT_ONLY );
+		$params['quality'] = $this->getIEOVal( 'qualitypages', self::OPT_ONLY );
+
+		// feed parameter is validated later in the execute method.
 		$params['feed'] = $wgRequest->getVal( 'feed', 'sitemap' );
 
 		$params['catCount'] = count( $categories );
@@ -416,6 +423,28 @@ class GoogleNewsSitemap extends SpecialPage {
 			$params['error'] = htmlspecialchars( wfMsg( 'googlenewssitemap_toomanycats' ) );
 		}
 		return array( $params, $categories, $notCategories );
+	}
+
+	/**
+	 * Turn an include, exclude, or only (I, E, or O) parameter into
+	 * a class constant.
+	 * @param $val String the name of the url parameter
+	 * @param $default Integer Class constant to return if none match
+	 * @return Integer Class constant corresponding to value.
+	 */
+	private function getIEOVal ( $valName, $default = self::OPT_INCLUDE ) {
+		global $wgRequest;
+		$val = $wgRequest->getVal( $valName );
+		switch ( $val ) {
+			case 'only':
+				return self::OPT_ONLY;
+			case 'include':
+				return self::OPT_INCLUDE;
+			case 'exclude':
+				return self::OPT_EXCLUDE;
+			default:
+				return $default;
+		}
 	}
 	/**
 	 * Decode the namespace url parameter.
