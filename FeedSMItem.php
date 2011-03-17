@@ -16,14 +16,38 @@ class FeedSMItem extends FeedItem {
 	private $title;
 
 	/**
-	 * @param Title $title
-	 * @param  $pubDate
-	 * @param string $keywords
+	 * @param Title $title Title object that this entry is for.
+	 * @param String $pubDate Publish date formattable by wfTimestamp.
+	 * @param String $keywords Comma separated list of keywords
+	 * @param Mixed Boolean or Integer. Namespace containing comments page for entry.
+	 *   True for the corresponding talk page of $title
+	 *   False for none
+	 *   An integer for the page name of $title in the specific namespace denoted by that integer.
 	 */
-	function __construct( $title, $pubDate, $keywords = '' ) {
-		parent::__construct( $title->getText(), '' /* description */, $title->getFullUrl(), $pubDate );
+	function __construct( $title, $pubDate, $keywords = '', $comment = true ) {
+
+		if ( !$title ) {
+			// Paranoia
+			throw new MWException( "Invalid title object passed to FeedSMItem" );
+		}
+
+		$commentsURL = '';
+		if ( $comment === true ) {
+			// The comment ns is this article's talk namespace.
+			$commentsURL = $title->getTalkPage()->getFullUrl();
+		} else if ( is_int( $comment ) ) {
+			// There's a specific comments namespace.
+			$commentsTitle = Title::makeTitle( $comment, $title->getDBkey() );
+			if ( $commentsTitle ) {
+				$commentsURL = $commentsTitle->getFullUrl();
+			}
+		}
+
 		$this->title = $title;
 		$this->keywords = $keywords;
+
+		parent::__construct( $title->getText(), '' /* Description */,
+			$title->getFullUrl(), $pubDate, '' /* Author */, $commentsURL  );
 	}
 
 	/**

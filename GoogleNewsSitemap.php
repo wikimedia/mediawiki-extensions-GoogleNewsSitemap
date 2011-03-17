@@ -75,3 +75,9 @@ $wgGNSMmaxCategories = 6;   // Maximum number of categories to look for
 $wgGNSMmaxResultCount = 50; // Maximum number of results to allow
 $wgGNSMfallbackCategory = 'Published'; // Fallback category if no categories are specified.
 
+// $wgGNSMcommentNamespace can be false to mean do not include a <comments> element in the feeds,
+// or it can be true, to mean use the talk page of the relevent page as the comments page
+// or it can be a specific namespace number ( or NS_BLAH constant) to denote a specific namespace.
+// For example, on many Wikinews sites, the comment namespace is Comments (102), not talk.
+$wgGNSMcommentNamespace = true;
+
