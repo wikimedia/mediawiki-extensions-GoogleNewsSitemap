@@ -46,6 +46,13 @@ $messages['af'] = array(
 	'googlenewssitemap_noincludecats' => "Fout: U moet ten minste een kategorie insluit, of spesifiseer 'n naamspasie!",
 );
 
+/** Azerbaijani (Azərbaycanca)
+ * @author Wertuose
+ */
+$messages['az'] = array(
+	'googlenewssitemap_toomanycats' => 'Xəta: Kateqoriya sayı həddindən çoxdur!',
+);
+
 /** Belarusian (Taraškievica orthography) (‪Беларуская (тарашкевіца)‬)
  * @author EugeneZelenko
  * @author Jim-by
@@ -318,10 +325,7 @@ $messages['ksh'] = array(
 	'googlenewssitemap' => '<i lang="en">Google News Sitemap</i>',
 	'googlenewssitemap-desc' => 'Deiht ene <i lang="en">Atom</i> udder <i lang="en">RSS</i>-Kanaal als en <i lang="en">Google News Sitemap</i> ußjävve.',
 	'googlenewssitemap_toomanycats' => 'Fähler: Zoh vill Saachjroppe!',
-	'googlenewssitemap_toofewcats' => 'Fähler: Zoh winnish Saachjroppe!',
-	'googlenewssitemap_noresults' => 'Fähler: Nix es eruß jekumme!',
-	'googlenewssitemap_noincludecats' => 'Fähler: Ein Saachjropp udder ei Appachtemang moß schunn met dobei sin!',
-	'googlenewssitemap_badfeedobject' => '$feed es kei Objäk!',
+	'googlenewssitemap_feedtitle' => '{{ucfirst:{{GRAMMAR:Genitive iere male|{{SITENAME}}}}}} <i lang="en">$2</i> Kanaal op $1',
 );
 
 /** Luxembourgish (Lëtzebuergesch)
