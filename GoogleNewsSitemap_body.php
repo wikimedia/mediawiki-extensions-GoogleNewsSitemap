@@ -29,13 +29,6 @@ class GoogleNewsSitemap extends SpecialPage {
 	var $maxCacheTime = 43200; // 12 hours. Chosen rather arbitrarily for now. Might want to tweak.
 
 	/**
-	 * @var array Parameters array
-	 **/
-	var $params = array();
-	var $categories = array();
-	var $notCategories = array();
-
-	/**
 	 * Constructor
 	 **/
 	public function __construct() {
@@ -48,21 +41,21 @@ class GoogleNewsSitemap extends SpecialPage {
 	public function execute( $par ) {
 		global $wgContLang, $wgSitename, $wgFeedClasses, $wgLanguageCode, $wgMemc;
 
-		$this->unload_params(); // populates this->params as a side effect
+		list( $params, $categories, $notCategories ) = $this->getParams();
 
 		// if there's an error parsing the params, bail out and return
-		if ( isset( $this->params['error'] ) ) {
-			wfHttpError( 500, "Internal Server Error", $this->params['error'] );
+		if ( isset( $params['error'] ) ) {
+			wfHttpError( 500, "Internal Server Error", $params['error'] );
 			return;
 		}
 
 		// Check to make sure that feed type is supported.
-		if ( FeedUtils::checkFeedOutput( $this->params['feed'] ) ) {
-			$feed = new $wgFeedClasses[ $this->params['feed'] ](
+		if ( FeedUtils::checkFeedOutput( $params['feed'] ) ) {
+			$feed = new $wgFeedClasses[ $params['feed'] ](
 				wfMsgExt( 'googlenewssitemap_feedtitle',
 					array( 'parsemag', 'content' ),
 					$wgContLang->getLanguageName( $wgLanguageCode ),
-					$wgContLang->uc( $this->params['feed'] ),
+					$wgContLang->uc( $params['feed'] ),
 					$wgLanguageCode
 				),
 				wfMsgExt( 'tagline', array( 'parsemag', 'content') ),
@@ -74,9 +67,10 @@ class GoogleNewsSitemap extends SpecialPage {
 			return;
 		}
 
-		$cacheInvalidationInfo = $this->getCacheInvalidationInfo();
+		$cacheInvalidationInfo = $this->getCacheInvalidationInfo( $params,
+			$categories, $notCategories );
 
-		$cacheKey = $this->getCacheKey();
+		$cacheKey = $this->getCacheKey( $params, $categories, $notCategories );
 
 		// The way this does caching is based on ChangesFeed::execute.
 		$cached = $this->getCachedVersion( $cacheKey, $cacheInvalidationInfo );
@@ -85,7 +79,7 @@ class GoogleNewsSitemap extends SpecialPage {
 			echo $cached;
 			echo "<!-- From cache: $cacheKey -->";
 		} else {
-			$res = $this->doQuery();
+			$res = $this->doQuery( $params, $categories, $notCategories );
 			ob_start();
 			$this->makeFeed( $feed, $res );
 			$output = ob_get_contents();
@@ -103,13 +97,13 @@ class GoogleNewsSitemap extends SpecialPage {
 	 * Get the cache key to cache this request.
 	 * @return String the key.
 	 */
-	private function getCacheKey() {
+	private function getCacheKey( $params, $categories, $notCategories ) {
 		global $wgRenderHashAppend;
 		// Note, the implode relies on Title::__toString, which needs php > 5.2
 		// Which I think is above the minimum we support.
-		$sum = md5( serialize( $this->params )
-			. implode( "|", $this->categories ) . "||"
-			. implode( "|", $this->notCategories )
+		$sum = md5( serialize( $params )
+			. implode( "|", $categories ) . "||"
+			. implode( "|", $notCategories )
 		);
 		return wfMemcKey( "GNSM", $sum, $wgRenderHashAppend );
 	}
@@ -158,11 +152,11 @@ class GoogleNewsSitemap extends SpecialPage {
 
 			// Fixme: Under what circumstance would cl_timestamp not be set?
 			// possibly worth an exception if that happens.
-			$this->pubDate = isset( $row->cl_timestamp ) ? $row->cl_timestamp : wfTimestampNow();
+			$pubDate = isset( $row->cl_timestamp ) ? $row->cl_timestamp : wfTimestampNow();
 
 			$feedItem = new FeedSMItem(
 				$title,
-				$this->pubDate,
+				$pubDate,
 				$this->getKeywords( $title ),
 				$wgGNSMcommentNamespace
 			);
@@ -183,21 +177,25 @@ class GoogleNewsSitemap extends SpecialPage {
 	 * If the value from this function doesn't match the value from the cache, we throw
 	 * out the cache.
 	 *
+	 * @param $params Array Parsed url parameters
+	 * @param $categories Array of Title
+	 * @param $notCategories Array of Title
+	 *
 	 * @return String All the above info concatenated.
 	 */
-	private function getCacheInvalidationInfo () {
+	private function getCacheInvalidationInfo ( $params, $categories, $notCategories ) {
 		$dbr = wfGetDB( DB_SLAVE );
 		$cacheInfo = '';
-		$categories = array();
+		$categoriesKey = array();
 		$tsQueries = array();
 
 		// This would perhaps be nicer just using a Category object,
 		// but this way can do all at once.
 
 		// Add each category and notcategory to the query.
-		for ( $i = 0; $i < $this->params['catCount']; $i++ ) {
-			$key = $this->categories[$i]->getDBkey();
-			$categories[] = $key;
+		for ( $i = 0; $i < $params['catCount']; $i++ ) {
+			$key = $categories[$i]->getDBkey();
+			$categoriesKey[] = $key;
 			$tsQueries[] = $dbr->selectSQLText(
 				'categorylinks',
 				'MAX(cl_timestamp) as ts',
@@ -205,9 +203,9 @@ class GoogleNewsSitemap extends SpecialPage {
 				__METHOD__
 			);
 		}
-		for ( $i = 0; $i < $this->params['notCatCount']; $i++ ) {
-			$key = $this->notCategories[$i]->getDBkey();
-			$categories[] = $key;
+		for ( $i = 0; $i < $params['notCatCount']; $i++ ) {
+			$key = $notCategories[$i]->getDBkey();
+			$categoriesKey[] = $key;
 			$tsQueries[] = $dbr->selectSQLText(
 				'categorylinks',
 				'MAX(cl_timestamp) AS ts',
@@ -219,7 +217,7 @@ class GoogleNewsSitemap extends SpecialPage {
 		// phase 1: How many pages in each cat.
 		// cat_pages includes all pages (even images/subcats).
 		$res = $dbr->select( 'category', 'cat_pages',
-			array( 'cat_title' => $categories ),
+			array( 'cat_title' => $categoriesKey ),
 			__METHOD__,
 			array( 'ORDER BY' => 'cat_title' )
 		);
@@ -247,9 +245,11 @@ class GoogleNewsSitemap extends SpecialPage {
 		return $cacheInfo;
 	}
 	/**
-	 * Build sql
-	 **/
-	public function doQuery() {
+	 * Build and execute sql
+	 * @param Array $param All the parameters except cats/notcats
+	 * @return Result of query.
+	 */
+	public function doQuery( $params, $categories, $notCategories ) {
 
 		$dbr = wfGetDB( DB_SLAVE );
 
@@ -260,8 +260,8 @@ class GoogleNewsSitemap extends SpecialPage {
 		$fields = array( 'page_namespace', 'page_title', 'page_id', 'c1.cl_timestamp' );
 		$conditions = array();
 
-		if ( $this->params['nameSpace'] !== false ) {
-			$conditions['page_namespace'] = $this->params['nameSpace'];
+		if ( $params['nameSpace'] !== false ) {
+			$conditions['page_namespace'] = $params['nameSpace'];
 		}
 
 		// If flagged revisions is in use, check which options selected.
@@ -269,11 +269,11 @@ class GoogleNewsSitemap extends SpecialPage {
 		if ( function_exists( 'efLoadFlaggedRevs' ) ) {
 			$filterSet = array( 'only', 'exclude' );
 			# Either involves the same JOIN here...
-			if ( in_array( $this->params['stable'], $filterSet ) || in_array( $this->params['quality'], $filterSet ) ) {
+			if ( in_array( $params['stable'], $filterSet ) || in_array( $params['quality'], $filterSet ) ) {
 				$joins['flaggedpages'] = array( 'LEFT JOIN', 'page_id = fp_page_id' );
 			}
 
-			switch( $this->params['stable'] ) {
+			switch( $params['stable'] ) {
 				case 'only':
 					$conditions[] = 'fp_stable IS NOT NULL ';
 					break;
@@ -281,7 +281,7 @@ class GoogleNewsSitemap extends SpecialPage {
 					$conditions['fp_stable'] = null;
 					break;
 			}
-			switch( $this->params['quality'] ) {
+			switch( $params['quality'] ) {
 				case 'only':
 					$conditions[] = 'fp_quality >= 1';
 					break;
@@ -291,7 +291,7 @@ class GoogleNewsSitemap extends SpecialPage {
 			}
 		}
 
-		switch ( $this->params['redirects'] ) {
+		switch ( $params['redirects'] ) {
 			case 'only':
 				$conditions['page_is_redirect'] = 1;
 			break;
@@ -300,8 +300,8 @@ class GoogleNewsSitemap extends SpecialPage {
 			break;
 		}
 
-		if ( $this->params['hourCount'] > 0
-			&& $this->params['orderMethod'] !== 'lastedit' )
+		if ( $params['hourCount'] > 0
+			&& $params['orderMethod'] !== 'lastedit' )
 		{
 			// Limit to last X number of hours added to category,
 			// if hourcont is positive and we're sorting by
@@ -311,7 +311,7 @@ class GoogleNewsSitemap extends SpecialPage {
 			// articles published in last 2 days on it.
 			// Don't do anything with lastedit, since this option
 			// doesn't make sense with it (Do we even need that order method?)
-			$timeOffset = wfTimestamp( TS_UNIX ) - ( $this->params['hourCount'] * 3600 );
+			$timeOffset = wfTimestamp( TS_UNIX ) - ( $params['hourCount'] * 3600 );
 			$MWTimestamp = wfTimestamp( TS_MW, $timeOffset );
 			if ( $MWTimestamp ) {
 				$conditions[] = 'c1.cl_timestamp > ' . $MWTimestamp;
@@ -322,20 +322,20 @@ class GoogleNewsSitemap extends SpecialPage {
 		$categorylinks = $dbr->tableName( 'categorylinks' );
 
 		$joins = array();
-		for ( $i = 0; $i < $this->params['catCount']; $i++ ) {
+		for ( $i = 0; $i < $params['catCount']; $i++ ) {
 			$joins["$categorylinks AS c$currentTableNumber"] = array( 'INNER JOIN',
 				array( "page_id = c{$currentTableNumber}.cl_from",
-					"c{$currentTableNumber}.cl_to={$dbr->addQuotes( $this->categories[$i]->getDBKey() ) }"
+					"c{$currentTableNumber}.cl_to={$dbr->addQuotes( $categories[$i]->getDBKey() ) }"
 				)
 			);
 			$tables[] = "$categorylinks AS c$currentTableNumber";
 			$currentTableNumber++;
 		}
 
-		for ( $i = 0; $i < $this->params['notCatCount']; $i++ ) {
+		for ( $i = 0; $i < $params['notCatCount']; $i++ ) {
 			$joins["$categorylinks AS c$currentTableNumber"] = array( 'LEFT OUTER JOIN',
 				array( "page_id = c{$currentTableNumber}.cl_from",
-					"c{$currentTableNumber}.cl_to={$dbr->addQuotes( $this->notCategories[$i]->getDBKey() ) }"
+					"c{$currentTableNumber}.cl_to={$dbr->addQuotes( $notCategories[$i]->getDBKey() ) }"
 				)
 			);
 			$tables[] = "$categorylinks AS c$currentTableNumber";
@@ -343,13 +343,13 @@ class GoogleNewsSitemap extends SpecialPage {
 			$currentTableNumber++;
 		}
 
-		if ( $this->params['order'] === 'descending' ) {
+		if ( $params['order'] === 'descending' ) {
 			$sortOrder = 'DESC';
 		} else {
 			$sortOrder = 'ASC';
 		}
 
-		if ( $this->params['orderMethod'] === 'lastedit' ) {
+		if ( $params['orderMethod'] === 'lastedit' ) {
 			$options['ORDER BY'] = 'page_touched ' . $sortOrder;
 		} else {
 			$options['ORDER BY'] = 'c1.cl_timestamp ' . $sortOrder;
@@ -357,53 +357,55 @@ class GoogleNewsSitemap extends SpecialPage {
 
 
 		// earlier validation logic ensures this is a reasonable number
-		$options['LIMIT'] = $this->params['count'];
+		$options['LIMIT'] = $params['count'];
 
 		return $dbr->select( $tables, $fields, $conditions, __METHOD__, $options, $joins );
 	}
 
 	/**
-	 * Parse parameters, populates $this->params
+	 * Parse parameters, populates $params
+	 * @return Array containing the $params, $categories and $notCategories
+	 *   variables that make up the request.
 	 **/
-	public function unload_params() {
+	public function getParams() {
 		global $wgContLang, $wgRequest, $wgGNSMmaxCategories,
 			$wgGNSMmaxResultCount, $wgGNSMfallbackCategory;
 
-		$this->params = array();
+		$params = array();
 
-		$this->categories = $this->getCatRequestArray( 'categories', $wgGNSMfallbackCategory, $wgGNSMmaxCategories );
-		$this->notCategories = $this->getCatRequestArray( 'notcategories', '', $wgGNSMmaxCategories );
+		$categories = $this->getCatRequestArray( 'categories', $wgGNSMfallbackCategory, $wgGNSMmaxCategories );
+		$notCategories = $this->getCatRequestArray( 'notcategories', '', $wgGNSMmaxCategories );
 
-		$this->params['nameSpace'] = $this->getNS( $wgRequest->getVal( 'namespace', 0 ) );
+		$params['nameSpace'] = $this->getNS( $wgRequest->getVal( 'namespace', 0 ) );
 
-		$this->params['count'] = $wgRequest->getInt( 'count', $wgGNSMmaxResultCount );
-		$this->params['hourCount'] = $wgRequest->getInt( 'hourcount', -1 );
+		$params['count'] = $wgRequest->getInt( 'count', $wgGNSMmaxResultCount );
+		$params['hourCount'] = $wgRequest->getInt( 'hourcount', -1 );
 
-		if ( ( $this->params['count'] > $wgGNSMmaxResultCount )
-				|| ( $this->params['count'] < 1 ) )
+		if ( ( $params['count'] > $wgGNSMmaxResultCount )
+				|| ( $params['count'] < 1 ) )
 		{
-			$this->params['count'] = $wgGNSMmaxResultCount;
+			$params['count'] = $wgGNSMmaxResultCount;
 		}
 
-		$this->params['order'] = $wgRequest->getVal( 'order', 'descending' );
-		$this->params['orderMethod'] = $wgRequest->getVal( 'ordermethod', 'categoryadd' );
-		$this->params['redirects'] = $wgRequest->getVal( 'redirects', 'exclude' );
-		$this->params['stable'] = $wgRequest->getVal( 'stable', 'only' );
-		$this->params['quality'] = $wgRequest->getVal( 'qualitypages', 'only' );
-		$this->params['feed'] = $wgRequest->getVal( 'feed', 'sitemap' );
+		$params['order'] = $wgRequest->getVal( 'order', 'descending' );
+		$params['orderMethod'] = $wgRequest->getVal( 'ordermethod', 'categoryadd' );
+		$params['redirects'] = $wgRequest->getVal( 'redirects', 'exclude' );
+		$params['stable'] = $wgRequest->getVal( 'stable', 'only' );
+		$params['quality'] = $wgRequest->getVal( 'qualitypages', 'only' );
+		$params['feed'] = $wgRequest->getVal( 'feed', 'sitemap' );
 
-		$this->params['catCount'] = count( $this->categories );
-		$this->params['notCatCount'] = count( $this->notCategories );
-		$totalCatCount = $this->params['catCount'] + $this->params['notCatCount'];
+		$params['catCount'] = count( $categories );
+		$params['notCatCount'] = count( $notCategories );
+		$totalCatCount = $params['catCount'] + $params['notCatCount'];
 
-		if ( $this->params['catCount'] < 1 ) {
+		if ( $params['catCount'] < 1 ) {
 			// Always require at least one include category.
 			// Without an include category, cl_timestamp will be null.
 			// Which will probably manifest as a weird bug.
 			$fallBack = Title::newFromText( $wgGNSMfallbackCategory, NS_CATEGORY );
 			if ( $fallBack ) {
-				$this->categories[] = $fallBack;
-				$this->params['catCount'] = count( $this->categories );
+				$categories[] = $fallBack;
+				$params['catCount'] = count( $categories );
 			} else {
 				throw new MWException( 'Default fallback category ($wgGNSMfallbackCategory) is not a valid title!' );
 			}
@@ -411,8 +413,9 @@ class GoogleNewsSitemap extends SpecialPage {
 
 		if ( $totalCatCount > $wgGNSMmaxCategories ) {
 			// Causes a 500 error later on.
-			$this->params['error'] = htmlspecialchars( wfMsg( 'googlenewssitemap_toomanycats' ) );
+			$params['error'] = htmlspecialchars( wfMsg( 'googlenewssitemap_toomanycats' ) );
 		}
+		return array( $params, $categories, $notCategories );
 	}
 	/**
 	 * Decode the namespace url parameter.
