@@ -260,8 +260,8 @@ class GoogleNewsSitemap extends SpecialPage {
 		$fields = array( 'page_namespace', 'page_title', 'page_id', 'c1.cl_timestamp' );
 		$conditions = array();
 
-		if ( $params['nameSpace'] !== false ) {
-			$conditions['page_namespace'] = $params['nameSpace'];
+		if ( $params['namespace'] !== false ) {
+			$conditions['page_namespace'] = $params['namespace'];
 		}
 
 		// If flagged revisions is in use, check which options selected.
@@ -376,7 +376,7 @@ class GoogleNewsSitemap extends SpecialPage {
 		$categories = $this->getCatRequestArray( 'categories', $wgGNSMfallbackCategory, $wgGNSMmaxCategories );
 		$notCategories = $this->getCatRequestArray( 'notcategories', '', $wgGNSMmaxCategories );
 
-		$params['nameSpace'] = $this->getNS( $wgRequest->getVal( 'namespace', 0 ) );
+		$params['namespace'] = $this->getNS( $wgRequest->getVal( 'namespace', 0 ) );
 
 		$params['count'] = $wgRequest->getInt( 'count', $wgGNSMmaxResultCount );
 		$params['hourCount'] = $wgRequest->getInt( 'hourcount', -1 );
