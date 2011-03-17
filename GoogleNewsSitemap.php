@@ -70,3 +70,8 @@ $wgAutoloadClasses['SitemapFeed'] = $dir . 'SitemapFeed.php';
 $wgSpecialPages['GoogleNewsSitemap'] = 'GoogleNewsSitemap';
 $wgFeedClasses['sitemap'] = 'SitemapFeed';
 
+// Configuration options:
+$wgGNSMmaxCategories = 6;   // Maximum number of categories to look for
+$wgGNSMmaxResultCount = 50; // Maximum number of results to allow
+$wgGNSMfallbackCategory = 'Published'; // Fallback category if no categories are specified.
+

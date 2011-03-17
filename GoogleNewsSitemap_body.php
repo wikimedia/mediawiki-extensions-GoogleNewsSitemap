@@ -14,7 +14,7 @@ if ( !defined( 'MEDIAWIKI' ) ) die();
  *	  * categories = string ; default = Published
  *	  * notcategories = string ; default = null
  *	  * namespace = string ; default = null
- *	  * count = integer ; default = $wgDPLmaxResultCount = 50
+ *	  * count = integer ; default = $wgGNSMmaxResultCount = 50
  *	  * hourcont = integer ; default -1 (disabled), how many hours before cutoff
  *	  * order = string ; default = descending
  *	  * ordermethod = string ; default = categoryadd
@@ -26,15 +26,6 @@ if ( !defined( 'MEDIAWIKI' ) ) die();
 
 class GoogleNewsSitemap extends SpecialPage {
 
-	/**
-	 * Script default values - correctly spelt, naming standard.
-	 * @todo These should be configurable. Perhaps be $wg globals (?)
-	 **/
-	var $wgDPlminCategories = 1;   // Minimum number of categories to look for
-	var $wgDPlmaxCategories = 6;   // Maximum number of categories to look for
-	var $wgDPLmaxResultCount = 50; // Maximum number of results to allow
-
-	var $fallbackCategory = 'Published';
 	var $maxCacheTime = 43200; // 12 hours. Chosen rather arbitrarily for now. Might want to tweak.
 
 	/**
@@ -373,22 +364,23 @@ class GoogleNewsSitemap extends SpecialPage {
 	 * Parse parameters, populates $this->params
 	 **/
 	public function unload_params() {
-		global $wgContLang, $wgRequest;
+		global $wgContLang, $wgRequest, $wgGNSMmaxCategories,
+			$wgGNSMmaxResultCount, $wgGNSMfallbackCategory;
 
 		$this->params = array();
 
-		$this->categories = $this->getCatRequestArray( 'categories', $this->fallbackCategory, $this->wgDPlmaxCategories );
-		$this->notCategories = $this->getCatRequestArray( 'notcategories', '', $this->wgDPlmaxCategories );
+		$this->categories = $this->getCatRequestArray( 'categories', $wgGNSMfallbackCategory, $wgGNSMmaxCategories );
+		$this->notCategories = $this->getCatRequestArray( 'notcategories', '', $wgGNSMmaxCategories );
 
 		$this->params['nameSpace'] = $this->getNS( $wgRequest->getVal( 'namespace', 0 ) );
 
-		$this->params['count'] = $wgRequest->getInt( 'count', $this->wgDPLmaxResultCount );
+		$this->params['count'] = $wgRequest->getInt( 'count', $wgGNSMmaxResultCount );
 		$this->params['hourCount'] = $wgRequest->getInt( 'hourcount', -1 );
 
-		if ( ( $this->params['count'] > $this->wgDPLmaxResultCount )
+		if ( ( $this->params['count'] > $wgGNSMmaxResultCount )
 				|| ( $this->params['count'] < 1 ) )
 		{
-			$this->params['count'] = $this->wgDPLmaxResultCount;
+			$this->params['count'] = $wgGNSMmaxResultCount;
 		}
 
 		$this->params['order'] = $wgRequest->getVal( 'order', 'descending' );
@@ -406,16 +398,16 @@ class GoogleNewsSitemap extends SpecialPage {
 			// Always require at least one include category.
 			// Without an include category, cl_timestamp will be null.
 			// Which will probably manifest as a weird bug.
-			$fallBack = Title::newFromText( $this->fallbackCategory, NS_CATEGORY );
+			$fallBack = Title::newFromText( $wgGNSMfallbackCategory, NS_CATEGORY );
 			if ( $fallBack ) {
 				$this->categories[] = $fallBack;
 				$this->params['catCount'] = count( $this->categories );
 			} else {
-				throw new MWException( "Default fallback category is not a valid title!" );
+				throw new MWException( 'Default fallback category ($wgGNSMfallbackCategory) is not a valid title!' );
 			}
 		}
 
-		if ( $totalCatCount > $this->wgDPlmaxCategories ) {
+		if ( $totalCatCount > $wgGNSMmaxCategories ) {
 			// Causes a 500 error later on.
 			$this->params['error'] = htmlspecialchars( wfMsg( 'googlenewssitemap_toomanycats' ) );
 		}
@@ -458,11 +450,11 @@ class GoogleNewsSitemap extends SpecialPage {
 	}
 
 	/**
-	 * Turn a pipe-seperated list from a url parameter into an array.
+	 * Turn a pipe-separated list from a url parameter into an array.
 	 * Verifying each element would be a valid title in Category namespace.
 	 * @param String $name Parameter to retrieve from web reqeust.
 	 * @param String $default
-	 * @param Integer $max Maximuin size of resulting array.
+	 * @param Integer $max Maximum size of resulting array.
 	 * @return Array of Title objects. The Titles passed in the parameter $name.
 	 */
 	private function getCatRequestArray( $name, $default, $max ) {
@@ -485,7 +477,7 @@ class GoogleNewsSitemap extends SpecialPage {
 	 * to map local categories to Google News Keywords.
 	 * @see http://www.google.com/support/news_pub/bin/answer.py?answer=116037
 	 * @param Title $title
-	 * @return string Comma seperated list of keywords
+	 * @return String Comma separated list of keywords
 	 */
 	function getKeywords ( $title ) {
 		$cats = $title->getParentCategories();
