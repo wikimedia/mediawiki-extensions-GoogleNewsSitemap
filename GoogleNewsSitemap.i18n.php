@@ -229,10 +229,7 @@ $messages['gsw'] = array(
 	'googlenewssitemap' => 'Google Nejigkeite Sytenibersicht',
 	'googlenewssitemap-desc' => 'Liferet e Atom/RSS-feed as Google Nejigkeite Sytenibersicht',
 	'googlenewssitemap_toomanycats' => 'Fähler: z vil Kategorie!',
-	'googlenewssitemap_toofewcats' => 'Fähler: z wenig Kategorie!',
-	'googlenewssitemap_noresults' => 'Fähler: kei Ergebnis!',
-	'googlenewssitemap_noincludecats' => 'Fähler: muesch zmindescht ei Kategorii aagee oder e Namensruum feschtlege!',
-	'googlenewssitemap_badfeedobject' => 'Fähler: $feed isch kei Objäkt!',
+	'googlenewssitemap_feedtitle' => '$1 {{SITENAME}} $2-Feed.',
 );
 
 /** Hebrew (עברית)
