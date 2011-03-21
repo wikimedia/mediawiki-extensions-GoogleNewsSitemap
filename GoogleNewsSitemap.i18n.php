@@ -422,10 +422,7 @@ $messages['pt'] = array(
 	'googlenewssitemap' => 'Google News Sitemap',
 	'googlenewssitemap-desc' => 'Converte um feed Atom/RSS para um Google News Sitemap',
 	'googlenewssitemap_toomanycats' => 'Erro: Categorias a mais!',
-	'googlenewssitemap_toofewcats' => 'Erro: Categorias a menos!',
-	'googlenewssitemap_noresults' => 'Erro: Não há resultados!',
-	'googlenewssitemap_noincludecats' => 'Erro: Tem de incluir pelo menos uma categoria, ou especificar um espaço nominal!',
-	'googlenewssitemap_badfeedobject' => '$feed não é um objecto.',
+	'googlenewssitemap_feedtitle' => 'Feed $2 da {{SITENAME}} em $1.',
 );
 
 /** Brazilian Portuguese (Português do Brasil)
@@ -519,10 +516,7 @@ $messages['tl'] = array(
 	'googlenewssitemap' => 'Mapang Pangsityo ng Balitang Google',
 	'googlenewssitemap-desc' => 'Naglalabas ng pakaing Atom/RSS bilang Mapa sa Sityo ng Balitang Google',
 	'googlenewssitemap_toomanycats' => 'Mali: Napakaraming mga kategorya!',
-	'googlenewssitemap_toofewcats' => 'Mali: Napakakaunting mga kategorya!',
-	'googlenewssitemap_noresults' => 'Mali: Walang mga resulta!',
-	'googlenewssitemap_noincludecats' => 'Mali: Kailangan mong magsama ng kahit na isang kategorya, o tumukoy ng isang puwang na pampangalan!',
-	'googlenewssitemap_badfeedobject' => 'Ang $feed ay hindi isang bagay.',
+	'googlenewssitemap_feedtitle' => '$1 na {{SITENAME}} $2 na pakain.',
 );
 
 /** Turkish (Türkçe)
