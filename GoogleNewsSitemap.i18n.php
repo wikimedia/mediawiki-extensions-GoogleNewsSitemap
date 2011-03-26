@@ -332,10 +332,7 @@ $messages['lb'] = array(
 	'googlenewssitemap' => 'Google News Plang vum Site',
 	'googlenewssitemap-desc' => 'Produzéiert en Atom/RSS feed als Google News Sitemap',
 	'googlenewssitemap_toomanycats' => 'Feeler: Zevill Kategorien!',
-	'googlenewssitemap_toofewcats' => 'Feeler: Ze wéineg Kategorien!',
-	'googlenewssitemap_noresults' => 'Feeler: Keng Resultater!',
-	'googlenewssitemap_noincludecats' => 'Feeler: Dir musst mindestens eng Kategorie oder een Nummraum drasetzen!',
-	'googlenewssitemap_badfeedobject' => '$feed ass keen Objet.',
+	'googlenewssitemap_feedtitle' => '$1 {{SITENAME}} $2-Feed.',
 );
 
 /** Macedonian (Македонски)
