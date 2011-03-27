@@ -94,10 +94,7 @@ $messages['bs'] = array(
 	'googlenewssitemap' => 'Google News mapa stranice',
 	'googlenewssitemap-desc' => 'Daje izlaz atom/RSS fida kao Google News mapa stranice',
 	'googlenewssitemap_toomanycats' => 'Greška: Previše kategorija!',
-	'googlenewssitemap_toofewcats' => 'Greška: Premalo kategorija!',
-	'googlenewssitemap_noresults' => 'Greška: Nema rezultata!',
-	'googlenewssitemap_noincludecats' => 'Greška: Morate uključiti najmanje jednu kategoriju ili navesti imenski prostor!',
-	'googlenewssitemap_badfeedobject' => '$feed nije objekat.',
+	'googlenewssitemap_feedtitle' => '$1 {{SITENAME}} $2 fid.',
 );
 
 /** Catalan (Català)
