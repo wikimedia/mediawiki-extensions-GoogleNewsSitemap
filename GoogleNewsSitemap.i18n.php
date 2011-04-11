@@ -81,10 +81,7 @@ $messages['br'] = array(
 	'googlenewssitemap' => "Steuñvenn lec'hienn Keleier Google",
 	'googlenewssitemap-desc' => "Krouiñ a ra ul lanvad Atom/RSS evel steuñvenn ul lec'hienn Keleier Google",
 	'googlenewssitemap_toomanycats' => 'Fazi : Re a rummadoù !',
-	'googlenewssitemap_toofewcats' => 'Fazi : Re nebeut a rummadoù !',
-	'googlenewssitemap_noresults' => "Fazi : Disoc'h ebet !",
-	'googlenewssitemap_noincludecats' => "Fazi : Ret eo deoc'h merkañ ur rummad da nebeutañ, pe spisaat un esaouenn anv!",
-	'googlenewssitemap_badfeedobject' => '$feed n\'eo ket un draezenn.',
+	'googlenewssitemap_feedtitle' => 'Lanvad roadennoù $2 eus {{SITENAME}} e $1.',
 );
 
 /** Bosnian (Bosanski)
