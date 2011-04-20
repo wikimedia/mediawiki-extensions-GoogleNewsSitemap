@@ -496,7 +496,7 @@ class GoogleNewsSitemap extends SpecialPage {
 	 * @param Title $title
 	 * @return Array of String: list of keywords
 	 */
-	function getKeywords ( $title ) {
+	public function getKeywords ( $title ) {
 		$cats = $title->getParentCategories();
 		$res = array();
 
