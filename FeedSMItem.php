@@ -11,6 +11,11 @@ class FeedSMItem extends FeedItem {
 	private $keywords = array();
 
 	/**
+	 * @var Title
+	 */
+	private $title;
+
+	/**
 	 * @param Title $title Title object that this entry is for.
 	 * @param String $pubDate Publish date formattable by wfTimestamp.
 	 * @param Array $keywords list of (String) keywords
@@ -38,10 +43,11 @@ class FeedSMItem extends FeedItem {
 			}
 		}
 
+		$this->title = $title;
+		$this->keywords = $keywords;
+
 		parent::__construct( $title->getText(), '' /* Description */,
 			$title->getFullUrl(), $pubDate, '' /* Author */, $commentsURL  );
-
-		$this->keywords = $keywords;
 	}
 
 	/**
@@ -59,6 +65,10 @@ class FeedSMItem extends FeedItem {
 		}
 		$date = $item->getDate();
 		return new FeedSMItem( $title, $date );
+	}
+
+	public function getLastMod() {
+		return $this->title->getTouched();
 	}
 
 	public function getKeywords() {
@@ -83,7 +93,7 @@ class FeedSMItem extends FeedItem {
 		// but not much worse than the rest of this extension.
 		$req = new FauxRequest( array(
 			'action' => 'parse',
-			'page' => $this->getDBPrefixedTitle(),
+			'page' => $this->title->getPrefixedDBKey(),
 			'prop' => 'text',
 		) );
 		$main = new ApiMain( $req );
