@@ -83,7 +83,7 @@ class GoogleNewsSitemap extends SpecialPage {
 			echo $cached;
 			echo "<!-- From cache: $cacheKey -->";
 		} else {
-			$res = $this->doQuery( $params, $categories, $notCategories );
+			$res = $this->getCategories( $params, $categories, $notCategories );
 			ob_start();
 			$this->makeFeed( $feed, $res );
 			$output = ob_get_contents();
@@ -141,12 +141,12 @@ class GoogleNewsSitemap extends SpecialPage {
 		}
 		return $cached[1];
 	}
+
 	/**
 	 * Actually output a feed.
 	 * @param ChannelFeed $feed Feed object.
 	 * @param $res Result of sql query
 	 */
-
 	private function makeFeed( $feed, $res ) {
 		global $wgGNSMcommentNamespace;
 		$feed->outHeader();
@@ -257,7 +257,7 @@ class GoogleNewsSitemap extends SpecialPage {
 	 * @param Array $param All the parameters except cats/notcats
 	 * @return Result of query.
 	 */
-	public function doQuery( $params, $categories, $notCategories ) {
+	public function getCategories( $params, $categories, $notCategories ) {
 
 		$dbr = wfGetDB( DB_SLAVE );
 
@@ -272,32 +272,7 @@ class GoogleNewsSitemap extends SpecialPage {
 			$conditions['page_namespace'] = $params['namespace'];
 		}
 
-		// If flagged revisions is in use, check which options selected.
-		// FIXME: double check the default options; what should it default to?
-		if ( function_exists( 'efLoadFlaggedRevs' ) ) {
-			$filterSet = array( self::OPT_ONLY, self::OPT_EXCLUDE );
-			# Either involves the same JOIN here...
-			if ( in_array( $params['stable'], $filterSet ) || in_array( $params['quality'], $filterSet ) ) {
-				$joins['flaggedpages'] = array( 'LEFT JOIN', 'page_id = fp_page_id' );
-			}
-
-			switch( $params['stable'] ) {
-				case self::OPT_ONLY:
-					$conditions[] = 'fp_stable IS NOT NULL ';
-					break;
-				case self::OPT_EXCLUDE:
-					$conditions['fp_stable'] = null;
-					break;
-			}
-			switch( $params['quality'] ) {
-				case self::OPT_ONLY:
-					$conditions[] = 'fp_quality >= 1';
-					break;
-				case self::OPT_EXCLUDE:
-					$conditions['fp_quality'] = 0;
-					break;
-			}
-		}
+		wfRunHooks('GoogleNewsSitemap::Query', array($params, &$joins, &$conditions));
 
 		switch ( $params['redirects'] ) {
 			case self::OPT_ONLY:
