@@ -24,7 +24,7 @@ class FeedSMItem extends FeedItem {
 	 *   False for none
 	 *   An integer for the page name of $title in the specific namespace denoted by that integer.
 	 */
-	function __construct( $title, $pubDate, $keywords = '', $comment = true ) {
+	public function __construct( $title, $pubDate, $keywords = '', $comment = true ) {
 
 		if ( !$title ) {
 			// Paranoia
@@ -56,7 +56,7 @@ class FeedSMItem extends FeedItem {
 	 * @param FeedItem Original item.
 	 * @return FeedSMItem Converted item.
 	 */
-	static function newFromFeedItem( FeedItem $item ) {
+	static public function newFromFeedItem( FeedItem $item ) {
 		// FIXME: This is borked (esp. on history), but better than a fatal (not by much).
 		// maybe try and get title from url?
 		$title = Title::newFromText( $item->getTitle() );

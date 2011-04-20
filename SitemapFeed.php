@@ -20,7 +20,7 @@ class SitemapFeed extends ChannelFeed {
 	 * on say what code zh gets.
 	 * @param String $lang Language code (like en)
 	 */
-	function setPublicationLang( $lang ) {
+	public function setPublicationLang( $lang ) {
 		$this->publicationLang = $lang;
 	}
 
@@ -30,7 +30,7 @@ class SitemapFeed extends ChannelFeed {
 	 * name then $wgSitename.
 	 * @param String $name The name of the publication
 	 */
-	function setPublicationName( $name ) {
+	public function setPublicationName( $name ) {
 		$this->publicationName = $name;
 	}
 
@@ -41,7 +41,7 @@ class SitemapFeed extends ChannelFeed {
 	/**
 	 * Output feed headers.
 	 */
-	function outHeader() {
+	public function outHeader() {
 		$this->httpHeaders();
 
 		$this->writer->openURI( 'php://output' );
@@ -56,7 +56,7 @@ class SitemapFeed extends ChannelFeed {
 	 * Output a SiteMap 0.9 item
 	 * @param FeedSMItem $item to be output
 	 */
-	function outItem( $item ) {
+	public function outItem( $item ) {
 
 		if ( !( $item instanceof FeedItem ) ) {
 			throw new MWException( "Requires a FeedItem or subclass." );
@@ -108,7 +108,7 @@ class SitemapFeed extends ChannelFeed {
 	/**
 	 * Output SiteMap 0.9 footer
 	 */
-	function outFooter() {
+	public function outFooter() {
 		$this->writer->endDocument();
 		$this->writer->flush();
 	}
