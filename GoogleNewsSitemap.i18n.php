@@ -368,9 +368,7 @@ $messages['no'] = array(
 	'googlenewssitemap' => 'Nettstedskart for Google News',
 	'googlenewssitemap-desc' => 'Gir ut en Atom/RSS-mating som et nettstedskart for Google News',
 	'googlenewssitemap_toomanycats' => 'Feil: For mange kategorier!',
-	'googlenewssitemap_toofewcats' => 'Feil: For få kategorier!',
-	'googlenewssitemap_noresults' => 'Feil: Ingen resultat!',
-	'googlenewssitemap_noincludecats' => 'Feil: Du må inkludere minst én kategori eller oppgi et navnerom!',
+	'googlenewssitemap_feedtitle' => '$1 {{SITENAME}} $2-mating.',
 );
 
 /** Occitan (Occitan)
