@@ -278,10 +278,7 @@ $messages['id'] = array(
 	'googlenewssitemap' => 'Petasitus Baru Google',
 	'googlenewssitemap-desc' => 'Hasil dari Atom/RSS feed sebagai Petasitus Baru Google',
 	'googlenewssitemap_toomanycats' => 'Kesalahan: Terlalu banyak kategori!',
-	'googlenewssitemap_toofewcats' => 'Kesalahan: Terlalu sedikit kategori!',
-	'googlenewssitemap_noresults' => 'Kesalahan: Tidak ada hasil!',
-	'googlenewssitemap_noincludecats' => 'Kesalahan: Anda perlu mencantumkan paling sedikit satu kategori, atau menyebutkan satu ruang nama!',
-	'googlenewssitemap_badfeedobject' => '$feed bukan suatu objek.',
+	'googlenewssitemap_feedtitle' => 'Umpan $2 $1 {{SITENAME}}.',
 );
 
 /** Italian (Italiano)
@@ -445,6 +442,16 @@ $messages['ru'] = array(
 	'googlenewssitemap-desc' => 'Подготавливает канал Atom/RSS в виде карты сайта для Google News',
 	'googlenewssitemap_toomanycats' => 'Ошибка. Слишком много категорий!',
 	'googlenewssitemap_feedtitle' => '{{SITENAME}}. $1 $2 канал.',
+);
+
+/** Slovenian (Slovenščina)
+ * @author Dbc334
+ */
+$messages['sl'] = array(
+	'googlenewssitemap' => 'Zemljevid strani Google News',
+	'googlenewssitemap-desc' => 'Izpiše vir Atom/RSS kot zemljevid strani Google News',
+	'googlenewssitemap_toomanycats' => 'Napaka: Preveč kategorij!',
+	'googlenewssitemap_feedtitle' => 'Vir $1 {{SITENAME}} $2.',
 );
 
 /** Serbian Cyrillic ekavian (‪Српски (ћирилица)‬)
