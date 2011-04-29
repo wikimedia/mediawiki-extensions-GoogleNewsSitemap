@@ -43,7 +43,8 @@ class GoogleNewsSitemap extends SpecialPage {
 	 * main()
 	 **/
 	public function execute( $par ) {
-		global $wgContLang, $wgSitename, $wgFeedClasses, $wgLanguageCode, $wgMemc;
+		global $wgContLang, $wgSitename, $wgFeedClasses,
+			$wgLanguageCode, $wgMemc, $wgOut, $wgGNSMsmaxage;
 
 		list( $params, $categories, $notCategories ) = $this->getParams();
 
@@ -70,6 +71,8 @@ class GoogleNewsSitemap extends SpecialPage {
 			// So nothing else to do at this point
 			return;
 		}
+
+		$wgOut->setSquidMaxage( $wgGNSMsmaxage );
 
 		$cacheInvalidationInfo = $this->getCacheInvalidationInfo( $params,
 			$categories, $notCategories );

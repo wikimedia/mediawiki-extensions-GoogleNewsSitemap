@@ -73,7 +73,14 @@ $wgFeedClasses['sitemap'] = 'SitemapFeed';
 // Configuration options:
 $wgGNSMmaxCategories = 6;   // Maximum number of categories to look for
 $wgGNSMmaxResultCount = 50; // Maximum number of results to allow
-$wgGNSMfallbackCategory = 'Published'; // Fallback category if no categories are specified.
+
+// Fallback category if no categories are specified.
+$wgGNSMfallbackCategory = 'Published';
+
+// How long to put in squid cache. Note also cached using wgMemc (for 12 hours),
+// but the wgMemc entries are checked to see if they are still relevant, where
+// the squid cache is not checked. So this should be a small number.
+$wgGNSMsmaxage = 1800; // = 30 minutes
 
 // $wgGNSMcommentNamespace can be false to mean do not include a <comments> element in the feeds,
 // or it can be true, to mean use the talk page of the relevent page as the comments page
