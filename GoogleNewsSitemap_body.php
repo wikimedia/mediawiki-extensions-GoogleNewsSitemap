@@ -43,7 +43,7 @@ class GoogleNewsSitemap extends SpecialPage {
 	 * main()
 	 **/
 	public function execute( $par ) {
-		global $wgContLang, $wgSitename, $wgFeedClasses,
+		global $wgContLang, $wgFeedClasses,
 			$wgLanguageCode, $wgMemc, $wgOut, $wgGNSMsmaxage;
 
 		list( $params, $categories, $notCategories ) = $this->getParams();
