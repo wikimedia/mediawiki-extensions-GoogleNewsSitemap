@@ -275,20 +275,20 @@ class GoogleNewsSitemap extends SpecialPage {
 			$conditions['page_namespace'] = $params['namespace'];
 		}
 
+		$joins = array();
 		wfRunHooks('GoogleNewsSitemap::Query', array($params, &$joins, &$conditions));
 
 		switch ( $params['redirects'] ) {
 			case self::OPT_ONLY:
 				$conditions['page_is_redirect'] = 1;
-			break;
+				break;
 			case self::OPT_EXCLUDE:
 				$conditions['page_is_redirect'] = 0;
-			break;
+				break;
 		}
 
 		if ( $params['hourCount'] > 0
-			&& $params['orderMethod'] !== 'lastedit' )
-		{
+			&& $params['orderMethod'] !== 'lastedit' ) {
 			// Limit to last X number of hours added to category,
 			// if hourcont is positive and we're sorting by
 			// category add date.
@@ -341,7 +341,6 @@ class GoogleNewsSitemap extends SpecialPage {
 			$options['ORDER BY'] = 'c1.cl_timestamp ' . $sortOrder;
 		}
 
-
 		// earlier validation logic ensures this is a reasonable number
 		$options['LIMIT'] = $params['count'];
 
@@ -354,7 +353,7 @@ class GoogleNewsSitemap extends SpecialPage {
 	 *   variables that make up the request.
 	 **/
 	public function getParams() {
-		global $wgContLang, $wgRequest, $wgGNSMmaxCategories,
+		global $wgRequest, $wgGNSMmaxCategories,
 			$wgGNSMmaxResultCount, $wgGNSMfallbackCategory;
 
 		$params = array();
@@ -368,8 +367,7 @@ class GoogleNewsSitemap extends SpecialPage {
 		$params['hourCount'] = $wgRequest->getInt( 'hourcount', -1 );
 
 		if ( ( $params['count'] > $wgGNSMmaxResultCount )
-				|| ( $params['count'] < 1 ) )
-		{
+				|| ( $params['count'] < 1 ) ) {
 			$params['count'] = $wgGNSMmaxResultCount;
 		}
 
