@@ -13,14 +13,14 @@ if ( !defined( 'MEDIAWIKI' ) ) die();
  * Parameters
  *	  * categories = string ; default = Published
  *	  * notcategories = string ; default = null
- *	  * namespace = string ; default = null
+ *	  * namespace = string ; default = 0 (main)
  *	  * count = integer ; default = $wgGNSMmaxResultCount = 50
  *	  * hourcont = integer ; default -1 (disabled), how many hours before cutoff
  *	  * order = string ; default = descending
  *	  * ordermethod = string ; default = categoryadd
  *	  * redirects = string ; default = exclude
- *	  * stablepages = string ; default = null
- *	  * qualitypages = string ; default = null
+ *	  * stablepages = string ; default = only
+ *	  * qualitypages = string ; default = include
  *	  * feed = string ; default = sitemap
  **/
 
@@ -375,8 +375,8 @@ class GoogleNewsSitemap extends SpecialPage {
 		$params['orderMethod'] = $wgRequest->getVal( 'ordermethod', 'categoryadd' );
 
 		$params['redirects'] = $this->getIEOVal( 'redirects', self::OPT_EXCLUDE );
-		$params['stable'] = $this->getIEOVal( 'stable', self::OPT_ONLY );
-		$params['quality'] = $this->getIEOVal( 'qualitypages', self::OPT_ONLY );
+		$params['stable'] = $this->getIEOVal( 'stablepages', self::OPT_ONLY );
+		$params['quality'] = $this->getIEOVal( 'qualitypages', self::OPT_INCLUDE );
 
 		// feed parameter is validated later in the execute method.
 		$params['feed'] = $wgRequest->getVal( 'feed', 'sitemap' );
