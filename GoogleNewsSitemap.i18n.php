@@ -72,6 +72,15 @@ $messages['bg'] = array(
 	'googlenewssitemap_noresults' => 'Грешка: Няма резултати!',
 );
 
+/** Bengali (বাংলা)
+ * @author Wikitanvir
+ */
+$messages['bn'] = array(
+	'googlenewssitemap' => 'গুগল নিউজ সাইটম্যাপ',
+	'googlenewssitemap_toomanycats' => 'ত্রুটি: অনেক বেশি বিষয়শ্রেণী!',
+	'googlenewssitemap_feedtitle' => '$1 {{SITENAME}} $2 ফিড।',
+);
+
 /** Breton (Brezhoneg)
  * @author Fohanno
  * @author Fulup
@@ -107,6 +116,14 @@ $messages['ca'] = array(
 	'googlenewssitemap_noresults' => 'Error: Cap resultat!',
 	'googlenewssitemap_noincludecats' => "Error: Heu d'incloure almenys una categoria o especificar un espai de noms!",
 	'googlenewssitemap_badfeedobject' => '$feed no és un objecte.',
+);
+
+/** Czech (Česky)
+ * @author Jkjk
+ */
+$messages['cs'] = array(
+	'googlenewssitemap' => 'Mapa stránky pro Google News',
+	'googlenewssitemap_toomanycats' => 'Chyba: Příliš mnoho kategorií!',
 );
 
 /** German (Deutsch)
@@ -334,6 +351,16 @@ $messages['mk'] = array(
 	'googlenewssitemap-desc' => 'Дава Atom/RSS канал како план на страницата Google Вести',
 	'googlenewssitemap_toomanycats' => 'Грешка: Премногу категории!',
 	'googlenewssitemap_feedtitle' => '$2-канал на {{SITENAME}} на $1.',
+);
+
+/** Malayalam (മലയാളം)
+ * @author Praveenp
+ */
+$messages['ml'] = array(
+	'googlenewssitemap' => 'ഗൂഗിൾ ന്യൂസ് സൈറ്റ്മാപ്പ്',
+	'googlenewssitemap-desc' => 'ഗൂഗിൾ ന്യൂസ് സൈറ്റ്മാപ്പ് ആറ്റം/ആർ.എസ്.എസ്. ഫീഡായി പുറത്തേയ്ക്ക് നൽകുന്നു',
+	'googlenewssitemap_toomanycats' => 'പിഴവ്: വളരെയധികം വർഗ്ഗങ്ങൾ!',
+	'googlenewssitemap_feedtitle' => '$1 {{SITENAME}} $2 ഫീഡ്.',
 );
 
 /** Dutch (Nederlands)
