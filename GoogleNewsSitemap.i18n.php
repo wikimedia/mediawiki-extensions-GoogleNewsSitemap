@@ -568,6 +568,16 @@ $messages['uk'] = array(
 	'googlenewssitemap_noincludecats' => 'Помилка: Ви повинні включити хоча б одну категорію, або вказати простір імен!',
 );
 
+/** Vietnamese (Tiếng Việt)
+ * @author Minh Nguyen
+ */
+$messages['vi'] = array(
+	'googlenewssitemap' => 'Sơ đồ trang cho Google Tin tức',
+	'googlenewssitemap-desc' => 'Cung cấp nguồn tin Atom/RSS như mọt Sơ đồ trang Web dành cho Google Tin tức',
+	'googlenewssitemap_toomanycats' => 'Lỗi: Quá nhiều thể loại!',
+	'googlenewssitemap_feedtitle' => 'Nguồn tin $2 của {{SITENAME}} $1',
+);
+
 /** Simplified Chinese (‪中文(简体)‬)
  * @author Gaoxuewei
  */
