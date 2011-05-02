@@ -270,13 +270,13 @@ class GoogleNewsSitemap extends SpecialPage {
 		// so this can't ever work with uncategorized articles
 		$fields = array( 'page_namespace', 'page_title', 'page_id', 'c1.cl_timestamp' );
 		$conditions = array();
+		$joins = array();
 
 		if ( $params['namespace'] !== false ) {
 			$conditions['page_namespace'] = $params['namespace'];
 		}
 
-		$joins = array();
-		wfRunHooks('GoogleNewsSitemap::Query', array($params, &$joins, &$conditions));
+		wfRunHooks('GoogleNewsSitemap::Query', array($params, &$joins, &$conditions, &$tables));
 
 		switch ( $params['redirects'] ) {
 			case self::OPT_ONLY:
@@ -307,7 +307,6 @@ class GoogleNewsSitemap extends SpecialPage {
 		$currentTableNumber = 1;
 		$categorylinks = $dbr->tableName( 'categorylinks' );
 
-		$joins = array();
 		for ( $i = 0; $i < $params['catCount']; $i++ ) {
 			$joins["$categorylinks AS c$currentTableNumber"] = array( 'INNER JOIN',
 				array( "page_id = c{$currentTableNumber}.cl_from",
