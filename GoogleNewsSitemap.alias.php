@@ -12,7 +12,7 @@ $specialPageAliases = array();
  * @author Amgine
  */
 $specialPageAliases['en'] = array(
-	'GoogleNewsSitemap' => array( 'GoogleNewsSitemap' ),
+	'GoogleNewsSitemap' => array( 'NewsFeed', 'GoogleNewsSitemap' ),
 );
 
 /** Arabic (العربية) */

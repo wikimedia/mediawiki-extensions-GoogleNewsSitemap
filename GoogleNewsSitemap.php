@@ -55,9 +55,10 @@ EOT;
 $wgExtensionCredits['specialpage'][] = array(
 	'path' => __FILE__,
 	'name' => 'GoogleNewsSitemap',
-	'author' => 'Amgine',
+	'author' => array( 'Amgine', '[http://mediawiki.org/wiki/User:Bawolff Brian Wolff]' ),
 	'descriptionmsg' => 'googlenewssitemap-desc',
 	'url' => 'http://www.mediawiki.org/wiki/Extension:GoogleNewsSitemap',
+	'version' => 1,
 );
 
 $dir = dirname( __FILE__ ) . '/';
