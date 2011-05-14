@@ -8,9 +8,7 @@
 
 $specialPageAliases = array();
 
-/** English
- * @author Amgine
- */
+/** English (English) */
 $specialPageAliases['en'] = array(
 	'GoogleNewsSitemap' => array( 'NewsFeed', 'GoogleNewsSitemap' ),
 );
@@ -30,9 +28,14 @@ $specialPageAliases['fa'] = array(
 	'GoogleNewsSitemap' => array( 'نقشه_وب‌گاه_گوگل_نیوز' ),
 );
 
+/** Haitian (Kreyòl ayisyen) */
+$specialPageAliases['ht'] = array(
+	'GoogleNewsSitemap' => array( 'KatSitGoogleNews' ),
+);
+
 /** Hungarian (Magyar) */
 $specialPageAliases['hu'] = array(
-	'GoogleNewsSitemap' => array( 'Google_Hírek_oldaltérkép' ),
+	'GoogleNewsSitemap' => array( 'Google_Hírek-oldaltérkép' ),
 );
 
 /** Interlingua (Interlingua) */
@@ -55,6 +58,11 @@ $specialPageAliases['lad'] = array(
 	'GoogleNewsSitemap' => array( 'Mapa_de_sitio_de_GoogleJhabberes' ),
 );
 
+/** Macedonian (Македонски) */
+$specialPageAliases['mk'] = array(
+	'GoogleNewsSitemap' => array( 'ПланНаМрежМестоGoogleNews' ),
+);
+
 /** Malayalam (മലയാളം) */
 $specialPageAliases['ml'] = array(
 	'GoogleNewsSitemap' => array( 'ഗൂഗിൾ‌‌വാർത്തകൾസൈറ്റ്മാപ്പ്' ),
@@ -68,6 +76,11 @@ $specialPageAliases['no'] = array(
 /** Polish (Polski) */
 $specialPageAliases['pl'] = array(
 	'GoogleNewsSitemap' => array( 'Mapa_strony_dla_Google_News' ),
+);
+
+/** Turkish (Türkçe) */
+$specialPageAliases['tr'] = array(
+	'GoogleNewsSitemap' => array( 'GoogleNewsSiteHaritası' ),
 );
 
 /**
