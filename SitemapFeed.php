@@ -61,6 +61,8 @@ class SitemapFeed extends ChannelFeed {
 		if ( !( $item instanceof FeedItem ) ) {
 			throw new MWException( "Requires a FeedItem or subclass." );
 		}
+
+		wfProfileIn( __METHOD__ );
 		if ( !( $item instanceof FeedSMItem ) ) {
 			$item = FeedSMItem::newFromFeedItem( $item );
 		}
@@ -103,6 +105,7 @@ class SitemapFeed extends ChannelFeed {
 			$this->writer->endElement();
 		}
 		$this->writer->endElement(); // end url
+		wfProfileOut( __METHOD__ );
 	}
 
 	/**

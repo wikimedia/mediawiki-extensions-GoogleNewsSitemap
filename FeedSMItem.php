@@ -89,6 +89,7 @@ class FeedSMItem extends FeedItem {
 	 * @return String
 	 */
 	public function getDescription() {
+		wfProfileIn( __METHOD__ );
 		// This is probably rather inefficient to do for several pages
 		// but not much worse than the rest of this extension.
 		$req = new FauxRequest( array(
@@ -99,13 +100,14 @@ class FeedSMItem extends FeedItem {
 		$main = new ApiMain( $req );
 		$main->execute();
 		$data = $main->getResultData();
+		$result = '';
 		if ( isset( $data['parse']['text']['*'] ) ) {
-			return $this->xmlEncode(
+			$result = $this->xmlEncode(
 				$data['parse']['text']['*']
 			);
-		} else {
-			return '';
 		}
+		wfProfileOut( __METHOD__ );
+		return $result;
 	}
 }
 
