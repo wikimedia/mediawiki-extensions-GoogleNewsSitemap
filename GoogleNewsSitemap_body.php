@@ -2,14 +2,14 @@
 if ( !defined( 'MEDIAWIKI' ) ) die();
 
 /**
- * Class googlenewssitemap creates Atom/RSS feeds for Wikinews
- **
+ * Class GoogleNewsSitemap creates Atom/RSS feeds for Wikinews
+ *
  * Simple feed using Atom/RSS coupled to DynamicPageList category searching.
  *
  * To use: http://wiki.url/Special:GoogleNewsSitemap?[paramter=value][&parameter2=value]&...
  *
  * Implemented parameters are marked with an @
- **
+ *
  * Parameters
  *	  * categories = string ; default = Published
  *	  * notcategories = string ; default = null
@@ -22,7 +22,7 @@ if ( !defined( 'MEDIAWIKI' ) ) die();
  *	  * stablepages = string ; default = only
  *	  * qualitypages = string ; default = include
  *	  * feed = string ; default = sitemap
- **/
+ */
 
 class GoogleNewsSitemap extends SpecialPage {
 
@@ -34,14 +34,14 @@ class GoogleNewsSitemap extends SpecialPage {
 
 	/**
 	 * Constructor
-	 **/
+	 */
 	public function __construct() {
 		parent::__construct( 'GoogleNewsSitemap' );
 	}
 
 	/**
 	 * main()
-	 **/
+	 */
 	public function execute( $par ) {
 		global $wgContLang, $wgFeedClasses,
 			$wgLanguageCode, $wgMemc, $wgOut, $wgGNSMsmaxage;
@@ -50,7 +50,7 @@ class GoogleNewsSitemap extends SpecialPage {
 
 		// if there's an error parsing the params, bail out and return
 		if ( isset( $params['error'] ) ) {
-			wfHttpError( 500, "Internal Server Error", $params['error'] );
+			wfHttpError( 500, 'Internal Server Error', $params['error'] );
 			return;
 		}
 
@@ -63,8 +63,8 @@ class GoogleNewsSitemap extends SpecialPage {
 					$wgContLang->uc( $params['feed'] ),
 					$wgLanguageCode
 				),
-				wfMsgExt( 'tagline', array( 'parsemag', 'content') ),
-				Title::newMainPage()->getFullUrl()
+				wfMsgExt( 'tagline', array( 'parsemag', 'content' ) ),
+				Title::newMainPage()->getFullURL()
 			);
 		} else {
 			// FeedUtils outputs an error if wrong feed type.
@@ -108,13 +108,13 @@ class GoogleNewsSitemap extends SpecialPage {
 	 */
 	private function getCacheKey( $params, $categories, $notCategories ) {
 		global $wgRenderHashAppend;
-		// Note, the implode relies on Title::__toString, which needs php > 5.2
+		// Note, the implode relies on Title::__toString, which needs PHP > 5.2
 		// Which I think is above the minimum we support.
 		$sum = md5( serialize( $params )
-			. implode( "|", $categories ) . "||"
-			. implode( "|", $notCategories )
+			. implode( '|', $categories ) . '||'
+			. implode( '|', $notCategories )
 		);
-		return wfMemcKey( "GNSM", $sum, $wgRenderHashAppend );
+		return wfMemcKey( 'GNSM', $sum, $wgRenderHashAppend );
 	}
 
 	/**
@@ -163,7 +163,7 @@ class GoogleNewsSitemap extends SpecialPage {
 				return;
 			}
 
-			// Fixme: Under what circumstance would cl_timestamp not be set?
+			// @todo FIXME: Under what circumstance would cl_timestamp not be set?
 			// possibly worth an exception if that happens.
 			$pubDate = isset( $row->cl_timestamp ) ? $row->cl_timestamp : wfTimestampNow();
 
@@ -196,7 +196,7 @@ class GoogleNewsSitemap extends SpecialPage {
 	 *
 	 * @return String All the above info concatenated.
 	 */
-	private function getCacheInvalidationInfo ( $params, $categories, $notCategories ) {
+	private function getCacheInvalidationInfo( $params, $categories, $notCategories ) {
 		wfProfileIn( __METHOD__ );
 		$dbr = wfGetDB( DB_SLAVE );
 		$cacheInfo = '';
@@ -212,7 +212,7 @@ class GoogleNewsSitemap extends SpecialPage {
 			$categoriesKey[] = $key;
 			$tsQueries[] = $dbr->selectSQLText(
 				'categorylinks',
-				'MAX(cl_timestamp) as ts',
+				'MAX(cl_timestamp) AS ts',
 				array( 'cl_to' => $key ),
 				__METHOD__
 			);
@@ -245,11 +245,11 @@ class GoogleNewsSitemap extends SpecialPage {
 		// Part 2: cl_timestamp:
 		// TODO: Double check that the order of the result of union queries
 		// is one after another from the order you specified the queries in.
-		$res2 = $dbr->query($dbr->unionQueries( $tsQueries, true ), __METHOD__);
+		$res2 = $dbr->query( $dbr->unionQueries( $tsQueries, true ), __METHOD__ );
 
 		foreach ( $res2 as $row ) {
-			if ( is_null($row->ts) ) {
-				$ts = "empty";
+			if ( is_null( $row->ts ) ) {
+				$ts = 'empty';
 			} else {
 				$ts = wfTimestamp( TS_MW, $row->ts );
 			}
@@ -280,7 +280,7 @@ class GoogleNewsSitemap extends SpecialPage {
 			$conditions['page_namespace'] = $params['namespace'];
 		}
 
-		wfRunHooks('GoogleNewsSitemap::Query', array($params, &$joins, &$conditions, &$tables));
+		wfRunHooks( 'GoogleNewsSitemap::Query', array( $params, &$joins, &$conditions, &$tables ) );
 
 		switch ( $params['redirects'] ) {
 			case self::OPT_ONLY:
@@ -354,7 +354,7 @@ class GoogleNewsSitemap extends SpecialPage {
 	 * Parse parameters, populates $params
 	 * @return Array containing the $params, $categories and $notCategories
 	 *   variables that make up the request.
-	 **/
+	 */
 	public function getParams() {
 		global $wgRequest, $wgGNSMmaxCategories,
 			$wgGNSMmaxResultCount, $wgGNSMfallbackCategory;
@@ -415,7 +415,7 @@ class GoogleNewsSitemap extends SpecialPage {
 	 * @param $default Integer Class constant to return if none match
 	 * @return Integer Class constant corresponding to value.
 	 */
-	private function getIEOVal ( $valName, $default = self::OPT_INCLUDE ) {
+	private function getIEOVal( $valName, $default = self::OPT_INCLUDE ) {
 		global $wgRequest;
 		$val = $wgRequest->getVal( $valName );
 		switch ( $val ) {
@@ -429,12 +429,13 @@ class GoogleNewsSitemap extends SpecialPage {
 				return $default;
 		}
 	}
+
 	/**
-	 * Decode the namespace url parameter.
-	 * @param $ns String Either numeric ns number, ns name, or special value :all:
-	 * @return Mixed Integer or false Namespace number or false for no ns filtering.
+	 * Decode the namespace URL parameter.
+	 * @param $ns String Either numeric NS number, NS name, or special value :all:
+	 * @return Mixed Integer or false Namespace number or false for no NS filtering.
 	 */
-	private function getNS ( $ns ) {
+	private function getNS( $ns ) {
 		global $wgContLang;
 
 		$nsNumb = $wgContLang->getNsIndex( $ns );
@@ -442,7 +443,7 @@ class GoogleNewsSitemap extends SpecialPage {
 		if ( $nsNumb !== false ) {
 			// If they specified something like Talk or Image.
 			return $nsNumb;
-		} else if ( is_numeric( $ns ) ) {
+		} elseif ( is_numeric( $ns ) ) {
 			// If they specified a number.
 			$nsVal = intval( $ns );
 			if ( $nsVal >= 0 && MWNamespace::exists( $nsVal ) ) {
@@ -451,7 +452,7 @@ class GoogleNewsSitemap extends SpecialPage {
 				wfDebug( __METHOD__ . ' Invalid numeric ns number. Using main.' );
 				return 0;
 			}
-		} else if ( $ns === ':all:' ) {
+		} elseif ( $ns === ':all:' ) {
 			// Need someway to denote no namespace filtering,
 			// This seems as good as any since a namespace can't
 			// have colons in it.
@@ -478,7 +479,7 @@ class GoogleNewsSitemap extends SpecialPage {
 		global $wgRequest;
 
 		$value = $wgRequest->getText( $name, $default );
-		$arr = explode( "|", $value, $max + 2 );
+		$arr = explode( '|', $value, $max + 2 );
 		$res = array();
 		foreach ( $arr as $name ) {
 			$catTitle = Title::newFromText( $name, NS_CATEGORY );
@@ -500,7 +501,7 @@ class GoogleNewsSitemap extends SpecialPage {
 	 * @param Title $title
 	 * @return Array of String: list of keywords
 	 */
-	public function getKeywords ( $title ) {
+	public function getKeywords( $title ) {
 		wfProfileIn( __METHOD__ );
 		$cats = $title->getParentCategories();
 		$res = array();

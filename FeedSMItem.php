@@ -3,9 +3,9 @@ if ( !defined( 'MEDIAWIKI' ) ) die();
 
 /**
  * FeedSMItem Class
- **
+ *
  * Base class for basic SiteMap support, for building url containers.
- **/
+ */
 class FeedSMItem extends FeedItem {
 
 	private $keywords = array();
@@ -25,17 +25,16 @@ class FeedSMItem extends FeedItem {
 	 *   An integer for the page name of $title in the specific namespace denoted by that integer.
 	 */
 	public function __construct( $title, $pubDate, $keywords = '', $comment = true ) {
-
 		if ( !$title ) {
 			// Paranoia
-			throw new MWException( "Invalid title object passed to FeedSMItem" );
+			throw new MWException( 'Invalid title object passed to FeedSMItem' );
 		}
 
 		$commentsURL = '';
 		if ( $comment === true ) {
 			// The comment ns is this article's talk namespace.
 			$commentsURL = $title->getTalkPage()->getFullUrl();
-		} else if ( is_int( $comment ) ) {
+		} elseif ( is_int( $comment ) ) {
 			// There's a specific comments namespace.
 			$commentsTitle = Title::makeTitle( $comment, $title->getDBkey() );
 			if ( $commentsTitle ) {
@@ -47,7 +46,7 @@ class FeedSMItem extends FeedItem {
 		$this->keywords = $keywords;
 
 		parent::__construct( $title->getText(), '' /* Description */,
-			$title->getFullUrl(), $pubDate, '' /* Author */, $commentsURL  );
+			$title->getFullURL(), $pubDate, '' /* Author */, $commentsURL  );
 	}
 
 	/**
@@ -56,12 +55,12 @@ class FeedSMItem extends FeedItem {
 	 * @param FeedItem Original item.
 	 * @return FeedSMItem Converted item.
 	 */
-	static public function newFromFeedItem( FeedItem $item ) {
-		// FIXME: This is borked (esp. on history), but better than a fatal (not by much).
+	public static function newFromFeedItem( FeedItem $item ) {
+		// @todo FIXME: This is borked (esp. on history), but better than a fatal (not by much).
 		// maybe try and get title from url?
 		$title = Title::newFromText( $item->getTitle() );
 		if ( !$title ) {
-			throw new MWException( "Error getting title object from string in FeedItem." );
+			throw new MWException( 'Error getting title object from string in FeedItem.' );
 		}
 		$date = $item->getDate();
 		return new FeedSMItem( $title, $date );
