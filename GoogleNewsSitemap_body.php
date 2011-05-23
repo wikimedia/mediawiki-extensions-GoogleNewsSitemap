@@ -501,9 +501,9 @@ class GoogleNewsSitemap extends SpecialPage {
 	 * @param Title $title
 	 * @return Array of String: list of keywords
 	 */
-	public function getKeywords( $title ) {
+	public function getKeywords( Title $title ) {
 		wfProfileIn( __METHOD__ );
-		$cats = $title->getParentCategories();
+		$cats = $this->getVisibleCategories( $title );
 		$res = array();
 
 		# the following code is based (stolen) from r56954 of flagged revs.
@@ -520,7 +520,7 @@ class GoogleNewsSitemap extends SpecialPage {
 					if ( !$targetTitle ) {
 						continue;
 					}
-					$target = $targetTitle->getPrefixedDBkey();
+					$target = $targetTitle->getDBkey();
 					$mapTo = trim( $mapping[1] );
 
 					if ( $mapTo === '__MASK__' ) {
@@ -531,7 +531,7 @@ class GoogleNewsSitemap extends SpecialPage {
 				}
 			}
 		}
-		foreach ( $cats as $cat => $val ) {
+		foreach ( $cats as $cat ) {
 			if ( !isset( $catMask[$cat] ) ) {
 				if ( isset( $catMap[$cat] ) ) {
 					// Its mapped.
@@ -545,5 +545,49 @@ class GoogleNewsSitemap extends SpecialPage {
 		}
 		wfProfileOut( __METHOD__ );
 		return $res;
+	}
+
+	/**
+	 * Get all non-hidden categories for a title.
+	 *
+	 * Kind of similar to title::getParentCategories.
+	 *
+	 * @param Title $title Which title to get the categories for.
+	 * @return Array of String's that are the (non-prefixed) db-keys of the cats.
+	 */
+	private function getVisibleCategories ( Title $title ) {
+		$dbr = wfGetDB( DB_SLAVE );
+
+		$where = array(
+			'cl_from' => $title->getArticleID(),
+			'pp_propname' => null
+		);
+
+		$joins = array(
+			'page' => array(
+				'LEFT OUTER JOIN',
+				array( 'page_namespace' => NS_CATEGORY, 'page_title=cl_to' )
+			),
+			'page_props' => array(
+				'LEFT OUTER JOIN',
+				array( 'pp_page=page_id', 'pp_propname' => 'hiddencat' )
+			)
+		);
+
+		$res = $dbr->select(
+			array( 'categorylinks', 'page', 'page_props' ),
+			'cl_to',
+			$where,
+			__METHOD__,
+			array(), /* options */
+			$joins
+		);
+		$finalResult = array();
+		if ( $res !== false ) {
+			foreach( $res as $row ) {
+				$finalResult[] = $row->cl_to;
+			}
+		}
+		return $finalResult;
 	}
 }
