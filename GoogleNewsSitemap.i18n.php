@@ -363,6 +363,16 @@ $messages['ml'] = array(
 	'googlenewssitemap_feedtitle' => '$1 {{SITENAME}} $2 ഫീഡ്.',
 );
 
+/** Malay (Bahasa Melayu)
+ * @author Anakmalaysia
+ */
+$messages['ms'] = array(
+	'googlenewssitemap' => 'Google News Sitemap',
+	'googlenewssitemap-desc' => 'Mengoutput suapan Atom/RSS dalam bentuk Google News Sitemap',
+	'googlenewssitemap_toomanycats' => 'Ralat: Kategori terlalu banyak!',
+	'googlenewssitemap_feedtitle' => 'Suapan {{SITENAME}} $1 ($2)',
+);
+
 /** Dutch (Nederlands)
  * @author McDutchie
  * @author Mihxil
@@ -440,16 +450,14 @@ $messages['pt'] = array(
 
 /** Brazilian Portuguese (Português do Brasil)
  * @author Daemorris
+ * @author Giro720
  * @author Raylton P. Sousa
  */
 $messages['pt-br'] = array(
 	'googlenewssitemap' => 'Mapa de Site de Notícias Google',
 	'googlenewssitemap-desc' => 'Produz um alimentador Atom/RSS como um Mapa de Site de Notícias Google',
 	'googlenewssitemap_toomanycats' => 'Erro: Categorias demais!',
-	'googlenewssitemap_toofewcats' => 'Erro: Categorias de menos!',
-	'googlenewssitemap_noresults' => 'Erro: Sem resultados!',
-	'googlenewssitemap_noincludecats' => 'Erro: Você precisa incluir pelo menos uma categoria, ou especificar um espaço nominal!',
-	'googlenewssitemap_badfeedobject' => '$feed não é um objecto.',
+	'googlenewssitemap_feedtitle' => 'Feed $2 da {{SITENAME}} em $1.',
 );
 
 /** Romanian (Română)
