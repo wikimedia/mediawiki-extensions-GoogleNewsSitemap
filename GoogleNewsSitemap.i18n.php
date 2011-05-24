@@ -223,6 +223,15 @@ $messages['fr'] = array(
 	'googlenewssitemap_feedtitle' => 'Flux de données $2 du {{SITENAME}} en $1.',
 );
 
+/** Franco-Provençal (Arpetan)
+ * @author ChrisPtDe
+ */
+$messages['frp'] = array(
+	'googlenewssitemap' => 'Plan du seto Google News',
+	'googlenewssitemap_toomanycats' => 'Èrror : trop de catègories !',
+	'googlenewssitemap_feedtitle' => 'Flux de balyês $2 du {{SITENAME}} en $1.',
+);
+
 /** Galician (Galego)
  * @author Toliño
  */
