@@ -444,7 +444,7 @@ $messages['pms'] = array(
 	'googlenewssitemap' => 'Pian dël sit dle Neuve ëd Google',
 	'googlenewssitemap-desc' => 'A scriv un fluss Atom/RSS com pian dël Sit ëd le Neuve ëd Google',
 	'googlenewssitemap_toomanycats' => 'Eror: Tròpe categorìe!',
-	'googlenewssitemap_feedtitle' => '$1 {{SITENAME}} $2 feed.',
+	'googlenewssitemap_feedtitle' => 'Fluss $2 ëd {{SITENAME}} an $1.',
 );
 
 /** Portuguese (Português)
