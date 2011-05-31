@@ -120,10 +120,13 @@ $messages['ca'] = array(
 
 /** Czech (Česky)
  * @author Jkjk
+ * @author Mormegil
  */
 $messages['cs'] = array(
 	'googlenewssitemap' => 'Mapa stránky pro Google News',
+	'googlenewssitemap-desc' => 'Vytváří Google News Sitemap podle kanálu Atom/RSS',
 	'googlenewssitemap_toomanycats' => 'Chyba: Příliš mnoho kategorií!',
+	'googlenewssitemap_feedtitle' => '$2 kanál {{grammar:2sg|{{SITENAME}}}} v jazyce $1',
 );
 
 /** German (Deutsch)
