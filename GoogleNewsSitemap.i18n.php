@@ -201,6 +201,16 @@ $messages['eu'] = array(
 	'googlenewssitemap_noincludecats' => 'Errorea: Gutxienez kategoria bat gehitu edo izen bat zehaztu behar duzu!',
 );
 
+/** Persian (فارسی)
+ * @author Mjbmr
+ */
+$messages['fa'] = array(
+	'googlenewssitemap' => 'نقشه وبگاه اخبار گوگل',
+	'googlenewssitemap-desc' => 'خوراک اتم/آراس‌اس همانند نقشه وبگاه اخبار گوگل خروجی می‌دهد',
+	'googlenewssitemap_toomanycats' => 'خطا: تعداد رده‌ها زیاد است!',
+	'googlenewssitemap_feedtitle' => 'خوراک $2 {{SITENAME}} $1.',
+);
+
 /** Finnish (Suomi)
  * @author Centerlink
  * @author Crt
