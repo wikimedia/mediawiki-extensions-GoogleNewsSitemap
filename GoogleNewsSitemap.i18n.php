@@ -491,6 +491,14 @@ $messages['ro'] = array(
 	'googlenewssitemap_noresults' => 'Eroare: Niciun rezultat!',
 );
 
+/** Tarandíne (Tarandíne)
+ * @author Joetaras
+ */
+$messages['roa-tara'] = array(
+	'googlenewssitemap_toomanycats' => 'Errore: Troppe categorije!',
+	'googlenewssitemap_feedtitle' => '$2 feed $1 de {{SITENAME}}.',
+);
+
 /** Russian (Русский)
  * @author Александр Сигачёв
  */
