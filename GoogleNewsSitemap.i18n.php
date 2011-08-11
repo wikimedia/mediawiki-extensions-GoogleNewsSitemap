@@ -618,14 +618,13 @@ $messages['vi'] = array(
 
 /** Simplified Chinese (‪中文(简体)‬)
  * @author Gaoxuewei
+ * @author PhiLiP
  */
 $messages['zh-hans'] = array(
 	'googlenewssitemap' => 'Google 资讯站点地图',
 	'googlenewssitemap-desc' => '输出一个Google 资讯站点地图的Atom/RSS文件',
 	'googlenewssitemap_toomanycats' => '错误：分类过多！',
-	'googlenewssitemap_toofewcats' => '错误：分类过少！',
-	'googlenewssitemap_noresults' => '错误：没有结果！',
-	'googlenewssitemap_noincludecats' => '错误：您需要包含至少一个分类，或者指定一个名称空间！',
+	'googlenewssitemap_feedtitle' => '$1{{SITENAME}}的$2消息来源。',
 );
 
 /** Traditional Chinese (‪中文(繁體)‬)
