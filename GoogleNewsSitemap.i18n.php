@@ -41,9 +41,6 @@ $messages['af'] = array(
 	'googlenewssitemap' => 'Google Nuus Sitemap',
 	'googlenewssitemap-desc' => 'Eksporteer \'n Atom/RSS-voer as \'n Google "News Sitemap"',
 	'googlenewssitemap_toomanycats' => 'Fout: Te veel kategorieë!',
-	'googlenewssitemap_toofewcats' => 'Fout: Te min kategorieë!',
-	'googlenewssitemap_noresults' => 'Fout: Geen resultate!',
-	'googlenewssitemap_noincludecats' => "Fout: U moet ten minste een kategorie insluit, of spesifiseer 'n naamspasie!",
 );
 
 /** Azerbaijani (Azərbaycanca)
@@ -63,13 +60,6 @@ $messages['be-tarask'] = array(
 	'googlenewssitemap-desc' => 'Выводзіць стужкі Atom/RSS у выглядзе мапы сайту Google News',
 	'googlenewssitemap_toomanycats' => 'Памылка: зашмат катэгорыяў!',
 	'googlenewssitemap_feedtitle' => '$1 {{SITENAME}} стужка $2.',
-);
-
-/** Bulgarian (Български)
- * @author DCLXVI
- */
-$messages['bg'] = array(
-	'googlenewssitemap_noresults' => 'Грешка: Няма резултати!',
 );
 
 /** Bengali (বাংলা)
@@ -112,10 +102,6 @@ $messages['ca'] = array(
 	'googlenewssitemap' => 'Mapa del lloc Google News',
 	'googlenewssitemap-desc' => 'Fes sortir un Atom/RSS feed com a Google News Sitemap',
 	'googlenewssitemap_toomanycats' => 'Error: Massa categories!',
-	'googlenewssitemap_toofewcats' => 'Error: Massa poques categories!',
-	'googlenewssitemap_noresults' => 'Error: Cap resultat!',
-	'googlenewssitemap_noincludecats' => "Error: Heu d'incloure almenys una categoria o especificar un espai de noms!",
-	'googlenewssitemap_badfeedobject' => '$feed no és un objecte.',
 );
 
 /** Czech (Česky)
@@ -147,10 +133,6 @@ $messages['dsb'] = array(
 	'googlenewssitemap' => 'Sedłowy pśeglěd Google Nowosći',
 	'googlenewssitemap-desc' => 'Wudawa kanal Atom/RSS ako sedłowy pśeglěd Google Nowosći',
 	'googlenewssitemap_toomanycats' => 'Zmólka: Pśewjele kategorijow!',
-	'googlenewssitemap_toofewcats' => 'Zmólka: Pśemało kategorijow!',
-	'googlenewssitemap_noresults' => 'Zmólka: Žedne wuslědki!',
-	'googlenewssitemap_noincludecats' => 'Zmólka: Musyš nanejmjenjej jadnu kategoriju zapśěgnuś abo mjenjowy rum pódaś!',
-	'googlenewssitemap_badfeedobject' => '$feed njejo objekt.',
 );
 
 /** Greek (Ελληνικά)
@@ -160,9 +142,6 @@ $messages['el'] = array(
 	'googlenewssitemap' => 'Χάρτης Ειδήσεων της Google',
 	'googlenewssitemap-desc' => 'Βγάζει το Χάρτη Ειδήσεων της Google ως Atom/RSS',
 	'googlenewssitemap_toomanycats' => 'Σφάλμα: Υπερβολικά πολλές κατηγορίες!',
-	'googlenewssitemap_toofewcats' => 'Σφάλμα: Υπερβολικά λίγες κατηγορίες!',
-	'googlenewssitemap_noresults' => 'Σφάλμα: Δεν υπάρχουν αποτελέσματα!',
-	'googlenewssitemap_noincludecats' => 'Σφάλμα: Χρειάζεται να συμπεριλάβετε τουλάχιστον μια κατηγορία, ή να προσδιορίσετε μια περιοχή ονομάτων!',
 );
 
 /** Esperanto (Esperanto)
@@ -172,21 +151,17 @@ $messages['eo'] = array(
 	'googlenewssitemap' => 'Retmapo de Google-Aktualaĵoj',
 	'googlenewssitemap-desc' => 'Generas Atom aŭ RSS retfluon kiel Retmapo de Google-Aktualaĵoj',
 	'googlenewssitemap_toomanycats' => 'Eraro: Tro da kategorioj!',
-	'googlenewssitemap_toofewcats' => 'Eraro: Tro malmultaj da kategorioj!',
-	'googlenewssitemap_noresults' => 'Eraro: Neniuj rezultoj!',
-	'googlenewssitemap_noincludecats' => 'Eraro: Vi devas inkluzivi almenaŭ unu kategorio, aŭ specifigu nomspacon!',
 );
 
 /** Spanish (Español)
+ * @author Fitoschido
  * @author Translationista
  */
 $messages['es'] = array(
 	'googlenewssitemap' => 'Mapa del sitio Google Noticias',
-	'googlenewssitemap-desc' => 'Genera una fuenteAtom/RSS como un mapa de sitio de Google Noticias',
+	'googlenewssitemap-desc' => 'Genera una fuente Atom/RSS como un mapa de sitio de Google Noticias',
 	'googlenewssitemap_toomanycats' => 'Error: ¡Demasiadas categorías!',
-	'googlenewssitemap_toofewcats' => 'Error: ¡Muy pocas categorías!',
-	'googlenewssitemap_noresults' => 'Error: ¡No hay resultados!',
-	'googlenewssitemap_noincludecats' => 'Error: ¡Es necesario incluir al menos una categoría o especificar un espacio de nombres!',
+	'googlenewssitemap_feedtitle' => 'Fuente $2 en $1 de {{SITENAME}}.',
 );
 
 /** Basque (Euskara)
@@ -196,9 +171,6 @@ $messages['eu'] = array(
 	'googlenewssitemap' => 'Google News Gunearen mapa',
 	'googlenewssitemap-desc' => 'Atom/RSS iturria zehazten du Google News Gunearen maparentzat',
 	'googlenewssitemap_toomanycats' => 'Errorea: Kategoria gehiegi!',
-	'googlenewssitemap_toofewcats' => 'Errorea: Kategoria gutxiegi!',
-	'googlenewssitemap_noresults' => 'Errorea: Emaitzarik ez!',
-	'googlenewssitemap_noincludecats' => 'Errorea: Gutxienez kategoria bat gehitu edo izen bat zehaztu behar duzu!',
 );
 
 /** Persian (فارسی)
@@ -219,9 +191,6 @@ $messages['fi'] = array(
 	'googlenewssitemap' => 'Google News -sivukartta',
 	'googlenewssitemap-desc' => 'Tulostaa Atom/RSS-syötteen Google-uutissivukarttana',
 	'googlenewssitemap_toomanycats' => 'Virhe: Liian monta luokkaa.',
-	'googlenewssitemap_toofewcats' => 'Virhe: Liian vähän luokkia.',
-	'googlenewssitemap_noresults' => 'Virhe: Ei tuloksia.',
-	'googlenewssitemap_noincludecats' => 'Error: Lisää vähintään yksi luokka tai määritä nimiavaruus.',
 );
 
 /** French (Français)
@@ -293,9 +262,6 @@ $messages['hu'] = array(
 	'googlenewssitemap' => 'Google hírek oldaltérkép',
 	'googlenewssitemap-desc' => 'Atom/RSS hírcsatornát készít Google hírek oldaltérképként',
 	'googlenewssitemap_toomanycats' => 'Hiba: túl sok kategória!',
-	'googlenewssitemap_toofewcats' => 'Hiba: túl kevés kategória!',
-	'googlenewssitemap_noresults' => 'Hiba: nincs találat!',
-	'googlenewssitemap_noincludecats' => 'Hiba: legalább egy kategóriát vagy névteret meg kell adnod!',
 );
 
 /** Interlingua (Interlingua)
@@ -325,9 +291,6 @@ $messages['id'] = array(
  */
 $messages['it'] = array(
 	'googlenewssitemap_toomanycats' => 'Errore: Numero di categorie eccessivo!',
-	'googlenewssitemap_toofewcats' => 'Errore: Troppe poche categorie!',
-	'googlenewssitemap_noresults' => 'Errore: Nessun risultato.',
-	'googlenewssitemap_noincludecats' => 'Errore: È necessario includere almeno una categoria oppure specificare un namespace!',
 );
 
 /** Japanese (日本語)
@@ -339,10 +302,6 @@ $messages['ja'] = array(
 	'googlenewssitemap' => 'Google ニュース サイトマップ',
 	'googlenewssitemap-desc' => 'Google ニュースのサイトマップからAtom/RSSフィードを出力',
 	'googlenewssitemap_toomanycats' => 'エラー:　カテゴリが多すぎです!',
-	'googlenewssitemap_toofewcats' => 'エラー:カテゴリが少なすぎです!',
-	'googlenewssitemap_noresults' => 'エラー:結果はありません!',
-	'googlenewssitemap_noincludecats' => 'エラー：少なくとも1つのカテゴリまたは名前空間を指定する必要があります!',
-	'googlenewssitemap_badfeedobject' => '$feedは変更対象ではありません。',
 );
 
 /** Colognian (Ripoarisch)
@@ -412,9 +371,6 @@ $messages['nl'] = array(
  */
 $messages['nn'] = array(
 	'googlenewssitemap_toomanycats' => 'Feil: For mange kategoriar.',
-	'googlenewssitemap_toofewcats' => 'Feil: For få kategoriar.',
-	'googlenewssitemap_noresults' => 'Feil: Ingen resultat',
-	'googlenewssitemap_noincludecats' => 'Feil: Du lyt inkludera minst éin kategori eller oppgje eit namnerom.',
 );
 
 /** Norwegian (bokmål)‬ (‪Norsk (bokmål)‬)
@@ -434,9 +390,6 @@ $messages['oc'] = array(
 	'googlenewssitemap' => 'Google nòvas Sitemap',
 	'googlenewssitemap-desc' => 'Crèa un Atom o RSS feed coma un plan Sitemap per Google',
 	'googlenewssitemap_toomanycats' => 'Error : Tròp de categorias !',
-	'googlenewssitemap_toofewcats' => 'Error : Pas pro de categorias !',
-	'googlenewssitemap_noresults' => 'Error : Pas cap de resultat !',
-	'googlenewssitemap_noincludecats' => 'Error : Vos cal inclure almens una categoria, o especificar un espaci de noms !',
 );
 
 /** Polish (Polski)
@@ -487,8 +440,6 @@ $messages['pt-br'] = array(
  */
 $messages['ro'] = array(
 	'googlenewssitemap_toomanycats' => 'Eroare: Prea multe categorii!',
-	'googlenewssitemap_toofewcats' => 'Eroare: pre',
-	'googlenewssitemap_noresults' => 'Eroare: Niciun rezultat!',
 );
 
 /** Tarandíne (Tarandíne)
@@ -524,15 +475,11 @@ $messages['sl'] = array(
  */
 $messages['sr-ec'] = array(
 	'googlenewssitemap_toomanycats' => 'Грешка: Превише категорија!',
-	'googlenewssitemap_toofewcats' => 'Грешка: Премало категорија!',
-	'googlenewssitemap_noresults' => 'Грешка: Нема резултата!',
 );
 
 /** Serbian Latin ekavian (‪Srpski (latinica)‬) */
 $messages['sr-el'] = array(
 	'googlenewssitemap_toomanycats' => 'Greška: Previše kategorija!',
-	'googlenewssitemap_toofewcats' => 'Greška: Premalo kategorija!',
-	'googlenewssitemap_noresults' => 'Greška: Nema rezultata!',
 );
 
 /** Swedish (Svenska)
@@ -544,10 +491,6 @@ $messages['sv'] = array(
 	'googlenewssitemap' => 'Webbkarta för Google nyheter',
 	'googlenewssitemap-desc' => 'Visar ett Atom-/RSS-flöde som en webbkarta för Google nyheter',
 	'googlenewssitemap_toomanycats' => 'Fel: För många kategorier!',
-	'googlenewssitemap_toofewcats' => 'Fel: För få kategorier!',
-	'googlenewssitemap_noresults' => 'Fel: Inget resultat!',
-	'googlenewssitemap_noincludecats' => 'Fel: Du måste inkludera minst en kategori eller specificera en namnrymd!',
-	'googlenewssitemap_badfeedobject' => '$feed är inte ett objekt.',
 );
 
 /** Telugu (తెలుగు)
@@ -556,8 +499,6 @@ $messages['sv'] = array(
 $messages['te'] = array(
 	'googlenewssitemap' => 'గూగుల్ వార్తల సైటుపటం',
 	'googlenewssitemap_toomanycats' => 'పొరపాటు: చాలా ఎక్కువ వర్గాలు!',
-	'googlenewssitemap_toofewcats' => 'పొరపాటు: చాలా తక్కువ వర్గాలు!',
-	'googlenewssitemap_noresults' => 'పొరపాటు: ఫలితాలు లేవు!',
 );
 
 /** Thai (ไทย)
@@ -565,9 +506,6 @@ $messages['te'] = array(
  */
 $messages['th'] = array(
 	'googlenewssitemap_toomanycats' => 'เกิดความผิดพลาด: เลือกประเภทมากเกินไป!',
-	'googlenewssitemap_toofewcats' => 'เกิดความผิดพลาด: เลือกประเภทน้อยเกินไป!',
-	'googlenewssitemap_noresults' => 'เกิดความผิดพลาด: ไม่พบข้อมูล!',
-	'googlenewssitemap_noincludecats' => 'เกิดความผิดพลาด: คุณต้องเลือกอย่างน้อยหนึ่งประเภท หรือกำหนด Namespace!',
 );
 
 /** Tagalog (Tagalog)
@@ -588,10 +526,6 @@ $messages['tr'] = array(
 	'googlenewssitemap' => 'Google Haberler Site haritası',
 	'googlenewssitemap-desc' => 'Bir Atom/RSS beslemesini Google Haberler Site haritası olarak çıktılar',
 	'googlenewssitemap_toomanycats' => 'Hata: Çok fazla kategori!',
-	'googlenewssitemap_toofewcats' => 'Hata: Çok az kategori!',
-	'googlenewssitemap_noresults' => 'Hata: Sonuç yok!',
-	'googlenewssitemap_noincludecats' => 'Hata: En az bir kategori girmeli, ya da bir ad alanı belirtmelisiniz!',
-	'googlenewssitemap_badfeedobject' => '$feed bir nesne değil.',
 );
 
 /** Ukrainian (Українська)
@@ -601,9 +535,6 @@ $messages['uk'] = array(
 	'googlenewssitemap' => 'Карта сайту для Google News',
 	'googlenewssitemap-desc' => 'Виводить канал Atom/RSS у вигляді карти сайту для Google News',
 	'googlenewssitemap_toomanycats' => 'Помилка: Надто багато категорій!',
-	'googlenewssitemap_toofewcats' => 'Помилка: Надто мало категорії!',
-	'googlenewssitemap_noresults' => 'Помилка: не знайдено!',
-	'googlenewssitemap_noincludecats' => 'Помилка: Ви повинні включити хоча б одну категорію, або вказати простір імен!',
 );
 
 /** Vietnamese (Tiếng Việt)
@@ -634,8 +565,5 @@ $messages['zh-hant'] = array(
 	'googlenewssitemap' => 'Google 資訊站點地圖',
 	'googlenewssitemap-desc' => '輸出一個 Google 資訊站點地圖的 Atom/RSS 文件',
 	'googlenewssitemap_toomanycats' => '錯誤：分類過多！',
-	'googlenewssitemap_toofewcats' => '錯誤：分類過少！',
-	'googlenewssitemap_noresults' => '錯誤：沒有結果！',
-	'googlenewssitemap_noincludecats' => '錯誤：您需要包含至少一個分類，或者指定一個名稱空間！',
 );
 
