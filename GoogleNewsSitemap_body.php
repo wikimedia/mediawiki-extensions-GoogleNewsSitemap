@@ -56,16 +56,17 @@ class GoogleNewsSitemap extends SpecialPage {
 
 		// Check to make sure that feed type is supported.
 		if ( FeedUtils::checkFeedOutput( $params['feed'] ) ) {
-
-			if ( !wfEmptyMsg( 'feed-' . $params['feed'] ) ) {
+			$msg = wfMessage( 'feed-' . $params['feed'] )->inContentLanguage();
+			if ( $msg->exists() ) {
 				// This seems a little icky since
 				// its re-using another message in a
 				// different context.
 				// uses feed-rss and feed-atom messages.
-				$feedType = wfMsgForContent( 'feed-' . $params['feed'] );
+				$feedType = $msg->toString();
 			} else {
 				$feedType = $wgContLang->uc( $params['feed'] );
 			}
+
 			$feed = new $wgFeedClasses[ $params['feed'] ](
 				wfMsgExt( 'googlenewssitemap_feedtitle',
 					array( 'parsemag', 'content' ),
