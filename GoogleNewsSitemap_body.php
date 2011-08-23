@@ -62,7 +62,7 @@ class GoogleNewsSitemap extends SpecialPage {
 				// its re-using another message in a
 				// different context.
 				// uses feed-rss and feed-atom messages.
-				$feedType = $msg->toString();
+				$feedType = $msg->text();
 			} else {
 				$feedType = $wgContLang->uc( $params['feed'] );
 			}
