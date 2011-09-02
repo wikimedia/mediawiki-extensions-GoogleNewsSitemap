@@ -43,6 +43,16 @@ $messages['af'] = array(
 	'googlenewssitemap_toomanycats' => 'Fout: Te veel kategorieë!',
 );
 
+/** Arabic (العربية)
+ * @author زكريا
+ */
+$messages['ar'] = array(
+	'googlenewssitemap' => 'خريطة موقع أخبار جوجل',
+	'googlenewssitemap-desc' => 'مخرجات تغذية Atom/RSS في Google News Sitemap',
+	'googlenewssitemap_toomanycats' => 'خطأ: تصنيفات كثيرة!',
+	'googlenewssitemap_feedtitle' => 'تغذية $1 {{SITENAME}} $2.',
+);
+
 /** Azerbaijani (Azərbaycanca)
  * @author Wertuose
  */
@@ -436,10 +446,14 @@ $messages['pt-br'] = array(
 );
 
 /** Romanian (Română)
+ * @author Firilacroco
  * @author Stelistcristi
  */
 $messages['ro'] = array(
+	'googlenewssitemap' => 'Planul site-ului Google News',
+	'googlenewssitemap-desc' => 'Creează un flux Atom/RSS ca un plan al site-ului Google News',
 	'googlenewssitemap_toomanycats' => 'Eroare: Prea multe categorii!',
+	'googlenewssitemap_feedtitle' => 'Flux $2 pentru {{SITENAME}} în $1.',
 );
 
 /** Tarandíne (Tarandíne)
