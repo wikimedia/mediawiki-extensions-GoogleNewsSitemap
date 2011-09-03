@@ -544,11 +544,13 @@ $messages['tr'] = array(
 
 /** Ukrainian (Українська)
  * @author Arturyatsko
+ * @author Dim Grits
  */
 $messages['uk'] = array(
 	'googlenewssitemap' => 'Карта сайту для Google News',
 	'googlenewssitemap-desc' => 'Виводить канал Atom/RSS у вигляді карти сайту для Google News',
 	'googlenewssitemap_toomanycats' => 'Помилка: Надто багато категорій!',
+	'googlenewssitemap_feedtitle' => '{{SITENAME}}. $1 $2 канал.',
 );
 
 /** Vietnamese (Tiếng Việt)
