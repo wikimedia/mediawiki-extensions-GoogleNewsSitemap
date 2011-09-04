@@ -125,6 +125,14 @@ $messages['cs'] = array(
 	'googlenewssitemap_feedtitle' => '$2 kanál {{grammar:2sg|{{SITENAME}}}} v jazyce $1',
 );
 
+/** Danish (Dansk)
+ * @author Peter Alberti
+ */
+$messages['da'] = array(
+	'googlenewssitemap_toomanycats' => 'Fejl: For mange kategorier!',
+	'googlenewssitemap_feedtitle' => '$1 {{SITENAME}} $2-nyhedsstrøm.',
+);
+
 /** German (Deutsch)
  * @author Kghbln
  * @author McDutchie
@@ -146,12 +154,14 @@ $messages['dsb'] = array(
 );
 
 /** Greek (Ελληνικά)
+ * @author Glavkos
  * @author Περίεργος
  */
 $messages['el'] = array(
 	'googlenewssitemap' => 'Χάρτης Ειδήσεων της Google',
 	'googlenewssitemap-desc' => 'Βγάζει το Χάρτη Ειδήσεων της Google ως Atom/RSS',
 	'googlenewssitemap_toomanycats' => 'Σφάλμα: Υπερβολικά πολλές κατηγορίες!',
+	'googlenewssitemap_feedtitle' => '$1 {{SITENAME}} $2 ροή.',
 );
 
 /** Esperanto (Esperanto)
@@ -161,6 +171,7 @@ $messages['eo'] = array(
 	'googlenewssitemap' => 'Retmapo de Google-Aktualaĵoj',
 	'googlenewssitemap-desc' => 'Generas Atom aŭ RSS retfluon kiel Retmapo de Google-Aktualaĵoj',
 	'googlenewssitemap_toomanycats' => 'Eraro: Tro da kategorioj!',
+	'googlenewssitemap_feedtitle' => '$1 {{SITENAME}} $2 abonfonto.',
 );
 
 /** Spanish (Español)
@@ -196,11 +207,13 @@ $messages['fa'] = array(
 /** Finnish (Suomi)
  * @author Centerlink
  * @author Crt
+ * @author Olli
  */
 $messages['fi'] = array(
 	'googlenewssitemap' => 'Google News -sivukartta',
 	'googlenewssitemap-desc' => 'Tulostaa Atom/RSS-syötteen Google-uutissivukarttana',
 	'googlenewssitemap_toomanycats' => 'Virhe: Liian monta luokkaa.',
+	'googlenewssitemap_feedtitle' => 'Sivuston {{SITENAME}} $2-syöte ($1)',
 );
 
 /** French (Français)
@@ -220,6 +233,7 @@ $messages['fr'] = array(
  */
 $messages['frp'] = array(
 	'googlenewssitemap' => 'Plan du seto Google News',
+	'googlenewssitemap-desc' => 'Fât un flux de balyês Atom / RSS que ressemble a un plan du seto Google News.',
 	'googlenewssitemap_toomanycats' => 'Èrror : trop de catègories !',
 	'googlenewssitemap_feedtitle' => 'Flux de balyês $2 du {{SITENAME}} en $1.',
 );
@@ -307,11 +321,13 @@ $messages['it'] = array(
  * @author Hosiryuhosi
  * @author Naohiro19
  * @author Ohgi
+ * @author Schu
  */
 $messages['ja'] = array(
 	'googlenewssitemap' => 'Google ニュース サイトマップ',
 	'googlenewssitemap-desc' => 'Google ニュースのサイトマップからAtom/RSSフィードを出力',
 	'googlenewssitemap_toomanycats' => 'エラー:　カテゴリが多すぎです!',
+	'googlenewssitemap_feedtitle' => '$1 {{SITENAME}} $2 フィード。',
 );
 
 /** Colognian (Ripoarisch)
@@ -474,6 +490,16 @@ $messages['ru'] = array(
 	'googlenewssitemap_feedtitle' => '{{SITENAME}}. $1 $2 канал.',
 );
 
+/** Rusyn (Русиньскый)
+ * @author Gazeb
+ */
+$messages['rue'] = array(
+	'googlenewssitemap' => 'Мапа сторінкы про Google News',
+	'googlenewssitemap-desc' => 'Створює Google News Sitemap подля каналу Atom/RSS',
+	'googlenewssitemap_toomanycats' => 'Error: дуже много катеґорій!',
+	'googlenewssitemap_feedtitle' => '{{SITENAME}}. $1 $2 канал.',
+);
+
 /** Slovenian (Slovenščina)
  * @author Dbc334
  */
@@ -505,6 +531,7 @@ $messages['sv'] = array(
 	'googlenewssitemap' => 'Webbkarta för Google nyheter',
 	'googlenewssitemap-desc' => 'Visar ett Atom-/RSS-flöde som en webbkarta för Google nyheter',
 	'googlenewssitemap_toomanycats' => 'Fel: För många kategorier!',
+	'googlenewssitemap_feedtitle' => '$1 {{SITENAME}} $2-flöde.',
 );
 
 /** Telugu (తెలుగు)
