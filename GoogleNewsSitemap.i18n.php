@@ -41,6 +41,7 @@ $messages['af'] = array(
 	'googlenewssitemap' => 'Google Nuus Sitemap',
 	'googlenewssitemap-desc' => 'Eksporteer \'n Atom/RSS-voer as \'n Google "News Sitemap"',
 	'googlenewssitemap_toomanycats' => 'Fout: Te veel kategorieë!',
+	'googlenewssitemap_feedtitle' => '$2-voer van {{SITENAME}} in $1',
 );
 
 /** Arabic (العربية)
@@ -476,6 +477,7 @@ $messages['ro'] = array(
  * @author Joetaras
  */
 $messages['roa-tara'] = array(
+	'googlenewssitemap' => "Mappe d'u site de Google News",
 	'googlenewssitemap_toomanycats' => 'Errore: Troppe categorije!',
 	'googlenewssitemap_feedtitle' => '$2 feed $1 de {{SITENAME}}.',
 );
@@ -602,11 +604,13 @@ $messages['zh-hans'] = array(
 );
 
 /** Traditional Chinese (‪中文(繁體)‬)
+ * @author Anakmalaysia
  * @author Mark85296341
  */
 $messages['zh-hant'] = array(
 	'googlenewssitemap' => 'Google 資訊站點地圖',
 	'googlenewssitemap-desc' => '輸出一個 Google 資訊站點地圖的 Atom/RSS 文件',
 	'googlenewssitemap_toomanycats' => '錯誤：分類過多！',
+	'googlenewssitemap_feedtitle' => '$1{{SITENAME}}的$2消息來源。',
 );
 
