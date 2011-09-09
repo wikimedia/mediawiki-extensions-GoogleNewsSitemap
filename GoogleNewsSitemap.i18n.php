@@ -73,6 +73,13 @@ $messages['be-tarask'] = array(
 	'googlenewssitemap_feedtitle' => '$1 {{SITENAME}} стужка $2.',
 );
 
+/** Bulgarian (Български)
+ * @author Spiritia
+ */
+$messages['bg'] = array(
+	'googlenewssitemap_toomanycats' => 'Грешка: Твърде много категории!',
+);
+
 /** Bengali (বাংলা)
  * @author Wikitanvir
  */
