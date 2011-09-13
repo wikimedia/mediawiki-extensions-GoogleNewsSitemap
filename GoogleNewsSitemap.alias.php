@@ -25,7 +25,7 @@ $specialPageAliases['arz'] = array(
 
 /** Persian (فارسی) */
 $specialPageAliases['fa'] = array(
-	'GoogleNewsSitemap' => array( 'نقشه_وب‌گاه_گوگل_نیوز', 'خوراک_اخبار' ),
+	'GoogleNewsSitemap' => array( 'خوراک_اخبار', 'نقشه_وبگاه_اخبار_گوگل' ),
 );
 
 /** Haitian (Kreyòl ayisyen) */
@@ -66,6 +66,16 @@ $specialPageAliases['mk'] = array(
 /** Malayalam (മലയാളം) */
 $specialPageAliases['ml'] = array(
 	'GoogleNewsSitemap' => array( 'ഗൂഗിൾ‌‌വാർത്തകൾസൈറ്റ്മാപ്പ്' ),
+);
+
+/** Nedersaksisch (Nedersaksisch) */
+$specialPageAliases['nds-nl'] = array(
+	'GoogleNewsSitemap' => array( 'Niejsvoer' ),
+);
+
+/** Dutch (Nederlands) */
+$specialPageAliases['nl'] = array(
+	'GoogleNewsSitemap' => array( 'Nieuwsfeed' ),
 );
 
 /** Norwegian (bokmål)‬ (‪Norsk (bokmål)‬) */
