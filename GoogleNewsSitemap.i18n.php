@@ -206,8 +206,8 @@ $messages['eu'] = array(
  * @author Mjbmr
  */
 $messages['fa'] = array(
-	'googlenewssitemap' => 'نقشه وبگاه اخبار گوگل',
-	'googlenewssitemap-desc' => 'خوراک اتم/آراس‌اس همانند نقشه وبگاه اخبار گوگل خروجی می‌دهد',
+	'googlenewssitemap' => 'نقشه تارنمای اخبار گوگل',
+	'googlenewssitemap-desc' => 'خوراک اتم/آراس‌اس همانند نقشه تارنمای اخبار گوگل خروجی می‌دهد',
 	'googlenewssitemap_toomanycats' => 'خطا: تعداد رده‌ها زیاد است!',
 	'googlenewssitemap_feedtitle' => 'خوراک $2 {{SITENAME}} $1.',
 );
