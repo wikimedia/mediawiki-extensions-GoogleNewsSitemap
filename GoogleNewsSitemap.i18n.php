@@ -519,14 +519,14 @@ $messages['sl'] = array(
 	'googlenewssitemap_feedtitle' => 'Vir $1 {{SITENAME}} $2.',
 );
 
-/** Serbian Cyrillic ekavian (‪Српски (ћирилица)‬)
+/** Serbian (Cyrillic script) (‪Српски (ћирилица)‬)
  * @author Михајло Анђелковић
  */
 $messages['sr-ec'] = array(
 	'googlenewssitemap_toomanycats' => 'Грешка: Превише категорија!',
 );
 
-/** Serbian Latin ekavian (‪Srpski (latinica)‬) */
+/** Serbian (Latin script) (‪Srpski (latinica)‬) */
 $messages['sr-el'] = array(
 	'googlenewssitemap_toomanycats' => 'Greška: Previše kategorija!',
 );
