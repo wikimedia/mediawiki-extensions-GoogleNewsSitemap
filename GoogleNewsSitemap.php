@@ -57,7 +57,7 @@ $wgExtensionCredits['specialpage'][] = array(
 	'name' => 'GoogleNewsSitemap',
 	'author' => array( 'Amgine', '[http://mediawiki.org/wiki/User:Bawolff Brian Wolff]' ),
 	'descriptionmsg' => 'googlenewssitemap-desc',
-	'url' => 'http://www.mediawiki.org/wiki/Extension:GoogleNewsSitemap',
+	'url' => 'https://www.mediawiki.org/wiki/Extension:GoogleNewsSitemap',
 	'version' => 1,
 );
 
