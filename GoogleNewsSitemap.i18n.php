@@ -410,7 +410,7 @@ $messages['nn'] = array(
 /** Norwegian (bokmål)‬ (‪Norsk (bokmål)‬)
  * @author Nghtwlkr
  */
-$messages['no'] = array(
+$messages['nb'] = array(
 	'googlenewssitemap' => 'Nettstedskart for Google News',
 	'googlenewssitemap-desc' => 'Gir ut en Atom/RSS-mating som et nettstedskart for Google News',
 	'googlenewssitemap_toomanycats' => 'Feil: For mange kategorier!',
