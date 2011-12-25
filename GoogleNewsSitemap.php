@@ -63,7 +63,7 @@ $wgExtensionCredits['specialpage'][] = array(
 
 $dir = dirname( __FILE__ ) . '/';
 $wgExtensionMessagesFiles['GoogleNewsSitemap'] = $dir . 'GoogleNewsSitemap.i18n.php';
-$wgExtensionAliasesFiles['GoogleNewsSitemap'] = $dir . 'GoogleNewsSitemap.alias.php';
+$wgExtensionMessagesFiles['GoogleNewsSitemapAlias'] = $dir . 'GoogleNewsSitemap.alias.php';
 $wgAutoloadClasses['GoogleNewsSitemap'] = $dir . 'GoogleNewsSitemap_body.php';
 $wgAutoloadClasses['FeedSMItem'] = $dir . 'FeedSMItem.php';
 $wgAutoloadClasses['SitemapFeed'] = $dir . 'SitemapFeed.php';
