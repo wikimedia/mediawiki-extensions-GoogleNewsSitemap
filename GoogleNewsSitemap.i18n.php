@@ -193,6 +193,13 @@ $messages['es'] = array(
 	'googlenewssitemap_feedtitle' => 'Fuente $2 en $1 de {{SITENAME}}.',
 );
 
+/** Estonian (Eesti)
+ * @author Pikne
+ */
+$messages['et'] = array(
+	'googlenewssitemap_toomanycats' => 'Tõrge: Liiga palju kategooriaid!',
+);
+
 /** Basque (Euskara)
  * @author An13sa
  */
@@ -388,6 +395,16 @@ $messages['ms'] = array(
 	'googlenewssitemap_feedtitle' => 'Suapan {{SITENAME}} $1 ($2)',
 );
 
+/** Norwegian (bokmål)‬ (‪Norsk (bokmål)‬)
+ * @author Nghtwlkr
+ */
+$messages['nb'] = array(
+	'googlenewssitemap' => 'Nettstedskart for Google News',
+	'googlenewssitemap-desc' => 'Gir ut en Atom/RSS-mating som et nettstedskart for Google News',
+	'googlenewssitemap_toomanycats' => 'Feil: For mange kategorier!',
+	'googlenewssitemap_feedtitle' => '$1 {{SITENAME}} $2-mating.',
+);
+
 /** Dutch (Nederlands)
  * @author McDutchie
  * @author Mihxil
@@ -405,16 +422,6 @@ $messages['nl'] = array(
  */
 $messages['nn'] = array(
 	'googlenewssitemap_toomanycats' => 'Feil: For mange kategoriar.',
-);
-
-/** Norwegian (bokmål)‬ (‪Norsk (bokmål)‬)
- * @author Nghtwlkr
- */
-$messages['nb'] = array(
-	'googlenewssitemap' => 'Nettstedskart for Google News',
-	'googlenewssitemap-desc' => 'Gir ut en Atom/RSS-mating som et nettstedskart for Google News',
-	'googlenewssitemap_toomanycats' => 'Feil: For mange kategorier!',
-	'googlenewssitemap_feedtitle' => '$1 {{SITENAME}} $2-mating.',
 );
 
 /** Occitan (Occitan)
