@@ -23,6 +23,11 @@ $specialPageAliases['arz'] = array(
 	'GoogleNewsSitemap' => array( 'خريطة_سايت_اخبار_جوجل' ),
 );
 
+/** German (Deutsch) */
+$specialPageAliases['de'] = array(
+	'GoogleNewsSitemap' => array( 'Nachrichtenfeed', 'Nachrichten-Feed' ),
+);
+
 /** Persian (فارسی) */
 $specialPageAliases['fa'] = array(
 	'GoogleNewsSitemap' => array( 'خوراک_اخبار', 'نقشه_وبگاه_اخبار_گوگل' ),
@@ -68,6 +73,11 @@ $specialPageAliases['ml'] = array(
 	'GoogleNewsSitemap' => array( 'ഗൂഗിൾ‌‌വാർത്തകൾസൈറ്റ്മാപ്പ്' ),
 );
 
+/** Norwegian Bokmål (‪Norsk (bokmål)‬) */
+$specialPageAliases['nb'] = array(
+	'GoogleNewsSitemap' => array( 'Google_nyheter-sidekart' ),
+);
+
 /** Nedersaksisch (Nedersaksisch) */
 $specialPageAliases['nds-nl'] = array(
 	'GoogleNewsSitemap' => array( 'Niejsvoer' ),
@@ -76,11 +86,6 @@ $specialPageAliases['nds-nl'] = array(
 /** Dutch (Nederlands) */
 $specialPageAliases['nl'] = array(
 	'GoogleNewsSitemap' => array( 'Nieuwsfeed' ),
-);
-
-/** Norwegian (bokmål)‬ (‪Norsk (bokmål)‬) */
-$specialPageAliases['nb'] = array(
-	'GoogleNewsSitemap' => array( 'Google_nyheter-sidekart' ),
 );
 
 /** Polish (Polski) */
@@ -92,8 +97,3 @@ $specialPageAliases['pl'] = array(
 $specialPageAliases['tr'] = array(
 	'GoogleNewsSitemap' => array( 'GoogleNewsSiteHaritası' ),
 );
-
-/**
- * For backwards compatibility with MediaWiki 1.15 and earlier.
- */
-$aliases =& $specialPageAliases;
