@@ -327,8 +327,10 @@ $messages['id'] = array(
 
 /** Italian (Italiano)
  * @author Beta16
+ * @author F. Cosoleto
  */
 $messages['it'] = array(
+	'googlenewssitemap-desc' => 'Genera un feed Atom/RSS come Sitemap per Google News',
 	'googlenewssitemap_toomanycats' => 'Errore: Numero di categorie eccessivo!',
 );
 
