@@ -518,6 +518,15 @@ $messages['rue'] = array(
 	'googlenewssitemap_feedtitle' => '{{SITENAME}}. $1 $2 канал.',
 );
 
+/** Sinhala (සිංහල)
+ * @author පසිඳු කාවින්ද
+ */
+$messages['si'] = array(
+	'googlenewssitemap' => 'ගූගල් පුවත් අඩවිසිතියම',
+	'googlenewssitemap_toomanycats' => 'දෝෂය: ප්‍රවර්ග ගණන ඉතා වැඩිය!',
+	'googlenewssitemap_feedtitle' => '$1 {{SITENAME}} $2 පෝෂණය.',
+);
+
 /** Slovenian (Slovenščina)
  * @author Dbc334
  */
