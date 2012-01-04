@@ -284,6 +284,15 @@ $messages['he'] = array(
 	'googlenewssitemap_feedtitle' => 'הזנת $2 מאתר {{SITENAME}} ב{{GRAMMAR:תחילית|$1}}',
 );
 
+/** Hindi (हिन्दी)
+ * @author Ansumang
+ */
+$messages['hi'] = array(
+	'googlenewssitemap' => 'गूगल समाचार साइटमैप',
+	'googlenewssitemap_toomanycats' => 'Error: बहुत ज्यादा श्रेणीयां!',
+	'googlenewssitemap_feedtitle' => '$1 {{SITENAME}} $2 चारा ।',
+);
+
 /** Upper Sorbian (Hornjoserbsce)
  * @author Michawiki
  */
