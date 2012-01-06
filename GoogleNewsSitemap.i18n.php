@@ -146,8 +146,8 @@ $messages['da'] = array(
  * @author McDutchie
  */
 $messages['de'] = array(
-	'googlenewssitemap' => 'Ermöglicht eine Sitemap für „Google News“',
-	'googlenewssitemap-desc' => 'Gibt Atom/RSS-Feeds in Form einer Sitemap für Google News aus.',
+	'googlenewssitemap' => 'Google News-Sitemap',
+	'googlenewssitemap-desc' => 'Ermöglicht die Ausgabe von Atom/RSS-Feeds in Form einer Sitemap für Google News',
 	'googlenewssitemap_toomanycats' => 'Fehler: Zu viele Kategorien!',
 	'googlenewssitemap_feedtitle' => '$1 {{SITENAME}} $2-Feed.',
 );
