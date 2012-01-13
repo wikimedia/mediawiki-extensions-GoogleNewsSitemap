@@ -159,6 +159,7 @@ $messages['dsb'] = array(
 	'googlenewssitemap' => 'Sedłowy pśeglěd Google Nowosći',
 	'googlenewssitemap-desc' => 'Wudawa kanal Atom/RSS ako sedłowy pśeglěd Google Nowosći',
 	'googlenewssitemap_toomanycats' => 'Zmólka: Pśewjele kategorijow!',
+	'googlenewssitemap_feedtitle' => '$1 {{SITENAME}} kanal $2.',
 );
 
 /** Greek (Ελληνικά)
