@@ -11,6 +11,11 @@ class FeedSMItem extends FeedItem {
 	private $keywords = array();
 
 	/**
+	 * @var Title
+	 */
+	private $titleObj;
+
+	/**
 	 * @param Title $title Title object that this entry is for.
 	 * @param String $pubDate Publish date formattable by wfTimestamp.
 	 * @param Array $keywords list of (String) keywords
@@ -20,7 +25,7 @@ class FeedSMItem extends FeedItem {
 	 *   An integer for the page name of $title in the specific namespace denoted by that integer.
 	 */
 	public function __construct( $title, $pubDate, $keywords = '', $comment = true ) {
-		if ( !$title ) {
+		if ( !$title || !$title instanceof Title ) {
 			// Paranoia
 			throw new MWException( 'Invalid title object passed to FeedSMItem' );
 		}
@@ -37,8 +42,8 @@ class FeedSMItem extends FeedItem {
 			}
 		}
 
-		$this->title = $title;
 		$this->keywords = $keywords;
+		$this->titleObj = $title;
 
 		parent::__construct( $title->getText(), '' /* Description */,
 			$title->getFullURL(), $pubDate, '' /* Author */, $commentsURL  );
@@ -62,7 +67,7 @@ class FeedSMItem extends FeedItem {
 	}
 
 	public function getLastMod() {
-		return $this->title->getTouched();
+		return $this->titleObj->getTouched();
 	}
 
 	public function getKeywords() {
@@ -88,12 +93,9 @@ class FeedSMItem extends FeedItem {
 		// but not much worse than the rest of this extension.
 
 		$result = '';
-		if ( !$this->title ) {
-			return $result;
-		}
 		$req = new FauxRequest( array(
 			'action' => 'parse',
-			'page' => $this->title->getPrefixedDBKey(),
+			'page' => $this->titleObj->getPrefixedDBKey(),
 			'prop' => 'text',
 		) );
 		$main = new ApiMain( $req );
