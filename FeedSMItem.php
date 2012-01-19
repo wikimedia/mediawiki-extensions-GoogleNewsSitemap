@@ -11,11 +11,6 @@ class FeedSMItem extends FeedItem {
 	private $keywords = array();
 
 	/**
-	 * @var Title
-	 */
-	private $title;
-
-	/**
 	 * @param Title $title Title object that this entry is for.
 	 * @param String $pubDate Publish date formattable by wfTimestamp.
 	 * @param Array $keywords list of (String) keywords
