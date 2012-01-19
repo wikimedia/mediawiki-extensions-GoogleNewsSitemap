@@ -86,6 +86,11 @@ class FeedSMItem extends FeedItem {
 		wfProfileIn( __METHOD__ );
 		// This is probably rather inefficient to do for several pages
 		// but not much worse than the rest of this extension.
+
+		$result = '';
+		if ( !$this->title ) {
+			return $result;
+		}
 		$req = new FauxRequest( array(
 			'action' => 'parse',
 			'page' => $this->title->getPrefixedDBKey(),
@@ -94,7 +99,7 @@ class FeedSMItem extends FeedItem {
 		$main = new ApiMain( $req );
 		$main->execute();
 		$data = $main->getResultData();
-		$result = '';
+
 		if ( isset( $data['parse']['text']['*'] ) ) {
 			$result = $this->xmlEncode(
 				$data['parse']['text']['*']
