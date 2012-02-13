@@ -598,6 +598,7 @@ $messages['tl'] = array(
 );
 
 /** Turkish (Türkçe)
+ * @author Emperyan
  * @author Joseph
  * @author Tarikozket
  */
@@ -605,6 +606,7 @@ $messages['tr'] = array(
 	'googlenewssitemap' => 'Google Haberler Site haritası',
 	'googlenewssitemap-desc' => 'Bir Atom/RSS beslemesini Google Haberler Site haritası olarak çıktılar',
 	'googlenewssitemap_toomanycats' => 'Hata: Çok fazla kategori!',
+	'googlenewssitemap_feedtitle' => '$1 {{SITENAME}} $2 beslemesi.',
 );
 
 /** Ukrainian (Українська)
