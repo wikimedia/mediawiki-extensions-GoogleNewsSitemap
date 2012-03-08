@@ -357,6 +357,13 @@ $messages['ja'] = array(
 	'googlenewssitemap_feedtitle' => '$1 {{SITENAME}} $2 フィード。',
 );
 
+/** Georgian (ქართული)
+ * @author David1010
+ */
+$messages['ka'] = array(
+	'googlenewssitemap_toomanycats' => 'შეცდომა: ძალიან ბევრი კატეგორიაა!',
+);
+
 /** Colognian (Ripoarisch)
  * @author Purodha
  */
