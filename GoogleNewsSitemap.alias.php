@@ -58,6 +58,11 @@ $specialPageAliases['ja'] = array(
 	'GoogleNewsSitemap' => array( 'Googleニュースサイトマップ' ),
 );
 
+/** Cornish (Kernowek) */
+$specialPageAliases['kw'] = array(
+	'GoogleNewsSitemap' => array( 'FeedNowodhow' ),
+);
+
 /** Ladino (Ladino) */
 $specialPageAliases['lad'] = array(
 	'GoogleNewsSitemap' => array( 'Mapa_de_sitio_de_GoogleJhabberes' ),
