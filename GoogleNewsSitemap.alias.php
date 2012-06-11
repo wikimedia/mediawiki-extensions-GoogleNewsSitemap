@@ -28,6 +28,11 @@ $specialPageAliases['de'] = array(
 	'GoogleNewsSitemap' => array( 'Nachrichtenfeed', 'Nachrichten-Feed' ),
 );
 
+/** Zazaki (Zazaki) */
+$specialPageAliases['diq'] = array(
+	'GoogleNewsSitemap' => array( 'SitaXeritayaGoogleNewsi' ),
+);
+
 /** Persian (فارسی) */
 $specialPageAliases['fa'] = array(
 	'GoogleNewsSitemap' => array( 'خوراک_اخبار', 'نقشه_وبگاه_اخبار_گوگل' ),
@@ -38,12 +43,12 @@ $specialPageAliases['ht'] = array(
 	'GoogleNewsSitemap' => array( 'KatSitGoogleNews' ),
 );
 
-/** Hungarian (Magyar) */
+/** Hungarian (magyar) */
 $specialPageAliases['hu'] = array(
 	'GoogleNewsSitemap' => array( 'Google_Hírek-oldaltérkép' ),
 );
 
-/** Interlingua (Interlingua) */
+/** Interlingua (interlingua) */
 $specialPageAliases['ia'] = array(
 	'GoogleNewsSitemap' => array( 'Mappa_de_sito_Google_News' ),
 );
@@ -58,7 +63,12 @@ $specialPageAliases['ja'] = array(
 	'GoogleNewsSitemap' => array( 'Googleニュースサイトマップ' ),
 );
 
-/** Cornish (Kernowek) */
+/** Korean (한국어) */
+$specialPageAliases['ko'] = array(
+	'GoogleNewsSitemap' => array( '뉴스피드' ),
+);
+
+/** Cornish (kernowek) */
 $specialPageAliases['kw'] = array(
 	'GoogleNewsSitemap' => array( 'FeedNowodhow' ),
 );
@@ -68,7 +78,7 @@ $specialPageAliases['lad'] = array(
 	'GoogleNewsSitemap' => array( 'Mapa_de_sitio_de_GoogleJhabberes' ),
 );
 
-/** Macedonian (Македонски) */
+/** Macedonian (македонски) */
 $specialPageAliases['mk'] = array(
 	'GoogleNewsSitemap' => array( 'ПланНаМрежМестоGoogleNews' ),
 );
@@ -78,7 +88,7 @@ $specialPageAliases['ml'] = array(
 	'GoogleNewsSitemap' => array( 'ഗൂഗിൾ‌‌വാർത്തകൾസൈറ്റ്മാപ്പ്' ),
 );
 
-/** Norwegian Bokmål (‪Norsk (bokmål)‬) */
+/** Norwegian Bokmål (‪norsk (bokmål)‬) */
 $specialPageAliases['nb'] = array(
 	'GoogleNewsSitemap' => array( 'Google_nyheter-sidekart' ),
 );
@@ -93,7 +103,7 @@ $specialPageAliases['nl'] = array(
 	'GoogleNewsSitemap' => array( 'Nieuwsfeed' ),
 );
 
-/** Polish (Polski) */
+/** Polish (polski) */
 $specialPageAliases['pl'] = array(
 	'GoogleNewsSitemap' => array( 'Mapa_strony_dla_Google_News' ),
 );
