@@ -54,7 +54,7 @@ $messages['ar'] = array(
 	'googlenewssitemap_feedtitle' => 'تغذية $1 {{SITENAME}} $2.',
 );
 
-/** Azerbaijani (Azərbaycanca)
+/** Azerbaijani (azərbaycanca)
  * @author Wertuose
  */
 $messages['az'] = array(
@@ -73,7 +73,7 @@ $messages['be-tarask'] = array(
 	'googlenewssitemap_feedtitle' => '$1 {{SITENAME}} стужка $2.',
 );
 
-/** Bulgarian (Български)
+/** Bulgarian (български)
  * @author Spiritia
  */
 $messages['bg'] = array(
@@ -89,7 +89,7 @@ $messages['bn'] = array(
 	'googlenewssitemap_feedtitle' => '$1 {{SITENAME}} $2 ফিড।',
 );
 
-/** Breton (Brezhoneg)
+/** Breton (brezhoneg)
  * @author Fohanno
  * @author Fulup
  * @author Y-M D
@@ -101,7 +101,7 @@ $messages['br'] = array(
 	'googlenewssitemap_feedtitle' => 'Lanvad roadennoù $2 eus {{SITENAME}} e $1.',
 );
 
-/** Bosnian (Bosanski)
+/** Bosnian (bosanski)
  * @author CERminator
  */
 $messages['bs'] = array(
@@ -111,7 +111,7 @@ $messages['bs'] = array(
 	'googlenewssitemap_feedtitle' => '$1 {{SITENAME}} $2 fid.',
 );
 
-/** Catalan (Català)
+/** Catalan (català)
  * @author Aleator
  * @author Davidpar
  * @author Paucabot
@@ -122,7 +122,7 @@ $messages['ca'] = array(
 	'googlenewssitemap_toomanycats' => 'Error: Massa categories!',
 );
 
-/** Czech (Česky)
+/** Czech (česky)
  * @author Jkjk
  * @author Mormegil
  */
@@ -133,7 +133,7 @@ $messages['cs'] = array(
 	'googlenewssitemap_feedtitle' => '$2 kanál {{grammar:2sg|{{SITENAME}}}} v jazyce $1',
 );
 
-/** Danish (Dansk)
+/** Danish (dansk)
  * @author Peter Alberti
  */
 $messages['da'] = array(
@@ -183,7 +183,7 @@ $messages['eo'] = array(
 	'googlenewssitemap_feedtitle' => '$1 {{SITENAME}} $2 abonfonto.',
 );
 
-/** Spanish (Español)
+/** Spanish (español)
  * @author Fitoschido
  * @author Translationista
  */
@@ -194,14 +194,14 @@ $messages['es'] = array(
 	'googlenewssitemap_feedtitle' => 'Fuente $2 en $1 de {{SITENAME}}.',
 );
 
-/** Estonian (Eesti)
+/** Estonian (eesti)
  * @author Pikne
  */
 $messages['et'] = array(
 	'googlenewssitemap_toomanycats' => 'Tõrge: Liiga palju kategooriaid!',
 );
 
-/** Basque (Euskara)
+/** Basque (euskara)
  * @author An13sa
  */
 $messages['eu'] = array(
@@ -220,7 +220,7 @@ $messages['fa'] = array(
 	'googlenewssitemap_feedtitle' => 'خوراک $2 {{SITENAME}} $1.',
 );
 
-/** Finnish (Suomi)
+/** Finnish (suomi)
  * @author Centerlink
  * @author Crt
  * @author Olli
@@ -232,7 +232,7 @@ $messages['fi'] = array(
 	'googlenewssitemap_feedtitle' => 'Sivuston {{SITENAME}} $2-syöte ($1)',
 );
 
-/** French (Français)
+/** French (français)
  * @author Amgine
  * @author McDutchie
  * @author Sherbrooke
@@ -244,7 +244,7 @@ $messages['fr'] = array(
 	'googlenewssitemap_feedtitle' => 'Flux de données $2 du {{SITENAME}} en $1.',
 );
 
-/** Franco-Provençal (Arpetan)
+/** Franco-Provençal (arpetan)
  * @author ChrisPtDe
  */
 $messages['frp'] = array(
@@ -304,7 +304,7 @@ $messages['hsb'] = array(
 	'googlenewssitemap_feedtitle' => '$1 {{SITENAME}} kanal $2.',
 );
 
-/** Hungarian (Magyar)
+/** Hungarian (magyar)
  * @author Glanthor Reviol
  */
 $messages['hu'] = array(
@@ -313,7 +313,7 @@ $messages['hu'] = array(
 	'googlenewssitemap_toomanycats' => 'Hiba: túl sok kategória!',
 );
 
-/** Interlingua (Interlingua)
+/** Interlingua (interlingua)
  * @author McDutchie
  */
 $messages['ia'] = array(
@@ -335,7 +335,7 @@ $messages['id'] = array(
 	'googlenewssitemap_feedtitle' => 'Umpan $2 $1 {{SITENAME}}.',
 );
 
-/** Italian (Italiano)
+/** Italian (italiano)
  * @author Beta16
  * @author F. Cosoleto
  */
@@ -386,7 +386,7 @@ $messages['lb'] = array(
 	'googlenewssitemap_feedtitle' => '$1 {{SITENAME}} $2-Feed.',
 );
 
-/** Macedonian (Македонски)
+/** Macedonian (македонски)
  * @author Bjankuloski06
  */
 $messages['mk'] = array(
@@ -438,14 +438,14 @@ $messages['nl'] = array(
 	'googlenewssitemap_feedtitle' => '$2-feed van {{SITENAME}} in het $1',
 );
 
-/** Norwegian Nynorsk (‪Norsk (nynorsk)‬)
+/** Norwegian Nynorsk (‪norsk (nynorsk)‬)
  * @author Harald Khan
  */
 $messages['nn'] = array(
 	'googlenewssitemap_toomanycats' => 'Feil: For mange kategoriar.',
 );
 
-/** Occitan (Occitan)
+/** Occitan (occitan)
  * @author Cedric31
  */
 $messages['oc'] = array(
@@ -454,7 +454,7 @@ $messages['oc'] = array(
 	'googlenewssitemap_toomanycats' => 'Error : Tròp de categorias !',
 );
 
-/** Polish (Polski)
+/** Polish (polski)
  * @author Sp5uhe
  */
 $messages['pl'] = array(
@@ -475,7 +475,7 @@ $messages['pms'] = array(
 	'googlenewssitemap_feedtitle' => 'Fluss $2 ëd {{SITENAME}} an $1.',
 );
 
-/** Portuguese (Português)
+/** Portuguese (português)
  * @author Hamilton Abreu
  */
 $messages['pt'] = array(
@@ -485,7 +485,7 @@ $messages['pt'] = array(
 	'googlenewssitemap_feedtitle' => 'Feed $2 da {{SITENAME}} em $1.',
 );
 
-/** Brazilian Portuguese (Português do Brasil)
+/** Brazilian Portuguese (português do Brasil)
  * @author Daemorris
  * @author Giro720
  * @author Raylton P. Sousa
@@ -497,7 +497,7 @@ $messages['pt-br'] = array(
 	'googlenewssitemap_feedtitle' => 'Feed $2 da {{SITENAME}} em $1.',
 );
 
-/** Romanian (Română)
+/** Romanian (română)
  * @author Firilacroco
  * @author Stelistcristi
  */
@@ -508,7 +508,7 @@ $messages['ro'] = array(
 	'googlenewssitemap_feedtitle' => 'Flux $2 pentru {{SITENAME}} în $1.',
 );
 
-/** Tarandíne (Tarandíne)
+/** tarandíne (tarandíne)
  * @author Joetaras
  */
 $messages['roa-tara'] = array(
@@ -517,7 +517,7 @@ $messages['roa-tara'] = array(
 	'googlenewssitemap_feedtitle' => '$2 feed $1 de {{SITENAME}}.',
 );
 
-/** Russian (Русский)
+/** Russian (русский)
  * @author Александр Сигачёв
  */
 $messages['ru'] = array(
@@ -547,7 +547,7 @@ $messages['si'] = array(
 	'googlenewssitemap_feedtitle' => '$1 {{SITENAME}} $2 පෝෂකය.',
 );
 
-/** Slovenian (Slovenščina)
+/** Slovenian (slovenščina)
  * @author Dbc334
  */
 $messages['sl'] = array(
@@ -557,19 +557,19 @@ $messages['sl'] = array(
 	'googlenewssitemap_feedtitle' => 'Vir $1 {{SITENAME}} $2.',
 );
 
-/** Serbian (Cyrillic script) (‪Српски (ћирилица)‬)
+/** Serbian (Cyrillic script) (‪српски (ћирилица)‬)
  * @author Михајло Анђелковић
  */
 $messages['sr-ec'] = array(
 	'googlenewssitemap_toomanycats' => 'Грешка: Превише категорија!',
 );
 
-/** Serbian (Latin script) (‪Srpski (latinica)‬) */
+/** Serbian (Latin script) (‪srpski (latinica)‬) */
 $messages['sr-el'] = array(
 	'googlenewssitemap_toomanycats' => 'Greška: Previše kategorija!',
 );
 
-/** Swedish (Svenska)
+/** Swedish (svenska)
  * @author Fredrik
  * @author Per
  * @author WikiPhoenix
@@ -618,7 +618,7 @@ $messages['tr'] = array(
 	'googlenewssitemap_feedtitle' => '$1 {{SITENAME}} $2 beslemesi.',
 );
 
-/** Ukrainian (Українська)
+/** Ukrainian (українська)
  * @author Arturyatsko
  * @author Dim Grits
  */
@@ -639,7 +639,7 @@ $messages['vi'] = array(
 	'googlenewssitemap_feedtitle' => 'Nguồn tin $2 của {{SITENAME}} $1',
 );
 
-/** Simplified Chinese (‪中文(简体)‬)
+/** Simplified Chinese (‪中文（简体）‬)
  * @author Gaoxuewei
  * @author PhiLiP
  */
@@ -650,7 +650,7 @@ $messages['zh-hans'] = array(
 	'googlenewssitemap_feedtitle' => '$1{{SITENAME}}的$2消息来源。',
 );
 
-/** Traditional Chinese (‪中文(繁體)‬)
+/** Traditional Chinese (‪中文（繁體）‬)
  * @author Anakmalaysia
  * @author Mark85296341
  */
