@@ -61,7 +61,7 @@ $messages['az'] = array(
 	'googlenewssitemap_toomanycats' => 'Xəta: Kateqoriya sayı həddindən çoxdur!',
 );
 
-/** Belarusian (Taraškievica orthography) (‪Беларуская (тарашкевіца)‬)
+/** Belarusian (Taraškievica orthography) (‪беларуская (тарашкевіца)‬)
  * @author EugeneZelenko
  * @author Jim-by
  * @author Wizardist
@@ -152,7 +152,7 @@ $messages['de'] = array(
 	'googlenewssitemap_feedtitle' => '$1 {{SITENAME}} $2-Feed.',
 );
 
-/** Lower Sorbian (Dolnoserbski)
+/** Lower Sorbian (dolnoserbski)
  * @author Michawiki
  */
 $messages['dsb'] = array(
@@ -254,7 +254,7 @@ $messages['frp'] = array(
 	'googlenewssitemap_feedtitle' => 'Flux de balyês $2 du {{SITENAME}} en $1.',
 );
 
-/** Galician (Galego)
+/** Galician (galego)
  * @author Toliño
  */
 $messages['gl'] = array(
@@ -294,7 +294,7 @@ $messages['hi'] = array(
 	'googlenewssitemap_feedtitle' => '$1 {{SITENAME}} $2 चारा ।',
 );
 
-/** Upper Sorbian (Hornjoserbsce)
+/** Upper Sorbian (hornjoserbsce)
  * @author Michawiki
  */
 $messages['hsb'] = array(
@@ -527,7 +527,7 @@ $messages['ru'] = array(
 	'googlenewssitemap_feedtitle' => '{{SITENAME}}. $1 $2 канал.',
 );
 
-/** Rusyn (Русиньскый)
+/** Rusyn (русиньскый)
  * @author Gazeb
  */
 $messages['rue'] = array(
