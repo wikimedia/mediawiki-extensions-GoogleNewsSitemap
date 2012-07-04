@@ -366,6 +366,16 @@ $messages['ka'] = array(
 	'googlenewssitemap_toomanycats' => 'შეცდომა: ძალიან ბევრი კატეგორიაა!',
 );
 
+/** Korean (한국어)
+ * @author 아라
+ */
+$messages['ko'] = array(
+	'googlenewssitemap' => 'Google 뉴스 사이트맵',
+	'googlenewssitemap-desc' => 'Google 뉴스 사이트맵으로 Atom/RSS 피드 출력',
+	'googlenewssitemap_toomanycats' => '오류: 분류가 너무 많습니다!',
+	'googlenewssitemap_feedtitle' => '$1 {{SITENAME}} $2 피드.',
+);
+
 /** Colognian (Ripoarisch)
  * @author Purodha
  */
