@@ -426,7 +426,7 @@ $messages['ms'] = array(
 	'googlenewssitemap_feedtitle' => 'Suapan {{SITENAME}} $1 ($2)',
 );
 
-/** Norwegian (bokmål)‬ (‪Norsk (bokmål)‬)
+/** Norwegian Bokmål (‪norsk (bokmål)‬)
  * @author Nghtwlkr
  */
 $messages['nb'] = array(
