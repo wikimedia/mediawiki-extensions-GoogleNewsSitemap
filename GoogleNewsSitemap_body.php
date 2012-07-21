@@ -55,33 +55,33 @@ class GoogleNewsSitemap extends SpecialPage {
 		}
 
 		// Check to make sure that feed type is supported.
-		if ( FeedUtils::checkFeedOutput( $params['feed'] ) ) {
-			$msg = wfMessage( 'feed-' . $params['feed'] )->inContentLanguage();
-			if ( $msg->exists() ) {
-				// This seems a little icky since
-				// its re-using another message in a
-				// different context.
-				// uses feed-rss and feed-atom messages.
-				$feedType = $msg->text();
-			} else {
-				$feedType = $wgContLang->uc( $params['feed'] );
-			}
-
-			$feed = new $wgFeedClasses[ $params['feed'] ](
-				wfMsgExt( 'googlenewssitemap_feedtitle',
-					array( 'parsemag', 'content' ),
-					$wgContLang->getLanguageName( $wgLanguageCode ),
-					$feedType,
-					$wgLanguageCode
-				),
-				wfMsgExt( 'tagline', array( 'parsemag', 'content' ) ),
-				Title::newMainPage()->getFullURL()
-			);
-		} else {
+		if ( !FeedUtils::checkFeedOutput( $params['feed'] ) ) {
 			// FeedUtils outputs an error if wrong feed type.
 			// So nothing else to do at this point
 			return;
 		}
+
+		$msg = wfMessage( 'feed-' . $params['feed'] )->inContentLanguage();
+		if ( $msg->exists() ) {
+			// This seems a little icky since
+			// its re-using another message in a
+			// different context.
+			// uses feed-rss and feed-atom messages.
+			$feedType = $msg->text();
+		} else {
+			$feedType = $wgContLang->uc( $params['feed'] );
+		}
+
+		$feed = new $wgFeedClasses[ $params['feed'] ](
+			wfMsgExt( 'googlenewssitemap_feedtitle',
+				array( 'parsemag', 'content' ),
+				$wgContLang->getLanguageName( $wgLanguageCode ),
+				$feedType,
+				$wgLanguageCode
+			),
+			wfMsgExt( 'tagline', array( 'parsemag', 'content' ) ),
+			Title::newMainPage()->getFullURL()
+		);
 
 		$wgOut->setSquidMaxage( $wgGNSMsmaxage );
 
