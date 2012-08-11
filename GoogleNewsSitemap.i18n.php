@@ -260,7 +260,7 @@ $messages['frp'] = array(
 $messages['gl'] = array(
 	'googlenewssitemap' => 'Mapa do sitio das novas do Google',
 	'googlenewssitemap-desc' => 'Dá como resultado unha fonte de novas Atom/RSS como un mapa do sitio das novas do Google',
-	'googlenewssitemap_toomanycats' => 'Erro: hai moitas categorías!',
+	'googlenewssitemap_toomanycats' => 'Erro: Demasiadas categorías!',
 	'googlenewssitemap_feedtitle' => 'Fonte de novas $2 de {{SITENAME}} en $1.',
 );
 
@@ -306,11 +306,13 @@ $messages['hsb'] = array(
 
 /** Hungarian (magyar)
  * @author Glanthor Reviol
+ * @author TK-999
  */
 $messages['hu'] = array(
 	'googlenewssitemap' => 'Google hírek oldaltérkép',
 	'googlenewssitemap-desc' => 'Atom/RSS hírcsatornát készít Google hírek oldaltérképként',
 	'googlenewssitemap_toomanycats' => 'Hiba: túl sok kategória!',
+	'googlenewssitemap_feedtitle' => 'A(z) $1 {{SITENAME}} $2-hírcsatornája.',
 );
 
 /** Interlingua (interlingua)
