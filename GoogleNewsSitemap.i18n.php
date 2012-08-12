@@ -593,6 +593,13 @@ $messages['sv'] = array(
 	'googlenewssitemap_feedtitle' => '$1 {{SITENAME}} $2-flöde.',
 );
 
+/** Tamil (தமிழ்)
+ * @author Karthi.dr
+ */
+$messages['ta'] = array(
+	'googlenewssitemap_toomanycats' => 'தவறு: மிக அதிகமான பகுப்புகள் !',
+);
+
 /** Telugu (తెలుగు)
  * @author Veeven
  */
