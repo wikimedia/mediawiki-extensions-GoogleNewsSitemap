@@ -570,10 +570,13 @@ $messages['sl'] = array(
 );
 
 /** Serbian (Cyrillic script) (‪српски (ћирилица)‬)
+ * @author Rancher
  * @author Михајло Анђелковић
  */
 $messages['sr-ec'] = array(
+	'googlenewssitemap' => 'Мапа странице Гугл вести',
 	'googlenewssitemap_toomanycats' => 'Грешка: Превише категорија!',
+	'googlenewssitemap_feedtitle' => '$2 довод на {{SITENAME}} на $1.',
 );
 
 /** Serbian (Latin script) (‪srpski (latinica)‬) */
