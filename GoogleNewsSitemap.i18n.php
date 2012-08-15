@@ -365,6 +365,7 @@ $messages['ja'] = array(
  * @author David1010
  */
 $messages['ka'] = array(
+	'googlenewssitemap' => 'Google News-ის ვებ-გვერდის რუკა',
 	'googlenewssitemap_toomanycats' => 'შეცდომა: ძალიან ბევრი კატეგორიაა!',
 );
 
