@@ -353,11 +353,12 @@ $messages['it'] = array(
  * @author Naohiro19
  * @author Ohgi
  * @author Schu
+ * @author Shirayuki
  */
 $messages['ja'] = array(
 	'googlenewssitemap' => 'Google ニュース サイトマップ',
-	'googlenewssitemap-desc' => 'Google ニュースのサイトマップからAtom/RSSフィードを出力',
-	'googlenewssitemap_toomanycats' => 'エラー:　カテゴリが多すぎです!',
+	'googlenewssitemap-desc' => 'Atom/RSS フィードを Google ニュース サイトマップとして出力する',
+	'googlenewssitemap_toomanycats' => 'エラー: カテゴリが多すぎます!',
 	'googlenewssitemap_feedtitle' => '$1 {{SITENAME}} $2 フィード。',
 );
 
