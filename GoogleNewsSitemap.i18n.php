@@ -362,6 +362,16 @@ $messages['ja'] = array(
 	'googlenewssitemap_feedtitle' => '$1 {{SITENAME}} $2 フィード。',
 );
 
+/** Javanese (Basa Jawa)
+ * @author NoiX180
+ */
+$messages['jv'] = array(
+	'googlenewssitemap' => 'Petasitus Warta Google',
+	'googlenewssitemap-desc' => 'Asilaké lebon saran Atom/RSS minangka Petasitus Warta Google',
+	'googlenewssitemap_toomanycats' => 'Kasalahan: Kakèhan katègori!',
+	'googlenewssitemap_feedtitle' => '$1 {{SITENAME}} $2 lebon saran.',
+);
+
 /** Georgian (ქართული)
  * @author David1010
  */
