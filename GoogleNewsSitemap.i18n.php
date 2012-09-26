@@ -591,9 +591,11 @@ $messages['sr-ec'] = array(
 	'googlenewssitemap_feedtitle' => '$2 довод на {{SITENAME}} на $1.',
 );
 
-/** Serbian (Latin script) (‪srpski (latinica)‬) */
+/** Serbian (Latin script) (srpski (latinica)‎) */
 $messages['sr-el'] = array(
+	'googlenewssitemap' => 'Mapa stranice Gugl vesti',
 	'googlenewssitemap_toomanycats' => 'Greška: Previše kategorija!',
+	'googlenewssitemap_feedtitle' => '$2 dovod na {{SITENAME}} na $1.',
 );
 
 /** Swedish (svenska)
