@@ -61,7 +61,7 @@ $messages['az'] = array(
 	'googlenewssitemap_toomanycats' => 'Xəta: Kateqoriya sayı həddindən çoxdur!',
 );
 
-/** Belarusian (Taraškievica orthography) (‪беларуская (тарашкевіца)‬)
+/** Belarusian (Taraškievica orthography) (беларуская (тарашкевіца)‎)
  * @author EugeneZelenko
  * @author Jim-by
  * @author Wizardist
@@ -440,7 +440,7 @@ $messages['ms'] = array(
 	'googlenewssitemap_feedtitle' => 'Suapan {{SITENAME}} $1 ($2)',
 );
 
-/** Norwegian Bokmål (‪norsk (bokmål)‬)
+/** Norwegian Bokmål (norsk (bokmål)‎)
  * @author Nghtwlkr
  */
 $messages['nb'] = array(
@@ -462,7 +462,7 @@ $messages['nl'] = array(
 	'googlenewssitemap_feedtitle' => '$2-feed van {{SITENAME}} in het $1',
 );
 
-/** Norwegian Nynorsk (‪norsk (nynorsk)‬)
+/** Norwegian Nynorsk (norsk (nynorsk)‎)
  * @author Harald Khan
  */
 $messages['nn'] = array(
@@ -581,7 +581,7 @@ $messages['sl'] = array(
 	'googlenewssitemap_feedtitle' => 'Vir $1 {{SITENAME}} $2.',
 );
 
-/** Serbian (Cyrillic script) (‪српски (ћирилица)‬)
+/** Serbian (Cyrillic script) (српски (ћирилица)‎)
  * @author Rancher
  * @author Михајло Анђелковић
  */
@@ -675,7 +675,7 @@ $messages['vi'] = array(
 	'googlenewssitemap_feedtitle' => 'Nguồn tin $2 của {{SITENAME}} $1',
 );
 
-/** Simplified Chinese (‪中文（简体）‬)
+/** Simplified Chinese (中文（简体）‎)
  * @author Gaoxuewei
  * @author PhiLiP
  */
@@ -686,7 +686,7 @@ $messages['zh-hans'] = array(
 	'googlenewssitemap_feedtitle' => '$1{{SITENAME}}的$2消息来源。',
 );
 
-/** Traditional Chinese (‪中文（繁體）‬)
+/** Traditional Chinese (中文（繁體）‎)
  * @author Anakmalaysia
  * @author Mark85296341
  */
