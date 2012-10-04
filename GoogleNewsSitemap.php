@@ -2,7 +2,7 @@
 if ( !defined( 'MEDIAWIKI' ) ) {
     echo <<<EOT
 To install GoogleNewsSitemap extension, an extension special page, put the following line in LocalSettings.php:
-require_once( dirname(__FILE__) . '/extensions/GoogleNewsSitemap/GoogleNewsSitemap.php' );
+require_once( __DIR__ . '/extensions/GoogleNewsSitemap/GoogleNewsSitemap.php' );
 EOT;
     exit( 1 );
 }
@@ -58,10 +58,10 @@ $wgExtensionCredits['specialpage'][] = array(
 	'author' => array( 'Amgine', '[http://mediawiki.org/wiki/User:Bawolff Brian Wolff]' ),
 	'descriptionmsg' => 'googlenewssitemap-desc',
 	'url' => 'https://www.mediawiki.org/wiki/Extension:GoogleNewsSitemap',
-	'version' => 1,
+	'version' => 2,
 );
 
-$dir = dirname( __FILE__ ) . '/';
+$dir = __DIR__ . '/';
 $wgExtensionMessagesFiles['GoogleNewsSitemap'] = $dir . 'GoogleNewsSitemap.i18n.php';
 $wgExtensionMessagesFiles['GoogleNewsSitemapAlias'] = $dir . 'GoogleNewsSitemap.alias.php';
 $wgAutoloadClasses['GoogleNewsSitemap'] = $dir . 'GoogleNewsSitemap_body.php';
@@ -87,4 +87,3 @@ $wgGNSMsmaxage = 1800; // = 30 minutes
 // or it can be a specific namespace number ( or NS_BLAH constant) to denote a specific namespace.
 // For example, on many Wikinews sites, the comment namespace is Comments (102), not talk.
 $wgGNSMcommentNamespace = true;
-
