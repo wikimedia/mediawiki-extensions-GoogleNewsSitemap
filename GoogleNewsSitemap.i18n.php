@@ -152,6 +152,14 @@ $messages['de'] = array(
 	'googlenewssitemap_feedtitle' => '$1 {{SITENAME}} $2-Feed.',
 );
 
+/** Zazaki (Zazaki)
+ * @author Erdemaslancan
+ */
+$messages['diq'] = array(
+	'googlenewssitemap' => 'Sitaxeritaya Google Xeberi',
+	'googlenewssitemap_feedtitle' => '$1 {{SITENAME}} wariyeya $2.',
+);
+
 /** Lower Sorbian (dolnoserbski)
  * @author Michawiki
  */
