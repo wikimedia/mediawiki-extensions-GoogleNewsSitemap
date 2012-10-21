@@ -12,7 +12,6 @@ $messages = array();
 /** English
  * @author Amgine
  */
-
 $messages['en'] = array(
 	'googlenewssitemap' => 'Google News Sitemap',
 	'googlenewssitemap-desc' => 'Outputs an Atom/RSS feed as a Google News Sitemap',
