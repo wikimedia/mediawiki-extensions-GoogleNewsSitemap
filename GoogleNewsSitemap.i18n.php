@@ -26,6 +26,7 @@ $messages['en'] = array(
  */
 $messages['qqq'] = array(
 	'googlenewssitemap-desc' => '{{desc}}',
+	'googlenewssitemap_categorymap' => '{{notranslate}}',
 	'googlenewssitemap_toomanycats' => 'Error given when maximum amount of categories specified is exceeded. Default max is 6.',
 	'googlenewssitemap_feedtitle' => 'Title for the RSS/ATOM feeds produced (does not appear in sitemap XML documents).
 *$1 is language name (like English)
@@ -598,7 +599,8 @@ $messages['sr-ec'] = array(
 	'googlenewssitemap_feedtitle' => '$2 довод на {{SITENAME}} на $1.',
 );
 
-/** Serbian (Latin script) (srpski (latinica)‎) */
+/** Serbian (Latin script) (srpski (latinica)‎)
+ */
 $messages['sr-el'] = array(
 	'googlenewssitemap' => 'Mapa stranice Gugl vesti',
 	'googlenewssitemap_toomanycats' => 'Greška: Previše kategorija!',
@@ -703,4 +705,3 @@ $messages['zh-hant'] = array(
 	'googlenewssitemap_toomanycats' => '錯誤：分類過多！',
 	'googlenewssitemap_feedtitle' => '$1{{SITENAME}}的$2消息來源。',
 );
-
