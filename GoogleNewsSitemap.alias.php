@@ -58,6 +58,11 @@ $specialPageAliases['id'] = array(
 	'GoogleNewsSitemap' => array( 'Peta_situs_Google_News', 'PetaSitusGoogleNews' ),
 );
 
+/** Italian (italiano) */
+$specialPageAliases['it'] = array(
+	'GoogleNewsSitemap' => array( 'FeedNotizie' ),
+);
+
 /** Japanese (日本語) */
 $specialPageAliases['ja'] = array(
 	'GoogleNewsSitemap' => array( 'Googleニュースサイトマップ' ),
