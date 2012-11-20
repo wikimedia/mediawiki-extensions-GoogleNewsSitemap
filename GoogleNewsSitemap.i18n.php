@@ -157,6 +157,7 @@ $messages['de'] = array(
  */
 $messages['diq'] = array(
 	'googlenewssitemap' => 'Sitaxeritaya Google Xeberi',
+	'googlenewssitemap_toomanycats' => 'Xeta: kategoriyay zaf zêd ê!',
 	'googlenewssitemap_feedtitle' => '$1 {{SITENAME}} wariyeya $2.',
 );
 
