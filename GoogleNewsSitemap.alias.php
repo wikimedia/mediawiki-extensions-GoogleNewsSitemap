@@ -113,6 +113,11 @@ $specialPageAliases['pl'] = array(
 	'GoogleNewsSitemap' => array( 'Mapa_strony_dla_Google_News' ),
 );
 
+/** Sicilian (sicilianu) */
+$specialPageAliases['scn'] = array(
+	'GoogleNewsSitemap' => array( 'FeedNotizie' ),
+);
+
 /** Turkish (Türkçe) */
 $specialPageAliases['tr'] = array(
 	'GoogleNewsSitemap' => array( 'GoogleNewsSiteHaritası' ),
