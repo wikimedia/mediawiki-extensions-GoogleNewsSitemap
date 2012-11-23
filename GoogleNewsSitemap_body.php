@@ -1,6 +1,4 @@
 <?php
-if ( !defined( 'MEDIAWIKI' ) ) die();
-
 /**
  * Class GoogleNewsSitemap creates Atom/RSS feeds for Wikinews
  *
@@ -25,7 +23,6 @@ if ( !defined( 'MEDIAWIKI' ) ) die();
  */
 
 class GoogleNewsSitemap extends SpecialPage {
-
 	var $maxCacheTime = 43200; // 12 hours. Chosen rather arbitrarily for now. Might want to tweak.
 
 	const OPT_INCLUDE = 0;
@@ -43,8 +40,7 @@ class GoogleNewsSitemap extends SpecialPage {
 	 * main()
 	 */
 	public function execute( $par ) {
-		global $wgContLang, $wgFeedClasses,
-			$wgLanguageCode, $wgMemc, $wgOut, $wgGNSMsmaxage;
+		global $wgContLang, $wgFeedClasses, $wgLanguageCode, $wgMemc, $wgGNSMsmaxage;
 
 		list( $params, $categories, $notCategories ) = $this->getParams();
 
@@ -73,17 +69,16 @@ class GoogleNewsSitemap extends SpecialPage {
 		}
 
 		$feed = new $wgFeedClasses[ $params['feed'] ](
-			wfMsgExt( 'googlenewssitemap_feedtitle',
-				array( 'parsemag', 'content' ),
-				$wgContLang->getLanguageName( $wgLanguageCode ),
+			$this->msg( 'googlenewssitemap_feedtitle',
+				$wgContLang->fetchLanguageName( $wgLanguageCode ),
 				$feedType,
 				$wgLanguageCode
-			),
-			wfMsgExt( 'tagline', array( 'parsemag', 'content' ) ),
+			)->inContentLanguage()->text(),
+			$this->msg( 'tagline' )->inContentLanguage()->text(),
 			Title::newMainPage()->getFullURL()
 		);
 
-		$wgOut->setSquidMaxage( $wgGNSMsmaxage );
+		$this->getOutput()->setSquidMaxage( $wgGNSMsmaxage );
 
 		$cacheInvalidationInfo = $this->getCacheInvalidationInfo( $params,
 			$categories, $notCategories );
@@ -115,6 +110,9 @@ class GoogleNewsSitemap extends SpecialPage {
 
 	/**
 	 * Get the cache key to cache this request.
+	 * @param $params
+	 * @param $categories
+	 * @param $notCategories
 	 * @return String the key.
 	 */
 	private function getCacheKey( $params, $categories, $notCategories ) {
@@ -140,8 +138,8 @@ class GoogleNewsSitemap extends SpecialPage {
 	 * @return Mixed String or Boolean: The cached feed, or false.
 	 */
 	private function getCachedVersion ( $key, $invalidInfo ) {
-		global $wgMemc, $wgRequest;
-		$action = $wgRequest->getVal( 'action', 'view' );
+		global $wgMemc;
+		$action = $this->getRequest()->getVal( 'action', 'view' );
 		if ( $action === 'purge' ) {
 			return false;
 		}
@@ -270,9 +268,12 @@ class GoogleNewsSitemap extends SpecialPage {
 		wfProfileOut( __METHOD__ );
 		return $cacheInfo;
 	}
+
 	/**
 	 * Build and execute sql
-	 * @param Array $param All the parameters except cats/notcats
+	 * @param $params All the parameters except cats/notcats
+	 * @param $categories
+	 * @param $notCategories
 	 * @return Result of query.
 	 */
 	public function getCategories( $params, $categories, $notCategories ) {
@@ -363,37 +364,38 @@ class GoogleNewsSitemap extends SpecialPage {
 
 	/**
 	 * Parse parameters, populates $params
+	 * @throws MWException
 	 * @return Array containing the $params, $categories and $notCategories
 	 *   variables that make up the request.
 	 */
 	public function getParams() {
-		global $wgRequest, $wgGNSMmaxCategories,
-			$wgGNSMmaxResultCount, $wgGNSMfallbackCategory;
+		global $wgGNSMmaxCategories, $wgGNSMmaxResultCount, $wgGNSMfallbackCategory;
 
 		$params = array();
+		$request = $this->getRequest();
 
 		$categories = $this->getCatRequestArray( 'categories', $wgGNSMfallbackCategory, $wgGNSMmaxCategories );
 		$notCategories = $this->getCatRequestArray( 'notcategories', '', $wgGNSMmaxCategories );
 
-		$params['namespace'] = $this->getNS( $wgRequest->getVal( 'namespace', 0 ) );
+		$params['namespace'] = $this->getNS( $request->getVal( 'namespace', 0 ) );
 
-		$params['count'] = $wgRequest->getInt( 'count', $wgGNSMmaxResultCount );
-		$params['hourCount'] = $wgRequest->getInt( 'hourcount', -1 );
+		$params['count'] = $request->getInt( 'count', $wgGNSMmaxResultCount );
+		$params['hourCount'] = $request->getInt( 'hourcount', -1 );
 
 		if ( ( $params['count'] > $wgGNSMmaxResultCount )
 				|| ( $params['count'] < 1 ) ) {
 			$params['count'] = $wgGNSMmaxResultCount;
 		}
 
-		$params['order'] = $wgRequest->getVal( 'order', 'descending' );
-		$params['orderMethod'] = $wgRequest->getVal( 'ordermethod', 'categoryadd' );
+		$params['order'] = $request->getVal( 'order', 'descending' );
+		$params['orderMethod'] = $request->getVal( 'ordermethod', 'categoryadd' );
 
 		$params['redirects'] = $this->getIEOVal( 'redirects', self::OPT_EXCLUDE );
 		$params['stable'] = $this->getIEOVal( 'stablepages', self::OPT_ONLY );
 		$params['quality'] = $this->getIEOVal( 'qualitypages', self::OPT_INCLUDE );
 
 		// feed parameter is validated later in the execute method.
-		$params['feed'] = $wgRequest->getVal( 'feed', 'sitemap' );
+		$params['feed'] = $request->getVal( 'feed', 'sitemap' );
 
 		$params['catCount'] = count( $categories );
 		$params['notCatCount'] = count( $notCategories );
@@ -414,7 +416,7 @@ class GoogleNewsSitemap extends SpecialPage {
 
 		if ( $totalCatCount > $wgGNSMmaxCategories ) {
 			// Causes a 500 error later on.
-			$params['error'] = htmlspecialchars( wfMsg( 'googlenewssitemap_toomanycats' ) );
+			$params['error'] = $this->msg( 'googlenewssitemap_toomanycats' )->escaped();
 		}
 		return array( $params, $categories, $notCategories );
 	}
@@ -422,13 +424,13 @@ class GoogleNewsSitemap extends SpecialPage {
 	/**
 	 * Turn an include, exclude, or only (I, E, or O) parameter into
 	 * a class constant.
-	 * @param $val String the name of the url parameter
+	 * @param $valName String the name of the url parameter
 	 * @param $default Integer Class constant to return if none match
 	 * @return Integer Class constant corresponding to value.
 	 */
 	private function getIEOVal( $valName, $default = self::OPT_INCLUDE ) {
-		global $wgRequest;
-		$val = $wgRequest->getVal( $valName );
+		$val = $this->getRequest()->getVal( $valName );
+
 		switch ( $val ) {
 			case 'only':
 				return self::OPT_ONLY;
@@ -487,9 +489,7 @@ class GoogleNewsSitemap extends SpecialPage {
 	 * @return Array of Title objects. The Titles passed in the parameter $name.
 	 */
 	private function getCatRequestArray( $name, $default, $max ) {
-		global $wgRequest;
-
-		$value = $wgRequest->getText( $name, $default );
+		$value = $this->getRequest()->getText( $name, $default );
 		$arr = explode( '|', $value, $max + 2 );
 		$res = array();
 		foreach ( $arr as $name ) {
@@ -520,8 +520,9 @@ class GoogleNewsSitemap extends SpecialPage {
 		# the following code is based (stolen) from r56954 of flagged revs.
 		$catMap = array();
 		$catMask = array();
-		if ( !wfEmptyMsg( 'googlenewssitemap_categorymap' ) ) {
-			$msg = wfMsgForContent( 'googlenewssitemap_categorymap' );
+		$catMap = $this->msg( 'googlenewssitemap_categorymap' );
+		if ( !$catMap->isDisabled() ) {
+			$msg = $catMap->inContentLanguage()->text();
 			$list = explode( "\n*", "\n$msg" );
 			foreach ( $list as $item ) {
 				$mapping = explode( '|', $item, 2 );

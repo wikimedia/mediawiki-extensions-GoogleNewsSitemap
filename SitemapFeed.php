@@ -55,6 +55,7 @@ class SitemapFeed extends ChannelFeed {
 	/**
 	 * Output a SiteMap 0.9 item
 	 * @param FeedSMItem $item to be output
+	 * @throws MWException
 	 */
 	public function outItem( $item ) {
 		if ( !( $item instanceof FeedItem ) ) {
