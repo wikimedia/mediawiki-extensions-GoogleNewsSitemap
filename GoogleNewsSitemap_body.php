@@ -520,9 +520,9 @@ class GoogleNewsSitemap extends SpecialPage {
 		# the following code is based (stolen) from r56954 of flagged revs.
 		$catMap = array();
 		$catMask = array();
-		$catMap = $this->msg( 'googlenewssitemap_categorymap' );
-		if ( !$catMap->isDisabled() ) {
-			$msg = $catMap->inContentLanguage()->text();
+		$msg = $this->msg( 'googlenewssitemap_categorymap' );
+		if ( !$msg->isDisabled() ) {
+			$msg = $msg->inContentLanguage()->text();
 			$list = explode( "\n*", "\n$msg" );
 			foreach ( $list as $item ) {
 				$mapping = explode( '|', $item, 2 );
