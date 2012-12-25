@@ -449,6 +449,16 @@ $messages['ms'] = array(
 	'googlenewssitemap_feedtitle' => 'Suapan {{SITENAME}} $1 ($2)',
 );
 
+/** Maltese (Malti)
+ * @author Chrisportelli
+ */
+$messages['mt'] = array(
+	'googlenewssitemap' => 'Google News Sitemap',
+	'googlenewssitemap-desc' => "Toħloq ''feed'' ATOM/RSS bħala Mappa tas-sit għal Google News",
+	'googlenewssitemap_toomanycats' => "Żball: Numru eċċessiv ta' kategoriji!",
+	'googlenewssitemap_feedtitle' => 'Feed $2 {{SITENAME}} $1.',
+);
+
 /** Norwegian Bokmål (norsk (bokmål)‎)
  * @author Nghtwlkr
  */
