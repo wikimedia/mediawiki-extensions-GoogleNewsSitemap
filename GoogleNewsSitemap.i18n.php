@@ -556,6 +556,7 @@ $messages['ro'] = array(
  */
 $messages['roa-tara'] = array(
 	'googlenewssitemap' => "Mappe d'u site de Google News",
+	'googlenewssitemap-desc' => "Le resultate de Atom/RSS feed dalle cumme a 'na mappe de site de Google News",
 	'googlenewssitemap_toomanycats' => 'Errore: Troppe categorije!',
 	'googlenewssitemap_feedtitle' => '$2 feed $1 de {{SITENAME}}.',
 );
