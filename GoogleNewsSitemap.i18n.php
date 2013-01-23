@@ -396,7 +396,7 @@ $messages['ko'] = array(
 	'googlenewssitemap' => 'Google 뉴스 사이트맵',
 	'googlenewssitemap-desc' => 'Google 뉴스 사이트맵으로 Atom/RSS 피드 출력',
 	'googlenewssitemap_toomanycats' => '오류: 분류가 너무 많습니다!',
-	'googlenewssitemap_feedtitle' => '$1 {{SITENAME}} $2 피드.',
+	'googlenewssitemap_feedtitle' => '$1 {{SITENAME}} $2 피드입니다.',
 );
 
 /** Colognian (Ripoarisch)
