@@ -98,7 +98,7 @@ $specialPageAliases['nb'] = array(
 	'GoogleNewsSitemap' => array( 'Google_nyheter-sidekart' ),
 );
 
-/** Nedersaksies (Nedersaksies) */
+/** Low Saxon (Netherlands) (Nedersaksies) */
 $specialPageAliases['nds-nl'] = array(
 	'GoogleNewsSitemap' => array( 'Niejsvoer' ),
 );
