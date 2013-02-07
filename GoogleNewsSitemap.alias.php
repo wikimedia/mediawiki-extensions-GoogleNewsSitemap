@@ -93,7 +93,7 @@ $specialPageAliases['ml'] = array(
 	'GoogleNewsSitemap' => array( 'ഗൂഗിൾ‌‌വാർത്തകൾസൈറ്റ്മാപ്പ്' ),
 );
 
-/** Norwegian Bokmål (norsk (bokmål)‎) */
+/** Norwegian Bokmål (norsk bokmål) */
 $specialPageAliases['nb'] = array(
 	'GoogleNewsSitemap' => array( 'Google_nyheter-sidekart' ),
 );
