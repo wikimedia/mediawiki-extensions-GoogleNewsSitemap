@@ -22,10 +22,11 @@ $messages['en'] = array(
 
 /** Message documentation (Message documentation)
  * @author Raymond
+ * @author Shirayuki
  * @author Umherirrender
  */
 $messages['qqq'] = array(
-	'googlenewssitemap-desc' => '{{desc}}',
+	'googlenewssitemap-desc' => '{{desc|name=Google News Sitemap|url=http://www.mediawiki.org/wiki/Extension:GoogleNewsSitemap}}',
 	'googlenewssitemap_categorymap' => '{{notranslate}}',
 	'googlenewssitemap_toomanycats' => 'Error given when maximum amount of categories specified is exceeded. Default max is 6.',
 	'googlenewssitemap_feedtitle' => 'Title for the RSS/ATOM feeds produced (does not appear in sitemap XML documents).
