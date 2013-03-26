@@ -26,6 +26,7 @@ $messages['en'] = array(
  * @author Umherirrender
  */
 $messages['qqq'] = array(
+	'googlenewssitemap' => '{{doc-special|GoogleNewsSitemap|unlisted=1}}',
 	'googlenewssitemap-desc' => '{{desc|name=Google News Sitemap|url=http://www.mediawiki.org/wiki/Extension:GoogleNewsSitemap}}',
 	'googlenewssitemap_categorymap' => '{{notranslate}}',
 	'googlenewssitemap_toomanycats' => 'Error given when maximum amount of categories specified is exceeded. Default max is 6.',
