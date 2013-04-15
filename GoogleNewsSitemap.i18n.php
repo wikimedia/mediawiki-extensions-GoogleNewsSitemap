@@ -247,11 +247,12 @@ $messages['fi'] = array(
  * @author Amgine
  * @author McDutchie
  * @author Sherbrooke
+ * @author Urhixidur
  */
 $messages['fr'] = array(
 	'googlenewssitemap' => 'Plan du site Google News',
 	'googlenewssitemap-desc' => 'Crée un flux de données Atom ou RSS ressemblant à un plan de site pour Google News',
-	'googlenewssitemap_toomanycats' => 'Erreur: Trop de catégories!',
+	'googlenewssitemap_toomanycats' => 'Erreur : Trop de catégories !',
 	'googlenewssitemap_feedtitle' => 'Flux de données $2 du {{SITENAME}} en $1.',
 );
 
