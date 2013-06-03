@@ -462,7 +462,7 @@ $messages['mt'] = array(
 	'googlenewssitemap_feedtitle' => 'Feed $2 {{SITENAME}} $1.',
 );
 
-/** Norwegian Bokmål (norsk (bokmål)‎)
+/** Norwegian Bokmål (norsk bokmål)
  * @author Nghtwlkr
  */
 $messages['nb'] = array(
@@ -484,7 +484,7 @@ $messages['nl'] = array(
 	'googlenewssitemap_feedtitle' => '$2-feed van {{SITENAME}} in het $1',
 );
 
-/** Norwegian Nynorsk (norsk (nynorsk)‎)
+/** Norwegian Nynorsk (norsk nynorsk)
  * @author Harald Khan
  */
 $messages['nn'] = array(
