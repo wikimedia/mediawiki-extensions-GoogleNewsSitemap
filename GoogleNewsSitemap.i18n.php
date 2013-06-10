@@ -56,6 +56,16 @@ $messages['ar'] = array(
 	'googlenewssitemap_feedtitle' => 'تغذية $1 {{SITENAME}} $2.',
 );
 
+/** Asturian (asturianu)
+ * @author Xuacu
+ */
+$messages['ast'] = array(
+	'googlenewssitemap' => 'Mapa del sitiu Google Noticies',
+	'googlenewssitemap-desc' => 'Xenera una canal Atom/RSS como un mapa del sitiu de Google Noticies',
+	'googlenewssitemap_toomanycats' => 'Error: ¡Demasiaes categoríes!',
+	'googlenewssitemap_feedtitle' => 'Canal $2 de {{SITENAME}} ($1).',
+);
+
 /** Azerbaijani (azərbaycanca)
  * @author Wertuose
  */
