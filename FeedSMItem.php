@@ -35,12 +35,12 @@ class FeedSMItem extends FeedItem {
 		$commentsURL = '';
 		if ( $comment === true ) {
 			// The comment ns is this article's talk namespace.
-			$commentsURL = $title->getTalkPage()->getFullUrl();
+			$commentsURL = $title->getTalkPage()->getCanonicalURL();
 		} elseif ( is_int( $comment ) ) {
 			// There's a specific comments namespace.
 			$commentsTitle = Title::makeTitle( $comment, $title->getDBkey() );
 			if ( $commentsTitle ) {
-				$commentsURL = $commentsTitle->getFullUrl();
+				$commentsURL = $commentsTitle->getCanonicalURL();
 			}
 		}
 
@@ -48,7 +48,7 @@ class FeedSMItem extends FeedItem {
 		$this->titleObj = $title;
 
 		parent::__construct( $title->getText(), '' /* Description */,
-			$title->getFullURL(), $pubDate, '' /* Author */, $commentsURL  );
+			$title->getCanonicalURL(), $pubDate, '' /* Author */, $commentsURL  );
 	}
 
 	/**
