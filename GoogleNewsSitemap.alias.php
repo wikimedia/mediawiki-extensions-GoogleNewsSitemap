@@ -30,7 +30,7 @@ $specialPageAliases['de'] = array(
 
 /** Zazaki (Zazaki) */
 $specialPageAliases['diq'] = array(
-	'GoogleNewsSitemap' => array( 'SitaXeritayaGoogleNewsi' ),
+	'GoogleNewsSitemap' => array( 'XeberMırdkerdış', 'SitaXeritayaGoogleXeber' ),
 );
 
 /** Persian (فارسی) */
