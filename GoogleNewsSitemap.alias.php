@@ -122,3 +122,8 @@ $specialPageAliases['scn'] = array(
 $specialPageAliases['tr'] = array(
 	'GoogleNewsSitemap' => array( 'GoogleNewsSiteHaritası' ),
 );
+
+/** Vietnamese (Tiếng Việt) */
+$specialPageAliases['vi'] = array(
+	'GoogleNewsSitemap' => array( 'Nguồn_cấp_tin_tức', 'Sơ_đồ_trang_Web_Google_Tin_tức' ),
+);
