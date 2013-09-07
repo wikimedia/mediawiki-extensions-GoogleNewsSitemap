@@ -31,9 +31,11 @@ $messages['qqq'] = array(
 	'googlenewssitemap_categorymap' => '{{notranslate}}',
 	'googlenewssitemap_toomanycats' => 'Error given when maximum amount of categories specified is exceeded. Default max is 6.',
 	'googlenewssitemap_feedtitle' => 'Title for the RSS/ATOM feeds produced (does not appear in sitemap XML documents).
-*$1 is language name (like English)
-*$2 is feed type (RSS or ATOM)
-*$3 is language code (like en)',
+
+Parameters:
+* $1 - language name. e.g. "English"
+* $2 - feed type (RSS or ATOM), uses full-capitalized {{msg-mw|Feed-rss}} and {{msg-mw|Feed-atom}}.
+* $3 - (Unused) language code. e.g. "en"',
 );
 
 /** Afrikaans (Afrikaans)
@@ -143,6 +145,16 @@ $messages['cs'] = array(
 	'googlenewssitemap-desc' => 'Vytváří Google News Sitemap podle kanálu Atom/RSS',
 	'googlenewssitemap_toomanycats' => 'Chyba: Příliš mnoho kategorií!',
 	'googlenewssitemap_feedtitle' => '$2 kanál {{grammar:2sg|{{SITENAME}}}} v jazyce $1',
+);
+
+/** Welsh (Cymraeg)
+ * @author Lloffiwr
+ */
+$messages['cy'] = array(
+	'googlenewssitemap' => 'Map safle Google News',
+	'googlenewssitemap-desc' => 'Yn allbynnu ffrwd Atom/RSS fel map safle i Google News',
+	'googlenewssitemap_toomanycats' => 'Gwall: Gormod o gategorïau!',
+	'googlenewssitemap_feedtitle' => 'Ffrwd $2 ar {{SITENAME}} $1.',
 );
 
 /** Danish (dansk)
@@ -508,6 +520,7 @@ $messages['oc'] = array(
 	'googlenewssitemap' => 'Google nòvas Sitemap',
 	'googlenewssitemap-desc' => 'Crèa un Atom o RSS feed coma un plan Sitemap per Google',
 	'googlenewssitemap_toomanycats' => 'Error : Tròp de categorias !',
+	'googlenewssitemap_feedtitle' => 'Flux de donadas $2 del {{SITENAME}} en $1.',
 );
 
 /** Polish (polski)
