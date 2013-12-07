@@ -136,7 +136,7 @@ $messages['ca'] = array(
 	'googlenewssitemap_toomanycats' => 'Error: Massa categories!',
 );
 
-/** Czech (česky)
+/** Czech (čeština)
  * @author Jkjk
  * @author Mormegil
  */
