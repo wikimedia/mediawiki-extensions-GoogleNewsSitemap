@@ -158,9 +158,12 @@ $messages['cy'] = array(
 );
 
 /** Danish (dansk)
+ * @author Christian List
  * @author Peter Alberti
  */
 $messages['da'] = array(
+	'googlenewssitemap' => 'Google News Sitemap',
+	'googlenewssitemap-desc' => 'Giver en Atom/RSS nyhedsstrøm som et sitemap for Google Nyheder',
 	'googlenewssitemap_toomanycats' => 'Fejl: For mange kategorier!',
 	'googlenewssitemap_feedtitle' => '$1 {{SITENAME}} $2-nyhedsstrøm.',
 );
