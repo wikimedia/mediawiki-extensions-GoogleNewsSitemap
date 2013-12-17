@@ -128,3 +128,8 @@ $specialPageAliases['tr'] = array(
 $specialPageAliases['vi'] = array(
 	'GoogleNewsSitemap' => array( 'Nguồn_cấp_tin_tức', 'Sơ_đồ_trang_Web_Google_Tin_tức' ),
 );
+
+/** Simplified Chinese (中文（简体）‎) */
+$specialPageAliases['zh-hans'] = array(
+	'GoogleNewsSitemap' => array( '新闻订阅' ),
+);
