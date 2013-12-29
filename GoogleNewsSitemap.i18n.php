@@ -725,6 +725,13 @@ $messages['vi'] = array(
 	'googlenewssitemap_feedtitle' => 'Nguồn cấp $2 của {{SITENAME}} $1',
 );
 
+/** Yoruba (Yorùbá)
+ * @author Demmy
+ */
+$messages['yo'] = array(
+	'googlenewssitemap' => 'Google News Sitemap',
+);
+
 /** Simplified Chinese (中文（简体）‎)
  * @author Gaoxuewei
  * @author PhiLiP
