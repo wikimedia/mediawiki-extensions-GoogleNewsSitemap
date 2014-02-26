@@ -668,11 +668,12 @@ $messages['ta'] = array(
 );
 
 /** Telugu (తెలుగు)
+ * @author Chaduvari
  * @author Veeven
  */
 $messages['te'] = array(
 	'googlenewssitemap' => 'గూగుల్ వార్తల సైటుపటం',
-	'googlenewssitemap_toomanycats' => 'పొరపాటు: చాలా ఎక్కువ వర్గాలు!',
+	'googlenewssitemap_toomanycats' => 'లోపం: మరీ ఎక్కువ వర్గాలు!',
 );
 
 /** Thai (ไทย)
