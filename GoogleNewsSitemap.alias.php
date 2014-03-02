@@ -133,3 +133,8 @@ $specialPageAliases['vi'] = array(
 $specialPageAliases['zh-hans'] = array(
 	'GoogleNewsSitemap' => array( '新闻订阅' ),
 );
+
+/** Traditional Chinese (中文（繁體）‎) */
+$specialPageAliases['zh-hant'] = array(
+	'GoogleNewsSitemap' => array( '新聞訂閱', 'Google新聞地圖' ),
+);
