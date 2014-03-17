@@ -610,6 +610,16 @@ $messages['rue'] = array(
 	'googlenewssitemap_feedtitle' => '{{SITENAME}}. $1 $2 канал.',
 );
 
+/** Scots (Scots)
+ * @author John Reid
+ */
+$messages['sco'] = array(
+	'googlenewssitemap' => 'Google News Steidmap',
+	'googlenewssitemap-desc' => 'Ootpits aen Atom/RSS feed aes ae Google News Steidmap',
+	'googlenewssitemap_toomanycats' => 'Mistak: Ower monie categeries!',
+	'googlenewssitemap_feedtitle' => '$1 {{SITENAME}} $2 feed.',
+);
+
 /** Sinhala (සිංහල)
  * @author Singhalawap
  * @author පසිඳු කාවින්ද
