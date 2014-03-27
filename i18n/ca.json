@@ -1,0 +1,12 @@
+{
+    "@metadata": {
+        "authors": [
+            "Aleator",
+            "Davidpar",
+            "Paucabot"
+        ]
+    },
+    "googlenewssitemap": "Mapa del lloc Google News",
+    "googlenewssitemap-desc": "Fes sortir un Atom/RSS feed com a Google News Sitemap",
+    "googlenewssitemap_toomanycats": "Error: Massa categories!"
+}

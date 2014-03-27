@@ -1,0 +1,11 @@
+{
+    "@metadata": {
+        "authors": [
+            "Gazeb"
+        ]
+    },
+    "googlenewssitemap": "Мапа сторінкы про Google News",
+    "googlenewssitemap-desc": "Створює Google News Sitemap подля каналу Atom/RSS",
+    "googlenewssitemap_toomanycats": "Error: дуже много катеґорій!",
+    "googlenewssitemap_feedtitle": "{{SITENAME}}. $1 $2 канал."
+}

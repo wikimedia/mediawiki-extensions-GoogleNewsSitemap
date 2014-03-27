@@ -1,0 +1,11 @@
+{
+    "@metadata": {
+        "authors": [
+            "ChrisPtDe"
+        ]
+    },
+    "googlenewssitemap": "Plan du seto Google News",
+    "googlenewssitemap-desc": "Fât un flux de balyês Atom / RSS que ressemble a un plan du seto Google News.",
+    "googlenewssitemap_toomanycats": "Èrror : trop de catègories !",
+    "googlenewssitemap_feedtitle": "Flux de balyês $2 du {{SITENAME}} en $1."
+}

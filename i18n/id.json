@@ -1,0 +1,13 @@
+{
+    "@metadata": {
+        "authors": [
+            "IvanLanin",
+            "Iwan Novirion",
+            "Kenrick95"
+        ]
+    },
+    "googlenewssitemap": "Petasitus Baru Google",
+    "googlenewssitemap-desc": "Hasil dari Atom/RSS feed sebagai Petasitus Baru Google",
+    "googlenewssitemap_toomanycats": "Kesalahan: Terlalu banyak kategori!",
+    "googlenewssitemap_feedtitle": "Umpan $2 $1 {{SITENAME}}."
+}

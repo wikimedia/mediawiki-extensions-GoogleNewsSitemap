@@ -1,0 +1,11 @@
+{
+    "@metadata": {
+        "authors": [
+            "Lloffiwr"
+        ]
+    },
+    "googlenewssitemap": "Map safle Google News",
+    "googlenewssitemap-desc": "Yn allbynnu ffrwd Atom/RSS fel map safle i Google News",
+    "googlenewssitemap_toomanycats": "Gwall: Gormod o gategorïau!",
+    "googlenewssitemap_feedtitle": "Ffrwd $2 ar {{SITENAME}} $1."
+}

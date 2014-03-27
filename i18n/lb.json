@@ -1,0 +1,11 @@
+{
+    "@metadata": {
+        "authors": [
+            "Robby"
+        ]
+    },
+    "googlenewssitemap": "Google News Plang vum Site",
+    "googlenewssitemap-desc": "Produzéiert en Atom/RSS feed als Google News Sitemap",
+    "googlenewssitemap_toomanycats": "Feeler: Zevill Kategorien!",
+    "googlenewssitemap_feedtitle": "$1 {{SITENAME}} $2-Feed."
+}

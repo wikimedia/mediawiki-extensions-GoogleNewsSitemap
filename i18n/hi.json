@@ -1,0 +1,10 @@
+{
+    "@metadata": {
+        "authors": [
+            "Ansumang"
+        ]
+    },
+    "googlenewssitemap": "गूगल समाचार साइटमैप",
+    "googlenewssitemap_toomanycats": "Error: बहुत ज्यादा श्रेणीयां!",
+    "googlenewssitemap_feedtitle": "$1 {{SITENAME}} $2 चारा ।"
+}

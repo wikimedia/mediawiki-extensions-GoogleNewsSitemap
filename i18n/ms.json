@@ -1,0 +1,11 @@
+{
+    "@metadata": {
+        "authors": [
+            "Anakmalaysia"
+        ]
+    },
+    "googlenewssitemap": "Google News Sitemap",
+    "googlenewssitemap-desc": "Mengoutput suapan Atom/RSS dalam bentuk Google News Sitemap",
+    "googlenewssitemap_toomanycats": "Ralat: Kategori terlalu banyak!",
+    "googlenewssitemap_feedtitle": "Suapan {{SITENAME}} $1 ($2)"
+}

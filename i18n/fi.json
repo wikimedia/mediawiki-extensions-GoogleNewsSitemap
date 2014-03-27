@@ -1,0 +1,13 @@
+{
+    "@metadata": {
+        "authors": [
+            "Centerlink",
+            "Crt",
+            "Olli"
+        ]
+    },
+    "googlenewssitemap": "Google News -sivukartta",
+    "googlenewssitemap-desc": "Tulostaa Atom/RSS-syötteen Google-uutissivukarttana",
+    "googlenewssitemap_toomanycats": "Virhe: Liian monta luokkaa.",
+    "googlenewssitemap_feedtitle": "Sivuston {{SITENAME}} $2-syöte ($1)"
+}

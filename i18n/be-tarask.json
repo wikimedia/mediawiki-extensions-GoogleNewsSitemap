@@ -1,0 +1,13 @@
+{
+    "@metadata": {
+        "authors": [
+            "EugeneZelenko",
+            "Jim-by",
+            "Wizardist"
+        ]
+    },
+    "googlenewssitemap": "Мапа сайту Google News",
+    "googlenewssitemap-desc": "Выводзіць стужкі Atom/RSS у выглядзе мапы сайту Google News",
+    "googlenewssitemap_toomanycats": "Памылка: зашмат катэгорыяў!",
+    "googlenewssitemap_feedtitle": "$1 {{SITENAME}} стужка $2."
+}

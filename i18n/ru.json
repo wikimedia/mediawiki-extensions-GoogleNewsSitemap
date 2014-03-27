@@ -1,0 +1,11 @@
+{
+    "@metadata": {
+        "authors": [
+            "Александр Сигачёв"
+        ]
+    },
+    "googlenewssitemap": "Карта сайта для Google News",
+    "googlenewssitemap-desc": "Подготавливает канал Atom/RSS в виде карты сайта для Google News",
+    "googlenewssitemap_toomanycats": "Ошибка. Слишком много категорий!",
+    "googlenewssitemap_feedtitle": "{{SITENAME}}. $1 $2 канал."
+}

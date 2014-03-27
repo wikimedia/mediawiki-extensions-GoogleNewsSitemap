@@ -1,0 +1,12 @@
+{
+    "@metadata": {
+        "authors": [
+            "Fitoschido",
+            "Translationista"
+        ]
+    },
+    "googlenewssitemap": "Mapa del sitio Google Noticias",
+    "googlenewssitemap-desc": "Genera una fuente Atom/RSS como un mapa de sitio de Google Noticias",
+    "googlenewssitemap_toomanycats": "Error: ¡Demasiadas categorías!",
+    "googlenewssitemap_feedtitle": "Fuente $2 en $1 de {{SITENAME}}."
+}

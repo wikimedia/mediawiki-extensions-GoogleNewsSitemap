@@ -58,10 +58,11 @@ $wgExtensionCredits['specialpage'][] = array(
 	'author' => array( 'Amgine', '[http://mediawiki.org/wiki/User:Bawolff Brian Wolff]' ),
 	'descriptionmsg' => 'googlenewssitemap-desc',
 	'url' => 'https://www.mediawiki.org/wiki/Extension:GoogleNewsSitemap',
-	'version' => 2,
+	'version' => '2.1.0',
 );
 
 $dir = __DIR__ . '/';
+$wgMessagesDirs['GoogleNewsSitemap'] = __DIR__ . '/i18n';
 $wgExtensionMessagesFiles['GoogleNewsSitemap'] = $dir . 'GoogleNewsSitemap.i18n.php';
 $wgExtensionMessagesFiles['GoogleNewsSitemapAlias'] = $dir . 'GoogleNewsSitemap.alias.php';
 $wgAutoloadClasses['GoogleNewsSitemap'] = $dir . 'GoogleNewsSitemap_body.php';

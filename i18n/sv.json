@@ -1,0 +1,13 @@
+{
+    "@metadata": {
+        "authors": [
+            "Fredrik",
+            "Per",
+            "WikiPhoenix"
+        ]
+    },
+    "googlenewssitemap": "Webbkarta för Google nyheter",
+    "googlenewssitemap-desc": "Visar ett Atom-/RSS-flöde som en webbkarta för Google nyheter",
+    "googlenewssitemap_toomanycats": "Fel: För många kategorier!",
+    "googlenewssitemap_feedtitle": "$1 {{SITENAME}} $2-flöde."
+}

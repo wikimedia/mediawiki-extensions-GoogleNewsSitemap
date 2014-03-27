@@ -1,0 +1,11 @@
+{
+    "@metadata": {
+        "authors": [
+            "Cedric31"
+        ]
+    },
+    "googlenewssitemap": "Google nòvas Sitemap",
+    "googlenewssitemap-desc": "Crèa un Atom o RSS feed coma un plan Sitemap per Google",
+    "googlenewssitemap_toomanycats": "Error : Tròp de categorias !",
+    "googlenewssitemap_feedtitle": "Flux de donadas $2 del {{SITENAME}} en $1."
+}

@@ -1,0 +1,12 @@
+{
+    "@metadata": {
+        "authors": [
+            "Amgine"
+        ]
+    },
+    "googlenewssitemap": "Google News Sitemap",
+    "googlenewssitemap-desc": "Outputs an Atom/RSS feed as a Google News Sitemap",
+    "googlenewssitemap_categorymap": "",
+    "googlenewssitemap_toomanycats": "Error: Too many categories!",
+    "googlenewssitemap_feedtitle": "$1 {{SITENAME}} $2 feed."
+}

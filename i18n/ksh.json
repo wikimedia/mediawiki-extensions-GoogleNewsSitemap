@@ -1,0 +1,11 @@
+{
+    "@metadata": {
+        "authors": [
+            "Purodha"
+        ]
+    },
+    "googlenewssitemap": "<i lang=\"en\">Google News Sitemap</i>",
+    "googlenewssitemap-desc": "Deiht ene <i lang=\"en\">Atom</i> udder <i lang=\"en\">RSS</i>-Kanaal als en <i lang=\"en\">Google News Sitemap</i> ußjävve.",
+    "googlenewssitemap_toomanycats": "Fähler: Zoh vill Saachjroppe!",
+    "googlenewssitemap_feedtitle": "{{ucfirst:{{GRAMMAR:Genitive iere male|{{SITENAME}}}}}} <i lang=\"en\">$2</i> Kanaal op $1"
+}

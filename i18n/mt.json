@@ -1,0 +1,11 @@
+{
+    "@metadata": {
+        "authors": [
+            "Chrisportelli"
+        ]
+    },
+    "googlenewssitemap": "Google News Sitemap",
+    "googlenewssitemap-desc": "Toħloq ''feed'' ATOM/RSS bħala Mappa tas-sit għal Google News",
+    "googlenewssitemap_toomanycats": "Żball: Numru eċċessiv ta' kategoriji!",
+    "googlenewssitemap_feedtitle": "Feed $2 {{SITENAME}} $1."
+}

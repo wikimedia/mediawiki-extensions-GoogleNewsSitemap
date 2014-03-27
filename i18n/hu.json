@@ -1,0 +1,12 @@
+{
+    "@metadata": {
+        "authors": [
+            "Glanthor Reviol",
+            "TK-999"
+        ]
+    },
+    "googlenewssitemap": "Google hírek oldaltérkép",
+    "googlenewssitemap-desc": "Atom/RSS hírcsatornát készít Google hírek oldaltérképként",
+    "googlenewssitemap_toomanycats": "Hiba: túl sok kategória!",
+    "googlenewssitemap_feedtitle": "A(z) $1 {{SITENAME}} $2-hírcsatornája."
+}

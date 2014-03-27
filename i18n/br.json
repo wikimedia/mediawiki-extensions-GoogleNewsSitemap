@@ -1,0 +1,13 @@
+{
+    "@metadata": {
+        "authors": [
+            "Fohanno",
+            "Fulup",
+            "Y-M D"
+        ]
+    },
+    "googlenewssitemap": "Steuñvenn lec'hienn Keleier Google",
+    "googlenewssitemap-desc": "Krouiñ a ra ul lanvad Atom/RSS evel steuñvenn ul lec'hienn Keleier Google",
+    "googlenewssitemap_toomanycats": "Fazi : Re a rummadoù !",
+    "googlenewssitemap_feedtitle": "Lanvad roadennoù $2 eus {{SITENAME}} e $1."
+}
