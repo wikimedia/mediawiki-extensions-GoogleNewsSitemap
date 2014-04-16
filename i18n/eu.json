@@ -1,10 +1,10 @@
 {
-    "@metadata": {
-        "authors": [
-            "An13sa"
-        ]
-    },
-    "googlenewssitemap": "Google News Gunearen mapa",
-    "googlenewssitemap-desc": "Atom/RSS iturria zehazten du Google News Gunearen maparentzat",
-    "googlenewssitemap_toomanycats": "Errorea: Kategoria gehiegi!"
+	"@metadata": {
+		"authors": [
+			"An13sa"
+		]
+	},
+	"googlenewssitemap": "Google News Gunearen mapa",
+	"googlenewssitemap-desc": "Atom/RSS iturria zehazten du Google News Gunearen maparentzat",
+	"googlenewssitemap_toomanycats": "Errorea: Kategoria gehiegi!"
 }

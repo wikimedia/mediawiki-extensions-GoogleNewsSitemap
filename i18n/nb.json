@@ -1,11 +1,11 @@
 {
-    "@metadata": {
-        "authors": [
-            "Nghtwlkr"
-        ]
-    },
-    "googlenewssitemap": "Nettstedskart for Google News",
-    "googlenewssitemap-desc": "Gir ut en Atom/RSS-mating som et nettstedskart for Google News",
-    "googlenewssitemap_toomanycats": "Feil: For mange kategorier!",
-    "googlenewssitemap_feedtitle": "$1 {{SITENAME}} $2-mating."
+	"@metadata": {
+		"authors": [
+			"Nghtwlkr"
+		]
+	},
+	"googlenewssitemap": "Nettstedskart for Google News",
+	"googlenewssitemap-desc": "Gir ut en Atom/RSS-mating som et nettstedskart for Google News",
+	"googlenewssitemap_toomanycats": "Feil: For mange kategorier!",
+	"googlenewssitemap_feedtitle": "$1 {{SITENAME}} $2-mating."
 }

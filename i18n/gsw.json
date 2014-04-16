@@ -1,11 +1,11 @@
 {
-    "@metadata": {
-        "authors": [
-            "Als-Holder"
-        ]
-    },
-    "googlenewssitemap": "Google Nejigkeite Sytenibersicht",
-    "googlenewssitemap-desc": "Liferet e Atom/RSS-feed as Google Nejigkeite Sytenibersicht",
-    "googlenewssitemap_toomanycats": "Fähler: z vil Kategorie!",
-    "googlenewssitemap_feedtitle": "$1 {{SITENAME}} $2-Feed."
+	"@metadata": {
+		"authors": [
+			"Als-Holder"
+		]
+	},
+	"googlenewssitemap": "Google Nejigkeite Sytenibersicht",
+	"googlenewssitemap-desc": "Liferet e Atom/RSS-feed as Google Nejigkeite Sytenibersicht",
+	"googlenewssitemap_toomanycats": "Fähler: z vil Kategorie!",
+	"googlenewssitemap_feedtitle": "$1 {{SITENAME}} $2-Feed."
 }

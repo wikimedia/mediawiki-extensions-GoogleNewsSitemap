@@ -1,11 +1,11 @@
 {
-    "@metadata": {
-        "authors": [
-            "McDutchie"
-        ]
-    },
-    "googlenewssitemap": "Sitemap de Google News",
-    "googlenewssitemap-desc": "Converte un syndication Atom/RSS in un Sitemap de Google News",
-    "googlenewssitemap_toomanycats": "Error: Troppo de categorias!",
-    "googlenewssitemap_feedtitle": "Syndication $2 de {{SITENAME}} in $1."
+	"@metadata": {
+		"authors": [
+			"McDutchie"
+		]
+	},
+	"googlenewssitemap": "Sitemap de Google News",
+	"googlenewssitemap-desc": "Converte un syndication Atom/RSS in un Sitemap de Google News",
+	"googlenewssitemap_toomanycats": "Error: Troppo de categorias!",
+	"googlenewssitemap_feedtitle": "Syndication $2 de {{SITENAME}} in $1."
 }

@@ -1,12 +1,12 @@
 {
-    "@metadata": {
-        "authors": [
-            "Firilacroco",
-            "Stelistcristi"
-        ]
-    },
-    "googlenewssitemap": "Planul site-ului Google News",
-    "googlenewssitemap-desc": "Creează un flux Atom/RSS ca un plan al site-ului Google News",
-    "googlenewssitemap_toomanycats": "Eroare: Prea multe categorii!",
-    "googlenewssitemap_feedtitle": "Flux $2 pentru {{SITENAME}} în $1."
+	"@metadata": {
+		"authors": [
+			"Firilacroco",
+			"Stelistcristi"
+		]
+	},
+	"googlenewssitemap": "Planul site-ului Google News",
+	"googlenewssitemap-desc": "Creează un flux Atom/RSS ca un plan al site-ului Google News",
+	"googlenewssitemap_toomanycats": "Eroare: Prea multe categorii!",
+	"googlenewssitemap_feedtitle": "Flux $2 pentru {{SITENAME}} în $1."
 }

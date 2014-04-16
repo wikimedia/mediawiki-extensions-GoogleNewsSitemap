@@ -1,13 +1,13 @@
 {
-    "@metadata": {
-        "authors": [
-            "Daemorris",
-            "Giro720",
-            "Raylton P. Sousa"
-        ]
-    },
-    "googlenewssitemap": "Mapa de Site de Notícias Google",
-    "googlenewssitemap-desc": "Produz um alimentador Atom/RSS como um Mapa de Site de Notícias Google",
-    "googlenewssitemap_toomanycats": "Erro: Categorias demais!",
-    "googlenewssitemap_feedtitle": "Feed $2 da {{SITENAME}} em $1."
+	"@metadata": {
+		"authors": [
+			"Daemorris",
+			"Giro720",
+			"Raylton P. Sousa"
+		]
+	},
+	"googlenewssitemap": "Mapa de Site de Notícias Google",
+	"googlenewssitemap-desc": "Produz um alimentador Atom/RSS como um Mapa de Site de Notícias Google",
+	"googlenewssitemap_toomanycats": "Erro: Categorias demais!",
+	"googlenewssitemap_feedtitle": "Feed $2 da {{SITENAME}} em $1."
 }

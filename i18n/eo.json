@@ -1,11 +1,11 @@
 {
-    "@metadata": {
-        "authors": [
-            "Yekrats"
-        ]
-    },
-    "googlenewssitemap": "Retmapo de Google-Aktualaĵoj",
-    "googlenewssitemap-desc": "Generas Atom aŭ RSS retfluon kiel Retmapo de Google-Aktualaĵoj",
-    "googlenewssitemap_toomanycats": "Eraro: Tro da kategorioj!",
-    "googlenewssitemap_feedtitle": "$1 {{SITENAME}} $2 abonfonto."
+	"@metadata": {
+		"authors": [
+			"Yekrats"
+		]
+	},
+	"googlenewssitemap": "Retmapo de Google-Aktualaĵoj",
+	"googlenewssitemap-desc": "Generas Atom aŭ RSS retfluon kiel Retmapo de Google-Aktualaĵoj",
+	"googlenewssitemap_toomanycats": "Eraro: Tro da kategorioj!",
+	"googlenewssitemap_feedtitle": "$1 {{SITENAME}} $2 abonfonto."
 }

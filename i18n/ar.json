@@ -1,11 +1,11 @@
 {
-    "@metadata": {
-        "authors": [
-            "زكريا"
-        ]
-    },
-    "googlenewssitemap": "خريطة موقع أخبار جوجل",
-    "googlenewssitemap-desc": "مخرجات تغذية Atom/RSS في Google News Sitemap",
-    "googlenewssitemap_toomanycats": "خطأ: تصنيفات كثيرة!",
-    "googlenewssitemap_feedtitle": "تغذية $1 {{SITENAME}} $2."
+	"@metadata": {
+		"authors": [
+			"زكريا"
+		]
+	},
+	"googlenewssitemap": "خريطة موقع أخبار جوجل",
+	"googlenewssitemap-desc": "مخرجات تغذية Atom/RSS في Google News Sitemap",
+	"googlenewssitemap_toomanycats": "خطأ: تصنيفات كثيرة!",
+	"googlenewssitemap_feedtitle": "تغذية $1 {{SITENAME}} $2."
 }

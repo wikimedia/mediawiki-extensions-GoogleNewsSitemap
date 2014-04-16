@@ -1,12 +1,12 @@
 {
-    "@metadata": {
-        "authors": [
-            "Jkjk",
-            "Mormegil"
-        ]
-    },
-    "googlenewssitemap": "Mapa stránky pro Google News",
-    "googlenewssitemap-desc": "Vytváří Google News Sitemap podle kanálu Atom/RSS",
-    "googlenewssitemap_toomanycats": "Chyba: Příliš mnoho kategorií!",
-    "googlenewssitemap_feedtitle": "$2 kanál {{grammar:2sg|{{SITENAME}}}} v jazyce $1"
+	"@metadata": {
+		"authors": [
+			"Jkjk",
+			"Mormegil"
+		]
+	},
+	"googlenewssitemap": "Mapa stránky pro Google News",
+	"googlenewssitemap-desc": "Vytváří Google News Sitemap podle kanálu Atom/RSS",
+	"googlenewssitemap_toomanycats": "Chyba: Příliš mnoho kategorií!",
+	"googlenewssitemap_feedtitle": "$2 kanál {{grammar:2sg|{{SITENAME}}}} v jazyce $1"
 }

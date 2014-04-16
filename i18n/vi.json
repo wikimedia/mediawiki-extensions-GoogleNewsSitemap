@@ -1,11 +1,11 @@
 {
-    "@metadata": {
-        "authors": [
-            "Minh Nguyen"
-        ]
-    },
-    "googlenewssitemap": "Sơ đồ trang cho Google Tin tức",
-    "googlenewssitemap-desc": "Cung cấp nguồn cấp Atom/RSS như mọt Sơ đồ trang Web dành cho Google Tin tức",
-    "googlenewssitemap_toomanycats": "Lỗi: Quá nhiều thể loại!",
-    "googlenewssitemap_feedtitle": "Nguồn cấp $2 của {{SITENAME}} $1"
+	"@metadata": {
+		"authors": [
+			"Minh Nguyen"
+		]
+	},
+	"googlenewssitemap": "Sơ đồ trang cho Google Tin tức",
+	"googlenewssitemap-desc": "Cung cấp nguồn cấp Atom/RSS như mọt Sơ đồ trang Web dành cho Google Tin tức",
+	"googlenewssitemap_toomanycats": "Lỗi: Quá nhiều thể loại!",
+	"googlenewssitemap_feedtitle": "Nguồn cấp $2 của {{SITENAME}} $1"
 }

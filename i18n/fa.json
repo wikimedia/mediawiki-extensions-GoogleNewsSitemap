@@ -1,11 +1,11 @@
 {
-    "@metadata": {
-        "authors": [
-            "Mjbmr"
-        ]
-    },
-    "googlenewssitemap": "نقشه تارنمای اخبار گوگل",
-    "googlenewssitemap-desc": "خوراک اتم/آراس‌اس همانند نقشه تارنمای اخبار گوگل خروجی می‌دهد",
-    "googlenewssitemap_toomanycats": "خطا: تعداد رده‌ها زیاد است!",
-    "googlenewssitemap_feedtitle": "خوراک $2 {{SITENAME}} $1."
+	"@metadata": {
+		"authors": [
+			"Mjbmr"
+		]
+	},
+	"googlenewssitemap": "نقشه تارنمای اخبار گوگل",
+	"googlenewssitemap-desc": "خوراک اتم/آراس‌اس همانند نقشه تارنمای اخبار گوگل خروجی می‌دهد",
+	"googlenewssitemap_toomanycats": "خطا: تعداد رده‌ها زیاد است!",
+	"googlenewssitemap_feedtitle": "خوراک $2 {{SITENAME}} $1."
 }

@@ -1,11 +1,11 @@
 {
-    "@metadata": {
-        "authors": [
-            "Dbc334"
-        ]
-    },
-    "googlenewssitemap": "Zemljevid strani Google News",
-    "googlenewssitemap-desc": "Izpiše vir Atom/RSS kot zemljevid strani Google News",
-    "googlenewssitemap_toomanycats": "Napaka: Preveč kategorij!",
-    "googlenewssitemap_feedtitle": "Vir $1 {{SITENAME}} $2."
+	"@metadata": {
+		"authors": [
+			"Dbc334"
+		]
+	},
+	"googlenewssitemap": "Zemljevid strani Google News",
+	"googlenewssitemap-desc": "Izpiše vir Atom/RSS kot zemljevid strani Google News",
+	"googlenewssitemap_toomanycats": "Napaka: Preveč kategorij!",
+	"googlenewssitemap_feedtitle": "Vir $1 {{SITENAME}} $2."
 }

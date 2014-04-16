@@ -1,11 +1,11 @@
 {
-    "@metadata": {
-        "authors": [
-            "Toliño"
-        ]
-    },
-    "googlenewssitemap": "Mapa do sitio das novas do Google",
-    "googlenewssitemap-desc": "Dá como resultado unha fonte de novas Atom/RSS como un mapa do sitio das novas do Google",
-    "googlenewssitemap_toomanycats": "Erro: Demasiadas categorías!",
-    "googlenewssitemap_feedtitle": "Fonte de novas $2 de {{SITENAME}} en $1."
+	"@metadata": {
+		"authors": [
+			"Toliño"
+		]
+	},
+	"googlenewssitemap": "Mapa do sitio das novas do Google",
+	"googlenewssitemap-desc": "Dá como resultado unha fonte de novas Atom/RSS como un mapa do sitio das novas do Google",
+	"googlenewssitemap_toomanycats": "Erro: Demasiadas categorías!",
+	"googlenewssitemap_feedtitle": "Fonte de novas $2 de {{SITENAME}} en $1."
 }

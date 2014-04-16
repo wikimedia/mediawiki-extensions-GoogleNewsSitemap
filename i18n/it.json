@@ -1,12 +1,12 @@
 {
-    "@metadata": {
-        "authors": [
-            "Beta16",
-            "F. Cosoleto"
-        ]
-    },
-    "googlenewssitemap": "Google News Sitemap",
-    "googlenewssitemap-desc": "Genera un feed Atom/RSS come Sitemap per Google News",
-    "googlenewssitemap_toomanycats": "Errore: Numero di categorie eccessivo!",
-    "googlenewssitemap_feedtitle": "Feed $2 {{SITENAME}} $1."
+	"@metadata": {
+		"authors": [
+			"Beta16",
+			"F. Cosoleto"
+		]
+	},
+	"googlenewssitemap": "Google News Sitemap",
+	"googlenewssitemap-desc": "Genera un feed Atom/RSS come Sitemap per Google News",
+	"googlenewssitemap_toomanycats": "Errore: Numero di categorie eccessivo!",
+	"googlenewssitemap_feedtitle": "Feed $2 {{SITENAME}} $1."
 }

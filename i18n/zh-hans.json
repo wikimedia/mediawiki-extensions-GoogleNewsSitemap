@@ -1,13 +1,13 @@
 {
-    "@metadata": {
-        "authors": [
-            "Gaoxuewei",
-            "PhiLiP",
-            "Xiaomingyan"
-        ]
-    },
-    "googlenewssitemap": "Google 新闻网站地图",
-    "googlenewssitemap-desc": "输出Atom/RSS feed作为Google 新闻网站地图",
-    "googlenewssitemap_toomanycats": "错误：分类过多！",
-    "googlenewssitemap_feedtitle": "$1{{SITENAME}}的$2消息来源。"
+	"@metadata": {
+		"authors": [
+			"Gaoxuewei",
+			"PhiLiP",
+			"Xiaomingyan"
+		]
+	},
+	"googlenewssitemap": "Google 新闻网站地图",
+	"googlenewssitemap-desc": "输出Atom/RSS feed作为Google 新闻网站地图",
+	"googlenewssitemap_toomanycats": "错误：分类过多！",
+	"googlenewssitemap_feedtitle": "$1{{SITENAME}}的$2消息来源。"
 }

@@ -1,10 +1,10 @@
 {
-    "@metadata": {
-        "authors": [
-            "Wikitanvir"
-        ]
-    },
-    "googlenewssitemap": "গুগল নিউজ সাইটম্যাপ",
-    "googlenewssitemap_toomanycats": "ত্রুটি: অনেক বেশি বিষয়শ্রেণী!",
-    "googlenewssitemap_feedtitle": "$1 {{SITENAME}} $2 ফিড।"
+	"@metadata": {
+		"authors": [
+			"Wikitanvir"
+		]
+	},
+	"googlenewssitemap": "গুগল নিউজ সাইটম্যাপ",
+	"googlenewssitemap_toomanycats": "ত্রুটি: অনেক বেশি বিষয়শ্রেণী!",
+	"googlenewssitemap_feedtitle": "$1 {{SITENAME}} $2 ফিড।"
 }

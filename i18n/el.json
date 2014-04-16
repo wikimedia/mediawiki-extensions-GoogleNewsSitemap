@@ -1,12 +1,12 @@
 {
-    "@metadata": {
-        "authors": [
-            "Glavkos",
-            "Περίεργος"
-        ]
-    },
-    "googlenewssitemap": "Χάρτης Ειδήσεων της Google",
-    "googlenewssitemap-desc": "Βγάζει το Χάρτη Ειδήσεων της Google ως Atom/RSS",
-    "googlenewssitemap_toomanycats": "Σφάλμα: Υπερβολικά πολλές κατηγορίες!",
-    "googlenewssitemap_feedtitle": "$1 {{SITENAME}} $2 ροή."
+	"@metadata": {
+		"authors": [
+			"Glavkos",
+			"Περίεργος"
+		]
+	},
+	"googlenewssitemap": "Χάρτης Ειδήσεων της Google",
+	"googlenewssitemap-desc": "Βγάζει το Χάρτη Ειδήσεων της Google ως Atom/RSS",
+	"googlenewssitemap_toomanycats": "Σφάλμα: Υπερβολικά πολλές κατηγορίες!",
+	"googlenewssitemap_feedtitle": "$1 {{SITENAME}} $2 ροή."
 }

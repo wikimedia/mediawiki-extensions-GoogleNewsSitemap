@@ -1,11 +1,11 @@
 {
-    "@metadata": {
-        "authors": [
-            "Hamilton Abreu"
-        ]
-    },
-    "googlenewssitemap": "Google News Sitemap",
-    "googlenewssitemap-desc": "Converte um feed Atom/RSS para um Google News Sitemap",
-    "googlenewssitemap_toomanycats": "Erro: Categorias a mais!",
-    "googlenewssitemap_feedtitle": "Feed $2 da {{SITENAME}} em $1."
+	"@metadata": {
+		"authors": [
+			"Hamilton Abreu"
+		]
+	},
+	"googlenewssitemap": "Google News Sitemap",
+	"googlenewssitemap-desc": "Converte um feed Atom/RSS para um Google News Sitemap",
+	"googlenewssitemap_toomanycats": "Erro: Categorias a mais!",
+	"googlenewssitemap_feedtitle": "Feed $2 da {{SITENAME}} em $1."
 }

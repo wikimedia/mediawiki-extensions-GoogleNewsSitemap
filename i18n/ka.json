@@ -1,9 +1,9 @@
 {
-    "@metadata": {
-        "authors": [
-            "David1010"
-        ]
-    },
-    "googlenewssitemap": "Google News-ის ვებ-გვერდის რუკა",
-    "googlenewssitemap_toomanycats": "შეცდომა: ძალიან ბევრი კატეგორიაა!"
+	"@metadata": {
+		"authors": [
+			"David1010"
+		]
+	},
+	"googlenewssitemap": "Google News-ის ვებ-გვერდის რუკა",
+	"googlenewssitemap_toomanycats": "შეცდომა: ძალიან ბევრი კატეგორიაა!"
 }

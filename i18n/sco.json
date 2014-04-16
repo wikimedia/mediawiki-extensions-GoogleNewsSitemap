@@ -1,11 +1,11 @@
 {
-    "@metadata": {
-        "authors": [
-            "John Reid"
-        ]
-    },
-    "googlenewssitemap": "Google News Steidmap",
-    "googlenewssitemap-desc": "Ootpits aen Atom/RSS feed aes ae Google News Steidmap",
-    "googlenewssitemap_toomanycats": "Mistak: Ower monie categeries!",
-    "googlenewssitemap_feedtitle": "$1 {{SITENAME}} $2 feed."
+	"@metadata": {
+		"authors": [
+			"John Reid"
+		]
+	},
+	"googlenewssitemap": "Google News Steidmap",
+	"googlenewssitemap-desc": "Ootpits aen Atom/RSS feed aes ae Google News Steidmap",
+	"googlenewssitemap_toomanycats": "Mistak: Ower monie categeries!",
+	"googlenewssitemap_feedtitle": "$1 {{SITENAME}} $2 feed."
 }

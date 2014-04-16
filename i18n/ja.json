@@ -1,15 +1,15 @@
 {
-    "@metadata": {
-        "authors": [
-            "Hosiryuhosi",
-            "Naohiro19",
-            "Ohgi",
-            "Schu",
-            "Shirayuki"
-        ]
-    },
-    "googlenewssitemap": "Google ニュース サイトマップ",
-    "googlenewssitemap-desc": "Atom/RSS フィードを Google ニュース サイトマップとして出力する",
-    "googlenewssitemap_toomanycats": "エラー: カテゴリが多すぎます!",
-    "googlenewssitemap_feedtitle": "$1 {{SITENAME}} $2 フィード。"
+	"@metadata": {
+		"authors": [
+			"Hosiryuhosi",
+			"Naohiro19",
+			"Ohgi",
+			"Schu",
+			"Shirayuki"
+		]
+	},
+	"googlenewssitemap": "Google ニュース サイトマップ",
+	"googlenewssitemap-desc": "Atom/RSS フィードを Google ニュース サイトマップとして出力する",
+	"googlenewssitemap_toomanycats": "エラー: カテゴリが多すぎます!",
+	"googlenewssitemap_feedtitle": "$1 {{SITENAME}} $2 フィード。"
 }

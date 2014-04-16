@@ -1,11 +1,11 @@
 {
-    "@metadata": {
-        "authors": [
-            "Xuacu"
-        ]
-    },
-    "googlenewssitemap": "Mapa del sitiu Google Noticies",
-    "googlenewssitemap-desc": "Xenera una canal Atom/RSS como un mapa del sitiu de Google Noticies",
-    "googlenewssitemap_toomanycats": "Error: ¡Demasiaes categoríes!",
-    "googlenewssitemap_feedtitle": "Canal $2 de {{SITENAME}} ($1)."
+	"@metadata": {
+		"authors": [
+			"Xuacu"
+		]
+	},
+	"googlenewssitemap": "Mapa del sitiu Google Noticies",
+	"googlenewssitemap-desc": "Xenera una canal Atom/RSS como un mapa del sitiu de Google Noticies",
+	"googlenewssitemap_toomanycats": "Error: ¡Demasiaes categoríes!",
+	"googlenewssitemap_feedtitle": "Canal $2 de {{SITENAME}} ($1)."
 }

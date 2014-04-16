@@ -1,11 +1,11 @@
 {
-    "@metadata": {
-        "authors": [
-            "AnakngAraw"
-        ]
-    },
-    "googlenewssitemap": "Mapang Pangsityo ng Balitang Google",
-    "googlenewssitemap-desc": "Naglalabas ng pakaing Atom/RSS bilang Mapa sa Sityo ng Balitang Google",
-    "googlenewssitemap_toomanycats": "Mali: Napakaraming mga kategorya!",
-    "googlenewssitemap_feedtitle": "$1 na {{SITENAME}} $2 na pakain."
+	"@metadata": {
+		"authors": [
+			"AnakngAraw"
+		]
+	},
+	"googlenewssitemap": "Mapang Pangsityo ng Balitang Google",
+	"googlenewssitemap-desc": "Naglalabas ng pakaing Atom/RSS bilang Mapa sa Sityo ng Balitang Google",
+	"googlenewssitemap_toomanycats": "Mali: Napakaraming mga kategorya!",
+	"googlenewssitemap_feedtitle": "$1 na {{SITENAME}} $2 na pakain."
 }

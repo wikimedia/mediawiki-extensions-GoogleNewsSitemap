@@ -1,12 +1,12 @@
 {
-    "@metadata": {
-        "authors": [
-            "Amire80",
-            "YaronSh"
-        ]
-    },
-    "googlenewssitemap": "מפת אתר לפי Google News",
-    "googlenewssitemap-desc": "יצוא הזנת Atom/RSS בתור מפת אתר ל־Google News",
-    "googlenewssitemap_toomanycats": "שגיאה: יותר מדי קטגוריות!",
-    "googlenewssitemap_feedtitle": "הזנת $2 מאתר {{SITENAME}} ב{{GRAMMAR:תחילית|$1}}"
+	"@metadata": {
+		"authors": [
+			"Amire80",
+			"YaronSh"
+		]
+	},
+	"googlenewssitemap": "מפת אתר לפי Google News",
+	"googlenewssitemap-desc": "יצוא הזנת Atom/RSS בתור מפת אתר ל־Google News",
+	"googlenewssitemap_toomanycats": "שגיאה: יותר מדי קטגוריות!",
+	"googlenewssitemap_feedtitle": "הזנת $2 מאתר {{SITENAME}} ב{{GRAMMAR:תחילית|$1}}"
 }

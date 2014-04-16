@@ -1,11 +1,11 @@
 {
-    "@metadata": {
-        "authors": [
-            "Sp5uhe"
-        ]
-    },
-    "googlenewssitemap": "Mapa serwisu dla Google News",
-    "googlenewssitemap-desc": "Treść kanałów Atom i RSS w formie mapy witryny dla Google News",
-    "googlenewssitemap_toomanycats": "Błąd – zbyt wiele kategorii!",
-    "googlenewssitemap_feedtitle": "{{SITENAME}} ($1) – kanał $2."
+	"@metadata": {
+		"authors": [
+			"Sp5uhe"
+		]
+	},
+	"googlenewssitemap": "Mapa serwisu dla Google News",
+	"googlenewssitemap-desc": "Treść kanałów Atom i RSS w formie mapy witryny dla Google News",
+	"googlenewssitemap_toomanycats": "Błąd – zbyt wiele kategorii!",
+	"googlenewssitemap_feedtitle": "{{SITENAME}} ($1) – kanał $2."
 }

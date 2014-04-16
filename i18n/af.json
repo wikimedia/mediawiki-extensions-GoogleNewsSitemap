@@ -1,11 +1,11 @@
 {
-    "@metadata": {
-        "authors": [
-            "Naudefj"
-        ]
-    },
-    "googlenewssitemap": "Google Nuus Sitemap",
-    "googlenewssitemap-desc": "Eksporteer 'n Atom/RSS-voer as 'n Google \"News Sitemap\"",
-    "googlenewssitemap_toomanycats": "Fout: Te veel kategorieë!",
-    "googlenewssitemap_feedtitle": "$2-voer van {{SITENAME}} in $1"
+	"@metadata": {
+		"authors": [
+			"Naudefj"
+		]
+	},
+	"googlenewssitemap": "Google Nuus Sitemap",
+	"googlenewssitemap-desc": "Eksporteer 'n Atom/RSS-voer as 'n Google \"News Sitemap\"",
+	"googlenewssitemap_toomanycats": "Fout: Te veel kategorieë!",
+	"googlenewssitemap_feedtitle": "$2-voer van {{SITENAME}} in $1"
 }

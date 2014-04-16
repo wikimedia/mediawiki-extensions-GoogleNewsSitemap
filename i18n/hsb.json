@@ -1,11 +1,11 @@
 {
-    "@metadata": {
-        "authors": [
-            "Michawiki"
-        ]
-    },
-    "googlenewssitemap": "Sydłowa přehlad Google Nowinki",
-    "googlenewssitemap-desc": "Wudawa kanal Atom/RSS jako sydłowy přehlad Google Nowinki",
-    "googlenewssitemap_toomanycats": "Zmylk: Přewjele kategorijow!",
-    "googlenewssitemap_feedtitle": "$1 {{SITENAME}} kanal $2."
+	"@metadata": {
+		"authors": [
+			"Michawiki"
+		]
+	},
+	"googlenewssitemap": "Sydłowa přehlad Google Nowinki",
+	"googlenewssitemap-desc": "Wudawa kanal Atom/RSS jako sydłowy přehlad Google Nowinki",
+	"googlenewssitemap_toomanycats": "Zmylk: Přewjele kategorijow!",
+	"googlenewssitemap_feedtitle": "$1 {{SITENAME}} kanal $2."
 }

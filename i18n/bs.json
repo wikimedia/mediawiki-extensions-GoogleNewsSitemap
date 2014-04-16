@@ -1,11 +1,11 @@
 {
-    "@metadata": {
-        "authors": [
-            "CERminator"
-        ]
-    },
-    "googlenewssitemap": "Google News mapa stranice",
-    "googlenewssitemap-desc": "Daje izlaz atom/RSS fida kao Google News mapa stranice",
-    "googlenewssitemap_toomanycats": "Greška: Previše kategorija!",
-    "googlenewssitemap_feedtitle": "$1 {{SITENAME}} $2 fid."
+	"@metadata": {
+		"authors": [
+			"CERminator"
+		]
+	},
+	"googlenewssitemap": "Google News mapa stranice",
+	"googlenewssitemap-desc": "Daje izlaz atom/RSS fida kao Google News mapa stranice",
+	"googlenewssitemap_toomanycats": "Greška: Previše kategorija!",
+	"googlenewssitemap_feedtitle": "$1 {{SITENAME}} $2 fid."
 }
