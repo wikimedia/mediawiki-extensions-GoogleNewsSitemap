@@ -84,6 +84,11 @@ $specialPageAliases['lad'] = array(
 	'GoogleNewsSitemap' => array( 'Mapa_de_sitio_de_GoogleJhabberes' ),
 );
 
+/** Luxembourgish (Lëtzebuergesch) */
+$specialPageAliases['lb'] = array(
+	'GoogleNewsSitemap' => array( 'Neiegkeeten-Tweet' ),
+);
+
 /** Macedonian (македонски) */
 $specialPageAliases['mk'] = array(
 	'GoogleNewsSitemap' => array( 'ПланНаМрежМестоGoogleNews' ),
