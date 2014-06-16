@@ -39,6 +39,11 @@ $specialPageAliases['fa'] = array(
 	'GoogleNewsSitemap' => array( 'خوراک_اخبار', 'نقشه_وبگاه_اخبار_گوگل' ),
 );
 
+/** Upper Sorbian (hornjoserbsce) */
+$specialPageAliases['hsb'] = array(
+	'GoogleNewsSitemap' => array( 'Powěsćowy_kanal' ),
+);
+
 /** Haitian (Kreyòl ayisyen) */
 $specialPageAliases['ht'] = array(
 	'GoogleNewsSitemap' => array( 'KatSitGoogleNews' ),
