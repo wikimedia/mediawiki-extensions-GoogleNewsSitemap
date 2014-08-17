@@ -23,7 +23,7 @@
  */
 
 class GoogleNewsSitemap extends SpecialPage {
-	var $maxCacheTime = 43200; // 12 hours. Chosen rather arbitrarily for now. Might want to tweak.
+	public $maxCacheTime = 43200; // 12 hours. Chosen rather arbitrarily for now. Might want to tweak.
 
 	const OPT_INCLUDE = 0;
 	const OPT_ONLY = 1;
