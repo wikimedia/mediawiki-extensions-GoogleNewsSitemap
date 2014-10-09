@@ -76,7 +76,7 @@ $specialPageAliases['ja'] = array(
 
 /** Korean (한국어) */
 $specialPageAliases['ko'] = array(
-	'GoogleNewsSitemap' => array( '뉴스피드' ),
+	'GoogleNewsSitemap' => array( '뉴스피드', 'Google뉴스사이트맵', '구글뉴스사이트맵' ),
 );
 
 /** Cornish (kernowek) */
