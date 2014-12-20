@@ -2,11 +2,12 @@
 	"@metadata": {
 		"authors": [
 			"Anakmalaysia",
-			"Mark85296341"
+			"Mark85296341",
+			"Cwlin0416"
 		]
 	},
-	"googlenewssitemap": "Google 資訊站點地圖",
-	"googlenewssitemap-desc": "輸出一個 Google 資訊站點地圖的 Atom/RSS 文件",
+	"googlenewssitemap": "Google 資訊網站地圖",
+	"googlenewssitemap-desc": "輸出一個 Google 資訊網站地圖的 Atom/RSS 文件",
 	"googlenewssitemap_toomanycats": "錯誤：分類過多！",
-	"googlenewssitemap_feedtitle": "$1{{SITENAME}}的$2消息來源。"
+	"googlenewssitemap_feedtitle": "$1{{SITENAME}}的 $2 消息來源。"
 }
