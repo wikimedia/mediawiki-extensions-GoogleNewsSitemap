@@ -103,7 +103,12 @@ class FeedSMItem extends FeedItem {
 		) );
 		$main = new ApiMain( $req );
 		$main->execute();
-		$data = $main->getResultData();
+		if ( defined( 'ApiResult::META_CONTENT' ) ) {
+			$data = $main->getResult()->getResultData();
+			$data = ApiResult::transformForBC( $data );
+		} else {
+			$data = $main->getResultData();
+		}
 
 		if ( isset( $data['parse']['text']['*'] ) ) {
 			$result = $this->xmlEncode(
