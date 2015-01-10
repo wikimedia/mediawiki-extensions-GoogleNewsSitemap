@@ -364,7 +364,7 @@ class GoogleNewsSitemap extends SpecialPage {
 
 	/**
 	 * Parse parameters, populates $params
-	 * @throws MWException
+	 * @throws Exception
 	 * @return Array containing the $params, $categories and $notCategories
 	 *   variables that make up the request.
 	 */
@@ -410,7 +410,7 @@ class GoogleNewsSitemap extends SpecialPage {
 				$categories[] = $fallBack;
 				$params['catCount'] = count( $categories );
 			} else {
-				throw new MWException( 'Default fallback category ($wgGNSMfallbackCategory) is not a valid title!' );
+				throw new Exception( 'Default fallback category ($wgGNSMfallbackCategory) is not a valid title!' );
 			}
 		}
 

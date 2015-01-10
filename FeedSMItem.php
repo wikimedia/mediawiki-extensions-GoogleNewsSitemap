@@ -20,7 +20,7 @@ class FeedSMItem extends FeedItem {
 	 * @param String $pubDate Publish date formattable by wfTimestamp.
 	 * @param Array|string $keywords list of (String) keywords
 	 * @param bool $comment
-	 * @throws MWException
+	 * @throws Exception
 	 * @internal param bool $Mixed or Integer. Namespace containing comments page for entry.
 	 *   True for the corresponding talk page of $title
 	 *   False for none
@@ -29,7 +29,7 @@ class FeedSMItem extends FeedItem {
 	public function __construct( $title, $pubDate, $keywords = '', $comment = true ) {
 		if ( !$title || !$title instanceof Title ) {
 			// Paranoia
-			throw new MWException( 'Invalid title object passed to FeedSMItem' );
+			throw new Exception( 'Invalid title object passed to FeedSMItem' );
 		}
 
 		$commentsURL = '';
@@ -55,7 +55,7 @@ class FeedSMItem extends FeedItem {
 	 * Convert a FeedItem to an FeedSMItem.
 	 * This is to make sitemap feed get along with normal MediaWiki feeds.
 	 * @param \FeedItem $item Original item.
-	 * @throws MWException
+	 * @throws Exception
 	 * @return FeedSMItem Converted item.
 	 */
 	public static function newFromFeedItem( FeedItem $item ) {
@@ -63,7 +63,7 @@ class FeedSMItem extends FeedItem {
 		// maybe try and get title from url?
 		$title = Title::newFromText( $item->getTitle() );
 		if ( !$title ) {
-			throw new MWException( 'Error getting title object from string in FeedItem.' );
+			throw new Exception( 'Error getting title object from string in FeedItem.' );
 		}
 		$date = $item->getDate();
 		return new FeedSMItem( $title, $date );
