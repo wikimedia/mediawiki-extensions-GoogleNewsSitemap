@@ -59,6 +59,7 @@ $wgExtensionCredits['specialpage'][] = array(
 	'descriptionmsg' => 'googlenewssitemap-desc',
 	'url' => 'https://www.mediawiki.org/wiki/Extension:GoogleNewsSitemap',
 	'version' => '2.1.0',
+	'license-name' => 'GPL-2.0+',
 );
 
 $dir = __DIR__ . '/';
