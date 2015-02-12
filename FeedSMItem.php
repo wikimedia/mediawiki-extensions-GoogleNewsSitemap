@@ -91,7 +91,6 @@ class FeedSMItem extends FeedItem {
 	 * @return String
 	 */
 	public function getDescription() {
-		wfProfileIn( __METHOD__ );
 		// This is probably rather inefficient to do for several pages
 		// but not much worse than the rest of this extension.
 
@@ -110,7 +109,6 @@ class FeedSMItem extends FeedItem {
 				$data['parse']['text']['*']
 			);
 		}
-		wfProfileOut( __METHOD__ );
 		return $result;
 	}
 }

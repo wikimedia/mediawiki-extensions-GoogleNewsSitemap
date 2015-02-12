@@ -92,7 +92,6 @@ class GoogleNewsSitemap extends SpecialPage {
 			echo $cached;
 			echo "<!-- From cache: $cacheKey -->";
 		} else {
-			wfProfileIn( __METHOD__ . '-not-cached' );
 			$res = $this->getCategories( $params, $categories, $notCategories );
 			ob_start();
 			$this->makeFeed( $feed, $res );
@@ -103,7 +102,6 @@ class GoogleNewsSitemap extends SpecialPage {
 				array( $cacheInvalidationInfo, $output ),
 				$this->maxCacheTime
 			);
-			wfProfileOut( __METHOD__ . '-not-cached' );
 		}
 
 	}
@@ -206,7 +204,6 @@ class GoogleNewsSitemap extends SpecialPage {
 	 * @return String All the above info concatenated.
 	 */
 	private function getCacheInvalidationInfo( $params, $categories, $notCategories ) {
-		wfProfileIn( __METHOD__ );
 		$dbr = wfGetDB( DB_SLAVE );
 		$cacheInfo = '';
 		$categoriesKey = array();
@@ -265,7 +262,6 @@ class GoogleNewsSitemap extends SpecialPage {
 			$cacheInfo .= $ts . '!';
 		}
 
-		wfProfileOut( __METHOD__ );
 		return $cacheInfo;
 	}
 
@@ -513,7 +509,6 @@ class GoogleNewsSitemap extends SpecialPage {
 	 * @return Array of String: list of keywords
 	 */
 	public function getKeywords( Title $title ) {
-		wfProfileIn( __METHOD__ );
 		$cats = $this->getVisibleCategories( $title );
 		$res = array();
 
@@ -555,7 +550,6 @@ class GoogleNewsSitemap extends SpecialPage {
 				}
 			}
 		}
-		wfProfileOut( __METHOD__ );
 		return $res;
 	}
 
