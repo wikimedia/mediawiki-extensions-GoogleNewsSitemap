@@ -7,7 +7,7 @@
 		]
 	},
 	"googlenewssitemap": "{{doc-special|GoogleNewsSitemap|unlisted=1}}",
-	"googlenewssitemap-desc": "{{desc|name=Google News Sitemap|url=http://www.mediawiki.org/wiki/Extension:GoogleNewsSitemap}}",
+	"googlenewssitemap-desc": "{{desc|name=Google News Sitemap|url=https://www.mediawiki.org/wiki/Extension:GoogleNewsSitemap}}",
 	"googlenewssitemap_categorymap": "{{notranslate}}",
 	"googlenewssitemap_toomanycats": "Error given when maximum amount of categories specified is exceeded. Default max is 6.",
 	"googlenewssitemap_feedtitle": "Title for the RSS/ATOM feeds produced (does not appear in sitemap XML documents).\n\nParameters:\n* $1 - language name. e.g. \"English\"\n* $2 - feed type (RSS or ATOM), uses full-capitalized {{msg-mw|Feed-rss}} and {{msg-mw|Feed-atom}}.\n* $3 - (Unused) language code. e.g. \"en\""
