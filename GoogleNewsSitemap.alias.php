@@ -24,6 +24,11 @@ $specialPageAliases['arz'] = array(
 	'GoogleNewsSitemap' => array( 'خريطة_سايت_اخبار_جوجل' ),
 );
 
+/** Western Balochi (بلوچی رخشانی) */
+$specialPageAliases['bgn'] = array(
+	'GoogleNewsSitemap' => array( 'نۆچی_و_هبرئانی_وّرگ', 'گوگل_ئی_اخبار_یی_وبسایت_یی_نخشه' ),
+);
+
 /** German (Deutsch) */
 $specialPageAliases['de'] = array(
 	'GoogleNewsSitemap' => array( 'Nachrichtenfeed', 'Nachrichten-Feed' ),
