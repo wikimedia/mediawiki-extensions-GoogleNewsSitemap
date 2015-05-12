@@ -19,7 +19,7 @@ $specialPageAliases['ar'] = array(
 	'GoogleNewsSitemap' => array( 'خريطة_موقع_أخبار_جوجل' ),
 );
 
-/** Egyptian Spoken Arabic (مصرى) */
+/** Egyptian Arabic (مصرى) */
 $specialPageAliases['arz'] = array(
 	'GoogleNewsSitemap' => array( 'خريطة_سايت_اخبار_جوجل' ),
 );
