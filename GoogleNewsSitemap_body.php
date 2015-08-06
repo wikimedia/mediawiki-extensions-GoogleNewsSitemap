@@ -288,7 +288,7 @@ class GoogleNewsSitemap extends SpecialPage {
 			$conditions['page_namespace'] = $params['namespace'];
 		}
 
-		wfRunHooks( 'GoogleNewsSitemap::Query', array( $params, &$joins, &$conditions, &$tables ) );
+		Hooks::run( 'GoogleNewsSitemap::Query', array( $params, &$joins, &$conditions, &$tables ) );
 
 		switch ( $params['redirects'] ) {
 			case self::OPT_ONLY:
