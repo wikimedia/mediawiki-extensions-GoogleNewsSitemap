@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Angpradesh"
+		]
+	},
+	"googlenewssitemap": "गूगल समाचार साइटमैप",
+	"googlenewssitemap-desc": "एगऽ गूगल समाचार साइटमैप केरऽ रूप मं॑ एगऽ एटम / आरएसएस फ़ीड आउटपुट",
+	"googlenewssitemap_toomanycats": "त्रुटि: बहुत जादा श्रेणी!",
+	"googlenewssitemap_feedtitle": "$1 {{SITENAME}} $2 फीड ।"
+}
