@@ -1,11 +1,4 @@
 <?php
-if ( !defined( 'MEDIAWIKI' ) ) {
-    echo <<<EOT
-To install GoogleNewsSitemap extension, an extension special page, put the following line in LocalSettings.php:
-require_once( __DIR__ . '/extensions/GoogleNewsSitemap/GoogleNewsSitemap.php' );
-EOT;
-    exit( 1 );
-}
 
 /**
  * Outputs feed xml
@@ -52,40 +45,17 @@ EOT;
  * @copyright Copyright © 2009, Amgine
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
  */
-$wgExtensionCredits['specialpage'][] = array(
-	'path' => __FILE__,
-	'name' => 'GoogleNewsSitemap',
-	'author' => array( 'Amgine', '[http://mediawiki.org/wiki/User:Bawolff Brian Wolff]' ),
-	'descriptionmsg' => 'googlenewssitemap-desc',
-	'url' => 'https://www.mediawiki.org/wiki/Extension:GoogleNewsSitemap',
-	'version' => '2.1.0',
-	'license-name' => 'GPL-2.0+',
-);
 
-$dir = __DIR__ . '/';
-$wgMessagesDirs['GoogleNewsSitemap'] = __DIR__ . '/i18n';
-$wgExtensionMessagesFiles['GoogleNewsSitemap'] = $dir . 'GoogleNewsSitemap.i18n.php';
-$wgExtensionMessagesFiles['GoogleNewsSitemapAlias'] = $dir . 'GoogleNewsSitemap.alias.php';
-$wgAutoloadClasses['GoogleNewsSitemap'] = $dir . 'GoogleNewsSitemap_body.php';
-$wgAutoloadClasses['FeedSMItem'] = $dir . 'FeedSMItem.php';
-$wgAutoloadClasses['SitemapFeed'] = $dir . 'SitemapFeed.php';
-$wgSpecialPages['GoogleNewsSitemap'] = 'GoogleNewsSitemap';
-$wgFeedClasses['sitemap'] = 'SitemapFeed';
-
-// Configuration options:
-$wgGNSMmaxCategories = 6;   // Maximum number of categories to look for
-$wgGNSMmaxResultCount = 50; // Maximum number of results to allow
-
-// Fallback category if no categories are specified.
-$wgGNSMfallbackCategory = 'Published';
-
-// How long to put in squid cache. Note also cached using wgMemc (for 12 hours),
-// but the wgMemc entries are checked to see if they are still relevant, where
-// the squid cache is not checked. So this should be a small number.
-$wgGNSMsmaxage = 1800; // = 30 minutes
-
-// $wgGNSMcommentNamespace can be false to mean do not include a <comments> element in the feeds,
-// or it can be true, to mean use the talk page of the relevent page as the comments page
-// or it can be a specific namespace number ( or NS_BLAH constant) to denote a specific namespace.
-// For example, on many Wikinews sites, the comment namespace is Comments (102), not talk.
-$wgGNSMcommentNamespace = true;
+if ( function_exists( 'wfLoadExtension' ) ) {
+	wfLoadExtension( 'GoogleNewsSitemap' );
+	// Keep i18n globals so mergeMessageFileList.php doesn't break
+	$wgMessagesDirs['GoogleNewsSitemap'] = __DIR__ . '/i18n';
+	$wgExtensionMessagesFiles['GoogleNewsSitemapAlias'] = __DIR__ . '/GoogleNewsSitemap.alias.php';
+	/*wfWarn(
+		'Deprecated PHP entry point used for GoogleNewsSitemap extension. Please use wfLoadExtension instead, ' .
+		'see https://www.mediawiki.org/wiki/Extension_registration for more details.'
+	);*/
+	return;
+} else {
+	die( 'This version of the GoogleNewsSitemap extension requires MediaWiki 1.25+' );
+}
