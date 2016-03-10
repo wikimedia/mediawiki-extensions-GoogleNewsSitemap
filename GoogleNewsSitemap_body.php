@@ -70,7 +70,7 @@ class GoogleNewsSitemap extends SpecialPage {
 
 		$feed = new $wgFeedClasses[ $params['feed'] ](
 			$this->msg( 'googlenewssitemap_feedtitle',
-				$wgContLang->fetchLanguageName( $wgLanguageCode ),
+				Language::fetchLanguageName( $wgLanguageCode, $wgContLang->getCode() ),
 				$feedType,
 				$wgLanguageCode
 			)->inContentLanguage()->text(),
@@ -127,7 +127,7 @@ class GoogleNewsSitemap extends SpecialPage {
 	/**
 	 * Get the cached version of the feed if possible.
 	 * Checks to see if the cached version is still valid.
-	 * 
+	 *
 	 * Note, this doesn't take into account changes to the keyword
 	 * mapping message (See getKeywords). I don't think that's a major issue.
 	 *
@@ -144,8 +144,8 @@ class GoogleNewsSitemap extends SpecialPage {
 
 		$cached = $wgMemc->get( $key );
 
-		if ( !$cached 
-			|| ( count( $cached ) !== 2 ) 
+		if ( !$cached
+			|| ( count( $cached ) !== 2 )
 			|| ( $cached[0] !== $invalidInfo ) )
 		{
 			// Cache is dirty or doesn't exist.
