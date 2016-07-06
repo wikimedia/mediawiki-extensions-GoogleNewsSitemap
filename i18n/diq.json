@@ -1,10 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Erdemaslancan"
+			"Erdemaslancan",
+			"Kumkumuk"
 		]
 	},
 	"googlenewssitemap": "Sitaxeritaya Google Xeberi",
+	"googlenewssitemap-desc": "Yu wariya Atom/RSS Xeritaya Google xeber sita  deyne vec",
 	"googlenewssitemap_toomanycats": "Xeta: kategoriyay zaf zêd ê!",
 	"googlenewssitemap_feedtitle": "$1 {{SITENAME}} wariyeya $2."
 }
