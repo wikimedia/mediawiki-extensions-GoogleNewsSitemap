@@ -4,7 +4,8 @@
  * Outputs feed xml
  **
  * A Special Page extension to produce:
- *  Google News sitemap output - http://www.google.com/support/news_pub/bin/answer.py?hl=en&answer=74288
+ *  Google News sitemap output
+ *      - http://www.google.com/support/news_pub/bin/answer.py?hl=en&answer=74288
  *      - http://www.sitemaps.org/protocol.php
  *  RSS feed output - 2.0 http://www.rssboard.org/rss-specification
  *                  - 0.92 http://www.rssboard.org/rss-0-9-2
@@ -52,7 +53,8 @@ if ( function_exists( 'wfLoadExtension' ) ) {
 	$wgMessagesDirs['GoogleNewsSitemap'] = __DIR__ . '/i18n';
 	$wgExtensionMessagesFiles['GoogleNewsSitemapAlias'] = __DIR__ . '/GoogleNewsSitemap.alias.php';
 	/*wfWarn(
-		'Deprecated PHP entry point used for GoogleNewsSitemap extension. Please use wfLoadExtension instead, ' .
+		'Deprecated PHP entry point used for GoogleNewsSitemap extension. ' .
+		'Please use wfLoadExtension instead, ' .
 		'see https://www.mediawiki.org/wiki/Extension_registration for more details.'
 	);*/
 	return;

@@ -1,5 +1,7 @@
 <?php
-if ( !defined( 'MEDIAWIKI' ) ) die();
+if ( !defined( 'MEDIAWIKI' ) ) {
+	die();
+}
 
 /**
  * FeedSMItem Class
@@ -8,7 +10,7 @@ if ( !defined( 'MEDIAWIKI' ) ) die();
  */
 class FeedSMItem extends FeedItem {
 
-	private $keywords = array();
+	private $keywords = [];
 
 	/**
 	 * @var Title
@@ -48,7 +50,7 @@ class FeedSMItem extends FeedItem {
 		$this->titleObj = $title;
 
 		parent::__construct( $title->getText(), '' /* Description */,
-			$title->getCanonicalURL(), $pubDate, '' /* Author */, $commentsURL  );
+			$title->getCanonicalURL(), $pubDate, '' /* Author */, $commentsURL );
 	}
 
 	/**
@@ -95,14 +97,14 @@ class FeedSMItem extends FeedItem {
 		// but not much worse than the rest of this extension.
 
 		$result = '';
-		$req = new FauxRequest( array(
+		$req = new FauxRequest( [
 			'action' => 'parse',
 			'page' => $this->titleObj->getPrefixedDBKey(),
 			'prop' => 'text',
-		) );
+		] );
 		$main = new ApiMain( $req );
 		$main->execute();
-		$data = $main->getResult()->getResultData( null, array( 'BC' => array() ) );
+		$data = $main->getResult()->getResultData( null, [ 'BC' => [] ] );
 
 		if ( isset( $data['parse']['text']['*'] ) ) {
 			$result = $this->xmlEncode(

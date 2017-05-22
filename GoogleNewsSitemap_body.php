@@ -99,7 +99,7 @@ class GoogleNewsSitemap extends SpecialPage {
 			ob_end_flush();
 			echo "<!-- Not cached. Saved as: $cacheKey -->";
 			$wgMemc->set( $cacheKey,
-				array( $cacheInvalidationInfo, $output ),
+				[ $cacheInvalidationInfo, $output ],
 				$this->maxCacheTime
 			);
 		}
@@ -135,7 +135,7 @@ class GoogleNewsSitemap extends SpecialPage {
 	 * @param $invalidInfo String String to check if cache is clean from getCacheInvalidationInfo.
 	 * @return Mixed String or Boolean: The cached feed, or false.
 	 */
-	private function getCachedVersion ( $key, $invalidInfo ) {
+	private function getCachedVersion( $key, $invalidInfo ) {
 		global $wgMemc;
 		$action = $this->getRequest()->getVal( 'action', 'view' );
 		if ( $action === 'purge' ) {
@@ -206,8 +206,8 @@ class GoogleNewsSitemap extends SpecialPage {
 	private function getCacheInvalidationInfo( $params, $categories, $notCategories ) {
 		$dbr = wfGetDB( DB_SLAVE );
 		$cacheInfo = '';
-		$categoriesKey = array();
-		$tsQueries = array();
+		$categoriesKey = [];
+		$tsQueries = [];
 
 		// This would perhaps be nicer just using a Category object,
 		// but this way can do all at once.
@@ -219,7 +219,7 @@ class GoogleNewsSitemap extends SpecialPage {
 			$tsQueries[] = $dbr->selectSQLText(
 				'categorylinks',
 				'MAX(cl_timestamp) AS ts',
-				array( 'cl_to' => $key ),
+				[ 'cl_to' => $key ],
 				__METHOD__
 			);
 		}
@@ -229,7 +229,7 @@ class GoogleNewsSitemap extends SpecialPage {
 			$tsQueries[] = $dbr->selectSQLText(
 				'categorylinks',
 				'MAX(cl_timestamp) AS ts',
-				array( 'cl_to' => $key ),
+				[ 'cl_to' => $key ],
 				__METHOD__
 			);
 		}
@@ -237,9 +237,9 @@ class GoogleNewsSitemap extends SpecialPage {
 		// phase 1: How many pages in each cat.
 		// cat_pages includes all pages (even images/subcats).
 		$res = $dbr->select( 'category', 'cat_pages',
-			array( 'cat_title' => $categoriesKey ),
+			[ 'cat_title' => $categoriesKey ],
 			__METHOD__,
-			array( 'ORDER BY' => 'cat_title' )
+			[ 'ORDER BY' => 'cat_title' ]
 		);
 
 		foreach ( $res as $row ) {
@@ -280,15 +280,15 @@ class GoogleNewsSitemap extends SpecialPage {
 
 		// this is a little hacky, c1 is dynamically defined as the first category
 		// so this can't ever work with uncategorized articles
-		$fields = array( 'page_namespace', 'page_title', 'page_id', 'c1.cl_timestamp' );
-		$conditions = array();
-		$joins = array();
+		$fields = [ 'page_namespace', 'page_title', 'page_id', 'c1.cl_timestamp' ];
+		$conditions = [];
+		$joins = [];
 
 		if ( $params['namespace'] !== false ) {
 			$conditions['page_namespace'] = $params['namespace'];
 		}
 
-		Hooks::run( 'GoogleNewsSitemap::Query', array( $params, &$joins, &$conditions, &$tables ) );
+		Hooks::run( 'GoogleNewsSitemap::Query', [ $params, &$joins, &$conditions, &$tables ] );
 
 		switch ( $params['redirects'] ) {
 			case self::OPT_ONLY:
@@ -320,21 +320,21 @@ class GoogleNewsSitemap extends SpecialPage {
 		$categorylinks = $dbr->tableName( 'categorylinks' );
 
 		for ( $i = 0; $i < $params['catCount']; $i++ ) {
-			$joins["$categorylinks AS c$currentTableNumber"] = array( 'INNER JOIN',
-				array( "page_id = c{$currentTableNumber}.cl_from",
+			$joins["$categorylinks AS c$currentTableNumber"] = [ 'INNER JOIN',
+				[ "page_id = c{$currentTableNumber}.cl_from",
 					"c{$currentTableNumber}.cl_to={$dbr->addQuotes( $categories[$i]->getDBKey() ) }"
-				)
-			);
+				]
+			];
 			$tables[] = "$categorylinks AS c$currentTableNumber";
 			$currentTableNumber++;
 		}
 
 		for ( $i = 0; $i < $params['notCatCount']; $i++ ) {
-			$joins["$categorylinks AS c$currentTableNumber"] = array( 'LEFT OUTER JOIN',
-				array( "page_id = c{$currentTableNumber}.cl_from",
+			$joins["$categorylinks AS c$currentTableNumber"] = [ 'LEFT OUTER JOIN',
+				[ "page_id = c{$currentTableNumber}.cl_from",
 					"c{$currentTableNumber}.cl_to={$dbr->addQuotes( $notCategories[$i]->getDBKey() ) }"
-				)
-			);
+				]
+			];
 			$tables[] = "$categorylinks AS c$currentTableNumber";
 			$conditions[] = "c{$currentTableNumber}.cl_to IS NULL";
 			$currentTableNumber++;
@@ -367,10 +367,11 @@ class GoogleNewsSitemap extends SpecialPage {
 	public function getParams() {
 		global $wgGNSMmaxCategories, $wgGNSMmaxResultCount, $wgGNSMfallbackCategory;
 
-		$params = array();
+		$params = [];
 		$request = $this->getRequest();
 
-		$categories = $this->getCatRequestArray( 'categories', $wgGNSMfallbackCategory, $wgGNSMmaxCategories );
+		$categories = $this->getCatRequestArray( 'categories',
+			$wgGNSMfallbackCategory, $wgGNSMmaxCategories );
 		$notCategories = $this->getCatRequestArray( 'notcategories', '', $wgGNSMmaxCategories );
 
 		$params['namespace'] = $this->getNS( $request->getVal( 'namespace', 0 ) );
@@ -406,7 +407,8 @@ class GoogleNewsSitemap extends SpecialPage {
 				$categories[] = $fallBack;
 				$params['catCount'] = count( $categories );
 			} else {
-				throw new Exception( 'Default fallback category ($wgGNSMfallbackCategory) is not a valid title!' );
+				throw new Exception(
+					'Default fallback category ($wgGNSMfallbackCategory) is not a valid title!' );
 			}
 		}
 
@@ -414,7 +416,7 @@ class GoogleNewsSitemap extends SpecialPage {
 			// Causes a 500 error later on.
 			$params['error'] = $this->msg( 'googlenewssitemap_toomanycats' )->escaped();
 		}
-		return array( $params, $categories, $notCategories );
+		return [ $params, $categories, $notCategories ];
 	}
 
 	/**
@@ -487,7 +489,7 @@ class GoogleNewsSitemap extends SpecialPage {
 	private function getCatRequestArray( $name, $default, $max ) {
 		$value = $this->getRequest()->getText( $name, $default );
 		$arr = explode( '|', $value, $max + 2 );
-		$res = array();
+		$res = [];
 		foreach ( $arr as $name ) {
 			$catTitle = Title::newFromText( $name, NS_CATEGORY );
 			if ( $catTitle ) {
@@ -510,11 +512,11 @@ class GoogleNewsSitemap extends SpecialPage {
 	 */
 	public function getKeywords( Title $title ) {
 		$cats = $this->getVisibleCategories( $title );
-		$res = array();
+		$res = [];
 
 		# the following code is based (stolen) from r56954 of flagged revs.
-		$catMap = array();
-		$catMask = array();
+		$catMap = [];
+		$catMask = [];
 		$msg = $this->msg( 'googlenewssitemap_categorymap' );
 		if ( !$msg->isDisabled() ) {
 			$msg = $msg->inContentLanguage()->text();
@@ -561,36 +563,36 @@ class GoogleNewsSitemap extends SpecialPage {
 	 * @param Title $title Which title to get the categories for.
 	 * @return Array of String's that are the (non-prefixed) db-keys of the cats.
 	 */
-	private function getVisibleCategories ( Title $title ) {
+	private function getVisibleCategories( Title $title ) {
 		$dbr = wfGetDB( DB_SLAVE );
 
-		$where = array(
+		$where = [
 			'cl_from' => $title->getArticleID(),
 			'pp_propname' => null
-		);
+		];
 
-		$joins = array(
-			'page' => array(
+		$joins = [
+			'page' => [
 				'LEFT OUTER JOIN',
-				array( 'page_namespace' => NS_CATEGORY, 'page_title=cl_to' )
-			),
-			'page_props' => array(
+				[ 'page_namespace' => NS_CATEGORY, 'page_title=cl_to' ]
+			],
+			'page_props' => [
 				'LEFT OUTER JOIN',
-				array( 'pp_page=page_id', 'pp_propname' => 'hiddencat' )
-			)
-		);
+				[ 'pp_page=page_id', 'pp_propname' => 'hiddencat' ]
+			]
+		];
 
 		$res = $dbr->select(
-			array( 'categorylinks', 'page', 'page_props' ),
+			[ 'categorylinks', 'page', 'page_props' ],
 			'cl_to',
 			$where,
 			__METHOD__,
-			array(), /* options */
+			[], /* options */
 			$joins
 		);
-		$finalResult = array();
+		$finalResult = [];
 		if ( $res !== false ) {
-			foreach( $res as $row ) {
+			foreach ( $res as $row ) {
 				$finalResult[] = $row->cl_to;
 			}
 		}
