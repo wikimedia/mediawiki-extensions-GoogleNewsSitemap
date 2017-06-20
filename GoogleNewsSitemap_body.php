@@ -103,7 +103,6 @@ class GoogleNewsSitemap extends SpecialPage {
 				$this->maxCacheTime
 			);
 		}
-
 	}
 
 	/**
@@ -146,8 +145,7 @@ class GoogleNewsSitemap extends SpecialPage {
 
 		if ( !$cached
 			|| ( count( $cached ) !== 2 )
-			|| ( $cached[0] !== $invalidInfo ) )
-		{
+			|| ( $cached[0] !== $invalidInfo ) ) {
 			// Cache is dirty or doesn't exist.
 			return false;
 		}
@@ -273,7 +271,6 @@ class GoogleNewsSitemap extends SpecialPage {
 	 * @return Result of query.
 	 */
 	public function getCategories( $params, $categories, $notCategories ) {
-
 		$dbr = wfGetDB( DB_SLAVE );
 
 		$tables[] = $dbr->tableName( 'page' );
@@ -475,7 +472,6 @@ class GoogleNewsSitemap extends SpecialPage {
 			wfDebug( __METHOD__ . ' Invalid (non-numeric) ns. Using main.' );
 			return 0;
 		}
-
 	}
 
 	/**
@@ -524,7 +520,6 @@ class GoogleNewsSitemap extends SpecialPage {
 			foreach ( $list as $item ) {
 				$mapping = explode( '|', $item, 2 );
 				if ( count( $mapping ) == 2 ) {
-
 					$targetTitle = Title::newFromText( $mapping[0], NS_CATEGORY );
 					if ( !$targetTitle ) {
 						continue;

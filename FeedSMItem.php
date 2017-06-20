@@ -114,4 +114,3 @@ class FeedSMItem extends FeedItem {
 		return $result;
 	}
 }
-
