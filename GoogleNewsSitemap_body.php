@@ -202,7 +202,7 @@ class GoogleNewsSitemap extends SpecialPage {
 	 * @return String All the above info concatenated.
 	 */
 	private function getCacheInvalidationInfo( $params, $categories, $notCategories ) {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$cacheInfo = '';
 		$categoriesKey = [];
 		$tsQueries = [];
@@ -271,7 +271,7 @@ class GoogleNewsSitemap extends SpecialPage {
 	 * @return Result of query.
 	 */
 	public function getCategories( $params, $categories, $notCategories ) {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 
 		$tables[] = $dbr->tableName( 'page' );
 
@@ -559,7 +559,7 @@ class GoogleNewsSitemap extends SpecialPage {
 	 * @return Array of String's that are the (non-prefixed) db-keys of the cats.
 	 */
 	private function getVisibleCategories( Title $title ) {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 
 		$where = [
 			'cl_from' => $title->getArticleID(),
