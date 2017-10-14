@@ -38,6 +38,7 @@ class GoogleNewsSitemap extends SpecialPage {
 
 	/**
 	 * main()
+	 * @param string|null $par
 	 */
 	public function execute( $par ) {
 		global $wgContLang, $wgFeedClasses, $wgLanguageCode, $wgMemc, $wgGNSMsmaxage;
@@ -107,10 +108,10 @@ class GoogleNewsSitemap extends SpecialPage {
 
 	/**
 	 * Get the cache key to cache this request.
-	 * @param $params
-	 * @param $categories
-	 * @param $notCategories
-	 * @return String the key.
+	 * @param array $params
+	 * @param array $categories
+	 * @param array $notCategories
+	 * @return s<tring the key.
 	 */
 	private function getCacheKey( $params, $categories, $notCategories ) {
 		global $wgRenderHashAppend;
@@ -130,8 +131,8 @@ class GoogleNewsSitemap extends SpecialPage {
 	 * Note, this doesn't take into account changes to the keyword
 	 * mapping message (See getKeywords). I don't think that's a major issue.
 	 *
-	 * @param $key String Cache key
-	 * @param $invalidInfo String String to check if cache is clean from getCacheInvalidationInfo.
+	 * @param string $key Cache key
+	 * @param string $invalidInfo String to check if cache is clean from getCacheInvalidationInfo.
 	 * @return Mixed String or Boolean: The cached feed, or false.
 	 */
 	private function getCachedVersion( $key, $invalidInfo ) {
@@ -155,7 +156,7 @@ class GoogleNewsSitemap extends SpecialPage {
 	/**
 	 * Actually output a feed.
 	 * @param ChannelFeed $feed Feed object.
-	 * @param $res Result of sql query
+	 * @param stdClass $res Result of sql query
 	 */
 	private function makeFeed( $feed, $res ) {
 		global $wgGNSMcommentNamespace;
@@ -195,9 +196,9 @@ class GoogleNewsSitemap extends SpecialPage {
 	 * If the value from this function doesn't match the value from the cache, we throw
 	 * out the cache.
 	 *
-	 * @param $params Array Parsed url parameters
-	 * @param $categories Array of Title
-	 * @param $notCategories Array of Title
+	 * @param array $params Parsed url parameters
+	 * @param Title[] $categories Array of Title
+	 * @param Title[] $notCategories Array of Title
 	 *
 	 * @return String All the above info concatenated.
 	 */
@@ -265,9 +266,9 @@ class GoogleNewsSitemap extends SpecialPage {
 
 	/**
 	 * Build and execute sql
-	 * @param $params All the parameters except cats/notcats
-	 * @param $categories
-	 * @param $notCategories
+	 * @param array $params All the parameters except cats/notcats
+	 * @param array $categories
+	 * @param array $notCategories
 	 * @return Result of query.
 	 */
 	public function getCategories( $params, $categories, $notCategories ) {
@@ -419,9 +420,9 @@ class GoogleNewsSitemap extends SpecialPage {
 	/**
 	 * Turn an include, exclude, or only (I, E, or O) parameter into
 	 * a class constant.
-	 * @param $valName String the name of the url parameter
-	 * @param $default Integer Class constant to return if none match
-	 * @return Integer Class constant corresponding to value.
+	 * @param string $valName the name of the url parameter
+	 * @param int $default Class constant to return if none match
+	 * @return int Class constant corresponding to value.
 	 */
 	private function getIEOVal( $valName, $default = self::OPT_INCLUDE ) {
 		$val = $this->getRequest()->getVal( $valName );
@@ -440,7 +441,7 @@ class GoogleNewsSitemap extends SpecialPage {
 
 	/**
 	 * Decode the namespace URL parameter.
-	 * @param $ns String Either numeric NS number, NS name, or special value :all:
+	 * @param string $ns Either numeric NS number, NS name, or special value :all:
 	 * @return Mixed Integer or false Namespace number or false for no NS filtering.
 	 */
 	private function getNS( $ns ) {
