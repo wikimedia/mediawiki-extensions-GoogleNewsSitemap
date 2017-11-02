@@ -79,7 +79,7 @@ class GoogleNewsSitemap extends SpecialPage {
 			Title::newMainPage()->getFullURL()
 		);
 
-		$this->getOutput()->setSquidMaxage( $wgGNSMsmaxage );
+		$this->getOutput()->setCdnMaxage( $wgGNSMsmaxage );
 
 		$cacheInvalidationInfo = $this->getCacheInvalidationInfo( $params,
 			$categories, $notCategories );
