@@ -5,7 +5,7 @@
 		]
 	},
 	"googlenewssitemap": "План на страницата Google Вести",
-	"googlenewssitemap-desc": "Дава Атом/RSS-канал како план на страницата Google Вести",
+	"googlenewssitemap-desc": "Дава Атом/RSS-тековник како план на страницата Google Вести",
 	"googlenewssitemap_toomanycats": "Грешка: Премногу категории!",
-	"googlenewssitemap_feedtitle": "$2-канал на {{SITENAME}} на $1."
+	"googlenewssitemap_feedtitle": "$2-тековник на {{SITENAME}} на $1."
 }
