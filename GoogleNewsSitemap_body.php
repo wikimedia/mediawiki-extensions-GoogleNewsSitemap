@@ -269,12 +269,12 @@ class GoogleNewsSitemap extends SpecialPage {
 	 * @param array $params All the parameters except cats/notcats
 	 * @param array $categories
 	 * @param array $notCategories
-	 * @return Result of query.
+	 * @return \Wikimedia\Rdbms\IResultWrapper
 	 */
 	public function getCategories( $params, $categories, $notCategories ) {
 		$dbr = wfGetDB( DB_REPLICA );
 
-		$tables[] = $dbr->tableName( 'page' );
+		$tables[] = 'page';
 
 		// this is a little hacky, c1 is dynamically defined as the first category
 		// so this can't ever work with uncategorized articles
@@ -318,22 +318,22 @@ class GoogleNewsSitemap extends SpecialPage {
 		$categorylinks = $dbr->tableName( 'categorylinks' );
 
 		for ( $i = 0; $i < $params['catCount']; $i++ ) {
-			$joins["$categorylinks AS c$currentTableNumber"] = [ 'INNER JOIN',
+			$joins["c$currentTableNumber"] = [ 'INNER JOIN',
 				[ "page_id = c{$currentTableNumber}.cl_from",
 					"c{$currentTableNumber}.cl_to={$dbr->addQuotes( $categories[$i]->getDBKey() ) }"
 				]
 			];
-			$tables[] = "$categorylinks AS c$currentTableNumber";
+			$tables["c$currentTableNumber"] = $categorylinks;
 			$currentTableNumber++;
 		}
 
 		for ( $i = 0; $i < $params['notCatCount']; $i++ ) {
-			$joins["$categorylinks AS c$currentTableNumber"] = [ 'LEFT OUTER JOIN',
+			$joins["c$currentTableNumber"] = [ 'LEFT OUTER JOIN',
 				[ "page_id = c{$currentTableNumber}.cl_from",
 					"c{$currentTableNumber}.cl_to={$dbr->addQuotes( $notCategories[$i]->getDBKey() ) }"
 				]
 			];
-			$tables[] = "$categorylinks AS c$currentTableNumber";
+			$tables["c$currentTableNumber"] = $categorylinks;
 			$conditions[] = "c{$currentTableNumber}.cl_to IS NULL";
 			$currentTableNumber++;
 		}
