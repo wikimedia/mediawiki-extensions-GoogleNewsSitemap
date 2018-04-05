@@ -111,7 +111,7 @@ class GoogleNewsSitemap extends SpecialPage {
 	 * @param array $params
 	 * @param array $categories
 	 * @param array $notCategories
-	 * @return s<tring the key.
+	 * @return string the key.
 	 */
 	private function getCacheKey( $params, $categories, $notCategories ) {
 		global $wgRenderHashAppend;
