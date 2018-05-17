@@ -3,7 +3,7 @@
 	"version": "2.1.0",
 	"author": [
 		"Amgine",
-		"[http://mediawiki.org/wiki/User:Bawolff Brian Wolff]"
+		"[https://www.mediawiki.org/wiki/User:Bawolff Brian Wolff]"
 	],
 	"url": "https://www.mediawiki.org/wiki/Extension:GoogleNewsSitemap",
 	"descriptionmsg": "googlenewssitemap-desc",
