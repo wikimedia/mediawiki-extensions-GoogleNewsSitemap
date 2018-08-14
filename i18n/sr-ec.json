@@ -2,10 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Rancher",
-			"Михајло Анђелковић"
+			"Михајло Анђелковић",
+			"BadDog"
 		]
 	},
 	"googlenewssitemap": "Мапа странице Гугл вести",
 	"googlenewssitemap_toomanycats": "Грешка: Превише категорија!",
-	"googlenewssitemap_feedtitle": "$2 довод на {{SITENAME}} на $1."
+	"googlenewssitemap_feedtitle": "$2 фид на {{SITENAME}} на $1."
 }
