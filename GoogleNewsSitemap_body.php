@@ -164,11 +164,6 @@ class GoogleNewsSitemap extends SpecialPage {
 		foreach ( $res as $row ) {
 			$title = Title::makeTitle( $row->page_namespace, $row->page_title );
 
-			if ( !$title ) {
-				$feed->outFooter();
-				return;
-			}
-
 			// @todo FIXME: Under what circumstance would cl_timestamp not be set?
 			// possibly worth an exception if that happens.
 			$pubDate = isset( $row->cl_timestamp ) ? $row->cl_timestamp : wfTimestampNow();
