@@ -133,7 +133,8 @@ class GoogleNewsSitemap extends SpecialPage {
 	 *
 	 * @param string $key Cache key
 	 * @param string $invalidInfo String to check if cache is clean from getCacheInvalidationInfo.
-	 * @return Mixed String or Boolean: The cached feed, or false.
+	 * @return string|bool The cached feed (from makeFeed()), or false.
+	 * @return-taint escaped
 	 */
 	private function getCachedVersion( $key, $invalidInfo ) {
 		global $wgMemc;
@@ -154,7 +155,7 @@ class GoogleNewsSitemap extends SpecialPage {
 	}
 
 	/**
-	 * Actually output a feed.
+	 * Actually output a feed (HTML).
 	 * @param ChannelFeed $feed Feed object.
 	 * @param stdClass $res Result of sql query
 	 */
