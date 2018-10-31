@@ -8,7 +8,7 @@ class SitemapFeed extends ChannelFeed {
 	private $publicationName;
 	private $publicationLang;
 
-	function __construct() {
+	public function __construct() {
 		global $wgSitename, $wgLanguageCode;
 
 		$this->writer = new XMLWriter();
@@ -36,7 +36,7 @@ class SitemapFeed extends ChannelFeed {
 		$this->publicationName = $name;
 	}
 
-	function contentType() {
+	public function contentType() {
 		return 'application/xml';
 	}
 
