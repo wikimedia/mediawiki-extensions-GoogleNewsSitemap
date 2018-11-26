@@ -35,7 +35,7 @@ class FeedSMItem extends FeedItem {
 		}
 
 		$commentsURL = '';
-		if ( $comment === true ) {
+		if ( $comment === true && $title->canHaveTalkPage() ) {
 			// The comment ns is this article's talk namespace.
 			$commentsURL = $title->getTalkPage()->getCanonicalURL();
 		} elseif ( is_int( $comment ) ) {
