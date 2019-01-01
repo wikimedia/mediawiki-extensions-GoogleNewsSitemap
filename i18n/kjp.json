@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Rul1902"
+		]
+	},
+	"googlenewssitemap": "ဂူဂဲလ် ဆ်ုပြိုင့် ဆိက်ၯင်းခေါဟ်ၯင်",
+	"googlenewssitemap-desc": "Outputs an Atom/RSS feed as a Google News Sitemap",
+	"googlenewssitemap_toomanycats": "ဆ်ုမး: အ်ုဖၠံင်အ်ုဖၠအးအးလေံလေံမာလှ်!",
+	"googlenewssitemap_feedtitle": "$1 {{SITENAME}} $2 feed."
+}
