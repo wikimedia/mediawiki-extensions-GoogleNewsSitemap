@@ -157,7 +157,7 @@ class GoogleNewsSitemap extends SpecialPage {
 	/**
 	 * Actually output a feed (HTML).
 	 * @param ChannelFeed $feed Feed object.
-	 * @param stdClass $res Result of sql query
+	 * @param \Wikimedia\Rdbms\IResultWrapper $res Result of sql query
 	 */
 	private function makeFeed( $feed, $res ) {
 		global $wgGNSMcommentNamespace;

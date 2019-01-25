@@ -21,12 +21,11 @@ class FeedSMItem extends FeedItem {
 	 * @param Title $title Title object that this entry is for.
 	 * @param String $pubDate Publish date formattable by wfTimestamp.
 	 * @param Array|string $keywords list of (String) keywords
-	 * @param bool $comment
-	 * @throws Exception
-	 * @internal param bool $Mixed or Integer. Namespace containing comments page for entry.
+	 * @param bool|int $comment Namespace containing comments page for entry.
 	 *   True for the corresponding talk page of $title
 	 *   False for none
 	 *   An integer for the page name of $title in the specific namespace denoted by that integer.
+	 * @throws Exception
 	 */
 	public function __construct( $title, $pubDate, $keywords = '', $comment = true ) {
 		if ( !$title || !$title instanceof Title ) {
