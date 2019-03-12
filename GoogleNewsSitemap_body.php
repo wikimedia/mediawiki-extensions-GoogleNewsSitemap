@@ -167,7 +167,7 @@ class GoogleNewsSitemap extends SpecialPage {
 
 			// @todo FIXME: Under what circumstance would cl_timestamp not be set?
 			// possibly worth an exception if that happens.
-			$pubDate = isset( $row->cl_timestamp ) ? $row->cl_timestamp : wfTimestampNow();
+			$pubDate = $row->cl_timestamp ?? wfTimestampNow();
 
 			$feedItem = new FeedSMItem(
 				$title,
