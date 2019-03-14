@@ -270,12 +270,13 @@ class GoogleNewsSitemap extends SpecialPage {
 	public function getCategories( $params, $categories, $notCategories ) {
 		$dbr = wfGetDB( DB_REPLICA );
 
-		$tables[] = 'page';
+		$tables = [ 'page' ];
 
 		// this is a little hacky, c1 is dynamically defined as the first category
 		// so this can't ever work with uncategorized articles
 		$fields = [ 'page_namespace', 'page_title', 'page_id', 'c1.cl_timestamp' ];
 		$conditions = [];
+		$options = [];
 		$joins = [];
 
 		if ( $params['namespace'] !== false ) {
