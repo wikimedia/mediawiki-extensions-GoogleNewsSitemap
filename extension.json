@@ -21,9 +21,9 @@
 		"GoogleNewsSitemapAlias": "GoogleNewsSitemap.alias.php"
 	},
 	"AutoloadClasses": {
-		"GoogleNewsSitemap": "GoogleNewsSitemap_body.php",
-		"FeedSMItem": "FeedSMItem.php",
-		"SitemapFeed": "SitemapFeed.php"
+		"GoogleNewsSitemap": "includes/specials/GoogleNewsSitemap.php",
+		"FeedSMItem": "includes/FeedSMItem.php",
+		"SitemapFeed": "includes/SitemapFeed.php"
 	},
 	"FeedClasses": {
 		"sitemap": "SitemapFeed"
