@@ -20,14 +20,14 @@ class FeedSMItem extends FeedItem {
 	/**
 	 * @param Title $title Title object that this entry is for.
 	 * @param String $pubDate Publish date formattable by wfTimestamp.
-	 * @param Array|string $keywords list of (String) keywords
+	 * @param string[] $keywords list of keywords
 	 * @param bool|int $comment Namespace containing comments page for entry.
 	 *   True for the corresponding talk page of $title
 	 *   False for none
 	 *   An integer for the page name of $title in the specific namespace denoted by that integer.
 	 * @throws Exception
 	 */
-	public function __construct( $title, $pubDate, $keywords = '', $comment = true ) {
+	public function __construct( $title, $pubDate, $keywords = [], $comment = true ) {
 		if ( !$title || !$title instanceof Title ) {
 			// Paranoia
 			throw new Exception( 'Invalid title object passed to FeedSMItem' );

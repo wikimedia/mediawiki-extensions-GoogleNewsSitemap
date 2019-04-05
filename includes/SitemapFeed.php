@@ -56,7 +56,7 @@ class SitemapFeed extends ChannelFeed {
 
 	/**
 	 * Output a SiteMap 0.9 item
-	 * @param FeedSMItem $item to be output
+	 * @param FeedItem $item to be output
 	 * @throws Exception
 	 */
 	public function outItem( $item ) {

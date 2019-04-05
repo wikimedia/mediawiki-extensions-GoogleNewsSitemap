@@ -502,7 +502,7 @@ class GoogleNewsSitemap extends SpecialPage {
 	 *
 	 * @see http://www.google.com/support/news_pub/bin/answer.py?answer=116037
 	 * @param Title $title
-	 * @return Array of String: list of keywords
+	 * @return string[] list of keywords
 	 */
 	public function getKeywords( Title $title ) {
 		$cats = $this->getVisibleCategories( $title );
