@@ -3,11 +3,12 @@
 		"authors": [
 			"Centerlink",
 			"Crt",
-			"Olli"
+			"Olli",
+			"Pyscowicz"
 		]
 	},
 	"googlenewssitemap": "Google News -sivukartta",
 	"googlenewssitemap-desc": "Tulostaa Atom/RSS-syötteen Google-uutissivukarttana",
 	"googlenewssitemap_toomanycats": "Virhe: Liian monta luokkaa.",
-	"googlenewssitemap_feedtitle": "Sivuston {{SITENAME}} $2-syöte ($1)"
+	"googlenewssitemap_feedtitle": "{{GRAMMAR:genitive|{{SITENAME}}}} $2-syöte ($1)"
 }
