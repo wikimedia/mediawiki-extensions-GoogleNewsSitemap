@@ -409,7 +409,7 @@ class GoogleNewsSitemap extends SpecialPage {
 
 		if ( $totalCatCount > $wgGNSMmaxCategories ) {
 			// Causes a 500 error later on.
-			$params['error'] = $this->msg( 'googlenewssitemap_toomanycats' )->escaped();
+			$params['error'] = $this->msg( 'googlenewssitemap_toomanycats' )->text();
 		}
 		return [ $params, $categories, $notCategories ];
 	}

@@ -78,6 +78,7 @@ class FeedSMItem extends FeedItem {
 		// Note, not using $wgContLang->commaList, as this is for
 		// computers not humans, so we don't want to vary with
 		// language conventions.
+		// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 		return $this->xmlEncode( implode( ', ', $this->keywords ) );
 	}
 
