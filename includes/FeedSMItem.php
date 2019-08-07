@@ -1,7 +1,4 @@
 <?php
-if ( !defined( 'MEDIAWIKI' ) ) {
-	die();
-}
 
 /**
  * FeedSMItem Class

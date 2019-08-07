@@ -1,7 +1,4 @@
 <?php
-if ( !defined( 'MEDIAWIKI' ) ) {
-	die();
-}
 
 class SitemapFeed extends ChannelFeed {
 	private $writer;
