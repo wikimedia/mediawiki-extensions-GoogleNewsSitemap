@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Vlad5250"
+		]
+	},
+	"googlenewssitemap": "Plan stranice Google Vesti",
+	"googlenewssitemap-desc": "Daje Атом/RSS-dovod kao plan stranice Google Vesti",
+	"googlenewssitemap_toomanycats": "Greška: Previše kategorija!",
+	"googlenewssitemap_feedtitle": "$2-dovod na {{SITENAME}} na $1."
+}
