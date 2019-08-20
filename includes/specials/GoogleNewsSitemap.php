@@ -4,7 +4,7 @@
  *
  * Simple feed using Atom/RSS coupled to DynamicPageList category searching.
  *
- * To use: http://wiki.url/Special:GoogleNewsSitemap?[paramter=value][&parameter2=value]&...
+ * To use: http://wiki.url/Special:GoogleNewsSitemap?[parameter=value][&parameter2=value]&...
  *
  * Implemented parameters are marked with an @
  *
