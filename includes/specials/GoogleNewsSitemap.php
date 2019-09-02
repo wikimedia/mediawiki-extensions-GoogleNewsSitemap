@@ -1,4 +1,7 @@
 <?php
+
+use MediaWiki\MediaWikiServices;
+
 /**
  * Class GoogleNewsSitemap creates Atom/RSS feeds for Wikinews
  *
@@ -41,9 +44,10 @@ class GoogleNewsSitemap extends SpecialPage {
 	 * @param string|null $par
 	 */
 	public function execute( $par ) {
-		global $wgContLang, $wgFeedClasses, $wgLanguageCode, $wgMemc, $wgGNSMsmaxage;
+		global $wgFeedClasses, $wgLanguageCode, $wgMemc, $wgGNSMsmaxage;
 
 		list( $params, $categories, $notCategories ) = $this->getParams();
+		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 
 		// if there's an error parsing the params, bail out and return
 		if ( isset( $params['error'] ) ) {
@@ -66,12 +70,12 @@ class GoogleNewsSitemap extends SpecialPage {
 			// uses feed-rss and feed-atom messages.
 			$feedType = $msg->text();
 		} else {
-			$feedType = $wgContLang->uc( $params['feed'] );
+			$feedType = $contLang->uc( $params['feed'] );
 		}
 
 		$feed = new $wgFeedClasses[ $params['feed'] ](
 			$this->msg( 'googlenewssitemap_feedtitle',
-				Language::fetchLanguageName( $wgLanguageCode, $wgContLang->getCode() ),
+				Language::fetchLanguageName( $wgLanguageCode, $contLang->getCode() ),
 				$feedType,
 				$wgLanguageCode
 			)->inContentLanguage()->text(),
@@ -442,9 +446,8 @@ class GoogleNewsSitemap extends SpecialPage {
 	 * @return Mixed Integer or false Namespace number or false for no NS filtering.
 	 */
 	private function getNS( $ns ) {
-		global $wgContLang;
-
-		$nsNumb = $wgContLang->getNsIndex( $ns );
+		$nsNumb = MediaWikiServices::getInstance()->getContentLanguage()
+			->getNsIndex( $ns );
 
 		if ( $nsNumb !== false ) {
 			// If they specified something like Talk or Image.

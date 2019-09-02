@@ -72,7 +72,7 @@ class FeedSMItem extends FeedItem {
 	}
 
 	public function getKeywords() {
-		// Note, not using $wgContLang->commaList, as this is for
+		// Note, not using Language::commaList(), as this is for
 		// computers not humans, so we don't want to vary with
 		// language conventions.
 		// @phan-suppress-next-line SecurityCheck-DoubleEscaped

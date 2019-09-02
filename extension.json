@@ -9,6 +9,9 @@
 	"descriptionmsg": "googlenewssitemap-desc",
 	"license-name": "GPL-2.0-or-later",
 	"type": "specialpage",
+	"requires": {
+		"MediaWiki": ">= 1.32.0"
+	},
 	"SpecialPages": {
 		"GoogleNewsSitemap": "GoogleNewsSitemap"
 	},
