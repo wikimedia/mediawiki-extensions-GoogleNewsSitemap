@@ -373,7 +373,7 @@ class GoogleNewsSitemap extends SpecialPage {
 			$wgGNSMfallbackCategory, $wgGNSMmaxCategories );
 		$notCategories = $this->getCatRequestArray( 'notcategories', '', $wgGNSMmaxCategories );
 
-		$params['namespace'] = $this->getNS( $request->getVal( 'namespace', 0 ) );
+		$params['namespace'] = $this->getNS( $request->getVal( 'namespace', '0' ) );
 
 		$params['count'] = $request->getInt( 'count', $wgGNSMmaxResultCount );
 		$params['hourCount'] = $request->getInt( 'hourcount', -1 );
