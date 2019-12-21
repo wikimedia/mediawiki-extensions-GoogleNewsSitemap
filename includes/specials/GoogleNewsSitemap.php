@@ -308,7 +308,7 @@ class GoogleNewsSitemap extends SpecialPage {
 			// articles published in last 2 days on it.
 			// Don't do anything with lastedit, since this option
 			// doesn't make sense with it (Do we even need that order method?)
-			$timeOffset = wfTimestamp( TS_UNIX ) - ( $params['hourCount'] * 3600 );
+			$timeOffset = (int)wfTimestamp( TS_UNIX ) - ( $params['hourCount'] * 3600 );
 			$MWTimestamp = wfTimestamp( TS_MW, $timeOffset );
 			if ( $MWTimestamp ) {
 				$conditions[] = 'c1.cl_timestamp > ' . $MWTimestamp;
