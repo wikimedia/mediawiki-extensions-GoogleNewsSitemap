@@ -253,7 +253,7 @@ class GoogleNewsSitemap extends SpecialPage {
 		$res2 = $dbr->query( $dbr->unionQueries( $tsQueries, true ), __METHOD__ );
 
 		foreach ( $res2 as $row ) {
-			if ( is_null( $row->ts ) ) {
+			if ( $row->ts === null ) {
 				$ts = 'empty';
 			} else {
 				$ts = wfTimestamp( TS_MW, $row->ts );
