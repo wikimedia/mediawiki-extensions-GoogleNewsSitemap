@@ -44,7 +44,7 @@ class GoogleNewsSitemap extends SpecialPage {
 	 * @param string|null $par
 	 */
 	public function execute( $par ) {
-		global $wgFeedClasses, $wgLanguageCode, $wgMemc, $wgGNSMsmaxage;
+		global $wgFeedClasses, $wgLanguageCode, $wgGNSMsmaxage;
 
 		list( $params, $categories, $notCategories ) = $this->getParams();
 		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
@@ -88,6 +88,7 @@ class GoogleNewsSitemap extends SpecialPage {
 		$cacheInvalidationInfo = $this->getCacheInvalidationInfo( $params,
 			$categories, $notCategories );
 
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 		$cacheKey = $this->getCacheKey( $params, $categories, $notCategories );
 
 		// The way this does caching is based on ChangesFeed::execute.
@@ -103,7 +104,7 @@ class GoogleNewsSitemap extends SpecialPage {
 			$output = ob_get_contents();
 			ob_end_flush();
 			echo "<!-- Not cached. Saved as: $cacheKey -->";
-			$wgMemc->set( $cacheKey,
+			$cache->set( $cacheKey,
 				[ $cacheInvalidationInfo, $output ],
 				$this->maxCacheTime
 			);
@@ -125,7 +126,8 @@ class GoogleNewsSitemap extends SpecialPage {
 			. implode( '|', $categories ) . '||'
 			. implode( '|', $notCategories )
 		);
-		return wfMemcKey( 'GNSM', $sum, $wgRenderHashAppend );
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+		return $cache->makeKey( 'GNSM-feed', $sum, $wgRenderHashAppend );
 	}
 
 	/**
@@ -141,13 +143,13 @@ class GoogleNewsSitemap extends SpecialPage {
 	 * @return-taint escaped
 	 */
 	private function getCachedVersion( $key, $invalidInfo ) {
-		global $wgMemc;
 		$action = $this->getRequest()->getVal( 'action', 'view' );
 		if ( $action === 'purge' ) {
 			return false;
 		}
 
-		$cached = $wgMemc->get( $key );
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+		$cached = $cache->get( $key );
 
 		if ( !$cached
 			|| ( count( $cached ) !== 2 )
