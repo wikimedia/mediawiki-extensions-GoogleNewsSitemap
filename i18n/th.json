@@ -1,8 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Woraponboonkerd"
+			"Woraponboonkerd",
+			"Aefgh39622"
 		]
 	},
-	"googlenewssitemap_toomanycats": "เกิดความผิดพลาด: เลือกประเภทมากเกินไป!"
+	"googlenewssitemap": "แผนผังไซต์ Google News",
+	"googlenewssitemap-desc": "แสดงฟีด Atom/RSS เป็นแผนผังไซต์ Google News",
+	"googlenewssitemap_toomanycats": "เกิดความผิดพลาด: เลือกประเภทมากเกินไป!",
+	"googlenewssitemap_feedtitle": "ฟีด $2 ของ {{SITENAME}} ในภาษา$1"
 }
