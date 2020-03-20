@@ -17,7 +17,7 @@ class SitemapFeed extends ChannelFeed {
 	 * Set the publication language code. Only used if different from
 	 * $wgLanguageCode, which could happen if Google disagrees with us
 	 * on say what code zh gets.
-	 * @param String $lang Language code (like en)
+	 * @param string $lang Language code (like en)
 	 */
 	public function setPublicationLang( $lang ) {
 		$this->publicationLang = $lang;
@@ -27,7 +27,7 @@ class SitemapFeed extends ChannelFeed {
 	 * Set the publication name. Normally $wgSitename, but could
 	 * need to be changed, if Google gives the publication a different
 	 * name then $wgSitename.
-	 * @param String $name The name of the publication
+	 * @param string $name The name of the publication
 	 */
 	public function setPublicationName( $name ) {
 		$this->publicationName = $name;

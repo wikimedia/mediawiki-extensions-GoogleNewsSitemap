@@ -202,7 +202,7 @@ class GoogleNewsSitemap extends SpecialPage {
 	 * @param Title[] $categories Array of Title
 	 * @param Title[] $notCategories Array of Title
 	 *
-	 * @return String All the above info concatenated.
+	 * @return string All the above info concatenated.
 	 */
 	private function getCacheInvalidationInfo( $params, $categories, $notCategories ) {
 		$dbr = wfGetDB( DB_REPLICA );
@@ -480,8 +480,8 @@ class GoogleNewsSitemap extends SpecialPage {
 	/**
 	 * Turn a pipe-separated list from a url parameter into an array.
 	 * Verifying each element would be a valid title in Category namespace.
-	 * @param String $name Parameter to retrieve from web reqeust.
-	 * @param String $default
+	 * @param string $name Parameter to retrieve from web reqeust.
+	 * @param string $default
 	 * @param Integer $max Maximum size of resulting array.
 	 * @return Array of Title objects. The Titles passed in the parameter $name.
 	 */

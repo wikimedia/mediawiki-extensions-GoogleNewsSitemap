@@ -16,7 +16,7 @@ class FeedSMItem extends FeedItem {
 
 	/**
 	 * @param Title $title Title object that this entry is for.
-	 * @param String $pubDate Publish date formattable by wfTimestamp.
+	 * @param string $pubDate Publish date formattable by wfTimestamp.
 	 * @param string[] $keywords list of keywords
 	 * @param bool|int $comment Namespace containing comments page for entry.
 	 *   True for the corresponding talk page of $title
