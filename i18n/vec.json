@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Fierodelveneto"
+		]
+	},
+	"googlenewssitemap": "Mapa del sito Google News",
+	"googlenewssitemap-desc": "Xènera on feed Atom/RSS cofà mapa sito par Google News",
+	"googlenewssitemap_toomanycats": "Error: Masa categorie!",
+	"googlenewssitemap_feedtitle": "Feed $2 {{SITENAME}} $1."
+}
