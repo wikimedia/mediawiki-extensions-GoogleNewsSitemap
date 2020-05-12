@@ -32,11 +32,21 @@
 		"sitemap": "SitemapFeed"
 	},
 	"config": {
-		"GNSMmaxCategories": 6,
-		"GNSMmaxResultCount": 50,
-		"GNSMfallbackCategory": "Published",
-		"GNSMsmaxage": 1800,
-		"GNSMcommentNamespace": true
+		"GNSMmaxCategories": {
+			"value": 6
+		},
+		"GNSMmaxResultCount": {
+			"value": 50
+		},
+		"GNSMfallbackCategory": {
+			"value": "Published"
+		},
+		"GNSMsmaxage": {
+			"value": 1800
+		},
+		"GNSMcommentNamespace": {
+			"value": true
+		}
 	},
-	"manifest_version": 1
+	"manifest_version": 2
 }
