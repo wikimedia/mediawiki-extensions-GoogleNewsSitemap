@@ -28,9 +28,9 @@ use MediaWiki\MediaWikiServices;
 class GoogleNewsSitemap extends SpecialPage {
 	public $maxCacheTime = 43200; // 12 hours. Chosen rather arbitrarily for now. Might want to tweak.
 
-	const OPT_INCLUDE = 0;
-	const OPT_ONLY = 1;
-	const OPT_EXCLUDE = 2;
+	public const OPT_INCLUDE = 0;
+	public const OPT_ONLY = 1;
+	public const OPT_EXCLUDE = 2;
 
 	/**
 	 * Constructor
