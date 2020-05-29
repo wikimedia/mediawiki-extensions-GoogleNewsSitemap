@@ -482,7 +482,7 @@ class GoogleNewsSitemap extends SpecialPage {
 	 * Verifying each element would be a valid title in Category namespace.
 	 * @param string $name Parameter to retrieve from web reqeust.
 	 * @param string $default
-	 * @param Integer $max Maximum size of resulting array.
+	 * @param int $max Maximum size of resulting array.
 	 * @return Array of Title objects. The Titles passed in the parameter $name.
 	 */
 	private function getCatRequestArray( $name, $default, $max ) {
