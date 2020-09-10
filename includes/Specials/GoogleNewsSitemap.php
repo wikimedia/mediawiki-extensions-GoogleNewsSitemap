@@ -106,7 +106,7 @@ class GoogleNewsSitemap extends SpecialPage {
 		}
 
 		// Check to make sure that feed type is supported.
-		if ( !FeedUtils::checkFeedOutput( $params['feed'] ) ) {
+		if ( !FeedUtils::checkFeedOutput( $params['feed'], $this->getOutput() ) ) {
 			// FeedUtils outputs an error if wrong feed type.
 			// So nothing else to do at this point
 			return;
