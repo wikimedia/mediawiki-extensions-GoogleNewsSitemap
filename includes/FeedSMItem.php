@@ -86,7 +86,7 @@ class FeedSMItem extends FeedItem {
 	 *
 	 * Note, this is only called by the atom/rss feed output, not by
 	 * the sitemap output.
-	 * @return String
+	 * @return string
 	 */
 	public function getDescription() {
 		// This is probably rather inefficient to do for several pages

@@ -362,7 +362,7 @@ class GoogleNewsSitemap extends SpecialPage {
 	/**
 	 * Parse parameters, populates $params
 	 * @throws Exception
-	 * @return Array containing the $params, $categories and $notCategories
+	 * @return array containing the $params, $categories and $notCategories
 	 *   variables that make up the request.
 	 */
 	public function getParams() {
@@ -445,7 +445,7 @@ class GoogleNewsSitemap extends SpecialPage {
 	/**
 	 * Decode the namespace URL parameter.
 	 * @param string $ns Either numeric NS number, NS name, or special value :all:
-	 * @return Mixed Integer or false Namespace number or false for no NS filtering.
+	 * @return mixed Integer or false Namespace number or false for no NS filtering.
 	 */
 	private function getNS( $ns ) {
 		$nsNumb = MediaWikiServices::getInstance()->getContentLanguage()
@@ -483,7 +483,7 @@ class GoogleNewsSitemap extends SpecialPage {
 	 * @param string $name Parameter to retrieve from web reqeust.
 	 * @param string $default
 	 * @param int $max Maximum size of resulting array.
-	 * @return Array of Title objects. The Titles passed in the parameter $name.
+	 * @return array of Title objects. The Titles passed in the parameter $name.
 	 */
 	private function getCatRequestArray( $name, $default, $max ) {
 		$value = $this->getRequest()->getText( $name, $default );
@@ -559,7 +559,7 @@ class GoogleNewsSitemap extends SpecialPage {
 	 * Kind of similar to title::getParentCategories.
 	 *
 	 * @param Title $title Which title to get the categories for.
-	 * @return Array of String's that are the (non-prefixed) db-keys of the cats.
+	 * @return array of String's that are the (non-prefixed) db-keys of the cats.
 	 */
 	private function getVisibleCategories( Title $title ) {
 		$dbr = wfGetDB( DB_REPLICA );
