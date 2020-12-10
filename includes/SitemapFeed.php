@@ -88,6 +88,7 @@ class SitemapFeed extends ChannelFeed {
 		$this->writer->startElement( 'news:language' );
 		$this->writer->text( $this->publicationLang );
 		$this->writer->endElement();
+		// @phan-suppress-next-line PhanPluginDuplicateAdjacentStatement
 		$this->writer->endElement();
 
 		if ( $item->getKeywords() ) {
