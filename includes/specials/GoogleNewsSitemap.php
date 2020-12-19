@@ -62,7 +62,7 @@ class GoogleNewsSitemap extends SpecialPage {
 			return;
 		}
 
-		$msg = wfMessage( 'feed-' . $params['feed'] )->inContentLanguage();
+		$msg = $this->msg( 'feed-' . $params['feed'] )->inContentLanguage();
 		if ( $msg->exists() ) {
 			// This seems a little icky since
 			// its re-using another message in a
