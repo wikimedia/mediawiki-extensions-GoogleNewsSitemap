@@ -2,11 +2,12 @@
 	"@metadata": {
 		"authors": [
 			"Arturyatsko",
+			"DDPAT",
 			"Dim Grits"
 		]
 	},
-	"googlenewssitemap": "Карта сайту для Google News",
-	"googlenewssitemap-desc": "Виводить канал Atom/RSS у вигляді карти сайту для Google News",
-	"googlenewssitemap_toomanycats": "Помилка: Надто багато категорій!",
+	"googlenewssitemap": "Мапа сайту для Google News",
+	"googlenewssitemap-desc": "Виводить канал Atom/RSS у вигляді мапи сайту для Google News",
+	"googlenewssitemap_toomanycats": "Помилка: Забагато категорій!",
 	"googlenewssitemap_feedtitle": "{{SITENAME}}. $1 $2 канал."
 }
