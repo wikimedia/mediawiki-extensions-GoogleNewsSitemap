@@ -10,10 +10,19 @@
 	"license-name": "GPL-2.0-or-later",
 	"type": "specialpage",
 	"requires": {
-		"MediaWiki": ">= 1.32.0"
+		"MediaWiki": ">= 1.35.0"
 	},
 	"SpecialPages": {
-		"GoogleNewsSitemap": "GoogleNewsSitemap"
+		"GoogleNewsSitemap": {
+			"class": "GoogleNewsSitemap",
+			"services": [
+				"NamespaceInfo",
+				"ContentLanguage",
+				"MainWANObjectCache",
+				"DBLoadBalancer",
+				"HookContainer"
+			]
+		}
 	},
 	"MessagesDirs": {
 		"GoogleNewsSitemap": [

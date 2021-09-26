@@ -1,6 +1,7 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\HookContainer\HookContainer;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * Class GoogleNewsSitemap creates Atom/RSS feeds for Wikinews
@@ -32,11 +33,41 @@ class GoogleNewsSitemap extends SpecialPage {
 	public const OPT_ONLY = 1;
 	public const OPT_EXCLUDE = 2;
 
+	/** @var NamespaceInfo */
+	private $namespaceInfo;
+
+	/** @var Language */
+	private $contentLanguage;
+
+	/** @var WANObjectCache */
+	private $mainWANObjectCache;
+
+	/** @var ILoadBalancer */
+	private $loadBalancer;
+
+	/** @var HookContainer */
+	private $hookContainer;
+
 	/**
-	 * Constructor
+	 * @param NamespaceInfo $namespaceInfo
+	 * @param Language $contentLanguage
+	 * @param WANObjectCache $mainWANObjectCache
+	 * @param ILoadBalancer $loadBalancer
+	 * @param HookContainer $hookContainer
 	 */
-	public function __construct() {
+	public function __construct(
+		NamespaceInfo $namespaceInfo,
+		Language $contentLanguage,
+		WANObjectCache $mainWANObjectCache,
+		ILoadBalancer $loadBalancer,
+		HookContainer $hookContainer
+	) {
 		parent::__construct( 'GoogleNewsSitemap' );
+		$this->namespaceInfo = $namespaceInfo;
+		$this->contentLanguage = $contentLanguage;
+		$this->mainWANObjectCache = $mainWANObjectCache;
+		$this->loadBalancer = $loadBalancer;
+		$this->hookContainer = $hookContainer;
 	}
 
 	/**
@@ -47,7 +78,6 @@ class GoogleNewsSitemap extends SpecialPage {
 		global $wgFeedClasses, $wgLanguageCode, $wgGNSMsmaxage;
 
 		list( $params, $categories, $notCategories ) = $this->getParams();
-		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 
 		// if there's an error parsing the params, bail out and return
 		if ( isset( $params['error'] ) ) {
@@ -70,12 +100,15 @@ class GoogleNewsSitemap extends SpecialPage {
 			// uses feed-rss and feed-atom messages.
 			$feedType = $msg->text();
 		} else {
-			$feedType = $contLang->uc( $params['feed'] );
+			$feedType = $this->contentLanguage->uc( $params['feed'] );
 		}
 
 		$feed = new $wgFeedClasses[ $params['feed'] ](
 			$this->msg( 'googlenewssitemap_feedtitle',
-				Language::fetchLanguageName( $wgLanguageCode, $contLang->getCode() ),
+				Language::fetchLanguageName(
+					$wgLanguageCode,
+					$this->contentLanguage->getCode()
+				),
 				$feedType,
 				$wgLanguageCode
 			)->inContentLanguage()->text(),
@@ -88,7 +121,6 @@ class GoogleNewsSitemap extends SpecialPage {
 		$cacheInvalidationInfo = $this->getCacheInvalidationInfo( $params,
 			$categories, $notCategories );
 
-		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 		$cacheKey = $this->getCacheKey( $params, $categories, $notCategories );
 
 		// The way this does caching is based on ChangesFeed::execute.
@@ -104,7 +136,7 @@ class GoogleNewsSitemap extends SpecialPage {
 			$output = ob_get_contents();
 			ob_end_flush();
 			echo "<!-- Not cached. Saved as: $cacheKey -->";
-			$cache->set( $cacheKey,
+			$this->mainWANObjectCache->set( $cacheKey,
 				[ $cacheInvalidationInfo, $output ],
 				$this->maxCacheTime
 			);
@@ -126,8 +158,7 @@ class GoogleNewsSitemap extends SpecialPage {
 			. implode( '|', $categories ) . '||'
 			. implode( '|', $notCategories )
 		);
-		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
-		return $cache->makeKey( 'GNSM-feed', $sum, $wgRenderHashAppend );
+		return $this->mainWANObjectCache->makeKey( 'GNSM-feed', $sum, $wgRenderHashAppend );
 	}
 
 	/**
@@ -148,8 +179,7 @@ class GoogleNewsSitemap extends SpecialPage {
 			return false;
 		}
 
-		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
-		$cached = $cache->get( $key );
+		$cached = $this->mainWANObjectCache->get( $key );
 
 		if ( !$cached
 			|| ( count( $cached ) !== 2 )
@@ -205,7 +235,7 @@ class GoogleNewsSitemap extends SpecialPage {
 	 * @return string All the above info concatenated.
 	 */
 	private function getCacheInvalidationInfo( $params, $categories, $notCategories ) {
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
 		$cacheInfo = '';
 		$categoriesKey = [];
 		$tsQueries = [];
@@ -274,7 +304,7 @@ class GoogleNewsSitemap extends SpecialPage {
 	 * @return \Wikimedia\Rdbms\IResultWrapper
 	 */
 	public function getCategories( $params, $categories, $notCategories ) {
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
 
 		$tables = [ 'page' ];
 
@@ -289,7 +319,15 @@ class GoogleNewsSitemap extends SpecialPage {
 			$conditions['page_namespace'] = $params['namespace'];
 		}
 
-		Hooks::run( 'GoogleNewsSitemap::Query', [ $params, &$joins, &$conditions, &$tables ] );
+		$this->hookContainer->run(
+			'GoogleNewsSitemap::Query',
+			[
+				$params,
+				&$joins,
+				&$conditions,
+				&$tables
+			]
+		);
 
 		switch ( $params['redirects'] ) {
 			case self::OPT_ONLY:
@@ -448,8 +486,7 @@ class GoogleNewsSitemap extends SpecialPage {
 	 * @return mixed Integer or false Namespace number or false for no NS filtering.
 	 */
 	private function getNS( $ns ) {
-		$nsNumb = MediaWikiServices::getInstance()->getContentLanguage()
-			->getNsIndex( $ns );
+		$nsNumb = $this->contentLanguage->getNsIndex( $ns );
 
 		if ( $nsNumb !== false ) {
 			// If they specified something like Talk or Image.
@@ -457,7 +494,7 @@ class GoogleNewsSitemap extends SpecialPage {
 		} elseif ( is_numeric( $ns ) ) {
 			// If they specified a number.
 			$nsVal = intval( $ns );
-			if ( $nsVal >= 0 && MWNamespace::exists( $nsVal ) ) {
+			if ( $nsVal >= 0 && $this->namespaceInfo->exists( $nsVal ) ) {
 				return $nsVal;
 			} else {
 				wfDebug( __METHOD__ . ' Invalid numeric ns number. Using main.' );
@@ -562,7 +599,7 @@ class GoogleNewsSitemap extends SpecialPage {
 	 * @return array of String's that are the (non-prefixed) db-keys of the cats.
 	 */
 	private function getVisibleCategories( Title $title ) {
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
 
 		$where = [
 			'cl_from' => $title->getArticleID(),
