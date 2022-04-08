@@ -1,5 +1,13 @@
 <?php
 
+namespace MediaWiki\Extension\GoogleNewsSitemap;
+
+use ApiMain;
+use Exception;
+use FauxRequest;
+use FeedItem;
+use Title;
+
 /**
  * FeedSMItem Class
  *

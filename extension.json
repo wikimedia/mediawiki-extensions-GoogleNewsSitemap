@@ -14,7 +14,7 @@
 	},
 	"SpecialPages": {
 		"GoogleNewsSitemap": {
-			"class": "GoogleNewsSitemap",
+			"class": "MediaWiki\\Extension\\GoogleNewsSitemap\\Specials\\GoogleNewsSitemap",
 			"services": [
 				"NamespaceInfo",
 				"ContentLanguage",
@@ -32,13 +32,11 @@
 	"ExtensionMessagesFiles": {
 		"GoogleNewsSitemapAlias": "GoogleNewsSitemap.alias.php"
 	},
-	"AutoloadClasses": {
-		"GoogleNewsSitemap": "includes/specials/GoogleNewsSitemap.php",
-		"FeedSMItem": "includes/FeedSMItem.php",
-		"SitemapFeed": "includes/SitemapFeed.php"
+	"AutoloadNamespaces": {
+		"MediaWiki\\Extension\\GoogleNewsSitemap\\": "includes/"
 	},
 	"FeedClasses": {
-		"sitemap": "SitemapFeed"
+		"sitemap": "MediaWiki\\Extension\\GoogleNewsSitemap\\SitemapFeed"
 	},
 	"config": {
 		"GNSMmaxCategories": {

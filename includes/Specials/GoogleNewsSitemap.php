@@ -1,7 +1,19 @@
 <?php
 
+namespace MediaWiki\Extension\GoogleNewsSitemap\Specials;
+
+use ChannelFeed;
+use Exception;
+use FeedUtils;
+use Language;
+use MediaWiki\Extension\GoogleNewsSitemap\FeedSMItem;
 use MediaWiki\HookContainer\HookContainer;
+use NamespaceInfo;
+use SpecialPage;
+use Title;
+use WANObjectCache;
 use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IResultWrapper;
 
 /**
  * Class GoogleNewsSitemap creates Atom/RSS feeds for Wikinews
@@ -193,7 +205,7 @@ class GoogleNewsSitemap extends SpecialPage {
 	/**
 	 * Actually output a feed (HTML).
 	 * @param ChannelFeed $feed Feed object.
-	 * @param \Wikimedia\Rdbms\IResultWrapper $res Result of sql query
+	 * @param IResultWrapper $res Result of sql query
 	 */
 	private function makeFeed( $feed, $res ) {
 		global $wgGNSMcommentNamespace;
@@ -301,7 +313,7 @@ class GoogleNewsSitemap extends SpecialPage {
 	 * @param array $params All the parameters except cats/notcats
 	 * @param array $categories
 	 * @param array $notCategories
-	 * @return \Wikimedia\Rdbms\IResultWrapper
+	 * @return IResultWrapper
 	 */
 	public function getCategories( $params, $categories, $notCategories ) {
 		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );

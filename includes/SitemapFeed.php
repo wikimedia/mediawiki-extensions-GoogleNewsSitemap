@@ -1,5 +1,12 @@
 <?php
 
+namespace MediaWiki\Extension\GoogleNewsSitemap;
+
+use ChannelFeed;
+use Exception;
+use FeedItem;
+use XMLWriter;
+
 class SitemapFeed extends ChannelFeed {
 	private $writer;
 	private $publicationName;
@@ -97,13 +104,15 @@ class SitemapFeed extends ChannelFeed {
 			$this->writer->endElement();
 		}
 
-		$this->writer->endElement(); // end news:news
+		// end news:news
+		$this->writer->endElement();
 		if ( $item->getLastMod() ) {
 			$this->writer->startElement( 'lastmod' );
 			$this->writer->text( wfTimestamp( TS_ISO_8601, $item->getLastMod() ) );
 			$this->writer->endElement();
 		}
-		$this->writer->endElement(); // end url
+		// end url
+		$this->writer->endElement();
 	}
 
 	/**
