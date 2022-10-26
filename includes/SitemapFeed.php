@@ -4,7 +4,7 @@ namespace MediaWiki\Extension\GoogleNewsSitemap;
 
 use ChannelFeed;
 use Exception;
-use FeedItem;
+use MediaWiki\Feed\FeedItem;
 use XMLWriter;
 
 class SitemapFeed extends ChannelFeed {
