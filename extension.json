@@ -20,7 +20,8 @@
 				"ContentLanguage",
 				"MainWANObjectCache",
 				"DBLoadBalancer",
-				"HookContainer"
+				"HookContainer",
+				"LanguageNameUtils"
 			]
 		}
 	},

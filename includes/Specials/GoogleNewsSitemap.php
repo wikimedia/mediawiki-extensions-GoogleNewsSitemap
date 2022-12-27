@@ -8,6 +8,7 @@ use FeedUtils;
 use Language;
 use MediaWiki\Extension\GoogleNewsSitemap\FeedSMItem;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\Languages\LanguageNameUtils;
 use NamespaceInfo;
 use SpecialPage;
 use Title;
@@ -60,19 +61,24 @@ class GoogleNewsSitemap extends SpecialPage {
 	/** @var HookContainer */
 	private $hookContainer;
 
+	/** @var LanguageNameUtils */
+	private $languageNameUtils;
+
 	/**
 	 * @param NamespaceInfo $namespaceInfo
 	 * @param Language $contentLanguage
 	 * @param WANObjectCache $mainWANObjectCache
 	 * @param ILoadBalancer $loadBalancer
 	 * @param HookContainer $hookContainer
+	 * @param LanguageNameUtils $languageNameUtils
 	 */
 	public function __construct(
 		NamespaceInfo $namespaceInfo,
 		Language $contentLanguage,
 		WANObjectCache $mainWANObjectCache,
 		ILoadBalancer $loadBalancer,
-		HookContainer $hookContainer
+		HookContainer $hookContainer,
+		LanguageNameUtils $languageNameUtils
 	) {
 		parent::__construct( 'GoogleNewsSitemap' );
 		$this->namespaceInfo = $namespaceInfo;
@@ -80,6 +86,7 @@ class GoogleNewsSitemap extends SpecialPage {
 		$this->mainWANObjectCache = $mainWANObjectCache;
 		$this->loadBalancer = $loadBalancer;
 		$this->hookContainer = $hookContainer;
+		$this->languageNameUtils = $languageNameUtils;
 	}
 
 	/**
@@ -117,7 +124,7 @@ class GoogleNewsSitemap extends SpecialPage {
 
 		$feed = new $wgFeedClasses[ $params['feed'] ](
 			$this->msg( 'googlenewssitemap_feedtitle',
-				Language::fetchLanguageName(
+				$this->languageNameUtils->getLanguageName(
 					$wgLanguageCode,
 					$this->contentLanguage->getCode()
 				),
