@@ -266,22 +266,20 @@ class GoogleNewsSitemap extends SpecialPage {
 		for ( $i = 0; $i < $params['catCount']; $i++ ) {
 			$key = $categories[$i]->getDBkey();
 			$categoriesKey[] = $key;
-			$tsQueries[] = $dbr->selectSQLText(
-				'categorylinks',
-				'MAX(cl_timestamp) AS ts',
-				[ 'cl_to' => $key ],
-				__METHOD__
-			);
+			$tsQueries[] = $dbr->newSelectQueryBuilder()
+				->select( [ 'ts' => 'MAX(cl_timestamp)' ] )
+				->from( 'categorylinks' )
+				->where( [ 'cl_to' => $key ] )
+				->caller( __METHOD__ );
 		}
 		for ( $i = 0; $i < $params['notCatCount']; $i++ ) {
 			$key = $notCategories[$i]->getDBkey();
 			$categoriesKey[] = $key;
-			$tsQueries[] = $dbr->selectSQLText(
-				'categorylinks',
-				'MAX(cl_timestamp) AS ts',
-				[ 'cl_to' => $key ],
-				__METHOD__
-			);
+			$tsQueries[] = $dbr->newSelectQueryBuilder()
+				->select( [ 'ts' => 'MAX(cl_timestamp)' ] )
+				->from( 'categorylinks' )
+				->where( [ 'cl_to' => $key ] )
+				->caller( __METHOD__ );
 		}
 
 		// phase 1: How many pages in each cat.
@@ -301,7 +299,11 @@ class GoogleNewsSitemap extends SpecialPage {
 		// Part 2: cl_timestamp:
 		// TODO: Double check that the order of the result of union queries
 		// is one after another from the order you specified the queries in.
-		$res2 = $dbr->query( $dbr->unionQueries( $tsQueries, true ), __METHOD__ );
+		$uqb = $dbr->newUnionQueryBuilder();
+		foreach ( $tsQueries as $query ) {
+			$uqb->add( $query );
+		}
+		$res2 = $uqb->all()->caller( __METHOD__ )->fetchResultSet();
 
 		foreach ( $res2 as $row ) {
 			if ( $row->ts === null ) {
