@@ -4,8 +4,8 @@ namespace MediaWiki\Extension\GoogleNewsSitemap;
 
 use ApiMain;
 use Exception;
-use FauxRequest;
 use MediaWiki\Feed\FeedItem;
+use MediaWiki\Request\FauxRequest;
 use Title;
 
 /**
