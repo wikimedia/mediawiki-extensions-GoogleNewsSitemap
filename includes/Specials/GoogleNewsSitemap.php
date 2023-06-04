@@ -7,6 +7,7 @@ use Exception;
 use FeedUtils;
 use Language;
 use MediaWiki\Extension\GoogleNewsSitemap\FeedSMItem;
+use MediaWiki\Extension\GoogleNewsSitemap\Hooks\HookRunner;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Languages\LanguageNameUtils;
 use NamespaceInfo;
@@ -58,8 +59,8 @@ class GoogleNewsSitemap extends SpecialPage {
 	/** @var ILoadBalancer */
 	private $loadBalancer;
 
-	/** @var HookContainer */
-	private $hookContainer;
+	/** @var HookRunner */
+	private $hookRunner;
 
 	/** @var LanguageNameUtils */
 	private $languageNameUtils;
@@ -85,7 +86,7 @@ class GoogleNewsSitemap extends SpecialPage {
 		$this->contentLanguage = $contentLanguage;
 		$this->mainWANObjectCache = $mainWANObjectCache;
 		$this->loadBalancer = $loadBalancer;
-		$this->hookContainer = $hookContainer;
+		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->languageNameUtils = $languageNameUtils;
 	}
 
@@ -340,15 +341,7 @@ class GoogleNewsSitemap extends SpecialPage {
 			$conditions['page_namespace'] = $params['namespace'];
 		}
 
-		$this->hookContainer->run(
-			'GoogleNewsSitemap::Query',
-			[
-				$params,
-				&$joins,
-				&$conditions,
-				&$tables
-			]
-		);
+		$this->hookRunner->onGoogleNewsSitemap__Query( $params, $joins, $conditions, $tables );
 
 		switch ( $params['redirects'] ) {
 			case self::OPT_ONLY:
