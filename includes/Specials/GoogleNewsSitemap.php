@@ -254,7 +254,7 @@ class GoogleNewsSitemap extends SpecialPage {
 	 * @return string All the above info concatenated.
 	 */
 	private function getCacheInvalidationInfo( $params, $categories, $notCategories ) {
-		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
+		$dbr = $this->loadBalancer->getConnection( DB_REPLICA );
 		$cacheInfo = '';
 		$categoriesKey = [];
 		$tsQueries = [];
@@ -325,7 +325,7 @@ class GoogleNewsSitemap extends SpecialPage {
 	 * @return IResultWrapper
 	 */
 	public function getCategories( $params, $categories, $notCategories ) {
-		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
+		$dbr = $this->loadBalancer->getConnection( DB_REPLICA );
 
 		$tables = [ 'page' ];
 
@@ -620,7 +620,7 @@ class GoogleNewsSitemap extends SpecialPage {
 	 * @return array of String's that are the (non-prefixed) db-keys of the cats.
 	 */
 	private function getVisibleCategories( Title $title ) {
-		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
+		$dbr = $this->loadBalancer->getConnection( DB_REPLICA );
 
 		$where = [
 			'cl_from' => $title->getArticleID(),
