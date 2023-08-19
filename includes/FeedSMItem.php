@@ -6,7 +6,7 @@ use ApiMain;
 use Exception;
 use MediaWiki\Feed\FeedItem;
 use MediaWiki\Request\FauxRequest;
-use Title;
+use MediaWiki\Title\Title;
 
 /**
  * FeedSMItem Class
