@@ -60,7 +60,7 @@ class FeedSMItem extends FeedItem {
 	/**
 	 * Convert a FeedItem to an FeedSMItem.
 	 * This is to make sitemap feed get along with normal MediaWiki feeds.
-	 * @param \FeedItem $item Original item.
+	 * @param FeedItem $item Original item.
 	 * @throws Exception
 	 * @return FeedSMItem Converted item.
 	 */

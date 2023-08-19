@@ -2,12 +2,12 @@
 
 namespace MediaWiki\Extension\GoogleNewsSitemap\Specials;
 
-use ChannelFeed;
 use Exception;
-use FeedUtils;
 use Language;
 use MediaWiki\Extension\GoogleNewsSitemap\FeedSMItem;
 use MediaWiki\Extension\GoogleNewsSitemap\Hooks\HookRunner;
+use MediaWiki\Feed\ChannelFeed;
+use MediaWiki\Feed\FeedUtils;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Title\Title;
