@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Extension\GoogleNewsSitemap\Specials;
 
-use Exception;
 use Language;
 use MediaWiki\Extension\GoogleNewsSitemap\FeedSMItem;
 use MediaWiki\Extension\GoogleNewsSitemap\Hooks\HookRunner;
@@ -13,6 +12,7 @@ use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
+use RuntimeException;
 use WANObjectCache;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -413,7 +413,6 @@ class GoogleNewsSitemap extends SpecialPage {
 
 	/**
 	 * Parse parameters, populates $params
-	 * @throws Exception
 	 * @return array containing the $params, $categories and $notCategories
 	 *   variables that make up the request.
 	 */
@@ -460,7 +459,7 @@ class GoogleNewsSitemap extends SpecialPage {
 				$categories[] = $fallBack;
 				$params['catCount'] = count( $categories );
 			} else {
-				throw new Exception(
+				throw new RuntimeException(
 					'Default fallback category ($wgGNSMfallbackCategory) is not a valid title!' );
 			}
 		}

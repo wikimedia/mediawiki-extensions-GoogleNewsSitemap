@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Extension\GoogleNewsSitemap;
 
-use Exception;
 use MediaWiki\Feed\ChannelFeed;
 use MediaWiki\Feed\FeedItem;
+use UnexpectedValueException;
 use XMLWriter;
 
 class SitemapFeed extends ChannelFeed {
@@ -61,11 +61,10 @@ class SitemapFeed extends ChannelFeed {
 	/**
 	 * Output a SiteMap 0.9 item
 	 * @param FeedItem $item to be output
-	 * @throws Exception
 	 */
 	public function outItem( $item ) {
 		if ( !( $item instanceof FeedItem ) ) {
-			throw new Exception( 'Requires a FeedItem or subclass.' );
+			throw new UnexpectedValueException( 'Requires a FeedItem or subclass.' );
 		}
 
 		if ( !( $item instanceof FeedSMItem ) ) {

@@ -3,7 +3,8 @@
 namespace MediaWiki\Extension\GoogleNewsSitemap;
 
 use ApiMain;
-use Exception;
+use InvalidArgumentException;
+use LogicException;
 use MediaWiki\Feed\FeedItem;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Title\Title;
@@ -30,12 +31,11 @@ class FeedSMItem extends FeedItem {
 	 *   True for the corresponding talk page of $title
 	 *   False for none
 	 *   An integer for the page name of $title in the specific namespace denoted by that integer.
-	 * @throws Exception
 	 */
 	public function __construct( $title, $pubDate, $keywords = [], $comment = true ) {
 		if ( !$title || !$title instanceof Title ) {
 			// Paranoia
-			throw new Exception( 'Invalid title object passed to FeedSMItem' );
+			throw new InvalidArgumentException( 'Invalid title object passed to FeedSMItem' );
 		}
 
 		$commentsURL = '';
@@ -61,7 +61,6 @@ class FeedSMItem extends FeedItem {
 	 * Convert a FeedItem to an FeedSMItem.
 	 * This is to make sitemap feed get along with normal MediaWiki feeds.
 	 * @param FeedItem $item Original item.
-	 * @throws Exception
 	 * @return FeedSMItem Converted item.
 	 */
 	public static function newFromFeedItem( FeedItem $item ) {
@@ -69,7 +68,7 @@ class FeedSMItem extends FeedItem {
 		// maybe try and get title from url?
 		$title = Title::newFromText( $item->getTitle() );
 		if ( !$title ) {
-			throw new Exception( 'Error getting title object from string in FeedItem.' );
+			throw new LogicException( 'Error getting title object from string in FeedItem.' );
 		}
 		$date = $item->getDate();
 		return new FeedSMItem( $title, $date );
