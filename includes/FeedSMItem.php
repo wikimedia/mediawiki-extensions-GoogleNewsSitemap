@@ -53,8 +53,14 @@ class FeedSMItem extends FeedItem {
 		$this->keywords = $keywords;
 		$this->titleObj = $title;
 
-		parent::__construct( $title->getText(), '' /* Description */,
-			$title->getCanonicalURL(), $pubDate, '' /* Author */, $commentsURL );
+		parent::__construct(
+			$title->getText(),
+			'', /* Description */
+			$title->getCanonicalURL(),
+			$pubDate,
+			'', /* Author */
+			$commentsURL
+		);
 	}
 
 	/**

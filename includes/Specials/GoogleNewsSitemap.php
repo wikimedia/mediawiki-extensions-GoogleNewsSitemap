@@ -97,7 +97,7 @@ class GoogleNewsSitemap extends SpecialPage {
 	public function execute( $par ) {
 		global $wgFeedClasses, $wgLanguageCode, $wgGNSMsmaxage;
 
-		list( $params, $categories, $notCategories ) = $this->getParams();
+		[ $params, $categories, $notCategories ] = $this->getParams();
 
 		// if there's an error parsing the params, bail out and return
 		if ( isset( $params['error'] ) ) {
