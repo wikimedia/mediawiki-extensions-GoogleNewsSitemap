@@ -639,10 +639,8 @@ class GoogleNewsSitemap extends SpecialPage {
 			$joins
 		);
 		$finalResult = [];
-		if ( $res !== false ) {
-			foreach ( $res as $row ) {
-				$finalResult[] = $row->cl_to;
-			}
+		foreach ( $res as $row ) {
+			$finalResult[] = $row->cl_to;
 		}
 		return $finalResult;
 	}
