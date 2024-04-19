@@ -285,11 +285,13 @@ class GoogleNewsSitemap extends SpecialPage {
 
 		// phase 1: How many pages in each cat.
 		// cat_pages includes all pages (even images/subcats).
-		$res = $dbr->select( 'category', 'cat_pages',
-			[ 'cat_title' => $categoriesKey ],
-			__METHOD__,
-			[ 'ORDER BY' => 'cat_title' ]
-		);
+		$res = $dbr->newSelectQueryBuilder()
+			->select( 'cat_pages' )
+			->from( 'category' )
+			->where( [ 'cat_title' => $categoriesKey ] )
+			->orderBy( 'cat_title' )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		foreach ( $res as $row ) {
 			$cacheInfo .= $row->cat_pages . '!';
@@ -329,12 +331,7 @@ class GoogleNewsSitemap extends SpecialPage {
 		$dbr = $this->loadBalancer->getConnection( DB_REPLICA );
 
 		$tables = [ 'page' ];
-
-		// this is a little hacky, c1 is dynamically defined as the first category
-		// so this can't ever work with uncategorized articles
-		$fields = [ 'page_namespace', 'page_title', 'page_id', 'c1.cl_timestamp' ];
 		$conditions = [];
-		$options = [];
 		$joins = [];
 
 		if ( $params['namespace'] !== false ) {
@@ -343,12 +340,20 @@ class GoogleNewsSitemap extends SpecialPage {
 
 		$this->hookRunner->onGoogleNewsSitemap__Query( $params, $joins, $conditions, $tables );
 
+		$queryBuilder = $dbr->newSelectQueryBuilder()
+			// this is a little hacky, c1 is dynamically defined as the first category
+			// so this can't ever work with uncategorized articles
+			->select( [ 'page_namespace', 'page_title', 'page_id', 'c1.cl_timestamp' ] )
+			->tables( $tables )
+			->joinConds( $joins )
+			->where( $conditions );
+
 		switch ( $params['redirects'] ) {
 			case self::OPT_ONLY:
-				$conditions['page_is_redirect'] = 1;
+				$queryBuilder->andWhere( [ 'page_is_redirect' => 1 ] );
 				break;
 			case self::OPT_EXCLUDE:
-				$conditions['page_is_redirect'] = 0;
+				$queryBuilder->andWhere( [ 'page_is_redirect' => 0 ] );
 				break;
 		}
 
@@ -365,31 +370,26 @@ class GoogleNewsSitemap extends SpecialPage {
 			$timeOffset = (int)wfTimestamp( TS_UNIX ) - ( $params['hourCount'] * 3600 );
 			$MWTimestamp = wfTimestamp( TS_MW, $timeOffset );
 			if ( $MWTimestamp ) {
-				$conditions[] = 'c1.cl_timestamp > ' . $MWTimestamp;
+				$queryBuilder->andWhere( [ $dbr->expr( 'c1.cl_timestamp', '>', $MWTimestamp ) ] );
 			}
 		}
 
 		$currentTableNumber = 1;
-		$categorylinks = $dbr->tableName( 'categorylinks' );
 
 		for ( $i = 0; $i < $params['catCount']; $i++ ) {
-			$joins["c$currentTableNumber"] = [ 'INNER JOIN',
-				[ "page_id = c{$currentTableNumber}.cl_from",
-					"c{$currentTableNumber}.cl_to={$dbr->addQuotes( $categories[$i]->getDBKey() ) }"
-				]
-			];
-			$tables["c$currentTableNumber"] = $categorylinks;
+			$queryBuilder->join( 'categorylinks', "c$currentTableNumber", [
+				"page_id = c{$currentTableNumber}.cl_from",
+				"c{$currentTableNumber}.cl_to" => $categories[$i]->getDBKey(),
+			] );
 			$currentTableNumber++;
 		}
 
 		for ( $i = 0; $i < $params['notCatCount']; $i++ ) {
-			$joins["c$currentTableNumber"] = [ 'LEFT OUTER JOIN',
-				[ "page_id = c{$currentTableNumber}.cl_from",
-					"c{$currentTableNumber}.cl_to={$dbr->addQuotes( $notCategories[$i]->getDBKey() ) }"
-				]
-			];
-			$tables["c$currentTableNumber"] = $categorylinks;
-			$conditions[] = "c{$currentTableNumber}.cl_to IS NULL";
+			$queryBuilder->leftJoin( 'categorylinks', "c$currentTableNumber", [
+				"page_id = c{$currentTableNumber}.cl_from",
+				"c{$currentTableNumber}.cl_to" => $notCategories[$i]->getDBKey(),
+			] );
+			$queryBuilder->andWhere( [ "c{$currentTableNumber}.cl_to" => null ] );
 			$currentTableNumber++;
 		}
 
@@ -400,15 +400,15 @@ class GoogleNewsSitemap extends SpecialPage {
 		}
 
 		if ( $params['orderMethod'] === 'lastedit' ) {
-			$options['ORDER BY'] = 'page_touched ' . $sortOrder;
+			$queryBuilder->orderBy( 'page_touched', $sortOrder );
 		} else {
-			$options['ORDER BY'] = 'c1.cl_timestamp ' . $sortOrder;
+			$queryBuilder->orderBy( 'c1.cl_timestamp', $sortOrder );
 		}
 
 		// earlier validation logic ensures this is a reasonable number
-		$options['LIMIT'] = $params['count'];
+		$queryBuilder->limit( $params['count'] );
 
-		return $dbr->select( $tables, $fields, $conditions, __METHOD__, $options, $joins );
+		return $queryBuilder->fetchResultSet();
 	}
 
 	/**
@@ -613,35 +613,16 @@ class GoogleNewsSitemap extends SpecialPage {
 	 */
 	private function getVisibleCategories( Title $title ) {
 		$dbr = $this->loadBalancer->getConnection( DB_REPLICA );
-
-		$where = [
-			'cl_from' => $title->getArticleID(),
-			'pp_propname' => null
-		];
-
-		$joins = [
-			'page' => [
-				'LEFT OUTER JOIN',
-				[ 'page_namespace' => NS_CATEGORY, 'page_title=cl_to' ]
-			],
-			'page_props' => [
-				'LEFT OUTER JOIN',
-				[ 'pp_page=page_id', 'pp_propname' => 'hiddencat' ]
-			]
-		];
-
-		$res = $dbr->select(
-			[ 'categorylinks', 'page', 'page_props' ],
-			'cl_to',
-			$where,
-			__METHOD__,
-			[], /* options */
-			$joins
-		);
-		$finalResult = [];
-		foreach ( $res as $row ) {
-			$finalResult[] = $row->cl_to;
-		}
-		return $finalResult;
+		return $dbr->newSelectQueryBuilder()
+			->select( 'cl_to' )
+			->from( 'categorylinks' )
+			->leftJoin( 'page', null, [ 'page_namespace' => NS_CATEGORY, 'page_title=cl_to' ] )
+			->leftJoin( 'page_props', null, [ 'pp_page=page_id', 'pp_propname' => 'hiddencat' ] )
+			->where( [
+				'cl_from' => $title->getArticleID(),
+				'pp_propname' => null,
+			] )
+			->caller( __METHOD__ )
+			->fetchFieldValues();
 	}
 }
