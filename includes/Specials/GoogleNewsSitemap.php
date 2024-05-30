@@ -408,7 +408,7 @@ class GoogleNewsSitemap extends SpecialPage {
 		// earlier validation logic ensures this is a reasonable number
 		$queryBuilder->limit( $params['count'] );
 
-		return $queryBuilder->fetchResultSet();
+		return $queryBuilder->caller( __METHOD__ )->fetchResultSet();
 	}
 
 	/**
