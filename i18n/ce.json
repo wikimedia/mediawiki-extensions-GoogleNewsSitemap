@@ -4,6 +4,8 @@
 			"Умар"
 		]
 	},
+	"googlenewssitemap": "Google News сайтана карта",
+	"googlenewssitemap-desc": "Google News сайтан карта санна Atom/RSS канал кечйо",
 	"googlenewssitemap_toomanycats": "ГӀалат. ТӀех дукха категореш йу!",
 	"googlenewssitemap_feedtitle": "{{SITENAME}}. $1 $2 канал."
 }
