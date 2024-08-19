@@ -16,6 +16,7 @@ use MediaWiki\Title\Title;
  */
 class FeedSMItem extends FeedItem {
 
+	/** @var string[] */
 	private $keywords = [];
 
 	/**

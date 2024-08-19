@@ -8,8 +8,11 @@ use UnexpectedValueException;
 use XMLWriter;
 
 class SitemapFeed extends ChannelFeed {
+	/** @var XMLWriter */
 	private $writer;
+	/** @var string */
 	private $publicationName;
+	/** @var string */
 	private $publicationLang;
 
 	public function __construct() {

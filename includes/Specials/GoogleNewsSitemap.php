@@ -41,7 +41,8 @@ use Wikimedia\Rdbms\IResultWrapper;
  */
 
 class GoogleNewsSitemap extends SpecialPage {
-	public $maxCacheTime = 43200; // 12 hours. Chosen rather arbitrarily for now. Might want to tweak.
+	/** @var int 12 hours. Chosen rather arbitrarily for now. Might want to tweak. */
+	public $maxCacheTime = 43200;
 
 	public const OPT_INCLUDE = 0;
 	public const OPT_ONLY = 1;
