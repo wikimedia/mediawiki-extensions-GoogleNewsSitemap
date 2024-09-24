@@ -9,6 +9,7 @@ use MediaWiki\Feed\ChannelFeed;
 use MediaWiki\Feed\FeedUtils;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Languages\LanguageNameUtils;
+use MediaWiki\MainConfigNames;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
@@ -96,8 +97,6 @@ class GoogleNewsSitemap extends SpecialPage {
 	 * @param string|null $par
 	 */
 	public function execute( $par ) {
-		global $wgFeedClasses, $wgLanguageCode, $wgGNSMsmaxage;
-
 		[ $params, $categories, $notCategories ] = $this->getParams();
 
 		// if there's an error parsing the params, bail out and return
@@ -124,20 +123,23 @@ class GoogleNewsSitemap extends SpecialPage {
 			$feedType = $this->contentLanguage->uc( $params['feed'] );
 		}
 
-		$feed = new $wgFeedClasses[ $params['feed'] ](
+		$contentLangCode = $this->getContentLanguage()->getCode();
+
+		$feedClasses = $this->getConfig()->get( MainConfigNames::FeedClasses );
+		$feed = new $feedClasses[ $params['feed'] ](
 			$this->msg( 'googlenewssitemap_feedtitle',
 				$this->languageNameUtils->getLanguageName(
-					$wgLanguageCode,
+					$contentLangCode,
 					$this->contentLanguage->getCode()
 				),
 				$feedType,
-				$wgLanguageCode
+				$contentLangCode
 			)->inContentLanguage()->text(),
 			$this->msg( 'tagline' )->inContentLanguage()->text(),
 			Title::newMainPage()->getFullURL()
 		);
 
-		$this->getOutput()->setCdnMaxage( $wgGNSMsmaxage );
+		$this->getOutput()->setCdnMaxage( $this->getConfig()->get( 'GNSMsmaxage' ) );
 
 		$cacheInvalidationInfo = $this->getCacheInvalidationInfo( $params,
 			$categories, $notCategories );
@@ -172,14 +174,17 @@ class GoogleNewsSitemap extends SpecialPage {
 	 * @return string the key.
 	 */
 	private function getCacheKey( $params, $categories, $notCategories ) {
-		global $wgRenderHashAppend;
 		// Note, the implode relies on Title::__toString, which needs PHP > 5.2
 		// Which I think is above the minimum we support.
 		$sum = md5( serialize( $params )
 			. implode( '|', $categories ) . '||'
 			. implode( '|', $notCategories )
 		);
-		return $this->mainWANObjectCache->makeKey( 'GNSM-feed', $sum, $wgRenderHashAppend );
+		return $this->mainWANObjectCache->makeKey(
+			'GNSM-feed',
+			$sum,
+			$this->getConfig()->get( MainConfigNames::RenderHashAppend )
+		);
 	}
 
 	/**
@@ -217,7 +222,7 @@ class GoogleNewsSitemap extends SpecialPage {
 	 * @param IResultWrapper $res Result of sql query
 	 */
 	private function makeFeed( $feed, $res ) {
-		global $wgGNSMcommentNamespace;
+		$commentNamespace = $this->getConfig()->get( 'GNSMcommentNamespace' );
 		$feed->outHeader();
 		foreach ( $res as $row ) {
 			$title = Title::makeTitle( $row->page_namespace, $row->page_title );
@@ -230,7 +235,7 @@ class GoogleNewsSitemap extends SpecialPage {
 				$title,
 				$pubDate,
 				$this->getKeywords( $title ),
-				$wgGNSMcommentNamespace
+				$commentNamespace
 			);
 			$feed->outItem( $feedItem );
 		}
@@ -418,23 +423,25 @@ class GoogleNewsSitemap extends SpecialPage {
 	 *   variables that make up the request.
 	 */
 	public function getParams() {
-		global $wgGNSMmaxCategories, $wgGNSMmaxResultCount, $wgGNSMfallbackCategory;
-
 		$params = [];
 		$request = $this->getRequest();
+		$config = $this->getConfig();
+		$maxCategories = $config->get( 'GNSMmaxCategories' );
+		$maxResultCount = $config->get( 'GNSMmaxResultCount' );
+		$fallbackCategory = $config->get( 'GNSMfallbackCategory' );
 
 		$categories = $this->getCatRequestArray( 'categories',
-			$wgGNSMfallbackCategory, $wgGNSMmaxCategories );
-		$notCategories = $this->getCatRequestArray( 'notcategories', '', $wgGNSMmaxCategories );
+			$fallbackCategory, $maxCategories );
+		$notCategories = $this->getCatRequestArray( 'notcategories', '', $maxCategories );
 
 		$params['namespace'] = $this->getNS( $request->getVal( 'namespace', '0' ) );
 
-		$params['count'] = $request->getInt( 'count', $wgGNSMmaxResultCount );
+		$params['count'] = $request->getInt( 'count', $maxResultCount );
 		$params['hourCount'] = $request->getInt( 'hourcount', -1 );
 
-		if ( ( $params['count'] > $wgGNSMmaxResultCount )
+		if ( ( $params['count'] > $maxResultCount )
 				|| ( $params['count'] < 1 ) ) {
-			$params['count'] = $wgGNSMmaxResultCount;
+			$params['count'] = $maxResultCount;
 		}
 
 		$params['order'] = $request->getVal( 'order', 'descending' );
@@ -455,7 +462,7 @@ class GoogleNewsSitemap extends SpecialPage {
 			// Always require at least one include category.
 			// Without an include category, cl_timestamp will be null.
 			// Which will probably manifest as a weird bug.
-			$fallBack = Title::newFromText( $wgGNSMfallbackCategory, NS_CATEGORY );
+			$fallBack = Title::newFromText( $fallbackCategory, NS_CATEGORY );
 			if ( $fallBack ) {
 				$categories[] = $fallBack;
 				$params['catCount'] = count( $categories );
@@ -465,7 +472,7 @@ class GoogleNewsSitemap extends SpecialPage {
 			}
 		}
 
-		if ( $totalCatCount > $wgGNSMmaxCategories ) {
+		if ( $totalCatCount > $maxCategories ) {
 			// Causes a 500 error later on.
 			$params['error'] = $this->msg( 'googlenewssitemap_toomanycats' )->text();
 		}
