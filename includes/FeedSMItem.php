@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Extension\GoogleNewsSitemap;
 
-use ApiMain;
 use InvalidArgumentException;
 use LogicException;
+use MediaWiki\Api\ApiMain;
 use MediaWiki\Feed\FeedItem;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Title\Title;

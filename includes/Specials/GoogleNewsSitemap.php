@@ -2,19 +2,19 @@
 
 namespace MediaWiki\Extension\GoogleNewsSitemap\Specials;
 
-use Language;
 use MediaWiki\Extension\GoogleNewsSitemap\FeedSMItem;
 use MediaWiki\Extension\GoogleNewsSitemap\Hooks\HookRunner;
 use MediaWiki\Feed\ChannelFeed;
 use MediaWiki\Feed\FeedUtils;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\Language\Language;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MainConfigNames;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
 use RuntimeException;
-use WANObjectCache;
+use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
 
