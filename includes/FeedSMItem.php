@@ -81,10 +81,16 @@ class FeedSMItem extends FeedItem {
 		return new FeedSMItem( $title, $date );
 	}
 
+	/**
+	 * @return string|false
+	 */
 	public function getLastMod() {
 		return $this->titleObj->getTouched();
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getKeywords() {
 		// Note, not using Language::commaList(), as this is for
 		// computers not humans, so we don't want to vary with
