@@ -56,10 +56,12 @@ class FeedSMItem extends FeedItem {
 
 		parent::__construct(
 			$title->getText(),
-			'', /* Description */
+			// Description provided by getDescription override
+			'',
 			$title->getCanonicalURL(),
 			$pubDate,
-			'', /* Author */
+			// No Author provided
+			'',
 			$commentsURL
 		);
 	}
