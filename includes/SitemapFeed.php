@@ -43,6 +43,7 @@ class SitemapFeed extends ChannelFeed {
 		$this->publicationName = $name;
 	}
 
+	/** @inheritDoc */
 	public function contentType() {
 		return 'application/xml';
 	}
