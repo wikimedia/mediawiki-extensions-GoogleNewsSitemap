@@ -9,6 +9,7 @@ use MediaWiki\Feed\FeedUtils;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Language\Language;
 use MediaWiki\Languages\LanguageNameUtils;
+use MediaWiki\Linker\LinksMigration;
 use MediaWiki\MainConfigNames;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\NamespaceInfo;
@@ -49,23 +50,13 @@ class GoogleNewsSitemap extends SpecialPage {
 	public const OPT_ONLY = 1;
 	public const OPT_EXCLUDE = 2;
 
-	/** @var NamespaceInfo */
-	private $namespaceInfo;
-
-	/** @var Language */
-	private $contentLanguage;
-
-	/** @var WANObjectCache */
-	private $mainWANObjectCache;
-
-	/** @var ILoadBalancer */
-	private $loadBalancer;
-
-	/** @var HookRunner */
-	private $hookRunner;
-
-	/** @var LanguageNameUtils */
-	private $languageNameUtils;
+	private NamespaceInfo $namespaceInfo;
+	private Language $contentLanguage;
+	private WANObjectCache $mainWANObjectCache;
+	private ILoadBalancer $loadBalancer;
+	private HookRunner $hookRunner;
+	private LanguageNameUtils $languageNameUtils;
+	private LinksMigration $linksMigration;
 
 	/**
 	 * @param NamespaceInfo $namespaceInfo
@@ -74,6 +65,7 @@ class GoogleNewsSitemap extends SpecialPage {
 	 * @param ILoadBalancer $loadBalancer
 	 * @param HookContainer $hookContainer
 	 * @param LanguageNameUtils $languageNameUtils
+	 * @param LinksMigration $linksMigration
 	 */
 	public function __construct(
 		NamespaceInfo $namespaceInfo,
@@ -81,7 +73,8 @@ class GoogleNewsSitemap extends SpecialPage {
 		WANObjectCache $mainWANObjectCache,
 		ILoadBalancer $loadBalancer,
 		HookContainer $hookContainer,
-		LanguageNameUtils $languageNameUtils
+		LanguageNameUtils $languageNameUtils,
+		LinksMigration $linksMigration
 	) {
 		parent::__construct( 'GoogleNewsSitemap' );
 		$this->namespaceInfo = $namespaceInfo;
@@ -90,6 +83,7 @@ class GoogleNewsSitemap extends SpecialPage {
 		$this->loadBalancer = $loadBalancer;
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->languageNameUtils = $languageNameUtils;
+		$this->linksMigration = $linksMigration;
 	}
 
 	/**
@@ -266,26 +260,30 @@ class GoogleNewsSitemap extends SpecialPage {
 		$categoriesKey = [];
 		$tsQueries = [];
 
+		$queryInfo = $this->linksMigration->getQueryInfo( 'categorylinks' );
+
 		// This would perhaps be nicer just using a Category object,
 		// but this way can do all at once.
 
 		// Add each category and notcategory to the query.
 		for ( $i = 0; $i < $params['catCount']; $i++ ) {
-			$key = $categories[$i]->getDBkey();
-			$categoriesKey[] = $key;
+			$categoriesKey[] = $categories[$i]->getDBkey();
+			$linksCondition = $this->linksMigration->getLinksConditions( 'categorylinks', $categories[$i] );
 			$tsQueries[] = $dbr->newSelectQueryBuilder()
 				->select( [ 'ts' => 'MAX(cl_timestamp)' ] )
-				->from( 'categorylinks' )
-				->where( [ 'cl_to' => $key ] )
+				->tables( $queryInfo['tables'] )
+				->joinConds( $queryInfo['joins'] )
+				->where( $linksCondition )
 				->caller( __METHOD__ );
 		}
 		for ( $i = 0; $i < $params['notCatCount']; $i++ ) {
-			$key = $notCategories[$i]->getDBkey();
-			$categoriesKey[] = $key;
+			$categoriesKey[] = $notCategories[$i]->getDBkey();
+			$linksCondition = $this->linksMigration->getLinksConditions( 'categorylinks', $notCategories[$i] );
 			$tsQueries[] = $dbr->newSelectQueryBuilder()
 				->select( [ 'ts' => 'MAX(cl_timestamp)' ] )
-				->from( 'categorylinks' )
-				->where( [ 'cl_to' => $key ] )
+				->tables( $queryInfo['tables'] )
+				->joinConds( $queryInfo['joins'] )
+				->where( $linksCondition )
 				->caller( __METHOD__ );
 		}
 
@@ -382,20 +380,49 @@ class GoogleNewsSitemap extends SpecialPage {
 
 		$currentTableNumber = 1;
 
+		$migrationStage = $this->getConfig()->get( MainConfigNames::CategoryLinksSchemaMigrationStage );
+
 		for ( $i = 0; $i < $params['catCount']; $i++ ) {
-			$queryBuilder->join( 'categorylinks', "c$currentTableNumber", [
-				"page_id = c{$currentTableNumber}.cl_from",
-				"c{$currentTableNumber}.cl_to" => $categories[$i]->getDBKey(),
-			] );
+			$currentCategorylinksAlias = "c$currentTableNumber";
+			$currentLinktargetAlias = "linktarget$currentTableNumber";
+			if ( $migrationStage & SCHEMA_COMPAT_READ_OLD ) {
+				$queryBuilder->join( 'categorylinks', $currentCategorylinksAlias, [
+					"page_id = {$currentCategorylinksAlias}.cl_from",
+					"{$currentCategorylinksAlias}.cl_to" => $categories[$i]->getDBKey(),
+				] );
+			} else {
+				$queryBuilder->join( 'categorylinks', $currentCategorylinksAlias, [
+					"page_id = {$currentCategorylinksAlias}.cl_from",
+				] );
+				$queryBuilder->join( 'linktarget', $currentLinktargetAlias, [
+					"{$currentCategorylinksAlias}.cl_target_id = {$currentLinktargetAlias}.lt_id",
+					"{$currentLinktargetAlias}.lt_title" => $categories[$i]->getDBKey(),
+					"{$currentLinktargetAlias}.lt_namespace" => $categories[$i]->getNamespace(),
+				] );
+			}
 			$currentTableNumber++;
 		}
 
 		for ( $i = 0; $i < $params['notCatCount']; $i++ ) {
-			$queryBuilder->leftJoin( 'categorylinks', "c$currentTableNumber", [
-				"page_id = c{$currentTableNumber}.cl_from",
-				"c{$currentTableNumber}.cl_to" => $notCategories[$i]->getDBKey(),
-			] );
-			$queryBuilder->andWhere( [ "c{$currentTableNumber}.cl_to" => null ] );
+			$currentCategorylinksAlias = "c$currentTableNumber";
+			$currentLinktargetAlias = "linktarget$currentTableNumber";
+			if ( $migrationStage & SCHEMA_COMPAT_READ_OLD ) {
+				$queryBuilder->leftJoin( 'categorylinks', $currentCategorylinksAlias, [
+					"page_id = {$currentCategorylinksAlias}.cl_from",
+					"{$currentCategorylinksAlias}.cl_to" => $notCategories[$i]->getDBKey(),
+				] );
+				$queryBuilder->andWhere( [ "{$currentCategorylinksAlias}.cl_to" => null ] );
+			} else {
+				$queryBuilder->leftJoin( 'categorylinks', $currentCategorylinksAlias, [
+					"page_id = {$currentCategorylinksAlias}.cl_from",
+				] );
+				$queryBuilder->leftJoin( 'linktarget', $currentLinktargetAlias, [
+					"{$currentCategorylinksAlias}.cl_target_id = {$currentLinktargetAlias}.lt_id",
+					"{$currentLinktargetAlias}.lt_title" => $notCategories[$i]->getDBKey(),
+					"{$currentLinktargetAlias}.lt_namespace" => $notCategories[$i]->getNamespace(),
+				] );
+				$queryBuilder->andWhere( [ "{$currentLinktargetAlias}.lt_title" => null ] );
+			}
 			$currentTableNumber++;
 		}
 

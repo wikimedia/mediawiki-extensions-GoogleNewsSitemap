@@ -21,7 +21,8 @@
 				"MainWANObjectCache",
 				"DBLoadBalancer",
 				"HookContainer",
-				"LanguageNameUtils"
+				"LanguageNameUtils",
+				"LinksMigration"
 			]
 		}
 	},
