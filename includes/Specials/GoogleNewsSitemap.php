@@ -652,9 +652,10 @@ class GoogleNewsSitemap extends SpecialPage {
 	private function getVisibleCategories( Title $title ) {
 		$dbr = $this->loadBalancer->getConnection( DB_REPLICA );
 		return $dbr->newSelectQueryBuilder()
-			->select( 'cl_to' )
-			->from( 'categorylinks' )
-			->leftJoin( 'page', null, [ 'page_namespace' => NS_CATEGORY, 'page_title=cl_to' ] )
+			->select( 'lt_title' )
+			->from( 'linktarget' )
+			->join( 'categorylinks', null, [ 'cl_target_id=lt_id' ] )
+			->leftJoin( 'page', null, [ 'page_namespace' => NS_CATEGORY, 'page_title=lt_title' ] )
 			->leftJoin( 'page_props', null, [ 'pp_page=page_id', 'pp_propname' => 'hiddencat' ] )
 			->where( [
 				'cl_from' => $title->getArticleID(),
