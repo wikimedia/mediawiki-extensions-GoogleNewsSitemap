@@ -380,52 +380,35 @@ class GoogleNewsSitemap extends SpecialPage {
 
 		$currentTableNumber = 1;
 
-		$migrationStage = $this->getConfig()->get( MainConfigNames::CategoryLinksSchemaMigrationStage );
-
 		for ( $i = 0; $i < $params['catCount']; $i++ ) {
 			$currentCategorylinksAlias = "c$currentTableNumber";
-			$currentLinktargetAlias = "linktarget$currentTableNumber";
-			if ( $migrationStage & SCHEMA_COMPAT_READ_OLD ) {
-				$queryBuilder->join( 'categorylinks', $currentCategorylinksAlias, [
-					"page_id = {$currentCategorylinksAlias}.cl_from",
-					"{$currentCategorylinksAlias}.cl_to" => $categories[$i]->getDBKey(),
-				] );
-			} else {
-				$queryBuilder->join( 'categorylinks', $currentCategorylinksAlias, [
-					"page_id = {$currentCategorylinksAlias}.cl_from",
-				] );
-				$queryBuilder->join( 'linktarget', $currentLinktargetAlias, [
-					"{$currentCategorylinksAlias}.cl_target_id = {$currentLinktargetAlias}.lt_id",
-					"{$currentLinktargetAlias}.lt_title" => $categories[$i]->getDBKey(),
-					"{$currentLinktargetAlias}.lt_namespace" => $categories[$i]->getNamespace(),
-				] );
-			}
+			$currentLinktargetAlias = "lt$currentTableNumber";
+			$queryBuilder->join( 'categorylinks', $currentCategorylinksAlias, [
+				"page_id = {$currentCategorylinksAlias}.cl_from",
+			] );
+			$queryBuilder->join( 'linktarget', $currentLinktargetAlias, [
+				"{$currentCategorylinksAlias}.cl_target_id = {$currentLinktargetAlias}.lt_id",
+				"{$currentLinktargetAlias}.lt_title" => $categories[$i]->getDBKey(),
+				"{$currentLinktargetAlias}.lt_namespace" => $categories[$i]->getNamespace(),
+			] );
 			$currentTableNumber++;
 		}
 
 		for ( $i = 0; $i < $params['notCatCount']; $i++ ) {
 			$currentCategorylinksAlias = "c$currentTableNumber";
-			if ( $migrationStage & SCHEMA_COMPAT_READ_OLD ) {
-				$queryBuilder->leftJoin( 'categorylinks', $currentCategorylinksAlias, [
-					"page_id = {$currentCategorylinksAlias}.cl_from",
-					"{$currentCategorylinksAlias}.cl_to" => $notCategories[$i]->getDBKey(),
-				] );
-				$queryBuilder->andWhere( [ "{$currentCategorylinksAlias}.cl_to" => null ] );
-			} else {
-				$subquery = $dbr->newSelectQueryBuilder()
-					->select( 'cl_from' )
-					->from( 'categorylinks' )
-					->join( 'linktarget', null, [ 'cl_target_id=lt_id' ] )
-					->where( [
-						'lt_title' => $notCategories[$i]->getDBKey(),
-						'lt_namespace' => $notCategories[$i]->getNamespace(),
-					] )
-					->caller( __METHOD__ );
-				$queryBuilder->leftJoin( $subquery, "excluded_pages{$currentTableNumber}", [
-					"page_id = excluded_pages{$currentTableNumber}.cl_from",
-				] );
-				$queryBuilder->where( [ "excluded_pages{$currentTableNumber}.cl_from" => null ] );
-			}
+			$subquery = $dbr->newSelectQueryBuilder()
+				->select( 'cl_from' )
+				->from( 'categorylinks' )
+				->join( 'linktarget', null, [ 'cl_target_id=lt_id' ] )
+				->where( [
+					'lt_title' => $notCategories[$i]->getDBKey(),
+					'lt_namespace' => $notCategories[$i]->getNamespace(),
+				] )
+				->caller( __METHOD__ );
+			$queryBuilder->leftJoin( $subquery, "excluded_pages{$currentTableNumber}", [
+				"page_id = excluded_pages{$currentTableNumber}.cl_from",
+			] );
+			$queryBuilder->where( [ "excluded_pages{$currentTableNumber}.cl_from" => null ] );
 			$currentTableNumber++;
 		}
 
