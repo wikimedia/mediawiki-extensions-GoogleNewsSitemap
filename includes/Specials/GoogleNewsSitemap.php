@@ -41,7 +41,6 @@ use Wikimedia\Rdbms\IResultWrapper;
  *	  * qualitypages = string ; default = include
  *	  * feed = string ; default = sitemap
  */
-
 class GoogleNewsSitemap extends SpecialPage {
 	/** @var int 12 hours. Chosen rather arbitrarily for now. Might want to tweak. */
 	public $maxCacheTime = 43200;
