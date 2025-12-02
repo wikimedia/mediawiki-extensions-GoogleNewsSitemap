@@ -143,12 +143,17 @@ $specialPageAliases['vi'] = [
 	'GoogleNewsSitemap' => [ 'Nguồn_cấp_tin_tức', 'Sơ_đồ_trang_Web_Google_Tin_tức' ],
 ];
 
-/** Simplified Chinese (中文（简体）‎) */
-$specialPageAliases['zh-hans'] = [
-	'GoogleNewsSitemap' => [ '新闻订阅' ],
+/** Chinese (中文) */
+$specialPageAliases['zh'] = [
+	'GoogleNewsSitemap' => [ 'NewsFeed' ],
 ];
 
-/** Traditional Chinese (中文（繁體）‎) */
+/** Simplified Chinese (中文（简体）) */
+$specialPageAliases['zh-hans'] = [
+	'GoogleNewsSitemap' => [ '新闻订阅', 'Google新闻地图' ],
+];
+
+/** Traditional Chinese (中文（繁體）) */
 $specialPageAliases['zh-hant'] = [
 	'GoogleNewsSitemap' => [ '新聞訂閱', 'Google新聞地圖' ],
 ];
