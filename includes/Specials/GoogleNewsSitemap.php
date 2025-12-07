@@ -49,40 +49,19 @@ class GoogleNewsSitemap extends SpecialPage {
 	public const OPT_ONLY = 1;
 	public const OPT_EXCLUDE = 2;
 
-	private NamespaceInfo $namespaceInfo;
-	private Language $contentLanguage;
-	private WANObjectCache $mainWANObjectCache;
-	private ILoadBalancer $loadBalancer;
-	private HookRunner $hookRunner;
-	private LanguageNameUtils $languageNameUtils;
-	private LinksMigration $linksMigration;
+	private readonly HookRunner $hookRunner;
 
-	/**
-	 * @param NamespaceInfo $namespaceInfo
-	 * @param Language $contentLanguage
-	 * @param WANObjectCache $mainWANObjectCache
-	 * @param ILoadBalancer $loadBalancer
-	 * @param HookContainer $hookContainer
-	 * @param LanguageNameUtils $languageNameUtils
-	 * @param LinksMigration $linksMigration
-	 */
 	public function __construct(
-		NamespaceInfo $namespaceInfo,
-		Language $contentLanguage,
-		WANObjectCache $mainWANObjectCache,
-		ILoadBalancer $loadBalancer,
+		private readonly NamespaceInfo $namespaceInfo,
+		private readonly Language $contentLanguage,
+		private readonly WANObjectCache $mainWANObjectCache,
+		private readonly ILoadBalancer $loadBalancer,
 		HookContainer $hookContainer,
-		LanguageNameUtils $languageNameUtils,
-		LinksMigration $linksMigration
+		private readonly LanguageNameUtils $languageNameUtils,
+		private readonly LinksMigration $linksMigration,
 	) {
 		parent::__construct( 'GoogleNewsSitemap' );
-		$this->namespaceInfo = $namespaceInfo;
-		$this->contentLanguage = $contentLanguage;
-		$this->mainWANObjectCache = $mainWANObjectCache;
-		$this->loadBalancer = $loadBalancer;
 		$this->hookRunner = new HookRunner( $hookContainer );
-		$this->languageNameUtils = $languageNameUtils;
-		$this->linksMigration = $linksMigration;
 	}
 
 	/**
