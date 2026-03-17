@@ -196,7 +196,7 @@ class GoogleNewsSitemap extends SpecialPage {
 	 */
 	private function makeFeed( $feed, $res ) {
 		$commentNamespace = $this->getConfig()->get( 'GNSMcommentNamespace' );
-		$feed->outHeader();
+		$feed->outputHeader( $this->getOutput() );
 		foreach ( $res as $row ) {
 			$title = Title::makeTitle( $row->page_namespace, $row->page_title );
 
@@ -210,9 +210,9 @@ class GoogleNewsSitemap extends SpecialPage {
 				$this->getKeywords( $title ),
 				$commentNamespace
 			);
-			$feed->outItem( $feedItem );
+			$feed->outputItem( $feedItem, $this->getOutput() );
 		}
-		$feed->outFooter();
+		$feed->outputFooter( $this->getOutput() );
 	}
 
 	/**

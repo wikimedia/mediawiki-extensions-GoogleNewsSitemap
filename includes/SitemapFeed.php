@@ -4,7 +4,6 @@ namespace MediaWiki\Extension\GoogleNewsSitemap;
 
 use MediaWiki\Feed\ChannelFeed;
 use MediaWiki\Feed\FeedItem;
-use UnexpectedValueException;
 use XMLWriter;
 
 class SitemapFeed extends ChannelFeed {
@@ -50,10 +49,10 @@ class SitemapFeed extends ChannelFeed {
 
 	/**
 	 * Output feed headers.
+	 * @inheritDoc
 	 */
-	public function outHeader() {
-		global $wgOut;
-		$this->sendHttpHeaders( $wgOut );
+	public function outputHeader( $output ): void {
+		$this->sendHttpHeaders( $output );
 
 		$this->writer->openURI( 'php://output' );
 		$this->writer->setIndent( true );
@@ -65,13 +64,9 @@ class SitemapFeed extends ChannelFeed {
 
 	/**
 	 * Output a SiteMap 0.9 item
-	 * @param FeedItem $item to be output
+	 * @inheritDoc
 	 */
-	public function outItem( $item ) {
-		if ( !( $item instanceof FeedItem ) ) {
-			throw new UnexpectedValueException( 'Requires a FeedItem or subclass.' );
-		}
-
+	public function outputItem( FeedItem $item, $output ): void {
 		if ( !( $item instanceof FeedSMItem ) ) {
 			$item = FeedSMItem::newFromFeedItem( $item );
 		}
@@ -121,8 +116,9 @@ class SitemapFeed extends ChannelFeed {
 
 	/**
 	 * Output SiteMap 0.9 footer
+	 * @inheritDoc
 	 */
-	public function outFooter() {
+	public function outputFooter( $output ): void {
 		$this->writer->endDocument();
 		$this->writer->flush();
 	}
