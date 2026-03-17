@@ -110,6 +110,7 @@ class GoogleNewsSitemap extends SpecialPage {
 			$this->msg( 'tagline' )->inContentLanguage()->text(),
 			Title::newMainPage()->getFullURL()
 		);
+		/** @var ChannelFeed $feed */
 
 		$this->getOutput()->setCdnMaxage( $this->getConfig()->get( 'GNSMsmaxage' ) );
 
@@ -121,7 +122,7 @@ class GoogleNewsSitemap extends SpecialPage {
 		// The way this does caching is based on ChangesFeed::execute.
 		$cached = $this->getCachedVersion( $cacheKey, $cacheInvalidationInfo );
 		if ( $cached !== false ) {
-			$feed->httpHeaders();
+			$feed->sendHttpHeaders( $this->getOutput() );
 			echo $cached;
 			echo "<!-- From cache: $cacheKey -->";
 		} else {

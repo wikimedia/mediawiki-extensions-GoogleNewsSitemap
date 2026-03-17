@@ -52,7 +52,8 @@ class SitemapFeed extends ChannelFeed {
 	 * Output feed headers.
 	 */
 	public function outHeader() {
-		$this->httpHeaders();
+		global $wgOut;
+		$this->sendHttpHeaders( $wgOut );
 
 		$this->writer->openURI( 'php://output' );
 		$this->writer->setIndent( true );
