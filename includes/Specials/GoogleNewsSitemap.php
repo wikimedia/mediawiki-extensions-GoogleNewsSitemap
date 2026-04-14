@@ -8,7 +8,7 @@ use MediaWiki\Feed\ChannelFeed;
 use MediaWiki\Feed\FeedUtils;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Language\Language;
-use MediaWiki\Languages\LanguageNameUtils;
+use MediaWiki\Language\LanguageNameUtils;
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\MainConfigNames;
 use MediaWiki\SpecialPage\SpecialPage;
