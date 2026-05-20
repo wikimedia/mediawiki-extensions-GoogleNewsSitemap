@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"AhmedG612"
+		]
+	},
+	"googlenewssitemap": "Khariidadda Google News ee goobta",
+	"googlenewssitemap-desc": "Waxay soo saartaa quudin Atom/RSS ah oo loo beddelay khariidadda Google News",
+	"googlenewssitemap_toomanycats": "Khalad: Qaybo aad u badan!",
+	"googlenewssitemap_feedtitle": "$1 {{SITENAME}} $2 quudin"
+}
