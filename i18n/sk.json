@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Wizzard"
+		]
+	},
+	"googlenewssitemap": "Google News Sitemap",
+	"googlenewssitemap-desc": "Vypisuje kanál Atom/RSS ako Google News Sitemap",
+	"googlenewssitemap_toomanycats": "Chyba: Príliš veľa kategórií!",
+	"googlenewssitemap_feedtitle": "Kanál $2 $1 na {{GRAMMAR:lokál|{{SITENAME}}}}."
+}
